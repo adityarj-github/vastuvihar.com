@@ -14,7 +14,7 @@
         "email": "patna@vastuvihar.org",
         "phone": "7488538119, 8102926293/4",
         "rera": "BRERAP00015-8/239/R-814/2019",
-        "masterPlan": "/masterplan/patna/p3.webp",
+        "masterPlan": "/masterplan/patna/p3.jpg",
         "models": [
           "aditi"
         ]
@@ -29,7 +29,7 @@
         "email": "patna@vastuvihar.org",
         "phone": "7488538119, 8102926293/4",
         "rera": "BRERAP00015-11/238/R-637/2019",
-        "masterPlan": "/masterplan/patna/p4.webp",
+        "masterPlan": "/masterplan/patna/p4.jpg",
         "models": [
           "ganga-new-2bhk"
         ]
@@ -44,7 +44,7 @@
         "email": "patna@vastuvihar.org",
         "phone": "7488538119, 8102926293/4",
         "rera": "BRERAP0001-10/236/R-330/2019",
-        "masterPlan": "/masterplan/patna/p6.webp",
+        "masterPlan": "/masterplan/patna/p6.jpg",
         "models": [
           "ganga-new-2bhk"
         ]
@@ -59,7 +59,7 @@
         "email": "patna@vastuvihar.org",
         "phone": "7488538119, 8102926293/4",
         "rera": "BRERAP00015-9/237/R-641/2019",
-        "masterPlan": "/masterplan/patna/p7.webp",
+        "masterPlan": "/masterplan/patna/p7.jpg",
         "models": [
           "jayanti-bungalow",
           "gayatri-row-house"
@@ -75,7 +75,7 @@
         "email": "patna@vastuvihar.org",
         "phone": "7488538119, 8102926293/4",
         "rera": "Approved",
-        "masterPlan": "/masterplan/patna/p8.webp",
+        "masterPlan": "/masterplan/patna/p8.jpg",
         "models": [
           "yamuna-bungalow-7bhk",
           "yamuna-bungalow",
@@ -236,7 +236,7 @@
         "email": "ara@vastuvihar.org",
         "phone": "8102921821, 7488049821",
         "rera": "BRERAP00015-15/365/R-615/2019",
-        "masterPlan": "/masterplan/ara/1.webp",
+        "masterPlan": "/masterplan/ara/1.jpg",
         "models": [
           "yamuna-bungalow-7bhk",
           "yamuna-bungalow",
@@ -255,7 +255,7 @@
         "email": "ara@vastuvihar.org",
         "phone": "8102921821",
         "rera": "BRERAP00015-2/364/R-711/2019",
-        "masterPlan": "/masterplan/ara/2.webp",
+        "masterPlan": "/masterplan/ara/2.jpg",
         "models": [
           "yamuna-bungalow-7bhk",
           "yamuna-bungalow",
@@ -274,7 +274,7 @@
         "email": "ara@vastuvihar.org",
         "phone": "8102921821",
         "rera": "BRERAP00015-80/114/R-1427/2022",
-        "masterPlan": "/masterplan/ara/3.webp",
+        "masterPlan": "/masterplan/ara/3.jpg",
         "models": [
           "yamuna-bungalow",
           "jayanti-bungalow",
@@ -298,7 +298,7 @@
         "email": "aurangabad@vastuvihar.org",
         "phone": "9386256118, 7488041827",
         "rera": "BRERAP00015-51/838/R-776/2019",
-        "masterPlan": "/masterplan/aurangabad/1.webp",
+        "masterPlan": "/masterplan/aurangabad/1.jpg",
         "models": [
           "yamuna-bungalow",
           "jayanti-bungalow",
@@ -318,7 +318,7 @@
         "email": "aurangabad@vastuvihar.org",
         "phone": "9386256118, 7488041827",
         "rera": "In Progress(Approved)",
-        "masterPlan": "/masterplan/aurangabad/2.webp",
+        "masterPlan": "/masterplan/aurangabad/2.jpg",
         "models": [
           "yamuna-bungalow-7bhk",
           "jayanti-bungalow",
@@ -329,7 +329,7 @@
       }
     ]
   },
-  "biharsharif": {
+  "bihar-sharif": {
     "slug": "biharsharif",
     "name": "Bihar Sharif",
     "state": "Bihar",
@@ -344,7 +344,7 @@
         "email": "biharsharif@vastuvihar.org",
         "phone": "7488538197",
         "rera": "",
-        "masterPlan": "/masterplan/biharsharif/1.webp",
+        "masterPlan": "/masterplan/biharsharif/1.JPG",
         "models": [
           "yamuna-bungalow",
           "jayanti-bungalow",
@@ -361,7 +361,7 @@
         "email": "biharsharif@vastuvihar.org",
         "phone": "8102921825",
         "rera": "BRERAP00015-14/367/R-509/2019",
-        "masterPlan": "/masterplan/biharsharif/2.webp",
+        "masterPlan": "/masterplan/biharsharif/2.jpg",
         "models": [
           "yamuna-bungalow",
           "yamuna-bungalow-7bhk",
@@ -387,7 +387,7 @@
         "email": "buxar@vastuvihar.org",
         "phone": "8102921842",
         "rera": "",
-        "masterPlan": "/masterplan/buxar/1.webp",
+        "masterPlan": "/masterplan/buxar/1.jpg",
         "models": [
           "jayanti-bungalow",
           "simplex-bungalow"
@@ -442,7 +442,7 @@
         "email": "dehrionsone@vastuvihar.org",
         "phone": "9386256112, 9386256113",
         "rera": "BRERA00015-52/837/R-786/2019",
-        "masterPlan": "/masterplan/dehri/1.webp",
+        "masterPlan": "/masterplan/dehri/1.jpg",
         "models": [
           "yamuna-bungalow",
           "jayanti-bungalow",
@@ -461,7 +461,7 @@
         "email": "dehrionsone@vastuvihar.org",
         "phone": "9386256112, 9386256113",
         "rera": "BRERA00015-63/1048/R-841/2019",
-        "masterPlan": "/masterplan/dehri/2.webp",
+        "masterPlan": "/masterplan/dehri/2.jpg",
         "models": [
           "yamuna-bungalow",
           "yamuna-bungalow-7bhk",
@@ -655,31 +655,6 @@
       }
     ]
   },
-  "deoghar": {
-    "slug": "deoghar",
-    "name": "Deoghar",
-    "state": "Jharkhand",
-    "phases": [
-      {
-        "id": "phase-01",
-        "label": "PH-01",
-        "location": "Kushmaha, Deoghar",
-        "heading": "Deoghar Phase-1 Introduction",
-        "description": "Deoghar Phase-1 project has come up with a combination of cottages, bungalows, row houses and apartments such as 1, 2, 3, 4 and 5 BHK with modern amenities.",
-        "siteAddress": "Kushmaha, Near - Paritran Medical College Toward Deoghar To Sultanganj Road.",
-        "email": "deoghar@vastuvihar.org",
-        "phone": "7488659801 / 6203212688 / 7488047026",
-        "rera": "",
-        "masterPlan": "/masterplan/deoghar/1.webp",
-        "models": [
-          "yamuna-bungalow",
-          "jayanti-bungalow",
-          "simplex-bungalow",
-          "ganga-new-2bhk"
-        ]
-      }
-    ]
-  },
   "sitamarhi": {
     "slug": "sitamarhi",
     "name": "Sitamarhi",
@@ -854,6 +829,1055 @@
         "models": [
           "jayanti-bungalow",
           "simplex-bungalow"
+        ]
+      }
+    ]
+  },
+  "muzaffarpur": {
+    "slug": "muzaffarpur",
+    "name": "Muzaffarpur",
+    "state": "Bihar",
+    "phases": [
+      {
+        "id": "phase-01",
+        "label": "PH-01",
+        "location": "Pakri Chowk, Muzaffarpur",
+        "heading": "Muzaffarpur Phase-01 Introduction",
+        "description": "Muzaffarpur Phase-01 is located at Pakri Chowk near Patai Road Airport and Bhagwanpur Chowk. The project is set on 9 acres of land and is planned with cottages, bungalows, row houses and apartments in 2, 3, 4 and 5 BHK configurations.",
+        "siteAddress": "Pakri chowk Near Patai Road airport Bhagwanpur Chowk, Muzaffarpur.",
+        "email": "muzaffarpur@vastuvihar.org",
+        "phone": "7488535211, 9334522266",
+        "rera": "",
+        "masterPlan": "/masterplan/muzaffarpur/p1.jpg",
+        "models": [
+          "jayanti-bungalow",
+          "kaveri-bungalow",
+          "godawari-bungalow",
+          "aditi",
+          "ganga-new-2bhk"
+        ]
+      },
+      {
+        "id": "phase-02",
+        "label": "PH-02",
+        "location": "Ladaura, Bankapur, Muzaffarpur",
+        "heading": "Muzaffarpur Phase-02 Introduction",
+        "description": "Muzaffarpur Phase-02 is located at Ladaura near Gobarshahi Road, Bankapur. The source lists 140 units plus 1 BHK and 2 BHK flats, alongside cottages, bungalows, row houses and apartments in 2, 3, 4 and 5 BHK configurations.",
+        "siteAddress": "Ladaura Near Gobarshahi Road Bankapur, Muzaffarpur.",
+        "email": "muzaffarpur@vastuvihar.org",
+        "phone": "7488535211, 9334522266",
+        "rera": "",
+        "masterPlan": "/masterplan/muzaffarpur/p2.jpg",
+        "models": [
+          "yamuna-bungalow",
+          "jayanti-bungalow",
+          "kaveri-bungalow",
+          "godawari-bungalow",
+          "simplex-bungalow",
+          "ganga-new-2bhk"
+        ]
+      }
+    ]
+  },
+  "purnia": {
+    "slug": "purnia",
+    "name": "Purnia",
+    "state": "Bihar",
+    "phases": [
+      {
+        "id": "phase-01",
+        "label": "PH-01",
+        "location": "Banbhag Chowk, Purnia",
+        "heading": "Purnia Phase-01 Introduction",
+        "description": "Purnia Phase-01 offers 1, 3 and 5 BHK bungalows and 1 and 2 BHK apartments. Listed amenities include a swimming pool, garden and playgrounds.",
+        "siteAddress": "Banbhag Chowk Jhandaha Road Purnea.",
+        "email": "purnea@vastuvihar.org",
+        "phone": "7488535250,7488538128",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "jayanti-bungalow",
+          "yamuna-bungalow",
+          "simplex-bungalow",
+          "ganga-new-2bhk"
+        ]
+      },
+      {
+        "id": "phase-02",
+        "label": "PH-02",
+        "location": "Gunda Chowk, Purnia",
+        "heading": "Purnia Phase-02 Introduction",
+        "description": "Purnia Phase-02 offers 1, 3 and 5 BHK bungalows and 1 and 2 BHK apartments. Listed amenities include a swimming pool, garden and playgrounds.",
+        "siteAddress": "Gunda Chowk Near Ridhi Sidhi Petrol Pump Purnea.",
+        "email": "purnea@vastuvihar.org",
+        "phone": "7488535250,7280023057",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow-7bhk",
+          "jayanti-bungalow",
+          "godawari-bungalow",
+          "ganga-new-2bhk"
+        ]
+      }
+    ]
+  },
+  "begusarai": {
+    "slug": "begusarai",
+    "name": "Begusarai",
+    "state": "Bihar",
+    "phases": [
+      {
+        "id": "phase-01",
+        "label": "PH-01",
+        "location": "Mahammadpur, Raghunathpur, Begusarai",
+        "heading": "Begusarai Phase-01 Introduction",
+        "description": "Begusarai Phase-01 is located at Mahammadpur, Raghunathpur, and comprises 144 units. It offers cottages, bungalows, row houses and apartments in 2, 3, 4 and 5 BHK configurations, as well as 1 BHK Nano Flats, with modern amenities.",
+        "siteAddress": "Mahammadpur, Raghunathpur, Begusarai, Bihar 851101.",
+        "email": "begusarai@vastuvihar.org",
+        "phone": "7488048703, 7488048704",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "jayanti-bungalow",
+          "gayatri-row-house",
+          "kaveri-bungalow",
+          "simplex-bungalow",
+          "ganga-new-2bhk"
+        ]
+      },
+      {
+        "id": "phase-02",
+        "label": "PH-02",
+        "location": "Gobindpur, Begusarai",
+        "heading": "Begusarai Phase-02 Introduction",
+        "description": "Begusarai Phase-02 comprises 185 units and offers cottages, bungalows, row houses and apartments, including 2, 3 and 7 BHK bungalows and 1 BHK Nano Flats, with modern amenities.",
+        "siteAddress": "Munger Ghat - Rashidpur Rd, Gobindpur, Begusari, Bihar-851122",
+        "email": "begusarai@vastuvihar.org",
+        "phone": "7488048703, 7488048704",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow-7bhk",
+          "jayanti-bungalow",
+          "godawari-bungalow",
+          "aditi",
+          "ganga-new-2bhk"
+        ]
+      }
+    ]
+  },
+  "chapra": {
+    "slug": "chapra",
+    "name": "Chapra",
+    "state": "Bihar",
+    "phases": [
+      {
+        "id": "phase-01",
+        "label": "PH-01",
+        "location": "Mauja Brahmpur, Chapra",
+        "heading": "Chapra Phase-01 Introduction",
+        "description": "Chapra Phases 01, 02 and 03 are described together in the source, with cottages, bungalows, row houses and apartments in 1, 2, 3, 5 and 7 BHK configurations and modern facilities.",
+        "siteAddress": "MaujaBrahmpur, Near for Lane Chapra",
+        "email": "chapra@vastuvihar.org",
+        "phone": "7488535202, 8102921832",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow",
+          "jayanti-bungalow",
+          "kaveri-bungalow",
+          "simplex-bungalow",
+          "ganga-new-2bhk"
+        ]
+      },
+      {
+        "id": "phase-02",
+        "label": "PH-02",
+        "location": "Mauja Brahmpur, Chapra",
+        "heading": "Chapra Phase-02 Introduction",
+        "description": "Chapra Phases 01, 02 and 03 are described together in the source, with cottages, bungalows, row houses and apartments in 1, 2, 3, 5 and 7 BHK configurations and modern facilities.",
+        "siteAddress": "MaujaBrahmpur, Near for Lane Chapra",
+        "email": "chapra@vastuvihar.org",
+        "phone": "7488535202, 8102921832",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow",
+          "jayanti-bungalow",
+          "kaveri-bungalow",
+          "simplex-bungalow",
+          "ganga-new-2bhk"
+        ]
+      },
+      {
+        "id": "phase-03",
+        "label": "PH-03",
+        "location": "Mauja Brahmpur, Chapra",
+        "heading": "Chapra Phase-03 Introduction",
+        "description": "Chapra Phases 01, 02 and 03 are described together in the source, with cottages, bungalows, row houses and apartments in 1, 2, 3, 5 and 7 BHK configurations and modern facilities.",
+        "siteAddress": "MaujaBrahmpur, Near for Lane Chapra",
+        "email": "chapra@vastuvihar.org",
+        "phone": "7488535202, 8102921832",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow",
+          "jayanti-bungalow",
+          "kaveri-bungalow",
+          "simplex-bungalow",
+          "ganga-new-2bhk"
+        ]
+      }
+    ]
+  },
+  "madhubani": {
+    "slug": "madhubani",
+    "name": "Madhubani",
+    "state": "Bihar",
+    "phases": [
+      {
+        "id": "phase-01",
+        "label": "PH-01",
+        "location": "Sahua Pandol Road, Madhubani",
+        "heading": "Madhubani Phase-01 Introduction",
+        "description": "Madhubani Phase-01 is planned with cottages, bungalows, row houses and apartments in 1, 2, 3 and 5 BHK configurations with modern facilities.",
+        "siteAddress": "Sahua Pandol Road Madhubani",
+        "email": "madhubani@vastuvihar.org",
+        "phone": "9386256105, 9386256107",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow",
+          "yamuna-bungalow-7bhk",
+          "jayanti-bungalow",
+          "kaveri-bungalow",
+          "simplex-bungalow",
+          "ganga-new-2bhk"
+        ]
+      }
+    ]
+  },
+  "motihari": {
+    "slug": "motihari",
+    "name": "Motihari",
+    "state": "Bihar",
+    "phases": [
+      {
+        "id": "phase-01",
+        "label": "PH-01",
+        "location": "Malkainia, Lakhaura, Motihari",
+        "heading": "Motihari Phase-01 Introduction",
+        "description": "Motihari Phase-01 offers cottages, bungalows, row houses and apartments in 1, 2, 3, 4 and 5 BHK configurations with modern amenities.",
+        "siteAddress": "Malkainia Near Kunwari Devi Chowk Lakhaura Motihari.",
+        "email": "motihari@vastuvihar.org",
+        "phone": "7488528332,7488048393",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow",
+          "jayanti-bungalow",
+          "godawari-bungalow",
+          "kaveri-bungalow",
+          "simplex-bungalow",
+          "aditi",
+          "ganga-new-2bhk"
+        ]
+      },
+      {
+        "id": "phase-02",
+        "label": "PH-02",
+        "location": "NH-28 Muzaffarpur Road, Motihari",
+        "heading": "Motihari Phase-02 Introduction",
+        "description": "Motihari Phase-02 offers cottages, bungalows, row houses and apartments in 1, 2, 3, 4 and 5 BHK configurations with modern amenities.",
+        "siteAddress": "NH-28 Muzaffarpur Road Opp Reliance Petrol Pump. Motihari",
+        "email": "motihari@vastuvihar.org",
+        "phone": "7488528332,7488048393",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow",
+          "jayanti-bungalow",
+          "kaveri-bungalow",
+          "simplex-bungalow",
+          "aditi",
+          "ganga-new-2bhk"
+        ]
+      }
+    ]
+  },
+  "katihar": {
+    "slug": "katihar",
+    "name": "Katihar",
+    "state": "Bihar",
+    "phases": [
+      {
+        "id": "phase-01",
+        "label": "PH-01",
+        "location": "Sirsa Military Camp, Katihar",
+        "heading": "Katihar Phase-01 Introduction",
+        "description": "Katihar Phase-01 is located near Sirsa Military Camp and Medical College, Katihar. The phase comprises 121 units and includes cottages, bungalows, row houses and apartments in 2, 3, 4 and 5 BHK configurations, as well as 1 BHK Nano Flats.",
+        "siteAddress": "Near Sirsa Military Camp. Medical College Katihar.",
+        "email": "katihar@vastuvihar.org",
+        "phone": "9386256102, 9386256103",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow",
+          "jayanti-bungalow",
+          "godawari-bungalow",
+          "simplex-bungalow",
+          "ganga-new-2bhk"
+        ]
+      }
+    ]
+  },
+  "saharsa": {
+    "slug": "saharsa",
+    "name": "Saharsa",
+    "state": "Bihar",
+    "phases": [
+      {
+        "id": "phase-01",
+        "label": "PH-01",
+        "location": "Baidhyanathpur, Patuaha, Saharsa",
+        "heading": "Saharsa Phase-01 Introduction",
+        "description": "Saharsa Phase-01 comprises 423 units with 5 BHK, 4 BHK and 3 BHK bungalows, and 2 BHK and 1 BHK apartments. The listed amenities include a swimming pool, garden, playgrounds and 24-hour electricity and water supply.",
+        "siteAddress": "Baidhynathpur Patuaha, beside Tata Motors, Saharsa, Bihar 852221",
+        "email": "saharsa@vastuvihar.org",
+        "phone": "7280023040",
+        "rera": "",
+        "masterPlan": "/masterplan/saharsa/p1.jpg",
+        "models": [
+          "yamuna-bungalow",
+          "jayanti-bungalow",
+          "kaveri-bungalow",
+          "simplex-bungalow",
+          "ganga-new-2bhk"
+        ]
+      },
+      {
+        "id": "phase-02",
+        "label": "PH-02",
+        "location": "Yadav Chowk, Patuaha, Saharsa",
+        "heading": "Saharsa Phase-02 Introduction",
+        "description": "Saharsa Phase-02 is located near Shree Narayan Medical College, Yadav Chowk, Bheddhadi Road, Patuaha. It comprises 48 apartment units in 2 BHK and 3 BHK configurations, with modern amenities.",
+        "siteAddress": "Near Shree Narayan Medical College, Yadav Chowk, Bheddhadi Road, Patuaha, Saharsa, Bihar 852221.",
+        "email": "pm.saharsa@vastuvihar.org",
+        "phone": "7280023040, 7209559434",
+        "rera": "",
+        "masterPlan": "/masterplan/saharsa/p2.jpg",
+        "models": []
+      }
+    ]
+  },
+  "siwan": {
+    "slug": "siwan",
+    "name": "Siwan",
+    "state": "Bihar",
+    "phases": [
+      {
+        "id": "phase-01",
+        "label": "PH-01",
+        "location": "Babunia More, Siwan",
+        "heading": "Siwan Phase-1 Introduction",
+        "description": "Siwan Phase-01 comprises 150 units and is planned with cottages, bungalows, row houses and apartments, including 1 BHK and 2 BHK apartments and 3 BHK and 5 BHK bungalows, with modern amenities.",
+        "siteAddress": "Maharaja Hotel, Babunia More, Rajendra Path, Siwan.",
+        "email": "siwan@vastuvihar.org",
+        "phone": "7488538145",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow",
+          "jayanti-bungalow",
+          "godawari-bungalow",
+          "ganga-new-2bhk"
+        ]
+      }
+    ]
+  },
+  "raxaul": {
+    "slug": "raxaul",
+    "name": "Raxaul",
+    "state": "Bihar",
+    "phases": [
+      {
+        "id": "phase-01",
+        "label": "PH-01",
+        "location": "Dhupwa Tolla, Ekderwa, Raxaul",
+        "heading": "Raxaul Phase-01 Introduction",
+        "description": "Raxaul Phase-01 is located at Dhupwa Tolla, Ekderwa, near the ICP Border. The project is planned with cottages, bungalows, row houses and apartments in 2, 3, 4 and 5 BHK configurations.",
+        "siteAddress": "Dhupwa Tolla, Ekderwa, Near ICP Boarder, Raxaul-845305.",
+        "email": "marketing.raxaul@vastuvihar.org",
+        "phone": "7428992772, 7320885222",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow",
+          "jayanti-bungalow",
+          "kaveri-bungalow",
+          "godawari-bungalow",
+          "simplex-bungalow",
+          "ganga-new-2bhk"
+        ]
+      }
+    ]
+  },
+  "siliguri": {
+    "slug": "siliguri",
+    "name": "Siliguri",
+    "state": "West Bengal",
+    "phases": [
+      {
+        "id": "phase-01",
+        "label": "PH-01",
+        "location": "Khaprail Mirik Road, Matigara, Siliguri",
+        "heading": "Siliguri Phase-1 Introduction",
+        "description": "Siliguri Phase-1 is located on Khaprail Mirik Road near Matigara and comprises 646 units. The project includes cottages, bungalows, row houses and apartments, with 1 and 2 BHK flats and 3 and 5 BHK bungalows.",
+        "siteAddress": "Siliguri Khaprail Mirik Road Near Matigara.",
+        "email": "siliguri@vastuvihar.org",
+        "phone": "8388851487, 8388851490",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow",
+          "jayanti-bungalow",
+          "gayatri-row-house",
+          "godawari-bungalow",
+          "simplex-bungalow",
+          "ganga-new-2bhk"
+        ]
+      }
+    ]
+  },
+  "rourkela": {
+    "slug": "rourkela",
+    "name": "Rourkela",
+    "state": "Odisha",
+    "phases": [
+      {
+        "id": "phase-01",
+        "label": "PH-01",
+        "location": "Jamuna Naki, Kuarmunda Road, Rourkela",
+        "heading": "Rourkela Phase-1 Introduction",
+        "description": "Rourkela Phase-1 is located at Jamuna Naki, Kuarmunda Road, behind Indian Oil Petrol Pump. The project is planned with bungalows, row houses and apartments in 2, 4 and 5 BHK configurations.",
+        "siteAddress": "Kuarmunda Road, Jamuna Naki, Behind Indian Oil Petrol Pump, Rourkela.",
+        "email": "rourkela@vastuvihar.org",
+        "phone": "6287798032, 7488879201",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow",
+          "jayanti-bungalow",
+          "kaveri-bungalow",
+          "godawari-bungalow",
+          "simplex-bungalow",
+          "ganga-new-2bhk"
+        ]
+      }
+    ]
+  },
+  "mirzapur": {
+    "slug": "mirzapur",
+    "name": "Mirzapur",
+    "state": "Uttar Pradesh",
+    "phases": [
+      {
+        "id": "phase-01",
+        "label": "PH-01",
+        "location": "Vindhyachal Dham, Mirzapur",
+        "heading": "Mirzapur Phase-1 Introduction",
+        "description": "Mirzapur Phase-1 is located near Vindhyachal Dham. Set on 9 acres of land, the project is planned with cottages, bungalows and row houses in 2, 3, 4 and 5 BHK configurations.",
+        "siteAddress": "Mirazpur Near Vindhyachal Dham.",
+        "email": "mirzapur@vastuvihar.org",
+        "phone": "9369997221/23",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow",
+          "jayanti-bungalow",
+          "kaveri-bungalow",
+          "simplex-bungalow",
+          "ganga-new-2bhk"
+        ]
+      }
+    ]
+  },
+  "kolkata": {
+    "slug": "kolkata",
+    "name": "Kolkata",
+    "state": "West Bengal",
+    "phases": [
+      {
+        "id": "phase-01",
+        "label": "PH-01",
+        "location": "Bhojerhat, South 24 Parganas, Kolkata",
+        "heading": "Kolkata Phase-1 Introduction",
+        "description": "Kolkata Bhojerhat Phase-1 is located at Krolbaria, Bhojerhat, behind New Town in South 24 Parganas. The project includes cottages, bungalows, row houses and apartments in 1, 2, 3, 4 and 5 BHK configurations with modern facilities.",
+        "siteAddress": "Vastu Vihar Near Bhojerhat bridge, At-Krolbaria, PO-Beonta-1, PS-Kolkata Lether Complex, Behind New Town, South 24 Pargana 743502",
+        "email": "kolkata@vastuvihar.org",
+        "phone": "8100915971, 8100915974",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow",
+          "jayanti-bungalow",
+          "ganga-new-2bhk"
+        ]
+      }
+    ]
+  },
+  "gorakhpur": {
+    "slug": "gorakhpur",
+    "name": "Gorakhpur",
+    "state": "Uttar Pradesh",
+    "phases": [
+      {
+        "id": "phase-01",
+        "label": "PH-01",
+        "location": "Siktaur, Deoria Bypass Road, Gorakhpur",
+        "heading": "Gorakhpur Phase-1 Introduction",
+        "description": "Gorakhpur Phase-1 is located at Siktaur near Sahara Estate on Deoria Bypass Road. The project comprises 95 units and is planned with cottages, bungalows, row houses and apartments in 1, 2, 3 and 5 BHK configurations with modern facilities.",
+        "siteAddress": "Siktaur Near Sahara Estate, Deoria Baipass road Gorakhpur.",
+        "email": "gorakhpur@vastuvihar.org",
+        "phone": "9369997226, 9369997230",
+        "rera": "",
+        "masterPlan": "/masterplan/gorakhpur/p1.jpg",
+        "models": [
+          "yamuna-bungalow",
+          "jayanti-bungalow",
+          "kaveri-bungalow",
+          "simplex-bungalow",
+          "ganga-new-2bhk"
+        ]
+      }
+    ]
+  },
+  "durgapur": {
+    "slug": "durgapur",
+    "name": "Durgapur",
+    "state": "West Bengal",
+    "phases": [
+      {
+        "id": "phase-01",
+        "label": "PH-01",
+        "location": "Haribazar, Durgapur",
+        "heading": "Durgapur Phase-1 Introduction",
+        "description": "Durgapur Phase-1 is located behind Dr. B. C. Roy Engineering College in Haribazar. It comprises 84 units and includes cottages, bungalows, row houses and apartments in 2, 3, 4 and 5 BHK configurations with modern amenities.",
+        "siteAddress": "Behind Dr. B.C. Roy Engineering College Haribazar, Durgapur.",
+        "email": "durgapur@vastuvihar.org",
+        "phone": "7797701014, 7797701015",
+        "rera": "",
+        "masterPlan": "/masterplan/durgapur/p1.jpg",
+        "models": [
+          "yamuna-bungalow",
+          "jayanti-bungalow",
+          "ganga-new-2bhk"
+        ]
+      }
+    ]
+  },
+  "asansol": {
+    "slug": "asansol",
+    "name": "Asansol",
+    "state": "West Bengal",
+    "phases": [
+      {
+        "id": "phase-01",
+        "label": "PH-01",
+        "location": "Garui, Kanyapur, Asansol",
+        "heading": "Asansol Phase-1 Introduction",
+        "description": "Asansol Phase-1 is located at Garui, Kanyapur, near Asansol Engineering College on NH-2. Set on 9 acres of land, the project is planned with cottages, bungalows and row houses in 2, 3, 4 and 5 BHK configurations.",
+        "siteAddress": "Garui (Mouza) PO Kanyapur PS Asansol (N) Ward No.31 Burdwan Near Asansol Engineering College NH-2, Asansol.",
+        "email": "asansol@vastuvihar.org",
+        "phone": "7797701012, 7797701013",
+        "rera": "",
+        "masterPlan": "/masterplan/asansol/p1.jpg",
+        "models": [
+          "yamuna-bungalow",
+          "jayanti-bungalow",
+          "simplex-bungalow",
+          "ganga-new-2bhk"
+        ]
+      }
+    ]
+  },
+  "alipurduar": {
+    "slug": "alipurduar",
+    "name": "Alipurduar",
+    "state": "West Bengal",
+    "phases": [
+      {
+        "id": "phase-01",
+        "label": "PH-01",
+        "location": "Bairaguri, Alipurduar",
+        "heading": "Alipurduar Phase-1 Introduction",
+        "description": "Alipurduar Phase-1 is located at Bairaguri in Alipurduar, West Bengal. The project includes cottages, bungalows, row houses and apartments, with 1, 2, 3, 4, 5 and 7 BHK configurations and modern facilities.",
+        "siteAddress": "Bairaguri Banchukamari Gram Panchayat Near Ujjal Diller's Rashon Shop 2 KM away from Beltola Gas Godown Towards Highway Alipurduar.",
+        "email": "alipurduar@vastuvihar.org",
+        "phone": "8170028993, 8170028994",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow-7bhk",
+          "yamuna-bungalow",
+          "jayanti-bungalow",
+          "godawari-bungalow",
+          "gayatri-row-house",
+          "ganga-new-2bhk"
+        ]
+      }
+    ]
+  },
+  "bhubaneswar": {
+    "slug": "bhubaneswar",
+    "name": "Bhubaneswar",
+    "state": "Odisha",
+    "phases": [
+      {
+        "id": "phase-01",
+        "label": "PH-01",
+        "location": "Gaonpada, Pipili, Puri district",
+        "heading": "Bhubaneshwar Phase-1 Introduction",
+        "description": "Bhubaneswar Phase-1 is planned at Gaonpada, Orkala Gram Panchayat, Pipili, Puri district. It includes cottages, bungalows, row houses and apartments in 2, 3, 4 and 5 BHK configurations with modern amenities.",
+        "siteAddress": "Mouza-Gaonpada, Vill-Gaonpada Grama panchayat-Orkala Tahshil-Pipil, Dist-puri.",
+        "email": "bhubaneswar@vastuvihar.org",
+        "phone": "9337477771, 9337477772",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow",
+          "jayanti-bungalow",
+          "kaveri-bungalow",
+          "simplex-bungalow"
+        ]
+      }
+    ]
+  },
+  "ranchi": {
+    "slug": "ranchi",
+    "name": "Ranchi",
+    "state": "Jharkhand",
+    "phases": [
+      {
+        "id": "bit",
+        "label": "BIT",
+        "location": "BIT Mesra, Ranchi",
+        "heading": "Ranchi BIT Introduction",
+        "description": "Ranchi BIT is located at BIT Mesra near Navodaya Vidyalaya. Set on 9 acres, the project is planned with cottages, bungalows and row houses in 2, 3, 4 and 5 BHK configurations.",
+        "siteAddress": "Bit Mesra Near Navodaya vidyalaya Ranchi.",
+        "email": "ranchi@vastuvihar.org",
+        "phone": "8809404710",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow",
+          "gayatri-row-house",
+          "jayanti-bungalow",
+          "kaveri-bungalow"
+        ]
+      },
+      {
+        "id": "kedal",
+        "label": "KEDAL",
+        "location": "Kedal, BIT More, Ranchi",
+        "heading": "Ranchi Kedal Introduction",
+        "description": "Ranchi Kedal is located near BIT More behind Manrakhan B.Ed College. Set on 9 acres, the project is planned with cottages, bungalows and row houses in 2, 3, 4 and 5 BHK configurations.",
+        "siteAddress": "Uttrayan Vastu Vihar Kedal Near Manrakhan Mahto B-ED College Distt.Ranchi, Jharkhand P.N-835221",
+        "email": "ranchi@vastuvihar.org",
+        "phone": "7280023038",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow",
+          "jayanti-bungalow",
+          "kaveri-bungalow"
+        ]
+      },
+      {
+        "id": "hardag",
+        "label": "HARDAG",
+        "location": "Hardag, Huluhundu, Ranchi",
+        "heading": "Ranchi Hardag Phase-3 Introduction",
+        "description": "Ranchi Hardag is located at Hardag, P.O. Huluhundu, P.S. Tipudana. Set on 9 acres, the project comprises 277 units and includes bungalows, row houses and apartments in 1, 2, 3, 4, 5 and 7 BHK configurations.",
+        "siteAddress": "Vill- Vastu Vihar Hardag P.O Huluhundu ,P.S Tipudana Distt.Ranchi, Jharkhand P.N-835221",
+        "email": "ranchi@vastuvihar.org",
+        "phone": "7280023038/39",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow-7bhk",
+          "yamuna-bungalow",
+          "jayanti-bungalow",
+          "simplex-bungalow"
+        ]
+      },
+      {
+        "id": "bukru",
+        "label": "BUKRU",
+        "location": "Bukru, Kanke, Ranchi",
+        "heading": "Ranchi Bukru Introduction",
+        "description": "Ranchi Bukru is located on Bukru-Kanke Road. Set on 9 acres, the project is planned with bungalows, row houses and apartments in 2, 4 and 5 BHK configurations.",
+        "siteAddress": "Bukru Bazar, Kanke, Ranchi-Pithoriya Road, Ranchi. Jharkhand",
+        "email": "ranchi@vastuvihar.org",
+        "phone": "8102912046",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow-7bhk",
+          "godawari-bungalow",
+          "jayanti-bungalow",
+          "aditi",
+          "ganga-new-2bhk"
+        ]
+      }
+    ]
+  },
+  "jamshedpur": {
+    "slug": "jamshedpur",
+    "name": "Jamshedpur",
+    "state": "Jharkhand",
+    "phases": [
+      {
+        "id": "phase-05",
+        "label": "ADITYAPUR",
+        "location": "Adityapur, Jamshedpur",
+        "heading": "Adityapur Jamshedpur Introduction",
+        "description": "Adityapur Jamshedpur is identified as Phase-5 of Vastu Vihar near NIIT Adityapur. The source describes cottages, bungalows, row houses and apartments in 1, 2, 3, 4 and 8 BHK configurations.",
+        "siteAddress": "Near transport Nagar Road No.-28, Adityapur-Jamshedpur",
+        "email": "jamshedpur@vastuvihar.org",
+        "phone": "7488535256, 7488535258",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow",
+          "gayatri-row-house",
+          "jayanti-bungalow",
+          "simplex-bungalow",
+          "ganga-new-2bhk"
+        ]
+      },
+      {
+        "id": "phase-06",
+        "label": "ASANGI",
+        "location": "Asangi, Jamshedpur",
+        "heading": "Asangi Jamshedpur Introduction",
+        "description": "Asangi Jamshedpur is identified as Phase-6 of Vastu Vihar near NIIT Adityapur. The source describes cottages, bungalows, row houses and apartments in 1, 2, 3, 4 and 8 BHK configurations.",
+        "siteAddress": "Near NIIT Adityapur Saraikela Kharsawan Jamshedpur Pin - 831015",
+        "email": "jamshedpur@vastuvihar.org",
+        "phone": "7488535256, 7488535258",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow-7bhk",
+          "jayanti-bungalow",
+          "godawari-bungalow",
+          "ganga-new-2bhk"
+        ]
+      }
+    ]
+  },
+  "dhanbad": {
+    "slug": "dhanbad",
+    "name": "Dhanbad",
+    "state": "Jharkhand",
+    "phases": [
+      {
+        "id": "phase-01",
+        "label": "PH-01",
+        "location": "Kolakusma, Dhanbad",
+        "heading": "Dhanbad Phase-1 Introduction",
+        "description": "Dhanbad Phase-1 is planned with cottages, bungalows, row houses and apartments in 2, 3, 4 and 5 BHK configurations, with modern amenities.",
+        "siteAddress": "Kolakusma, Near Balajee Petrol Pump Baliapur Byepass Road, Dhanbad.",
+        "email": "dhanbad@vastuvihar.org",
+        "phone": "7488535265, 7488535262",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow-7bhk",
+          "jayanti-bungalow",
+          "ganga-new-2bhk"
+        ]
+      },
+      {
+        "id": "phase-02",
+        "label": "PH-02",
+        "location": "Jialgara, Govindpur, Dhanbad",
+        "heading": "Dhanbad Phase-2 Introduction",
+        "description": "Dhanbad Phase-2 is planned with cottages, bungalows, row houses and apartments in 2, 3, 4 and 5 BHK configurations, with modern amenities.",
+        "siteAddress": "Jialgara, Govindpur Uttrayan GT Road NH2, Dhanbad, Jharkhand 828109",
+        "email": "dhanbad@vastuvihar.org",
+        "phone": "9304434579, 7488535265",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow-7bhk",
+          "godawari-bungalow",
+          "jayanti-bungalow",
+          "kaveri-bungalow",
+          "simplex-bungalow"
+        ]
+      },
+      {
+        "id": "phase-03",
+        "label": "PH-03",
+        "location": "Baliyapur, Kolakusma, Dhanbad",
+        "heading": "Dhanbad Phase-3 Introduction",
+        "description": "Dhanbad Phase-3 is planned with bungalows and row houses, including 3 BHK and 4 BHK homes. The listed amenities include a garden, temple and swimming pool.",
+        "siteAddress": "Baliyapur, Sindri Road Near Big Bazar, Kolakusma Dhanbad",
+        "email": "dhanbad@vastuvihar.org",
+        "phone": "7488535265, 7488535262",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "ambika-bungalow",
+          "jayanti-bungalow",
+          "godawari-bungalow"
+        ]
+      }
+    ]
+  },
+  "bokaro": {
+    "slug": "bokaro",
+    "name": "Bokaro",
+    "state": "Jharkhand",
+    "phases": [
+      {
+        "id": "phase-01",
+        "label": "PH-01",
+        "location": "Chira Chas, Bokaro",
+        "heading": "Bokaro Phase-1 Introduction",
+        "description": "Bokaro Phase-1 is planned with cottages, bungalows, row houses and apartments in 2, 3, 4 and 5 BHK configurations, with modern amenities.",
+        "siteAddress": "Near Bokaro Niwas Chira Chas Bokaro (Jharkhand) PIN -827001",
+        "email": "bokaro@vastuvihar.org",
+        "phone": "7488538181, 7488538184",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow",
+          "jayanti-bungalow",
+          "godawari-bungalow",
+          "simplex-bungalow",
+          "ganga-new-2bhk"
+        ]
+      },
+      {
+        "id": "phase-02",
+        "label": "PH-02",
+        "location": "Chira Chas, Bokaro",
+        "heading": "Bokaro Phase-2 Introduction",
+        "description": "Bokaro Phase-2 is planned with cottages, bungalows, row houses and apartments in 2, 3, 4 and 5 BHK configurations, with modern amenities.",
+        "siteAddress": "Chira Chas Bokaro (Jharkhand) PIN -827001",
+        "email": "bokaro@vastuvihar.org",
+        "phone": "7488538181, 7488538184",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow",
+          "jayanti-bungalow",
+          "kaveri-bungalow",
+          "simplex-bungalow",
+          "aditi",
+          "ganga-new-2bhk"
+        ]
+      },
+      {
+        "id": "phase-03",
+        "label": "PH-03",
+        "location": "Chira Chas, Bokaro",
+        "heading": "Bokaro Phase-3 Introduction",
+        "description": "Bokaro Phase-3 is planned with cottages, bungalows, row houses and apartments in 2, 3, 4 and 5 BHK configurations, with modern amenities.",
+        "siteAddress": "Chira Chas Bokaro (Jharkhand) PIN -827001",
+        "email": "bokaro@vastuvihar.org",
+        "phone": "7488538181, 7488538184",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow",
+          "jayanti-bungalow",
+          "simplex-bungalow",
+          "ganga-new-2bhk"
+        ]
+      },
+      {
+        "id": "phase-04",
+        "label": "PH-04",
+        "location": "Chira Chas, Bokaro",
+        "heading": "Bokaro Phase 04 Introduction",
+        "description": "Bokaro Phase-4 is planned with cottages, bungalows, row houses and apartments in 2, 3, 4 and 5 BHK configurations, with modern amenities.",
+        "siteAddress": "Chira Chas, Bokaro Near Motilal agarwal factory Jharkhand PIN 827001",
+        "email": "bokaro@vastuvihar.org",
+        "phone": "7488538181, 7488538184",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "jayanti-bungalow",
+          "simplex-bungalow"
+        ]
+      },
+      {
+        "id": "phase-05",
+        "label": "PH-05",
+        "location": "Bari Cooperative, Bokaro",
+        "heading": "Bokaro Phase-5 Introduction",
+        "description": "Bokaro Phase-5 is planned with cottages, bungalows, row houses and apartments in 2, 3, 4 and 5 BHK configurations, with modern amenities.",
+        "siteAddress": "Behind- Satanpur Mountain Bari Co-Operative Jharkhand. PIN-827001",
+        "email": "bokaro@vastuvihar.org",
+        "phone": "7488538181, 7488538184",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "jayanti-bungalow",
+          "simplex-bungalow"
+        ]
+      },
+      {
+        "id": "phase-06",
+        "label": "PH-06",
+        "location": "Chira Chas, Bokaro",
+        "heading": "Bokaro Phase-6 Introduction",
+        "description": "Bokaro Phase-6 is planned with cottages, bungalows, row houses and apartments in 2, 3, 4 and 5 BHK configurations, with modern amenities.",
+        "siteAddress": "Chira Chas Near K.K. Singh (Jharkhand) PIN -827001",
+        "email": "bokaro@vastuvihar.org",
+        "phone": "7488538181, 7488538184",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow",
+          "jayanti-bungalow",
+          "godawari-bungalow",
+          "simplex-bungalow"
+        ]
+      },
+      {
+        "id": "phase-07",
+        "label": "PH-07",
+        "location": "Rajendra Nagar, Bokaro Steel City",
+        "heading": "Bokaro Phase-7 Introduction",
+        "description": "Bokaro Phase-7 is located at Bari Co-Operative, Rajendra Nagar, Bokaro Steel City. It comprises 412 units and includes bungalows, row houses and apartments, including 3 BHK and 7 BHK bungalows, 2 BHK apartments and 1 BHK Chota Ghar units.",
+        "siteAddress": "Bari Co-Operative Rajendra Nagar Bokaro Steel City",
+        "email": "bokaro@vastuvihar.org",
+        "phone": "7488538181, 7488538184",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow-7bhk",
+          "jayanti-bungalow",
+          "godawari-bungalow",
+          "simplex-bungalow",
+          "aditi",
+          "ganga-new-2bhk"
+        ]
+      },
+      {
+        "id": "phase-08",
+        "label": "PH-08",
+        "location": "Choufand Basti, Bokaro Steel City",
+        "heading": "Bokaro Phase-8 Introduction",
+        "description": "Bokaro Phase-8 comprises 197 units and includes bungalows, row houses and apartments, with 7 BHK, 3 BHK and 2 BHK configurations and modern amenities.",
+        "siteAddress": "Choufand Basti, Bokaro Steel City, Jharkhand 827009",
+        "email": "bokaro@vastuvihar.org",
+        "phone": "7488538181, 7488538184",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow-7bhk",
+          "jayanti-bungalow",
+          "godawari-bungalow",
+          "ganga-new-2bhk"
+        ]
+      }
+    ]
+  },
+  "hazaribagh": {
+    "slug": "hazaribagh",
+    "name": "Hazaribagh",
+    "state": "Jharkhand",
+    "phases": [
+      {
+        "id": "phase-01",
+        "label": "PH-01",
+        "location": "Mukundganj Chowk, Hazaribagh",
+        "heading": "Hazaribagh Phase 1 Introduction",
+        "description": "Hazaribagh Phase-1 is located on Patna-Ranchi Road (NH-33) at Mukundganj Chowk. Set on 5 acres, the project is planned with cottages, bungalows and row houses in 2, 3, 4 and 5 BHK configurations.",
+        "siteAddress": "Patna-Ranchi Road, NH-33, Mukundganj Chowk Hazaribagh, PIN:825301",
+        "email": "Hazaribagh@vastuvihar.org",
+        "phone": "7280023039 / 8102921849",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow",
+          "gayatri-row-house",
+          "jayanti-bungalow",
+          "kaveri-bungalow"
+        ]
+      },
+      {
+        "id": "phase-02",
+        "label": "PH-02",
+        "location": "Hazaribagh Phase-2, Hazaribagh",
+        "heading": "Hazaribagh Phase 2 Introduction",
+        "description": "Hazaribagh Phase-2 is set on 3 acres and is planned with bungalows, apartments and row houses in 2, 3, 4 and 5 BHK configurations.",
+        "siteAddress": "Vastu Vihar Phase 2, Hazaribagh, Jharkhand PIN-825301",
+        "email": "Hazaribagh@vastuvihar.org",
+        "phone": "7280023039 / 8102921849",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow",
+          "ambika-bungalow",
+          "jayanti-bungalow"
+        ]
+      }
+    ]
+  },
+  "deoghar": {
+    "slug": "deoghar",
+    "name": "Deoghar",
+    "state": "Jharkhand",
+    "phases": [
+      {
+        "id": "phase-01",
+        "label": "PH-01",
+        "location": "Kushmaha, Deoghar",
+        "heading": "Deoghar Phase-1 Introduction",
+        "description": "Deoghar Phase-01 is planned with cottages, bungalows, row houses and apartments in 2, 3, 4 and 5 BHK configurations, with modern amenities.",
+        "siteAddress": "Kushmaha, Near - Paritran Medical College Toward Deoghar To Sultanganj Road.",
+        "email": "deoghar@vastuvihar.org",
+        "phone": "7488659801 / 6203212688 / 7488047026",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow",
+          "jayanti-bungalow",
+          "simplex-bungalow",
+          "ganga-new-2bhk"
+        ]
+      }
+    ]
+  },
+  "giridih": {
+    "slug": "giridih",
+    "name": "Giridih",
+    "state": "Jharkhand",
+    "phases": [
+      {
+        "id": "phase-01",
+        "label": "PH-01",
+        "location": "Court Road, Giridih",
+        "heading": "Giridih Phase-1 Introduction",
+        "description": "Giridih Phase-1 is planned with cottages, bungalows, row houses and apartments in 1, 2, 3, 4 and 8 BHK configurations, with modern facilities.",
+        "siteAddress": "Court Road, Near Bharat Petrol Pump, Giridih Jharkhand-815301",
+        "email": "giridih@vastuvihar.org",
+        "phone": "7280077015/16",
+        "rera": "",
+        "masterPlan": null,
+        "models": [
+          "yamuna-bungalow-7bhk",
+          "yamuna-bungalow",
+          "jayanti-bungalow",
+          "simplex-bungalow",
+          "ganga-new-2bhk"
         ]
       }
     ]

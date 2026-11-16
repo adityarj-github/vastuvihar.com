@@ -18,7 +18,7 @@ export const navigation = [
   { label: 'About', href: '/about-us/', children: companyLinks },
   { label: 'Models', href: '/projects/' },
   { label: 'Price List', href: '/price-list/' },
-  { label: 'Careers', href: '/careers/' },
+  { label: 'Projects', href: '/cities/' },
   { label: 'Gallery', href: '/gallery/' },
   { label: 'Contact', href: '/contact/', children: contactLinks },
 ];

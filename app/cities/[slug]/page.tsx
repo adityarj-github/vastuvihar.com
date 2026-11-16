@@ -13,7 +13,7 @@ import styles from './page.module.css';
 
 // Use your existing City / Price List hero CSS unchanged.
 // Update this import only if the hero module is located elsewhere.
-import heroStyles from '@/app/price-list/hero.module.css';
+import heroStyles from './hero.module.css';
 
 // cities.json contains ONLY canonical model slugs. Model details are always
 // resolved from lib/models-data.ts (one source for slug, image, name and price).

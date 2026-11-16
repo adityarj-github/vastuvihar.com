@@ -58,10 +58,10 @@ export default function AdminLoginPage() {
 
           <div className={styles.logoWrap}>
             <Image
-              src="/images/logo.svg"
+              src="/images/vastu-logo.webp"
               alt="Vastu Vihar"
-              width={160}
-              height={36}
+              width={260}
+              height={72}
               priority
               className={styles.logoImg}
             />

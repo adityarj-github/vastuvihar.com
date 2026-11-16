@@ -4,16 +4,9 @@
    PAGE STYLESHEETS (One per website section/page)
    ========================================================================== */
 @import "./pages/home.css";
-@import "./pages/about-us.css";
-@import "./pages/core-values.css";
-@import "./pages/awards.css";
-@import "./pages/team.css";
-@import "./pages/team-details.css";
 @import "./pages/careers.css";
-@import "./pages/faqs.css";
 @import "./pages/contact.css";
 @import "./pages/projects.css";
-@import "./pages/project-details.css";
 @import "./pages/blog.css";
 
 /* ==========================================================================
@@ -2350,7 +2343,7 @@ ul.hfe-breadcrumbs {
 
 ul.hfe-breadcrumbs li {
     display: inline-block;
-    margin-right: 10px;
+    /* margin-right: 10px; */
     vertical-align: middle;
 }
 
@@ -16577,9 +16570,9 @@ body.rtl .elementor-6350 .elementor-element.elementor-element-e8c3975 {
     text-align: left;
 }
 
-.elementor-2399 .elementor-element.elementor-element-17a4b8a ul.hfe-breadcrumbs li {
+/* .elementor-2399 .elementor-element.elementor-element-17a4b8a ul.hfe-breadcrumbs li {
     margin-right: 10px;
-}
+} */
 
 .elementor-2399 .elementor-element.elementor-element-17a4b8a .hfe-breadcrumbs,
 .elementor-2399 .elementor-element.elementor-element-17a4b8a .hfe-breadcrumbs .hfe-breadcrumbs-text {

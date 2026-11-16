@@ -17,7 +17,7 @@ export default function CareersHeader() {
           data-element_type="container"
         >
           <div className="e-con-inner">
-            {/* <div
+            <div
               className="elementor-element elementor-element-b86a822 elementor-widget elementor-widget-page-title"
               data-id="b86a822"
               data-element_type="widget"
@@ -25,10 +25,10 @@ export default function CareersHeader() {
             >
               <div className="elementor-widget-container">
                 <div className="hfe-page-title hfe-page-title-wrapper elementor-widget-heading">
-                  <h2 className="elementor-heading-title elementor-size-default">Careers</h2>
+                  <h2 className="elementor-heading-title title-car elementor-size-default">Careers</h2>
                 </div>
               </div>
-            </div> */}
+            </div>
             <div
               className="elementor-element elementor-element-9e12080 e-con-full e-flex e-con e-child"
               data-id="9e12080"
@@ -50,16 +50,7 @@ export default function CareersHeader() {
                         </Link>
                       </li>
                       <li className="hfe-breadcrumbs-separator">
-                        <span className="hfe-breadcrumbs-separator-icon">
-                          <svg
-                            aria-hidden="true"
-                            className="e-font-icon-svg e-fas-square-full"
-                            viewBox="0 0 512 512"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path d="M512 512H0V0h512v512z" />
-                          </svg>
-                        </span>
+                        <span className="sprtr"></span>
                       </li>
                       <li className="hfe-breadcrumbs-item hfe-breadcrumbs-last">
                         <span className="hfe-breadcrumbs-text" aria-current="page">
