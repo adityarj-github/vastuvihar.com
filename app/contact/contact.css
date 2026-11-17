@@ -1,0 +1,37 @@
+/* Contact page-only spacing. Lives beside app/contact/page.jsx.
+   Component appearance is scoped in components/contact/*.css.
+   The old styles/pages/contact.css is intentionally not edited here. */
+.vv-contact-page {
+  width: 100%;
+  min-width: 0;
+}
+
+.vv-contact-page__content {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: calc(var(--container, 1320px) + 60px);
+  padding-inline: 30px;
+  margin: 100px auto;
+}
+
+.vv-contact-page__content > * {
+  min-width: 0;
+}
+
+@media (max-width: 1200px) {
+  .vv-contact-page__content {
+    margin-block: 50px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .vv-contact-page__content {
+    margin-block: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .vv-contact-page__content {
+    padding-inline: 15px;
+  }
+}
