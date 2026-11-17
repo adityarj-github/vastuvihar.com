@@ -1,4 +1,4 @@
-.elementor-6353 .elementor-element.elementor-element-bdfd05f {
+.vv-home-page .elementor-element.elementor-element-bdfd05f {
   --display: flex;
   --flex-direction: row;
   --container-widget-width: initial;
@@ -17,13 +17,13 @@
   --padding-right: 30px;
 }
 
-.elementor-6353 .elementor-element.elementor-element-bdfd05f .spaciaz-border-shape {
+.vv-home-page .elementor-element.elementor-element-bdfd05f .spaciaz-border-shape {
   width: 30px;
   height: 30px;
   clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
 }
 
-.elementor-6353 .elementor-element.elementor-element-2df9746 {
+.vv-home-page .elementor-element.elementor-element-2df9746 {
   --display: flex;
   --flex-direction: column;
   --container-widget-width: calc( ( 1 - var( --container-widget-flex-grow ) ) * 100% );
@@ -39,13 +39,13 @@
   --padding-right: 0px;
 }
 
-.elementor-6353 .elementor-element.elementor-element-2df9746 .spaciaz-border-shape {
+.vv-home-page .elementor-element.elementor-element-2df9746 .spaciaz-border-shape {
   width: 30px;
   height: 30px;
   clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
 }
 
-.elementor-6353 .elementor-element.elementor-element-3a54ef5 {
+.vv-home-page .elementor-element.elementor-element-3a54ef5 {
   width: var( --container-widget-width, 130px );
   max-width: 130px;
   --container-widget-width: 130px;
@@ -53,7 +53,7 @@
   z-index: 2;
 }
 
-.elementor-6353 .elementor-element.elementor-element-3a54ef5 > .elementor-widget-container {
+.vv-home-page .elementor-element.elementor-element-3a54ef5 > .elementor-widget-container {
   padding: 2px 20px 5px 20px;
   border-style: solid;
   border-width: 1px 1px 1px 1px;
@@ -61,42 +61,42 @@
   border-radius: 20px 20px 20px 20px;
 }
 
-.elementor-6353 .elementor-element.elementor-element-3a54ef5 .spaciaz-border-shape {
+.vv-home-page .elementor-element.elementor-element-3a54ef5 .spaciaz-border-shape {
   width: 30px;
   height: 30px;
   clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
 }
 
-.elementor-6353 .elementor-element.elementor-element-3a54ef5 .elementor-scrolling-inner {
+.vv-home-page .elementor-element.elementor-element-3a54ef5 .elementor-scrolling-inner {
   animation-duration: 10s;
   align-items: center;
 }
 
-.elementor-6353 .elementor-element.elementor-element-3a54ef5 .elementor-scrolling-wrapper .elementor-scrolling-item-inner {
+.vv-home-page .elementor-element.elementor-element-3a54ef5 .elementor-scrolling-wrapper .elementor-scrolling-item-inner {
   align-items: center;
 }
 
-.elementor-6353 .elementor-element.elementor-element-3a54ef5 .elementor-scrolling-wrapper .elementor-scrolling-item {
+.vv-home-page .elementor-element.elementor-element-3a54ef5 .elementor-scrolling-wrapper .elementor-scrolling-item {
   padding-left: calc(10px/2);
   padding-right: calc(10px/2);
 }
 
-.elementor-6353 .elementor-element.elementor-element-3a54ef5 .scrolling-title a, .elementor-6353 .elementor-element.elementor-element-3a54ef5 .scrolling-title {
+.vv-home-page .elementor-element.elementor-element-3a54ef5 .scrolling-title a, .vv-home-page .elementor-element.elementor-element-3a54ef5 .scrolling-title {
   font-size: var( --e-global-typography-589f815-font-size );
   font-weight: var( --e-global-typography-589f815-font-weight );
   text-transform: var( --e-global-typography-589f815-text-transform );
   line-height: var( --e-global-typography-589f815-line-height );
 }
 
-.elementor-6353 .elementor-element.elementor-element-3a54ef5 .elementor-scrolling-item:hover .scrolling-title a {
+.vv-home-page .elementor-element.elementor-element-3a54ef5 .elementor-scrolling-item:hover .scrolling-title a {
   color: var( --e-global-color-accent );
 }
 
-.elementor-6353 .elementor-element.elementor-element-3a54ef5 .elementor-scrolling-item:hover .scrolling-title {
+.vv-home-page .elementor-element.elementor-element-3a54ef5 .elementor-scrolling-item:hover .scrolling-title {
   color: var( --e-global-color-accent );
 }
 
-.elementor-6353 .elementor-element.elementor-element-5791868 {
+.vv-home-page .elementor-element.elementor-element-5791868 {
   width: var( --container-widget-width, 680px );
   max-width: 680px;
   --container-widget-width: 680px;
@@ -105,17 +105,17 @@
   text-align: left;
 }
 
-.elementor-6353 .elementor-element.elementor-element-5791868 > .elementor-widget-container {
+.vv-home-page .elementor-element.elementor-element-5791868 > .elementor-widget-container {
   margin: 35px 0px 0px 0px;
 }
 
-.elementor-6353 .elementor-element.elementor-element-5791868 .spaciaz-border-shape {
+.vv-home-page .elementor-element.elementor-element-5791868 .spaciaz-border-shape {
   width: 30px;
   height: 30px;
   clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
 }
 
-.elementor-6353 .elementor-element.elementor-element-5791868 .elementor-heading-title {
+.vv-home-page .elementor-element.elementor-element-5791868 .elementor-heading-title {
   font-size: var( --e-global-typography-bdefc39-font-size );
   font-weight: var( --e-global-typography-bdefc39-font-weight );
   line-height: var( --e-global-typography-bdefc39-line-height );
@@ -123,7 +123,7 @@
   color: var( --e-global-color-accent );
 }
 
-.elementor-6353 .elementor-element.elementor-element-b1d967b {
+.vv-home-page .elementor-element.elementor-element-b1d967b {
   --display: flex;
   --justify-content: flex-end;
   --align-items: flex-end;
@@ -134,63 +134,63 @@
   --padding-right: 0px;
 }
 
-.elementor-6353 .elementor-element.elementor-element-b1d967b .spaciaz-border-shape {
+.vv-home-page .elementor-element.elementor-element-b1d967b .spaciaz-border-shape {
   width: 30px;
   height: 30px;
   clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
 }
 
-.elementor-6353 .elementor-element.elementor-element-f7665c2 .spaciaz-border-shape {
+.vv-home-page .elementor-element.elementor-element-f7665c2 .spaciaz-border-shape {
   width: 30px;
   height: 30px;
   clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
 }
 
-.elementor-6353 .elementor-element.elementor-element-c2dd8d4 .swiper:not(.swiper-initialized) .swiper-slide {
+.vv-home-page .elementor-element.elementor-element-c2dd8d4 .swiper:not(.swiper-initialized) .swiper-slide {
   width: calc((100% - 30px*(3 - 1)) / 3);
   margin-right: 30px;
 }
 
-.elementor-6353 .elementor-element.elementor-element-c2dd8d4 .grid-item {
+.vv-home-page .elementor-element.elementor-element-c2dd8d4 .grid-item {
   --gutter-width: 30px;
 }
 
-.elementor-6353 .elementor-element.elementor-element-c2dd8d4 {
+.vv-home-page .elementor-element.elementor-element-c2dd8d4 {
   width: 100%;
   max-width: 100%;
 }
 
-.elementor-6353 .elementor-element.elementor-element-c2dd8d4 > .elementor-widget-container {
+.vv-home-page .elementor-element.elementor-element-c2dd8d4 > .elementor-widget-container {
   margin: 60px 0px 0px 0px;
 }
 
-.elementor-6353 .elementor-element.elementor-element-c2dd8d4 .spaciaz-border-shape {
+.vv-home-page .elementor-element.elementor-element-c2dd8d4 .spaciaz-border-shape {
   width: 30px;
   height: 30px;
   clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
 }
 
-.elementor-6353 .elementor-element.elementor-element-c2dd8d4 .d-grid {
+.vv-home-page .elementor-element.elementor-element-c2dd8d4 .d-grid {
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 30px;
 }
 
-.elementor-6353 .elementor-element.elementor-element-c2dd8d4 .project-post-thumbnail {
+.vv-home-page .elementor-element.elementor-element-c2dd8d4 .project-post-thumbnail {
   padding-top: 56.25%;
 }
 
-.elementor-6353 .elementor-element.elementor-element-c2dd8d4 .swiper-pagination {
+.vv-home-page .elementor-element.elementor-element-c2dd8d4 .swiper-pagination {
   justify-content: center;
 }
 
 @media(max-width:1366px) {
 
-  .elementor-6353 .elementor-element.elementor-element-3a54ef5 .scrolling-title a, .elementor-6353 .elementor-element.elementor-element-3a54ef5 .scrolling-title {
+  .vv-home-page .elementor-element.elementor-element-3a54ef5 .scrolling-title a, .vv-home-page .elementor-element.elementor-element-3a54ef5 .scrolling-title {
     font-size: var( --e-global-typography-589f815-font-size );
     line-height: var( --e-global-typography-589f815-line-height );
   }
 
-  .elementor-6353 .elementor-element.elementor-element-5791868 .elementor-heading-title {
+  .vv-home-page .elementor-element.elementor-element-5791868 .elementor-heading-title {
     font-size: var( --e-global-typography-bdefc39-font-size );
     line-height: var( --e-global-typography-bdefc39-line-height );
     letter-spacing: var( --e-global-typography-bdefc39-letter-spacing );
@@ -199,18 +199,18 @@
 
 @media(min-width:768px) {
 
-  .elementor-6353 .elementor-element.elementor-element-2df9746 {
+  .vv-home-page .elementor-element.elementor-element-2df9746 {
     --width: 65%;
   }
 
-  .elementor-6353 .elementor-element.elementor-element-b1d967b {
+  .vv-home-page .elementor-element.elementor-element-b1d967b {
     --width: 35%;
   }
 }
 
 @media(max-width:1200px) {
 
-  .elementor-6353 .elementor-element.elementor-element-bdfd05f {
+  .vv-home-page .elementor-element.elementor-element-bdfd05f {
     --margin-top: 0px;
     --margin-bottom: 100px;
     --margin-left: 0px;
@@ -220,23 +220,23 @@
 
 @media(max-width:1024px) {
 
-  .elementor-6353 .elementor-element.elementor-element-bdfd05f {
+  .vv-home-page .elementor-element.elementor-element-bdfd05f {
     --margin-top: 0px;
     --margin-bottom: 80px;
     --margin-left: 0px;
     --margin-right: 0px;
   }
 
-  .elementor-6353 .elementor-element.elementor-element-3a54ef5 .scrolling-title a, .elementor-6353 .elementor-element.elementor-element-3a54ef5 .scrolling-title {
+  .vv-home-page .elementor-element.elementor-element-3a54ef5 .scrolling-title a, .vv-home-page .elementor-element.elementor-element-3a54ef5 .scrolling-title {
     font-size: var( --e-global-typography-589f815-font-size );
     line-height: var( --e-global-typography-589f815-line-height );
   }
 
-  .elementor-6353 .elementor-element.elementor-element-5791868 > .elementor-widget-container {
+  .vv-home-page .elementor-element.elementor-element-5791868 > .elementor-widget-container {
     margin: 30px 0px 0px 0px;
   }
 
-  .elementor-6353 .elementor-element.elementor-element-5791868 .elementor-heading-title {
+  .vv-home-page .elementor-element.elementor-element-5791868 .elementor-heading-title {
     font-size: var( --e-global-typography-bdefc39-font-size );
     line-height: var( --e-global-typography-bdefc39-line-height );
     letter-spacing: var( --e-global-typography-bdefc39-letter-spacing );
@@ -245,7 +245,7 @@
 
 @media(max-width:767px) {
 
-  .elementor-6353 .elementor-element.elementor-element-bdfd05f {
+  .vv-home-page .elementor-element.elementor-element-bdfd05f {
     --margin-top: 0px;
     --margin-bottom: 60px;
     --margin-left: 0px;
@@ -256,21 +256,21 @@
     --padding-right: 15px;
   }
 
-  .elementor-6353 .elementor-element.elementor-element-2df9746 {
+  .vv-home-page .elementor-element.elementor-element-2df9746 {
     --align-items: center;
     --container-widget-width: calc( ( 1 - var( --container-widget-flex-grow ) ) * 100% );
   }
 
-  .elementor-6353 .elementor-element.elementor-element-3a54ef5 .scrolling-title a, .elementor-6353 .elementor-element.elementor-element-3a54ef5 .scrolling-title {
+  .vv-home-page .elementor-element.elementor-element-3a54ef5 .scrolling-title a, .vv-home-page .elementor-element.elementor-element-3a54ef5 .scrolling-title {
     font-size: var( --e-global-typography-589f815-font-size );
     line-height: var( --e-global-typography-589f815-line-height );
   }
 
-  .elementor-6353 .elementor-element.elementor-element-5791868 > .elementor-widget-container {
+  .vv-home-page .elementor-element.elementor-element-5791868 > .elementor-widget-container {
     margin: 15px 0px 0px 0px;
   }
 
-  .elementor-6353 .elementor-element.elementor-element-5791868 {
+  .vv-home-page .elementor-element.elementor-element-5791868 {
     --container-widget-width: 450px;
     --container-widget-flex-grow: 0;
     width: var( --container-widget-width, 450px );
@@ -278,13 +278,13 @@
     text-align: center;
   }
 
-  .elementor-6353 .elementor-element.elementor-element-5791868 .elementor-heading-title {
+  .vv-home-page .elementor-element.elementor-element-5791868 .elementor-heading-title {
     font-size: var( --e-global-typography-bdefc39-font-size );
     line-height: var( --e-global-typography-bdefc39-line-height );
     letter-spacing: var( --e-global-typography-bdefc39-letter-spacing );
   }
 
-  .elementor-6353 .elementor-element.elementor-element-b1d967b {
+  .vv-home-page .elementor-element.elementor-element-b1d967b {
     --justify-content: center;
     --align-items: center;
     --container-widget-width: calc( ( 1 - var( --container-widget-flex-grow ) ) * 100% );
@@ -294,19 +294,184 @@
     --padding-right: 0px;
   }
 
-  .elementor-6353 .elementor-element.elementor-element-c2dd8d4 > .elementor-widget-container {
+  .vv-home-page .elementor-element.elementor-element-c2dd8d4 > .elementor-widget-container {
     margin: 30px 0px 0px 0px;
   }
 
-  .elementor-6353 .elementor-element.elementor-element-c2dd8d4 .d-grid {
+  .vv-home-page .elementor-element.elementor-element-c2dd8d4 .d-grid {
     grid-template-columns: repeat(1, 1fr);
   }
 
-  .elementor-6353 .elementor-element.elementor-element-c2dd8d4 .project-post-thumbnail {
+  .vv-home-page .elementor-element.elementor-element-c2dd8d4 .project-post-thumbnail {
     padding-top: 250px;
   }
 }
 
-.elementor-6353 .elementor-element.elementor-element-c2dd8d4 .project-item {
+.vv-home-page .elementor-element.elementor-element-c2dd8d4 .project-item {
   margin-bottom: 10px;
 }
+
+/* Homepage-specific classic model cards. Previously imported from the Projects
+   archive's ProjectCard.css; isolated here so archive refactors cannot alter
+   the home card layout and hover effect. */
+.vv-home-page .project-item .project-post-thumbnail {
+  border-radius: 30px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+  padding-top: 122%;
+}
+.vv-home-page .project-item .project-post-thumbnail img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.vv-home-page .project-item .project-status {
+  margin-bottom: 13px;
+}
+.vv-home-page .project-item .project-status a,
+.vv-home-page .project-item .project-status .project-status-badge {
+  background-color: var(--primary);
+  padding: 10px 20px;
+  gap: 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.25;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: inline-flex;
+  transition: all 0.3s ease;
+}
+.vv-home-page .project-item .project-location {
+  display: flex;
+  align-items: flex-start;
+  column-gap: 10px;
+  margin-bottom: 15px;
+}
+.vv-home-page .project-item .project-location a {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--accent);
+  transition: all 0.3s ease;
+}
+.vv-home-page .project-item .project-location i {
+  color: var(--primary);
+  margin-top: 3px;
+}
+.vv-home-page .project-item .project-excerpt {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  margin-bottom: 30px;
+}
+.vv-home-page .project-item .project-excerpt p {
+  margin-bottom: 0;
+}
+.vv-home-page .project-item .project-title a {
+  color: var(--accent);
+}
+.vv-home-page .project-item .project-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  padding: 5px 5px 5px 30px;
+  border-radius: 30px;
+  background-color: #fff;
+}
+.vv-home-page .project-item .project-button .btn-icon-wrap {
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+.vv-home-page .project-item .project-button .btn-icon,
+.vv-home-page .project-item .project-button .btn-icon-hover {
+  display: flex;
+  color: var(--accent);
+  transition: transform 0.35s linear;
+  font-size: 13px;
+}
+.vv-home-page .project-item .project-button .btn-icon {
+  transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotate(-45deg);
+  transform-style: preserve-3d;
+}
+.vv-home-page .project-item .project-button .btn-icon-hover {
+  position: absolute;
+  transform: translate3d(-17px, 17px, 0px) scale3d(0.2, 0.2, 1) rotate(-45deg);
+}
+.vv-home-page .project-item .project-button:hover .btn-icon {
+  transform: translate3d(17px, -17px, 0px) scale3d(0.2, 0.2, 1) rotate(-45deg);
+}
+.vv-home-page .project-item .project-button:hover .btn-icon-hover {
+  transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotate(-45deg);
+}
+.vv-home-page .project-item .project-button .project-button-text {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.7142857143;
+  font-family: var(--e-global-typography-accent-font-family);
+  text-transform: capitalize;
+}
+.vv-home-page .project-item .project-button .project-button-icon {
+  background-color: var(--primary);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.vv-home-page .project-item .project-button:hover {
+  background-color: var(--primary);
+  color: var(--accent);
+}
+.vv-home-page .project-item .project-button:hover .project-button-icon {
+  background-color: #fff;
+}
+.vv-home-page .project-item.project-style-1 {
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 30px;
+  position: relative;
+}
+.vv-home-page .project-item.project-style-1:after {
+  position: absolute;
+  height: 1px;
+  width: 0;
+  content: "";
+  background-color: var(--accent);
+  left: 0;
+  bottom: -1px;
+  transition: width 0.3s ease;
+}
+.vv-home-page .project-item.project-style-1 .project-status {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  z-index: 2;
+}
+.vv-home-page .project-item.project-style-1 .project-post-thumbnail img {
+  transform: translate3d(-6.66%, 0, 0) scale(1.2);
+  -webkit-transform: translate3d(-6.66%, 0, 0) scale(1.2);
+  transition: opacity 0.35s, transform 0.45s, filter 0.35s;
+}
+.vv-home-page .project-item.project-style-1:hover:after {
+  width: 100%;
+}
+.vv-home-page .project-item.project-style-1:hover .project-post-thumbnail img {
+  transform: translate3d(0, 0, 0) scale(1.2);
+  -webkit-transform: translate3d(0, 0, 0) scale(1.2);
+}
+
+.vv-home-page .project-item.project-style-1 .project-title { margin-bottom: 26px; }
+.vv-home-page .project-item.project-style-1 .project-title a:hover { color: var(--primary, #08aaec); }

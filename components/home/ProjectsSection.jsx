@@ -1,7 +1,7 @@
+import VVArrowButton from '@/components/common/VVArrowButton';
 import Link from 'next/link';
 
 import './ProjectsSection.css';
-import '../projects/ProjectCard.css';
 import '../common/ScrollingTicker.css';
 import StaticPill from '../common/StaticPill';
 
@@ -175,38 +175,7 @@ export default function ProjectsSection() {
           >
             <div className="elementor-widget-container">
               <div className="elementor-button-wrapper">
-                <Link
-                  href="/projects/"
-                  className="elementor-button-link elementor-button elementor-size-sm"
-                  prefetch={false}
-                >
-                  <span className="elementor-button-content-wrapper">
-                    <span className="elementor-button-icon">
-                      <span className="btn-icon-wrap">
-                        <span className="btn-icon">
-                          <i
-                            aria-hidden="true"
-                            className="spaciaz-icon- spaciaz-icon-arrow-long-right"
-                          />
-                        </span>
-
-                        <span className="btn-icon-hover">
-                          <i
-                            aria-hidden="true"
-                            className="spaciaz-icon- spaciaz-icon-arrow-long-right"
-                          />
-                        </span>
-                      </span>
-                    </span>
-
-                    <span
-                      className="elementor-button-text"
-                      data-name="view all models"
-                    >
-                      <span>view all models</span>
-                    </span>
-                  </span>
-                </Link>
+                <VVArrowButton href="/projects/" label="View all models" className="vv-home-page__projects-cta" />
               </div>
             </div>
           </div>

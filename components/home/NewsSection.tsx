@@ -1,3 +1,4 @@
+import VVArrowButton from '@/components/common/VVArrowButton';
 import './NewsSection.css';
 import '../common/ScrollingTicker.css';
 import Link from 'next/link';
@@ -76,33 +77,7 @@ export default async function NewsSection() {
           >
             <div className="elementor-widget-container">
               <div className="elementor-button-wrapper">
-                <Link
-                  href="/blog/"
-                  className="elementor-button-link elementor-button elementor-size-sm"
-                  prefetch={false}
-                >
-                  <span className="elementor-button-content-wrapper">
-                    <span className="elementor-button-icon">
-                      <span className="btn-icon-wrap">
-                        <span className="btn-icon">
-                          <i
-                            aria-hidden="true"
-                            className="spaciaz-icon- spaciaz-icon-arrow-long-right"
-                          />
-                        </span>
-                        <span className="btn-icon-hover">
-                          <i
-                            aria-hidden="true"
-                            className="spaciaz-icon- spaciaz-icon-arrow-long-right"
-                          />
-                        </span>
-                      </span>
-                    </span>
-                    <span className="elementor-button-text" data-name="view all posts">
-                      <span>view all posts</span>
-                    </span>
-                  </span>
-                </Link>
+                <VVArrowButton href="/blog/" label="View all posts" className="vv-home-page__news-cta" />
               </div>
             </div>
           </div>

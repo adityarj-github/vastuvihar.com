@@ -1,5 +1,5 @@
+import VVArrowButton from '@/components/common/VVArrowButton';
 import './CareersSection.css';
-import Link from 'next/link';
 
 export default function CareersSection() {
   return (
@@ -147,34 +147,7 @@ export default function CareersSection() {
           >
             <div className="elementor-widget-container">
               <div className="elementor-button-wrapper">
-                <Link
-                  href="/careers/"
-                  className="elementor-button-link elementor-button elementor-size-sm"
-                  role="button"
-                  prefetch={false}
-                >
-                  <span className="elementor-button-content-wrapper">
-                    <span className="elementor-button-icon">
-                      <span className="btn-icon-wrap">
-                        <span className="btn-icon">
-                          <i
-                            aria-hidden="true"
-                            className="spaciaz-icon- spaciaz-icon-arrow-long-right"
-                          ></i>{' '}
-                        </span>
-                        <span className="btn-icon-hover">
-                          <i
-                            aria-hidden="true"
-                            className="spaciaz-icon- spaciaz-icon-arrow-long-right"
-                          ></i>{' '}
-                        </span>
-                      </span>
-                    </span>
-                    <span className="elementor-button-text" data-name="join our team">
-                      <span>join our team</span>
-                    </span>
-                  </span>
-                </Link>
+                <VVArrowButton href="/careers/" label="Join our team" className="vv-home-page__careers-cta" />
               </div>
             </div>
           </div>

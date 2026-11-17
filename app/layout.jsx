@@ -1,5 +1,4 @@
 import '@/styles/globals.css';
-import Script from 'next/script';
 import { site } from '@/data/site';
 import CookieConsent from '@/components/CookieConsent/CookieConsent';
 import NavigationShell from '@/components/NavigationShell/NavigationShell';

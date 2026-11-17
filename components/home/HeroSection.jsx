@@ -1,9 +1,10 @@
 'use client';
 
+import VVArrowButton from '@/components/common/VVArrowButton';
+
 import './HeroSection.css';
 import { useState } from 'react';
 
-import Link from 'next/link';
 import { useMediaConsent } from '@/lib/privacy/cookieChoices';
 
 const YOUTUBE_IDS = [
@@ -87,34 +88,7 @@ export default function HeroSection() {
             >
               <div className="elementor-widget-container">
                 <div className="elementor-button-wrapper">
-                  <Link
-                    href="/projects/"
-                    className="elementor-button-link elementor-button elementor-size-sm"
-                    role="button"
-                    prefetch={false}
-                  >
-                    <span className="elementor-button-content-wrapper">
-                      <span className="elementor-button-icon">
-                        <span className="btn-icon-wrap">
-                          <span className="btn-icon">
-                            <i
-                              aria-hidden="true"
-                              className="spaciaz-icon- spaciaz-icon-arrow-long-right"
-                            ></i>{' '}
-                          </span>
-                          <span className="btn-icon-hover">
-                            <i
-                              aria-hidden="true"
-                              className="spaciaz-icon- spaciaz-icon-arrow-long-right"
-                            ></i>{' '}
-                          </span>
-                        </span>
-                      </span>
-                      <span className="elementor-button-text" data-name="view all projects">
-                        <span>View all Models</span>
-                      </span>
-                    </span>
-                  </Link>
+                  <VVArrowButton href="/projects/" label="View all Models" className="vv-home-page__hero-cta" />
                 </div>
               </div>
             </div>

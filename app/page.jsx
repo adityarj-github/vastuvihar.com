@@ -1,4 +1,4 @@
-import '../styles/pages/home.css';
+import './home.css';
 import NewsSection from '@/components/home/NewsSection';
 import ImageSection from '@/components/home/ImageSection';
 import StatsSection from '@/components/home/StatsSection';
@@ -28,15 +28,12 @@ export default function HomePage() {
         <div className="col-fluid">
           <div id="primary" className="content-area">
             <main id="main" className="site-main">
-              <div
-                data-elementor-type="wp-page"
-                data-elementor-id="6353"
-                className="elementor elementor-6353"
-              >
+              {/* Preserve the Elementor layout class for the remaining global theme
+                  foundations; vv-home-page scopes all homepage-specific CSS. */}
+              <div className="elementor elementor-6353 vv-home-page">
                 <HeroSection />
                 <PartnersSection />
                 <CompanySection />
-
                 <ProjectsSection />
                 <CareersSection />
                 <div
