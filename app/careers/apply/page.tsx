@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import PageLayout from '@/components/PageLayout';
 import CareersHeader from '@/components/careers/CareersHeader';
 import ConsentFields from '@/components/privacy/ConsentFields';
-import '@/styles/pages/careers.css';
+import './../careers.css';
 import './apply.css';
 
 function ApplyForm() {

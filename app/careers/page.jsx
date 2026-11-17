@@ -1,12 +1,11 @@
-import '../../styles/pages/careers.css';
-import Breadcrumb from '@/components/Breadcrumb';
+import './careers.css';
 import PageLayout from '@/components/PageLayout';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 import CareersHeader from '@/components/careers/CareersHeader';
 import CareersOpportunities from '@/components/careers/CareersOpportunities';
 import CareersShowcase from '@/components/careers/CareersShowcase';
 import { createPageMetadata } from '@/lib/metadata';
-import { orEmpty, prisma } from '@/lib/prisma'; // <-- Import Prisma
+import { orEmpty, prisma } from '@/lib/prisma';
 
 export const metadata = createPageMetadata({
   title: 'Careers | Vastu Vihar',
@@ -18,10 +17,18 @@ export const metadata = createPageMetadata({
 export const revalidate = 3600;
 
 export default async function CareersPage() {
-  // Dynamically fetch active job vacancies directly from the database
   const activeJobs = await prisma.jobVacancy.findMany({
     where: { isActive: true },
     orderBy: { createdAt: 'desc' },
+    select: {
+      id: true,
+      title: true,
+      description: true,
+      requirements: true,
+      department: true,
+      type: true,
+      location: true,
+    },
   }).catch(orEmpty('Careers'));
 
   return (
@@ -30,20 +37,12 @@ export default async function CareersPage() {
         <div className="col-fluid">
           <div id="primary" className="content-area">
             <main id="main" className="site-main">
-              {/* The careers banner has no visible title, so the page heading is for assistive tech and crawlers. */}
-              <h1 className="screen-reader-text">Careers at Vastu Vihar</h1>
-              <div data-elementor-type="wp-page" data-elementor-id="57" className="elementor elementor-57">
+              <div className="vv-careers-page">
                 <CareersHeader />
-                <div
-                  className="elementor-element elementor-element-7235bdb e-flex e-con-boxed e-con e-parent"
-                  data-id="7235bdb"
-                  data-element_type="container"
-                >
-                  <div className="e-con-inner">
-                    <CareersOpportunities />
-                    {/* Pass the fetched jobs to the showcase component */}
-                    <CareersShowcase jobs={activeJobs} />
-                  </div>
+
+                <div className="vv-careers-page__content">
+                  <CareersOpportunities />
+                  <CareersShowcase jobs={activeJobs} />
                 </div>
               </div>
             </main>

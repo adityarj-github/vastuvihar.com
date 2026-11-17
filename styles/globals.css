@@ -1,16 +1,5 @@
 @charset "UTF-8";
 
-/* ==========================================================================
-   PAGE STYLESHEETS (One per website section/page)
-   ========================================================================== */
-@import "./pages/home.css";
-@import "./pages/careers.css";
-@import "./pages/contact.css";
-@import "./pages/projects.css";
-
-/* ==========================================================================
-   GLOBAL THEME FOUNDATIONS, WIDGETS & LAYOUT
-   ========================================================================== */
 
 /* Layout foundations */
 /* Counter Widget CSS */

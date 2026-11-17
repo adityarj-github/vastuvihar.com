@@ -1,272 +1,167 @@
-.elementor-57 .elementor-element.elementor-element-a2361a3 {
-  --display: flex;
-  --padding-top: 0px;
-  --padding-bottom: 0px;
-  --padding-left: 0px;
-  --padding-right: 0px;
+/* Original Vastu Vihar opportunity card, separated from Elementor styles. */
+.vv-careers-opportunities {
+  box-sizing: border-box;
+  position: relative;
+  isolation: isolate;
+  align-self: start;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  padding: 34px;
+  border-radius: 30px;
+  color: #fff;
+  background: #011c5b url('/career-2.webp') center center / cover no-repeat;
 }
 
-.elementor-57 .elementor-element.elementor-element-a2361a3 .spaciaz-border-shape {
-  width: 30px;
-  height: 30px;
-  clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
+.vv-careers-opportunities::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: rgba(1, 28, 91, 0.6);
+  pointer-events: none;
 }
 
-.elementor-57 .elementor-element.elementor-element-824200b {
-  --display: flex;
-  --flex-direction: column;
-  --container-widget-width: 100%;
-  --container-widget-height: initial;
-  --container-widget-flex-grow: 0;
-  --container-widget-align-self: initial;
-  --flex-wrap-mobile: wrap;
-  --overlay-opacity: 0.6;
-  --border-radius: 30px 30px 30px 30px;
-  --padding-top: 40px;
-  --padding-bottom: 40px;
-  --padding-left: 40px;
-  --padding-right: 40px;
-}
-
-.elementor-57 .elementor-element.elementor-element-824200b:not(.elementor-motion-effects-element-type-background), .elementor-57 .elementor-element.elementor-element-824200b > .elementor-motion-effects-container > .elementor-motion-effects-layer {
-  background-image: url("/career-2.webp");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.elementor-57 .elementor-element.elementor-element-824200b::before, .elementor-57 .elementor-element.elementor-element-824200b > .elementor-background-video-container::before, .elementor-57 .elementor-element.elementor-element-824200b > .e-con-inner > .elementor-background-video-container::before, .elementor-57 .elementor-element.elementor-element-824200b > .elementor-background-slideshow::before, .elementor-57 .elementor-element.elementor-element-824200b > .e-con-inner > .elementor-background-slideshow::before, .elementor-57 .elementor-element.elementor-element-824200b > .elementor-motion-effects-container > .elementor-motion-effects-layer::before {
-  background-color: var( --e-global-color-accent );
-  --background-overlay: '';
-}
-
-.elementor-57 .elementor-element.elementor-element-824200b .spaciaz-border-shape {
-  width: 30px;
-  height: 30px;
-  clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
-}
-
-.elementor-57 .elementor-element.elementor-element-e056540 {
-  --spacer-size: 60px;
-  width: var( --container-widget-width, 220px );
-  max-width: 220px;
-  --container-widget-width: 220px;
-  --container-widget-flex-grow: 0;
+.vv-careers-opportunities__cutout {
+  position: absolute;
+  z-index: 2;
   top: -1px;
-}
-
-.elementor-57 .elementor-element.elementor-element-e056540 > .elementor-widget-container {
-  background-color: var( --e-global-color-background );
-  border-radius: 0px 30px 0px 30px;
-}
-
-body:not(.rtl) .elementor-57 .elementor-element.elementor-element-e056540 {
   right: -1px;
+  width: 220px;
+  height: 60px;
+  border-radius: 0 30px 0 30px;
+  background: #fff;
+  pointer-events: none;
 }
 
-body.rtl .elementor-57 .elementor-element.elementor-element-e056540 {
-  left: -1px;
+.vv-careers-opportunities__cutout::before,
+.vv-careers-opportunities__cutout::after {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  content: '';
+  background: #fff;
+  clip-path: path('M0 0 Q0,30 30,30 L 0 30 Z');
+  transform: rotate(180deg);
 }
 
-.elementor-57 .elementor-element.elementor-element-e056540 .spaciaz-border-shape.top-left {
+.vv-careers-opportunities__cutout::before {
   left: -30px;
-  transform: rotate(180deg);
+  top: 1px;
 }
 
-.elementor-57 .elementor-element.elementor-element-e056540 .spaciaz-border-shape.bottom-right {
+.vv-careers-opportunities__cutout::after {
+  right: 1px;
   bottom: -30px;
-  transform: rotate(180deg);
 }
 
-.elementor-57 .elementor-element.elementor-element-e056540 .spaciaz-border-shape {
-  background-color: var( --e-global-color-background );
-  width: 30px;
-  height: 30px;
-  clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
+.vv-careers-opportunities__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 0;
+  gap: 20px;
 }
 
-.elementor-57 .elementor-element.elementor-element-bb42b48 > .elementor-widget-container {
-  margin: 0px 0px 65px 0px;
-}
-
-.elementor-57 .elementor-element.elementor-element-bb42b48 .spaciaz-border-shape {
-  width: 30px;
-  height: 30px;
-  clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
-}
-
-.elementor-57 .elementor-element.elementor-element-bb42b48 .elementor-icon-wrapper {
-  text-align: left;
-}
-
-.elementor-57 .elementor-element.elementor-element-bb42b48.elementor-view-framed .elementor-icon {
-  background-color: var( --e-global-color-accent );
-}
-
-.elementor-57 .elementor-element.elementor-element-bb42b48.elementor-view-stacked .elementor-icon {
-  color: var( --e-global-color-accent );
-}
-
-.elementor-57 .elementor-element.elementor-element-bb42b48.elementor-view-stacked .elementor-icon svg {
-  fill: var( --e-global-color-accent );
-}
-
-.elementor-57 .elementor-element.elementor-element-bb42b48 .elementor-icon {
+.vv-careers-opportunities__icon {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  margin-bottom: 60px;
+  border-radius: 50%;
+  background: var(--e-global-color-primary, #08aaec);
+  color: #011c5b;
   font-size: 24px;
-  padding: 28px;
 }
 
-.elementor-57 .elementor-element.elementor-element-bb42b48 .elementor-icon svg {
-  height: 24px;
+.vv-careers-opportunities__title {
+  margin: 0 0 8px;
+  max-width: 235px;
+  font-family: var(--e-global-typography-accent-font-family, 'Involve', sans-serif);
+  color: #fff;
+  font-size: 30px;
+  line-height: 1.08;
+  font-weight: 600;
+  letter-spacing: -0.7px;
 }
 
-.elementor-57 .elementor-element.elementor-element-c9065a7 {
-  width: var( --container-widget-width, 250px );
-  max-width: 250px;
-  --container-widget-width: 250px;
-  --container-widget-flex-grow: 0;
+.vv-careers-opportunities__description {
+  margin: 0 0 8px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.45;
 }
 
-.elementor-57 .elementor-element.elementor-element-c9065a7 > .elementor-widget-container {
-  margin: 0px 0px 10px 0px;
+.vv-careers-opportunities__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  max-width: 100%;
 }
 
-.elementor-57 .elementor-element.elementor-element-c9065a7 .spaciaz-border-shape {
-  width: 30px;
-  height: 30px;
-  clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
+/* An email address was a simple underlined text link in the original card,
+   not a second pill-shaped CTA. Keep it visually identical. */
+.vv-careers-opportunities .vv-careers-opportunities__email {
+  display: inline-block;
+  max-width: 100%;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
 }
 
-.elementor-57 .elementor-element.elementor-element-c9065a7 .elementor-heading-title {
-  color: var( --e-global-color-background );
+.vv-careers-opportunities .vv-careers-opportunities__email:hover,
+.vv-careers-opportunities .vv-careers-opportunities__email:focus-visible {
+  color: #fff;
 }
 
-.elementor-57 .elementor-element.elementor-element-3b1b6f1 > .elementor-widget-container {
-  margin: 0px 0px 10px 0px;
+.vv-careers-opportunities .vv-careers-opportunities__email:focus-visible {
+  outline: 2px solid #08aaec;
+  outline-offset: 3px;
 }
 
-.elementor-57 .elementor-element.elementor-element-3b1b6f1 .spaciaz-border-shape {
-  width: 30px;
-  height: 30px;
-  clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
+/* Contact Us is the common About-style button. Do not alter its arrow animation. */
+.vv-careers-opportunities .vv-arrow-button {
+  --vv-arrow-accent: #011c5b;
+  --vv-arrow-border: #fff;
+  box-sizing: border-box;
+  max-width: 100%;
+  min-height: 52px;
+  padding: 4px 4px 4px 24px;
+  background: #fff;
+  color: #011c5b;
 }
 
-.elementor-57 .elementor-element.elementor-element-3b1b6f1 p {
-  margin-block-end: 0px;
+.vv-careers-opportunities .vv-arrow-button__icon {
+  flex-basis: 42px;
+  width: 42px;
+  height: 42px;
 }
 
-.elementor-57 .elementor-element.elementor-element-3b1b6f1 {
-  color: var( --e-global-color-background );
+.vv-careers-opportunities .vv-arrow-button:hover,
+.vv-careers-opportunities .vv-arrow-button:focus-visible {
+  background: #011c5b;
+  color: #fff;
+  border-color: #011c5b;
 }
 
-.elementor-57 .elementor-element.elementor-element-3b1b6f1 a {
-  color: var( --e-global-color-background );
+@media (max-width: 1200px) {
+  .vv-careers-opportunities { padding: 30px; }
 }
 
-.elementor-57 .elementor-element.elementor-element-6f263f1 > .elementor-widget-container {
-  margin: 0px 0px 25px 0px;
-}
-
-.elementor-57 .elementor-element.elementor-element-6f263f1 .spaciaz-border-shape {
-  width: 30px;
-  height: 30px;
-  clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
-}
-
-.elementor-57 .elementor-element.elementor-element-6f263f1.line-effect-yes .elementor-button:after {
-  background-color: var( --e-global-color-primary );
-}
-
-.elementor-57 .elementor-element.elementor-element-6f263f1.line-effect-yes .elementor-button:before {
-  background-color: var( --e-global-color-primary );
-}
-
-.elementor-57 .elementor-element.elementor-element-6f263f1 .elementor-button {
-  font-family: "Switzer", Sans-serif;
-  font-size: 22px;
-  text-transform: lowercase;
-  line-height: 1.2em;
-}
-
-.elementor-57 .elementor-element.elementor-element-6f263f1 .elementor-button .elementor-button-text {
-  color: #FFFFFF;
-}
-
-.elementor-57 .elementor-element.elementor-element-36cd356 .elementor-button {
-  background-color: var( --e-global-color-background );
-}
-
-.elementor-57 .elementor-element.elementor-element-36cd356 .elementor-button:hover, .elementor-57 .elementor-element.elementor-element-36cd356 .elementor-button:focus {
-  background-color: var( --e-global-color-primary );
-}
-
-.elementor-57 .elementor-element.elementor-element-36cd356 .spaciaz-border-shape {
-  width: 30px;
-  height: 30px;
-  clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
-}
-
-.elementor-57 .elementor-element.elementor-element-36cd356 .elementor-button .elementor-button-text {
-  color: var( --e-global-color-accent );
-}
-
-.elementor-57 .elementor-element.elementor-element-36cd356 .elementor-button:hover .elementor-button-text, .elementor-57 .elementor-element.elementor-element-36cd356 .elementor-button:focus .elementor-button-text {
-  color: var( --e-global-color-accent );
-}
-
-.elementor-57 .elementor-element.elementor-element-36cd356 .elementor-button-icon {
-  background-color: var( --e-global-color-primary );
-}
-
-.elementor-57 .elementor-element.elementor-element-36cd356 .elementor-button:hover .elementor-button-content-wrapper:before {
-  background-color: var( --e-global-color-background );
-}
-
-.elementor-57 .elementor-element.elementor-element-36cd356 .elementor-button:hover .elementor-button-icon {
-  background-color: var( --e-global-color-background );
-}
-
-@media(min-width:768px) {
-
-  .elementor-57 .elementor-element.elementor-element-a2361a3 {
-    --width: 33.3333%;
-  }
-}
-
-@media(max-width:1024px) and (min-width:768px) {
-
-  .elementor-57 .elementor-element.elementor-element-a2361a3 {
-    --width: 100%;
-  }
-}
-
-@media(max-width:1200px) {
-
-  .elementor-57 .elementor-element.elementor-element-824200b {
-    --padding-top: 30px;
-    --padding-bottom: 30px;
-    --padding-left: 30px;
-    --padding-right: 30px;
-  }
-}
-
-@media(max-width:767px) {
-
-  .elementor-57 .elementor-element.elementor-element-824200b {
-    --padding-top: 30px;
-    --padding-bottom: 30px;
-    --padding-left: 15px;
-    --padding-right: 15px;
-  }
-
-  .elementor-57 .elementor-element.elementor-element-e056540 {
-    --container-widget-width: 150px;
-    --container-widget-flex-grow: 0;
-    width: var( --container-widget-width, 150px );
-    max-width: 150px;
-  }
-
-  .elementor-57 .elementor-element.elementor-element-bb42b48 > .elementor-widget-container {
-    margin: 0px 0px 30px 0px;
-  }
+@media (max-width: 767px) {
+  .vv-careers-opportunities { padding: 30px 15px; }
+  .vv-careers-opportunities__cutout { width: 150px; }
+  .vv-careers-opportunities__icon { margin-bottom: 30px; }
 }
