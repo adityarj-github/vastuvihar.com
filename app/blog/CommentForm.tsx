@@ -1,29 +1,45 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 import ConsentFields from '@/components/privacy/ConsentFields';
+import VVArrowButton from '@/components/common/VVArrowButton';
 import './CommentForm.css';
 
-export default function CommentForm({ postId }: { postId: string }) {
-  const [formData, setFormData] = useState({
-    authorName: '',
-    authorEmail: '',
-    content: '',
-  });
+
+type CommentFormProps = {
+  postId: string;
+};
+
+type CommentFields = {
+  authorName: string;
+  authorEmail: string;
+  content: string;
+};
+
+const emptyFields: CommentFields = {
+  authorName: '',
+  authorEmail: '',
+  content: '',
+};
+
+export default function CommentForm({ postId }: CommentFormProps) {
+  const [formData, setFormData] = useState<CommentFields>(emptyFields);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState('');
   const [succeeded, setSucceeded] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
     const submitted = new FormData(form);
+
     setIsSubmitting(true);
     setMessage('');
     setSucceeded(false);
 
     try {
-      const res = await fetch('/api/comments', {
+      const response = await fetch('/api/comments', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -37,14 +53,14 @@ export default function CommentForm({ postId }: { postId: string }) {
         }),
       });
 
-      if (res.ok) {
+      if (response.ok) {
         setSucceeded(true);
         setMessage('Your comment has been submitted and is awaiting moderation.');
-        setFormData({ authorName: '', authorEmail: '', content: '' });
+        setFormData(emptyFields);
         form.reset();
       } else {
-        const data = await res.json();
-        setMessage(data.error || 'Failed to post comment.');
+        const data: { error?: string } | null = await response.json().catch(() => null);
+        setMessage(data?.error || 'Failed to post comment.');
       }
     } catch {
       setMessage('A network error occurred.');
@@ -54,59 +70,97 @@ export default function CommentForm({ postId }: { postId: string }) {
   };
 
   return (
-    <div className="blog-comment-form-container">
-      <h3 className="comment-form-title">Leave a Reply</h3>
-      <p className="comment-form-subtitle">Your email address is optional and is never published. Required fields are marked *</p>
+    <section className="blog-comment-form-container" aria-labelledby="comment-form-title">
+      <h3 id="comment-form-title" className="blog-comment-form__title">
+        Leave a Reply
+      </h3>
+      <p className="blog-comment-form__subtitle">
+        Your email address is optional and is never published. Required fields are marked *
+      </p>
 
       {message && (
-        <div className={`comment-msg-box ${succeeded ? 'success' : 'error'}`}>
+        <div
+          className={`blog-comment-form__message ${succeeded ? 'blog-comment-form__message--success' : 'blog-comment-form__message--error'}`}
+          role={succeeded ? 'status' : 'alert'}
+          aria-live={succeeded ? 'polite' : 'assertive'}
+        >
           {message}
         </div>
       )}
 
       <form onSubmit={handleSubmit} className="blog-comment-form">
-        <div style={{ display: 'none' }} aria-hidden="true">
+        {/* Keep the existing anti-spam honeypot in the request payload. */}
+        <div className="blog-comment-form__honeypot" aria-hidden="true">
           <input type="text" name="website_url" tabIndex={-1} autoComplete="off" />
         </div>
-        <div className="comment-form-row">
-          <div className="comment-form-group">
+
+        <div className="blog-comment-form__row">
+          <div className="blog-comment-form__group">
+            <label htmlFor="comment-author-name" className="blog-comment-form__sr-only">
+              Full Name (required)
+            </label>
             <input
+              id="comment-author-name"
+              name="authorName"
               type="text"
               required
+              autoComplete="name"
               placeholder="Full Name *"
               value={formData.authorName}
-              onChange={(e) => setFormData({ ...formData, authorName: e.target.value })}
-              className="comment-input"
+              onChange={(event) =>
+                setFormData((previous) => ({ ...previous, authorName: event.target.value }))
+              }
+              className="blog-comment-form__field"
             />
           </div>
-          <div className="comment-form-group">
+
+          <div className="blog-comment-form__group">
+            <label htmlFor="comment-author-email" className="blog-comment-form__sr-only">
+              Email Address (optional)
+            </label>
             <input
+              id="comment-author-email"
+              name="authorEmail"
               type="email"
+              autoComplete="email"
               placeholder="Email Address (optional)"
               value={formData.authorEmail}
-              onChange={(e) => setFormData({ ...formData, authorEmail: e.target.value })}
-              className="comment-input"
+              onChange={(event) =>
+                setFormData((previous) => ({ ...previous, authorEmail: event.target.value }))
+              }
+              className="blog-comment-form__field"
             />
           </div>
         </div>
 
-        <div className="comment-form-group">
+        <div className="blog-comment-form__group">
+          <label htmlFor="comment-content" className="blog-comment-form__sr-only">
+            Write your comment (required)
+          </label>
           <textarea
+            id="comment-content"
+            name="content"
             required
             rows={5}
             placeholder="Write your comment here... *"
             value={formData.content}
-            onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-            className="comment-textarea"
-          ></textarea>
+            onChange={(event) =>
+              setFormData((previous) => ({ ...previous, content: event.target.value }))
+            }
+            className="blog-comment-form__field blog-comment-form__textarea"
+          />
         </div>
 
         <ConsentFields form="comment" />
 
-        <button type="submit" disabled={isSubmitting} className="comment-submit-btn">
-          {isSubmitting ? 'Posting...' : 'Post Comment'}
-        </button>
+        <VVArrowButton
+          type="submit"
+          disabled={isSubmitting}
+          className="blog-comment-form__action"
+          label={isSubmitting ? 'Posting...' : 'Post Comment'}
+          ariaLabel={isSubmitting ? 'Posting comment' : 'Post comment'}
+        />
       </form>
-    </div>
+    </section>
   );
 }

@@ -1,0 +1,49 @@
+/* Comments-list styles extracted from the original CommentForm.css.
+   These belong to the comments-list component (not the form). The form imports
+   this temporarily so the existing comments list keeps its original styling. */
+
+.blog-comments-section {
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.blog-comments-section .comments-list-title {
+  margin: 0 0 24px;
+  color: #0f172a;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.blog-comments-section .comment-item {
+  margin-bottom: 16px;
+  padding: 20px;
+  border: 1px solid #f1f5f9;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.blog-comments-section .comment-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.blog-comments-section .comment-author {
+  color: #1e293b;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.blog-comments-section .comment-date {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.blog-comments-section .comment-text {
+  margin: 0;
+  color: #334155;
+  font-size: 15px;
+  line-height: 1.6;
+}
