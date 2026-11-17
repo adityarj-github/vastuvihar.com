@@ -1,3 +1,4 @@
+import './home-foundation.css';
 import './home.css';
 import NewsSection from '@/components/home/NewsSection';
 import ImageSection from '@/components/home/ImageSection';
@@ -8,6 +9,7 @@ import ProjectsSection from '@/components/home/ProjectsSection';
 import CompanySection from '@/components/home/CompanySection';
 import PartnersSection from '@/components/home/PartnersSection';
 import HeroSection from '@/components/home/HeroSection';
+import HomeMotion from '@/components/home/HomeMotion';
 import PageLayout from '@/components/PageLayout';
 import { createPageMetadata } from '@/lib/metadata';
 
@@ -28,21 +30,14 @@ export default function HomePage() {
         <div className="col-fluid">
           <div id="primary" className="content-area">
             <main id="main" className="site-main">
-              {/* Preserve the Elementor layout class for the remaining global theme
-                  foundations; vv-home-page scopes all homepage-specific CSS. */}
-              <div className="elementor elementor-6353 vv-home-page">
+                <div className="vv-home-page">
+                <HomeMotion />
                 <HeroSection />
                 <PartnersSection />
                 <CompanySection />
                 <ProjectsSection />
                 <CareersSection />
-                <div
-                  className="custom-elementor-parallax"
-                  data-id="1659d28"
-                  data-settings={
-                    '{"type":"scroll","speed":"1.2","keepImg":"true","imgSize":"cover","imgPosition":"50% 0%","noAndroid":"false","noIos":"false"}'
-                  }
-                ></div>
+                <div className="vv-home-parallax-spacer" aria-hidden="true" />
                 <ValuesSection />
                 <StatsSection />
                 <ImageSection />

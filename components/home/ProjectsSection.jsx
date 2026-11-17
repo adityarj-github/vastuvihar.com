@@ -2,10 +2,7 @@ import VVArrowButton from '@/components/common/VVArrowButton';
 import Link from 'next/link';
 
 import './ProjectsSection.css';
-import '../common/ScrollingTicker.css';
 import StaticPill from '../common/StaticPill';
-
-
 const tickerItems = ['housing models', '·', 'housing models', '·'];
 
 const projects = [
@@ -54,22 +51,22 @@ const projects = [
 
 function ScrollingTicker() {
   return (
-    <div className="elementor-scrolling">
-      <div className="elementor-scrolling-wrapper">
+    <div className="vv-scrolling">
+      <div className="vv-scrolling-wrapper">
         {Array.from({ length: 5 }).map((_, groupIndex) => (
-          <div className="elementor-scrolling-inner" key={groupIndex}>
+          <div className="vv-scrolling-inner" key={groupIndex}>
             {tickerItems.map((item, itemIndex) => (
-              <div className="elementor-scrolling-item" key={`${groupIndex}-${itemIndex}`}>
-                <div className="elementor-scrolling-item-inner">
+              <div className="vv-scrolling-item" key={`${groupIndex}-${itemIndex}`}>
+                <div className="vv-scrolling-item-inner">
                   <div
                     className={`scrolling-title ${
                       itemIndex % 2 === 0
                         ? itemIndex === 0
-                          ? 'elementor-repeater-item-3eace46'
-                          : 'elementor-repeater-item-18b9ba4'
+                          ? 'vv-ticker-label-one'
+                          : 'vv-ticker-label-two'
                         : itemIndex === 1
-                          ? 'elementor-repeater-item-9398599'
-                          : 'elementor-repeater-item-194a249'
+                          ? 'vv-ticker-dot-one'
+                          : 'vv-ticker-dot-two'
                     }`}
                   >
                     <span>{item}</span>
@@ -132,29 +129,21 @@ function ProjectCard({ project }) {
 export default function ProjectsSection() {
   return (
     <div
-      className="elementor-element elementor-element-bdfd05f e-flex e-con-boxed e-con e-parent"
-      data-id="bdfd05f"
-      data-element_type="container"
+      className="vv-block vv-home-projects__projects vv-flex vv-boxed vv-con vv-parent"
     >
-      <div className="e-con-inner">
+      <div className="vv-inner">
         <div
-          className="elementor-element elementor-element-2df9746 e-con-full e-flex e-con e-child"
-          data-id="2df9746"
-          data-element_type="container"
-          data-settings='{"background_background":"classic"}'
+          className="vv-block vv-home-projects__intro vv-full vv-flex vv-con vv-child"
+
         >
             <StaticPill text="Our Models" />
-                   
-
           <div
-            className="elementor-element elementor-element-5791868 elementor-widget__width-initial animated-fast elementor-invisible elementor-widget elementor-widget-heading"
-            data-id="5791868"
-            data-element_type="widget"
-            data-settings='{"_animation":"opal-move-left"}'
-            data-widget_type="heading.default"
+            className="vv-block vv-home-projects__title vv-widget--width-initial animated-fast vv-reveal vv-widget vv-heading-widget"
+
+
           >
-            <div className="elementor-widget-container">
-              <h2 className="elementor-heading-title elementor-size-default">
+            <div className="vv-widget-inner">
+              <h2 className="vv-heading vv-text-default">
                 Explore our bungalow &amp; duplex models
               </h2>
             </div>
@@ -162,19 +151,15 @@ export default function ProjectsSection() {
         </div>
 
         <div
-          className="elementor-element elementor-element-b1d967b e-con-full e-flex e-con e-child"
-          data-id="b1d967b"
-          data-element_type="container"
+          className="vv-block vv-home-projects__cta vv-full vv-flex vv-con vv-child"
         >
           <div
-            className="elementor-element elementor-element-f7665c2 enable-style-icon-yes animated-fast elementor-button-outline icon-spaciaz-right elementor-invisible elementor-widget elementor-widget-spaciaz-button"
-            data-id="f7665c2"
-            data-element_type="widget"
-            data-settings='{"_animation":"opal-move-right"}'
-            data-widget_type="spaciaz-button.default"
+            className="vv-block vv-home-projects__cta-wrapper enable-style-icon-yes animated-fast vv-button-outline icon-spaciaz-right vv-reveal vv-widget vv-arrow-widget"
+
+
           >
-            <div className="elementor-widget-container">
-              <div className="elementor-button-wrapper">
+            <div className="vv-widget-inner">
+              <div className="vv-button-wrap">
                 <VVArrowButton href="/projects/" label="View all models" className="vv-home-page__projects-cta" />
               </div>
             </div>
@@ -182,14 +167,12 @@ export default function ProjectsSection() {
         </div>
 
         <div
-          className="elementor-element elementor-element-c2dd8d4 elementor-widget__width-inherit elementor-project-style-1 overflow-to-none elementor-widget elementor-widget-spaciaz-projects"
-          data-id="c2dd8d4"
-          data-element_type="widget"
-          data-settings='{"slides_to_show":3,"spaceBetween":{"unit":"px","size":30,"sizes":[]},"spaceBetween_laptop":{"unit":"px","size":"","sizes":[]},"spaceBetween_tablet_extra":{"unit":"px","size":"","sizes":[]},"spaceBetween_tablet":{"unit":"px","size":"","sizes":[]},"spaceBetween_mobile_extra":{"unit":"px","size":"","sizes":[]},"spaceBetween_mobile":{"unit":"px","size":"","sizes":[]},"swiper_overflow":"none","navigation":"none","enable_scrollbar":"no","autoplay":"yes","pause_on_hover":"yes","pause_on_interaction":"yes","autoplay_speed":5000,"infinite":"yes","loopAdditionalSlides":0,"speed":500}'
-          data-widget_type="spaciaz-projects.default"
+          className="vv-block vv-home-projects__model-cards vv-widget--width-inherit vv-project-style-1 overflow-to-none vv-widget vv-widget-spaciaz-projects"
+
+
         >
-          <div className="elementor-widget-container">
-            <div className="elementor-project-wrapper">
+          <div className="vv-widget-inner">
+            <div className="vv-project-wrapper">
               <div className="d-grid">
                 {projects.map((project) => (
                   <ProjectCard key={project.href} project={project} />

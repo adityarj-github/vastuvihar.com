@@ -93,28 +93,24 @@ export default function ImageSection() {
 
   return (
     <div
-      className="elementor-element elementor-element-4b0bf33 e-flex e-con-boxed e-con e-parent"
-      data-id="4b0bf33"
-      data-element_type="container"
-      data-settings={'{"background_background":"classic"}'}
+      className="vv-block vv-home-testimonials__testimonials vv-flex vv-boxed vv-con vv-parent"
+
     >
-      <div className="e-con-inner">
+      <div className="vv-inner">
         <div
-          className="elementor-element elementor-element-9f847e0 elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list"
-          data-id="9f847e0"
-          data-element_type="widget"
-          data-widget_type="icon-list.default"
+          className="vv-block vv-home-testimonials__eyebrow vv-icon-list--layout-traditional vv-list-item-link-full-width vv-widget vv-icon-list-widget"
+
         >
-          <div className="elementor-widget-container">
-            <ul className="elementor-icon-list-items">
-              <li className="elementor-icon-list-item">
-                <span className="elementor-icon-list-icon">
+          <div className="vv-widget-inner">
+            <ul className="vv-icon-list-items">
+              <li className="vv-icon-list-item">
+                <span className="vv-icon-list-icon">
                   <i
                     aria-hidden="true"
                     className="spaciaz-icon- spaciaz-icon-star"
                   ></i>{" "}
                 </span>
-                <span className="elementor-icon-list-text">
+                <span className="vv-icon-list-text">
                   What Our Homeowners Say
                 </span>
               </li>
@@ -123,30 +119,24 @@ export default function ImageSection() {
         </div>
 
         <div
-          className="elementor-element elementor-element-84ecd1a elementor-widget__width-initial elementor-absolute elementor-widget elementor-widget-spacer"
-          data-id="84ecd1a"
-          data-element_type="widget"
-          data-settings={
-            '{"spaciaz_decor_top_right":"yes","_position":"absolute","spaciaz_decor_top_left":"yes"}'
-          }
-          data-widget_type="spacer.default"
+          className="vv-block vv-home-testimonials__quote-section vv-widget--width-initial vv-absolute vv-widget vv-spacer-widget"
+
+
         >
-          <div className="elementor-widget-container">
-            <div className="elementor-spacer">
-              <div className="elementor-spacer-inner"></div>
+          <div className="vv-widget-inner">
+            <div className="vv-spacer">
+              <div className="vv-spacer-inner"></div>
             </div>
           </div>
         </div>
 
         <div
-          className="elementor-element elementor-element-7445366 alignment-center elementor-swiper-button-next-horizontal-right elementor-swiper-button-prev-horizontal-left elementor-swiper-button-next-vertical-top elementor-swiper-button-prev-vertical-top testimonial-layout-1 overflow-to-none elementor-widget elementor-widget-spaciaz-testimonials"
-          data-id="7445366"
-          data-element_type="widget"
-          data-widget_type="spaciaz-testimonials.default"
+          className="vv-block vv-home-testimonials__content alignment-center vv-swiper-button-next-horizontal-right vv-swiper-button-prev-horizontal-left vv-swiper-button-next-vertical-top vv-swiper-button-prev-vertical-top testimonial-layout-1 overflow-to-none vv-widget vv-widget-spaciaz-testimonials"
+
         >
-          <div className="elementor-widget-container">
+          <div className="vv-widget-inner">
             <div
-              className="elementor-testimonial-item-wrapper vv-testimonial-viewport"
+              className="vv-testimonial-item-wrapper vv-testimonial-viewport"
               dir="ltr"
               style={{ overflow: "hidden", width: "100%" }}
             >
@@ -156,7 +146,7 @@ export default function ImageSection() {
                 {testimonials.map((testimonial, index) => (
                   <div
                     key={index}
-                    className={`grid-item elementor-testimonial-item ${
+                    className={`grid-item vv-testimonial-item ${
                       index === activeIndex ? "vv-testimonial-active" : ""
                     }`}
                     aria-hidden={index !== activeIndex}
@@ -170,7 +160,7 @@ export default function ImageSection() {
                         </div>
 
                         <div className="details">
-                          <div className="elementor-testimonial-image">
+                          <div className="vv-testimonial-image">
                             <div
                               role="img"
                               aria-label={testimonial.name}
@@ -210,7 +200,7 @@ export default function ImageSection() {
 
             {/* Restore the theme's original Previous/Next controls. */}
             <div
-              className="elementor-swiper-button elementor-swiper-button-prev"
+              className="vv-swiper-button vv-swiper-button-prev"
               onClick={prevSlide}
               role="button"
               tabIndex={0}
@@ -222,11 +212,11 @@ export default function ImageSection() {
               }}
             >
               <i className="spaciaz-icon-chevron-left" aria-hidden="true"></i>
-              <span className="elementor-screen-only">Previous</span>
+              <span className="vv-screen-only">Previous</span>
             </div>
 
             <div
-              className="elementor-swiper-button elementor-swiper-button-next"
+              className="vv-swiper-button vv-swiper-button-next"
               onClick={nextSlide}
               role="button"
               tabIndex={0}
@@ -238,7 +228,7 @@ export default function ImageSection() {
               }}
             >
               <i className="spaciaz-icon-chevron-right" aria-hidden="true"></i>
-              <span className="elementor-screen-only">Next</span>
+              <span className="vv-screen-only">Next</span>
             </div>
           </div>
         </div>

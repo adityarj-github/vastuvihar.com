@@ -1,6 +1,5 @@
 import VVArrowButton from '@/components/common/VVArrowButton';
 import './NewsSection.css';
-import '../common/ScrollingTicker.css';
 import Link from 'next/link';
 import { orEmpty, prisma } from '@/lib/prisma';
 import StaticPill from '../common/StaticPill';
@@ -28,32 +27,26 @@ export default async function NewsSection() {
 
   return (
     <div
-      className="elementor-element elementor-element-eab14e7 e-flex e-con-boxed e-con e-parent"
-      data-id="eab14e7"
-      data-element_type="container"
+      className="vv-block vv-home-news__news vv-flex vv-boxed vv-con vv-parent"
     >
-      <div className="e-con-inner">
+      <div className="vv-inner">
 
         {/* ==========================================
             SECTION HEADER
         ========================================== */}
         <div
-          className="elementor-element elementor-element-ec1010d e-con-full e-flex e-con e-child"
-          data-id="ec1010d"
-          data-element_type="container"
-          data-settings={'{"background_background":"classic"}'}
+          className="vv-block vv-home-news__intro vv-full vv-flex vv-con vv-child"
+
         >
           <StaticPill text="Recent Blogs" />
 
           <div
-            className="elementor-element elementor-element-8034cbb elementor-widget__width-initial animated-fast elementor-invisible elementor-widget elementor-widget-heading"
-            data-id="8034cbb"
-            data-element_type="widget"
-            data-settings={'{"_animation":"opal-move-left"}'}
-            data-widget_type="heading.default"
+            className="vv-block vv-home-news__heading vv-widget--width-initial animated-fast vv-reveal vv-widget vv-heading-widget"
+
+
           >
-            <div className="elementor-widget-container">
-              <h2 className="elementor-heading-title elementor-size-default">
+            <div className="vv-widget-inner">
+              <h2 className="vv-heading vv-text-default">
                 Discover inspiration and trends
               </h2>
             </div>
@@ -64,19 +57,15 @@ export default async function NewsSection() {
             VIEW ALL POSTS BUTTON
         ========================================== */}
         <div
-          className="elementor-element elementor-element-9e2ca95 e-con-full e-flex e-con e-child"
-          data-id="9e2ca95"
-          data-element_type="container"
+          className="vv-block vv-home-news__cta-row vv-full vv-flex vv-con vv-child"
         >
           <div
-            className="elementor-element elementor-element-5cd4848 enable-style-icon-yes animated-fast elementor-button-outline icon-spaciaz-right elementor-invisible elementor-widget elementor-widget-spaciaz-button"
-            data-id="5cd4848"
-            data-element_type="widget"
-            data-settings={'{"_animation":"opal-move-right"}'}
-            data-widget_type="spaciaz-button.default"
+            className="vv-block vv-home-news__cta enable-style-icon-yes animated-fast vv-button-outline icon-spaciaz-right vv-reveal vv-widget vv-arrow-widget"
+
+
           >
-            <div className="elementor-widget-container">
-              <div className="elementor-button-wrapper">
+            <div className="vv-widget-inner">
+              <div className="vv-button-wrap">
                 <VVArrowButton href="/blog/" label="View all posts" className="vv-home-page__news-cta" />
               </div>
             </div>
@@ -87,13 +76,11 @@ export default async function NewsSection() {
             COMPACT 3-CARD BLOG GRID
         ========================================== */}
         <div
-          className="elementor-element elementor-element-f8366e7 elementor-widget__width-inherit animated-fast elementor-invisible elementor-widget elementor-widget-spaciaz-post-grid"
-          data-id="f8366e7"
-          data-element_type="widget"
-          data-settings={'{"_animation":"opal-move-up"}'}
-          data-widget_type="spaciaz-post-grid.default"
+          className="vv-block vv-home-news__post-list vv-widget--width-inherit animated-fast vv-reveal vv-widget vv-post-grid-widget"
+
+
         >
-          <div className="elementor-widget-container">
+          <div className="vv-widget-inner">
             <div className="vv-home-blog-grid">
               {posts.map((post) => {
                 const postUrl = `/blog/${post.slug}/`;

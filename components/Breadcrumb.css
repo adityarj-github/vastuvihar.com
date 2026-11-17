@@ -1,0 +1,158 @@
+/* Vastu Vihar shared page banner — fully self-contained.
+   Styling is scoped to vv-breadcrumb-banner, not Elementor or global wrappers. */
+
+.vv-breadcrumb-banner {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  background-image: url('/About.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.vv-breadcrumb-banner__overlay {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background-color: rgba(1, 28, 91, 0.4);
+  pointer-events: none;
+}
+
+.vv-breadcrumb-banner__inner {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1730px;
+  margin-inline: auto;
+  padding: 175px 30px 90px;
+}
+
+.vv-breadcrumb-banner__title {
+  padding: 0;
+  color: #fff;
+  font-family: var(--e-global-typography-accent-font-family, 'Involve', sans-serif);
+  font-size: 70px;
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -2px;
+  text-transform: none;
+  padding-bottom: 20px;
+  margin-top: 100px;
+  overflow-wrap: anywhere;
+}
+
+.vv-breadcrumb-banner__nav {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  text-align: left;
+}
+
+.vv-breadcrumb-banner__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vv-breadcrumb-banner__item {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 10px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: var(--e-global-typography-text-font-family, 'Switzer', sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.vv-breadcrumb-banner__item a {
+  color: inherit;
+  font: inherit;
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+.vv-breadcrumb-banner__item a:hover,
+.vv-breadcrumb-banner__item a:focus-visible {
+  color: var(--e-global-color-primary, #08aaec);
+}
+
+.vv-breadcrumb-banner__item a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.vv-breadcrumb-banner__current {
+  color: rgba(255, 255, 255, 0.6);
+  overflow-wrap: anywhere;
+}
+
+.vv-breadcrumb-banner__dot {
+  display: inline-block;
+  flex: 0 0 4px;
+  width: 4px;
+  height: 4px;
+  background-color: currentColor;
+}
+
+/* The curved white surface overlaps the hero, as on the About / FAQ pages. */
+.vv-breadcrumb-banner__curve {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  width: 100%;
+  height: 50px;
+  margin-top: -50px;
+  border-radius: 50px 50px 0 0;
+  background-color: #fff;
+}
+
+@media (max-width: 1200px) {
+  .vv-breadcrumb-banner__title {
+    font-size: 64px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .vv-breadcrumb-banner__title {
+    font-size: 56px;
+  }
+}
+
+@media (max-width: 767px) {
+  .vv-breadcrumb-banner__inner {
+    padding: 120px 15px 60px;
+  }
+
+  .vv-breadcrumb-banner__title {
+    font-size: 42px;
+    letter-spacing: -1px;
+  }
+
+  .vv-breadcrumb-banner__curve {
+    height: 30px;
+    margin-top: -30px;
+    border-radius: 20px 20px 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vv-breadcrumb-banner__item a {
+    transition: none;
+  }
+}
