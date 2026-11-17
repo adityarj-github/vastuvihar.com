@@ -1,7 +1,7 @@
 /* Reusable, isolated version of AboutHeader's original outlined Spaciaz CTA. */
 .vv-arrow-button {
   --vv-arrow-primary: var(--e-global-color-primary, #08aaec);
-  --vv-arrow-accent: var(--accent, #011c5b);
+  --vv-arrow-accent: #011C5B;
   --vv-arrow-border: var(--e-global-color-border, #e0e0e0);
   box-sizing: border-box;
   appearance: none;

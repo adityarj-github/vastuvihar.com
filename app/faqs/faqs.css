@@ -1,0 +1,13 @@
+/* FAQs route-level scoping. Global theme CSS stays unchanged. */
+.vv-faqs-page {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  background: #fff;
+}
+
+.vv-faqs-page *,
+.vv-faqs-page *::before,
+.vv-faqs-page *::after {
+  box-sizing: border-box;
+}
