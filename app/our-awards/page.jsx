@@ -1,10 +1,9 @@
-import Breadcrumb from '@/components/Breadcrumb';
 import PageLayout from '@/components/PageLayout';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 import AwardsHeader from '@/components/awards/AwardsHeader';
 import AwardsList from '@/components/awards/AwardsList';
-
 import { createPageMetadata } from '@/lib/metadata';
+import './our-awards.css';
 
 export const metadata = createPageMetadata({
   title: 'Awards & Recognition | Vastu Vihar',
@@ -16,12 +15,11 @@ export const metadata = createPageMetadata({
 export default function OurAwardsPage() {
   return (
     <PageLayout route="our-awards">
-      {/* <Breadcrumb title="Our awards" /> */}
-      <div id="content" className="site-content-page clear" tabIndex="-1">
+      <div id="content" className="site-content-page clear" tabIndex={-1}>
         <div className="col-fluid">
           <div id="primary" className="content-area">
             <main id="main" className="site-main">
-              <div data-elementor-type="wp-page" data-elementor-id="53" className="elementor elementor-53">
+              <div className="vv-awards-page">
                 <AwardsHeader />
                 <AwardsList />
               </div>

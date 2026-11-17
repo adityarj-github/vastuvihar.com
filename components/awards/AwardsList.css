@@ -1,90 +1,91 @@
-/* Container holding all the award cards */
-.elementor-element-60db682 {
-  display: flex !important;
-  flex-direction: row !important; /* Forces elements into a row */
-  flex-wrap: wrap; /* Allows wrapping if screen gets too small */
-  justify-content: center !important; /* Centers the row perfectly */
+/* Award gallery. Scoped rules replace Elementor IDs and broad widget selectors. */
+.vv-awards-list {
+  width: 100%;
+  min-width: 0;
+  margin: 0 auto;
+  padding: 0 30px 90px;
+}
+
+.vv-awards-list__grid {
+  display: flex;
+  flex-wrap: wrap;
   align-items: stretch;
+  justify-content: center;
   gap: 40px;
   width: 100%;
+  max-width: 1290px;
+  margin-inline: auto;
 }
 
-/* Individual Award Card */
-.box-img-hover {
-  /* Override Elementor's default 100% width so they can sit side-by-side */
-  width: auto !important; 
-  flex: 0 1 220px !important; /* Sets base width to 220px and allows them to sit in a row */
-  
+.vv-awards-list__card {
   display: flex;
-  flex-direction: column; /* Keeps the image above the text inside the card */
+  flex: 0 1 220px;
+  flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  text-align: center;
+  min-width: 0;
   gap: 20px;
   padding: 32px 24px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 24px;
+  text-align: center;
+  background: transparent;
+  /* Keep the original cards stable: no hover lift or box shadow. */
 }
 
-/* Award Image Wrapper */
-.elementor-widget-image {
-  width: 100%;
-}
-
-.elementor-widget-image .elementor-widget-container {
+.vv-awards-list__image-wrap {
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 140px; /* Fixed height to keep the cards perfectly aligned */
+  justify-content: center;
   width: 100%;
+  height: 140px;
 }
 
-.elementor-widget-image img {
-  max-width: 100%;
-  max-height: 100%;
+.vv-awards-list__image {
+  display: block;
   width: auto;
   height: auto;
-  object-fit: contain; /* Prevents logos/images from stretching */
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  /* Mirrors the original .box-img-hover image fade without a global dependency. */
+  opacity: 0.2;
+  transition: opacity 0.3s ease;
 }
 
-/* Award Title */
-/* .elementor-widget-heading {
-  width: 100%;
-} */
+.vv-awards-list__card:hover .vv-awards-list__image {
+  opacity: 1;
+}
 
-.elementor-heading-title {
+.vv-awards-list__title {
   margin: 0;
-  color: #111 !important;
+  padding: 0;
+  color: #111;
+  font-family: var(--e-global-typography-accent-font-family, 'Involve', sans-serif);
   font-size: 1.1rem;
   font-weight: 600;
   line-height: 1.4;
 }
 
-/* Responsive adjustments for Tablets and Mobile */
 @media (max-width: 1024px) {
-  .elementor-element-60db682 {
-    gap: 30px;
-  }
+  .vv-awards-list__grid { gap: 30px; }
 }
 
 @media (max-width: 767px) {
-  .elementor-element-60db682 {
-    display: grid !important; /* Switch back to grid on mobile for perfect 2x2 layout */
-    grid-template-columns: repeat(2, 1fr) !important; 
+  .vv-awards-list { padding: 0 15px 60px; }
+  .vv-awards-list__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
   }
-
-  .box-img-hover {
-    width: 100% !important; /* Reset width for the mobile grid */
-    flex: none !important;
-    padding: 20px 12px;
+  .vv-awards-list__card {
+    width: 100%;
     gap: 12px;
+    padding: 20px 12px;
   }
+  .vv-awards-list__image-wrap { height: 100px; }
+  .vv-awards-list__title { font-size: 0.875rem; }
+}
 
-  .elementor-widget-image .elementor-widget-container {
-    height: 100px;
-  }
-
-  .elementor-heading-title {
-    font-size: 0.875rem; /* 14px */
-  }
+@media (prefers-reduced-motion: reduce) {
+  .vv-awards-list__image { transition: none; }
 }
