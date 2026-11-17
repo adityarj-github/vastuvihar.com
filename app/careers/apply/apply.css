@@ -1,398 +1,311 @@
-/* =========================================
-   VASTU VIHAR - CAREERS APPLICATION FORM
-   File: app/careers/apply/apply.css
-   Brand Color: #08AAEC
-========================================= */
+/* Careers application: scoped styles, independent of Elementor and the old
+   styles/pages/careers.css. Shared VVArrowButton styling is not replaced. */
 
-/* =========================================
-   FORM WRAPPER
-========================================= */
+.vv-careers-apply {
+  width: 100%;
+  min-width: 0;
+}
 
-.apply-form-wrapper {
-  background-color: #f8fafc;
-  padding: 80px 20px;
+.vv-careers-apply__wrapper {
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  padding: 40px 20px 80px;
 }
 
-/* The careers header ends with an empty ticker container that carries
-   100px/60px margins; on the apply page it only adds a blank gap. */
-.careers-apply-page .elementor-element-2fe4001 {
-  display: none;
-}
-
-.careers-apply-page .apply-form-wrapper {
-  padding-top: 40px;
-}
-
-.apply-form-container {
+.vv-careers-apply__container {
+  box-sizing: border-box;
   width: 100%;
   max-width: 800px;
-  background: #ffffff;
   padding: 50px;
   border-radius: 16px;
+  background: #f8fafc;
+  min-width: 0;
 }
 
-/* =========================================
-   FORM HEADING
-========================================= */
-
-.apply-form-title {
+.vv-careers-apply__title {
+  margin: 0 0 8px;
+  color: #0f172a;
   font-size: 32px;
   font-weight: 800;
-  color: #0f172a;
-  margin-bottom: 8px;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
 }
 
-.apply-form-subtitle {
+.vv-careers-apply__subtitle {
+  margin: 0 0 35px;
   color: #64748b;
-  margin-bottom: 35px;
   font-size: 16px;
   line-height: 1.5;
 }
 
-/* =========================================
-   FORM GRID
-========================================= */
-
-.apply-form-row {
+.vv-careers-apply__row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
 }
 
-.apply-form-group {
+.vv-careers-apply__group {
+  min-width: 0;
   margin-bottom: 20px;
 }
 
-.apply-form-label {
+.vv-careers-apply__label {
   display: block;
-  margin-bottom: 8px;
-  font-weight: 600;
+  margin: 0 0 8px;
   color: #1e293b;
   font-size: 14px;
+  font-weight: 600;
 }
 
-/* =========================================
-   INPUT & TEXTAREA
-========================================= */
-
-.apply-form-input,
-.apply-form-textarea {
-  width: 100% !important;
-  padding: 10px 15px !important;
-  border-radius: 80px !important;
-  border: 1px solid #cbd5e1 !important;
-  background-color: #f8fafc !important;
-  font-size: 15px !important;
-  color: #0f172a !important;
-  transition: all 0.3s ease !important;
-  font-family: inherit !important;
-  box-sizing: border-box !important;
-  box-shadow: none !important;
-  outline: none !important;
+/* Specific enough to isolate the form from the theme's generic input styles. */
+.vv-careers-apply .vv-careers-apply__input,
+.vv-careers-apply .vv-careers-apply__textarea {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 10px 15px;
+  border: 1px solid #cbd5e1;
+  border-radius: 80px;
+  background: #f8fafc;
+  color: #0f172a;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.75;
+  box-shadow: none;
+  outline: none;
+  transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-
-.apply-form-textarea {
-  border-radius: 20px !important;
+.vv-careers-apply .vv-careers-apply__textarea {
+  min-height: 120px;
+  border-radius: 20px;
+  resize: vertical;
 }
 
-.apply-form-textarea {
-  resize: vertical !important;
-  min-height: 120px !important;
+.vv-careers-apply .vv-careers-apply__input:focus,
+.vv-careers-apply .vv-careers-apply__textarea:focus {
+  border-color: #08aaec;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(8, 170, 236, 0.12);
 }
 
-/* Input focus */
-.apply-form-input:focus,
-.apply-form-textarea:focus {
-  border-color: #08aaec !important;
-  background-color: #ffffff !important;
-  box-shadow: 0 0 0 3px rgba(8, 170, 236, 0.12) !important;
+.vv-careers-apply .vv-careers-apply__input:focus-visible,
+.vv-careers-apply .vv-careers-apply__textarea:focus-visible {
+  /* The original application form uses a blue focus halo. */
+  outline: none;
 }
 
-/* Readonly input */
-.apply-form-input[readonly] {
-  background-color: #e2e8f0 !important;
-  color: #475569 !important;
-  cursor: not-allowed !important;
-  border-color: #cbd5e1 !important;
+.vv-careers-apply .vv-careers-apply__input[readonly] {
+  background-color: #e2e8f0;
+  color: #475569;
+  border-color: #cbd5e1;
+  cursor: not-allowed;
 }
 
-/* =========================================
-   MODERN FILE UPLOAD PICKER
-========================================= */
-
-.apply-form-file {
-  display: block !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-
-  padding: 12px !important;
-  border: 2px dashed #cbd5e1 !important;
-  border-radius: 80px !important;
-
-  background-color: #f8fafc !important;
-  color: #64748b !important;
-
-  font-family: inherit !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
-
-  cursor: pointer !important;
-  outline: none !important;
-
-  transition:
-    border-color 0.3s ease,
-    background-color 0.3s ease,
-    box-shadow 0.3s ease !important;
+/* Original native resume picker: dashed field with the blue browser file
+   selection button. Only form submission uses the shared VVArrowButton. */
+.vv-careers-apply input[type='file'].vv-careers-apply__file {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 12px;
+  border: 2px dashed #cbd5e1;
+  border-radius: 80px;
+  background-color: #f8fafc;
+  color: #64748b;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* File selection button */
-.apply-form-file::file-selector-button {
+.vv-careers-apply input[type='file'].vv-careers-apply__file::file-selector-button {
   display: inline-block;
-
   padding: 12px 20px;
   margin-right: 18px;
-
-  background-color: #08aaec;
-  color: #ffffff;
-
-  border: none;
+  border: 0;
   border-radius: 60px;
-
+  background-color: #08aaec;
+  color: #fff;
   font-family: inherit;
   font-size: 13px;
   font-weight: 700;
-
   cursor: pointer;
-
-  transition:
-    background-color 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* File picker hover */
-.apply-form-file:hover {
-  background-color: #f0f9ff !important;
-  border-color: #08aaec !important;
+.vv-careers-apply input[type='file'].vv-careers-apply__file:hover {
+  border-color: #08aaec;
+  background-color: #f0f9ff;
 }
 
-/* Upload button hover */
-.apply-form-file:hover::file-selector-button {
+.vv-careers-apply input[type='file'].vv-careers-apply__file:hover::file-selector-button {
   background-color: #078fc8;
   box-shadow: 0 4px 12px rgba(8, 170, 236, 0.2);
 }
 
-/* File picker focus */
-.apply-form-file:focus-visible {
-  background-color: #ffffff !important;
-  border-color: #08aaec !important;
-  box-shadow: 0 0 0 4px rgba(8, 170, 236, 0.12) !important;
+.vv-careers-apply input[type='file'].vv-careers-apply__file:focus-visible {
+  border-color: #08aaec;
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(8, 170, 236, 0.12);
+  outline: none;
 }
 
-/* File picker disabled */
-.apply-form-file:disabled {
+.vv-careers-apply input[type='file'].vv-careers-apply__file:disabled {
   opacity: 0.6;
-  cursor: not-allowed !important;
-  background-color: #e2e8f0 !important;
+  cursor: not-allowed;
+  background-color: #e2e8f0;
 }
 
-.apply-form-file:disabled::file-selector-button {
+.vv-careers-apply input[type='file'].vv-careers-apply__file:disabled::file-selector-button {
   background-color: #94a3b8;
   cursor: not-allowed;
   box-shadow: none;
 }
 
-/* =========================================
-   SUBMIT BUTTON
-========================================= */
-
-.apply-form-button {
-  width: 100% !important;
-  padding: 18px 24px !important;
-
-  background-color: #08aaec !important;
-  color: #ffffff !important;
-
-  border: none !important;
-  border-radius: 80px !important;
-
-  font-size: 16px !important;
-  font-weight: 700 !important;
-
-  cursor: pointer !important;
-
-  transition: all 0.3s ease !important;
-
-  text-transform: uppercase !important;
-  letter-spacing: 1px !important;
-
-  margin-top: 10px !important;
+.vv-careers-apply .vv-careers-apply__submit {
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 10px;
 }
 
-/* Submit button hover */
-.apply-form-button:hover:not(:disabled) {
-  background-color: #078fc8 !important;
-  transform: translateY(-2px) !important;
-  box-shadow: 0 8px 20px rgba(8, 170, 236, 0.25) !important;
+.vv-careers-apply__honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
-/* Submit button focus */
-.apply-form-button:focus-visible {
-  outline: 3px solid rgba(8, 170, 236, 0.35) !important;
-  outline-offset: 3px !important;
-}
-
-/* Disabled submit button */
-.apply-form-button:disabled {
-  background-color: #94a3b8 !important;
-  cursor: not-allowed !important;
-  transform: none !important;
-  box-shadow: none !important;
-}
-
-/* =========================================
-   STATUS MESSAGES
-========================================= */
-
-/* Error message */
-.apply-error-box {
-  padding: 16px;
-  background-color: #fee2e2;
-  color: #dc2626;
-  border-radius: 80px;
+.vv-careers-apply__error {
   margin-bottom: 24px;
-  font-weight: 500;
+  padding: 16px;
   border: 1px solid #fca5a5;
-}
-
-/* Success message */
-.apply-success-box {
-  padding: 40px;
-  background-color: #dcfce7;
-  color: #16a34a;
   border-radius: 80px;
-  text-align: center;
+  background: #fee2e2;
+  color: #dc2626;
+  font-size: 14px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.vv-careers-apply__success {
+  padding: 40px;
   border: 1px solid #bbf7d0;
+  border-radius: 80px;
+  background: #dcfce7;
+  color: #16a34a;
+  text-align: center;
 }
 
-.apply-success-box h3 {
-  font-size: 24px;
-  margin-bottom: 12px;
+.vv-careers-apply__success h3 {
+  margin: 0 0 12px;
   color: #15803d;
+  font-size: 24px;
 }
 
-/* =========================================
-   TABLET RESPONSIVE
-========================================= */
+.vv-careers-apply__success p,
+.vv-careers-apply__loading {
+  margin: 0;
+  line-height: 1.5;
+}
 
 @media (max-width: 768px) {
-  .apply-form-wrapper {
-    padding: 50px 16px;
+  .vv-careers-apply__wrapper {
+    padding: 40px 16px 50px;
   }
 
-  .apply-form-row {
-    grid-template-columns: 1fr;
+  .vv-careers-apply__row {
+    grid-template-columns: minmax(0, 1fr);
     gap: 0;
   }
 
-  .apply-form-container {
+  .vv-careers-apply__container {
     padding: 30px 20px;
   }
 
-  .apply-form-title {
+  .vv-careers-apply__title {
     font-size: 28px;
   }
 
-  .apply-form-subtitle {
-    font-size: 15px;
+  .vv-careers-apply__subtitle {
     margin-bottom: 25px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .vv-careers-apply input[type='file'].vv-careers-apply__file {
+    padding: 10px;
+    font-size: 12px;
   }
 
-  /* Mobile file picker */
-  .apply-form-file {
-    padding: 10px !important;
-    font-size: 12px !important;
-  }
-
-  .apply-form-file::file-selector-button {
+  .vv-careers-apply input[type='file'].vv-careers-apply__file::file-selector-button {
     padding: 11px 14px;
     margin-right: 10px;
     font-size: 12px;
   }
 }
 
-/* =========================================
-   SMALL MOBILE RESPONSIVE
-========================================= */
-
 @media (max-width: 480px) {
-  .apply-form-wrapper {
-    padding: 35px 12px;
+  .vv-careers-apply__wrapper {
+    padding: 24px 12px 35px;
   }
 
-  .careers-apply-page .apply-form-wrapper {
-    padding-top: 24px;
-  }
-
-  .apply-form-container {
+  .vv-careers-apply__container {
     padding: 25px 16px;
     border-radius: 12px;
   }
 
-  .apply-form-title {
+  .vv-careers-apply__title {
     font-size: 25px;
     line-height: 1.3;
   }
 
-  .apply-form-subtitle {
+  .vv-careers-apply__subtitle {
     font-size: 14px;
   }
 
-  .apply-form-input,
-  .apply-form-textarea {
-    font-size: 14px !important;
+  .vv-careers-apply .vv-careers-apply__input,
+  .vv-careers-apply .vv-careers-apply__textarea {
+    font-size: 14px;
   }
 
-  .apply-form-file {
-    padding: 10px !important;
-    font-size: 12px !important;
+  .vv-careers-apply input[type='file'].vv-careers-apply__file {
+    padding: 10px;
+    font-size: 12px;
   }
 
-  .apply-form-file::file-selector-button {
+  .vv-careers-apply input[type='file'].vv-careers-apply__file::file-selector-button {
     padding: 10px 12px;
     margin-right: 8px;
     border-radius: 6px;
     font-size: 12px;
   }
 
-  .apply-form-button {
-    padding: 15px 18px !important;
-    font-size: 14px !important;
-  }
-
-  .apply-success-box {
+  .vv-careers-apply__success {
     padding: 25px 16px;
   }
 
-  .apply-success-box h3 {
+  .vv-careers-apply__success h3 {
     font-size: 21px;
   }
 }
 
-/* =========================================
-   REDUCED MOTION ACCESSIBILITY
-========================================= */
-
 @media (prefers-reduced-motion: reduce) {
-
-  .apply-form-input,
-  .apply-form-textarea,
-  .apply-form-file,
-  .apply-form-button,
-  .apply-form-file::file-selector-button {
-    transition: none !important;
+  .vv-careers-apply .vv-careers-apply__input,
+  .vv-careers-apply .vv-careers-apply__textarea,
+  .vv-careers-apply input[type='file'].vv-careers-apply__file,
+  .vv-careers-apply input[type='file'].vv-careers-apply__file::file-selector-button {
+    transition: none;
   }
 }
