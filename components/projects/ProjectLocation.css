@@ -2,14 +2,15 @@
    PROJECT LAYOUT & AREA
 ========================================================= */
 
-.project-layout-section {
+.vv-model-details .project-layout-section {
   width: 100%;
   padding: 60px 0;
   background: #ffffff;
 }
 
-.project-layout-container {
-  width: min(100% - 0px, 1350px);
+.vv-model-details .project-layout-container {
+  width: 100%;
+  max-width: none;
   margin: 0 auto;
 }
 
@@ -18,11 +19,11 @@
    SECTION HEADINGS
 ========================================================= */
 
-.section-heading {
+.vv-model-details .section-heading {
   margin-bottom: 28px;
 }
 
-.section-label {
+.vv-model-details .section-label {
   display: block;
   margin-bottom: 8px;
 
@@ -35,7 +36,7 @@
   color: var(--e-global-color-accent, #ed3237);
 }
 
-.section-heading h3 {
+.vv-model-details .section-heading h3 {
   margin: 0;
 
   font-size: clamp(28px, 3vw, 42px);
@@ -51,12 +52,12 @@
    MODEL SPECIFICATIONS
 ========================================================= */
 
-.project-specifications {
+.vv-model-details .project-specifications {
   width: 100%;
   margin-bottom: 70px;
 }
 
-.spec-table-wrapper {
+.vv-model-details .spec-table-wrapper {
   width: 100%;
 
   border: 1px solid #e8e8e8;
@@ -66,26 +67,26 @@
   background: #ffffff;
 }
 
-.spec-table {
+.vv-model-details .spec-table {
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
 }
 
-.spec-table tr {
+.vv-model-details .spec-table tr {
   border-bottom: 1px solid #e8e8e8;
 }
 
-.spec-table tr:last-child {
+.vv-model-details .spec-table tr:last-child {
   border-bottom: 0;
 }
 
-.spec-table td {
+.vv-model-details .spec-table td {
   padding: 22px 28px;
   vertical-align: middle;
 }
 
-.spec-label {
+.vv-model-details .spec-label {
   width: 50%;
 
   font-size: 15px;
@@ -95,7 +96,7 @@
   color: #777777;
 }
 
-.spec-value {
+.vv-model-details .spec-value {
   width: 50%;
 
   font-size: 17px;
@@ -112,17 +113,17 @@
    AREA BREAKDOWN
 ========================================================= */
 
-.area-breakdown-section {
+.vv-model-details .area-breakdown-section {
   width: 100%;
 }
 
-.area-breakdown-list {
+.vv-model-details .area-breakdown-list {
   display: flex;
   flex-direction: column;
   gap: 32px;
 }
 
-.area-category {
+.vv-model-details .area-category {
   width: 100%;
 
   border: 1px solid #e8e8e8;
@@ -133,7 +134,7 @@
   background: #ffffff;
 }
 
-.area-category-header {
+.vv-model-details .area-category-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -146,7 +147,7 @@
   background: #fafafa;
 }
 
-.area-category-header h4 {
+.vv-model-details .area-category-header h4 {
   margin: 0;
 
   font-size: 20px;
@@ -156,7 +157,7 @@
   color: #111111;
 }
 
-.model-name {
+.vv-model-details .model-name {
   padding: 7px 12px;
 
   border: 1px solid #dedede;
@@ -176,12 +177,12 @@
    AREA TABLE
 ========================================================= */
 
-.area-table-wrapper {
+.vv-model-details .area-table-wrapper {
   width: 100%;
   overflow-x: auto;
 }
 
-.area-table {
+.vv-model-details .area-table {
   width: 100%;
   min-width: 620px;
 
@@ -189,11 +190,11 @@
   table-layout: fixed;
 }
 
-.area-table thead {
+.vv-model-details .area-table thead {
   background: #ffffff;
 }
 
-.area-table th {
+.vv-model-details .area-table th {
   padding: 15px 28px;
 
   border-bottom: 1px solid #e8e8e8;
@@ -210,7 +211,7 @@
   color: #999999;
 }
 
-.area-table td {
+.vv-model-details .area-table td {
   padding: 20px 28px;
 
   border-bottom: 1px solid #eeeeee;
@@ -223,44 +224,44 @@
   color: #555555;
 }
 
-.area-table tbody tr:last-child td {
+.vv-model-details .area-table tbody tr:last-child td {
   border-bottom: 0;
 }
 
-.area-table tbody tr {
+.vv-model-details .area-table tbody tr {
   transition: background-color 0.2s ease;
 }
 
-.area-table tbody tr:hover {
+.vv-model-details .area-table tbody tr:hover {
   background: #fafafa;
 }
 
-.area-table th:nth-child(1),
-.area-table td:nth-child(1) {
+.vv-model-details .area-table th:nth-child(1),
+.vv-model-details .area-table td:nth-child(1) {
   width: 35%;
 }
 
-.area-table th:nth-child(2),
-.area-table td:nth-child(2) {
+.vv-model-details .area-table th:nth-child(2),
+.vv-model-details .area-table td:nth-child(2) {
   width: 25%;
 }
 
-.area-table th:nth-child(3),
-.area-table td:nth-child(3) {
+.vv-model-details .area-table th:nth-child(3),
+.vv-model-details .area-table td:nth-child(3) {
   width: 40%;
 }
 
-.room-name {
+.vv-model-details .room-name {
   font-weight: 600;
   color: #111111 !important;
 }
 
-.room-dimensions {
+.vv-model-details .room-dimensions {
   font-weight: 500;
   color: #333333 !important;
 }
 
-.room-features {
+.vv-model-details .room-features {
   color: #777777 !important;
 }
 
@@ -269,7 +270,7 @@
    EMPTY STATE
 ========================================================= */
 
-.layout-empty-state {
+.vv-model-details .layout-empty-state {
   padding: 30px;
 
   border: 1px solid #e8e8e8;
@@ -278,7 +279,7 @@
   background: #fafafa;
 }
 
-.layout-empty-state p {
+.vv-model-details .layout-empty-state p {
   margin: 0;
 
   font-size: 15px;
@@ -293,30 +294,30 @@
 ========================================================= */
 
 @media (max-width: 1024px) {
-  .project-layout-section {
+  .vv-model-details .project-layout-section {
     padding: 55px 0;
   }
 
-  .project-layout-container {
-    width: min(100% - 32px, 1320px);
+  .vv-model-details .project-layout-container {
+    width: 100%;
   }
 
-  .project-specifications {
+  .vv-model-details .project-specifications {
     margin-bottom: 55px;
   }
 
-  .spec-table td,
-  .area-table td {
+  .vv-model-details .spec-table td,
+  .vv-model-details .area-table td {
     padding-left: 22px;
     padding-right: 22px;
   }
 
-  .area-table th {
+  .vv-model-details .area-table th {
     padding-left: 22px;
     padding-right: 22px;
   }
 
-  .area-category-header {
+  .vv-model-details .area-category-header {
     padding-left: 22px;
     padding-right: 22px;
   }
@@ -328,45 +329,45 @@
 ========================================================= */
 
 @media (max-width: 767px) {
-  .project-layout-section {
+  .vv-model-details .project-layout-section {
     padding: 45px 0;
   }
 
-  .project-layout-container {
-    width: calc(100% - 30px);
+  .vv-model-details .project-layout-container {
+    width: 100%;
   }
 
-  .section-heading {
+  .vv-model-details .section-heading {
     margin-bottom: 22px;
   }
 
-  .section-heading h3 {
+  .vv-model-details .section-heading h3 {
     font-size: 28px;
   }
 
-  .project-specifications {
+  .vv-model-details .project-specifications {
     margin-bottom: 45px;
   }
 
-  .spec-table-wrapper,
-  .area-category,
-  .layout-empty-state {
+  .vv-model-details .spec-table-wrapper,
+  .vv-model-details .area-category,
+  .vv-model-details .layout-empty-state {
     border-radius: 14px;
   }
 
-  .spec-table td {
+  .vv-model-details .spec-table td {
     padding: 17px 18px;
   }
 
-  .spec-label {
+  .vv-model-details .spec-label {
     font-size: 13px;
   }
 
-  .spec-value {
+  .vv-model-details .spec-value {
     font-size: 14px;
   }
 
-  .area-category-header {
+  .vv-model-details .area-category-header {
     padding: 18px;
 
     align-items: flex-start;
@@ -375,17 +376,17 @@
     gap: 10px;
   }
 
-  .area-category-header h4 {
+  .vv-model-details .area-category-header h4 {
     font-size: 18px;
   }
 
-  .area-table th,
-  .area-table td {
+  .vv-model-details .area-table th,
+  .vv-model-details .area-table td {
     padding-left: 18px;
     padding-right: 18px;
   }
 
-  .area-table td {
+  .vv-model-details .area-table td {
     padding-top: 16px;
     padding-bottom: 16px;
 
@@ -399,19 +400,19 @@
 ========================================================= */
 
 @media (max-width: 480px) {
-  .project-layout-container {
-    width: calc(100% - 24px);
+  .vv-model-details .project-layout-container {
+    width: 100%;
   }
 
-  .spec-table td {
+  .vv-model-details .spec-table td {
     padding: 15px;
   }
 
-  .spec-label {
+  .vv-model-details .spec-label {
     width: 55%;
   }
 
-  .spec-value {
+  .vv-model-details .spec-value {
     width: 45%;
   }
 }

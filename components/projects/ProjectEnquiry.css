@@ -1,91 +1,69 @@
-.elementor-2178 .elementor-element.elementor-element-c8a32ef {
-  --display: flex;
-  --flex-direction: column;
-  --container-widget-width: calc( ( 1 - var( --container-widget-flex-grow ) ) * 100% );
-  --container-widget-height: initial;
-  --container-widget-flex-grow: 0;
-  --container-widget-align-self: initial;
-  --flex-wrap-mobile: wrap;
-  --align-items: center;
-  --margin-top: 0px;
-  --margin-bottom: 90px;
-  --margin-left: 0px;
-  --margin-right: 0px;
-  --padding-top: 0px;
-  --padding-bottom: 0px;
-  --padding-left: 0px;
-  --padding-right: 0px;
+.vv-model-enquiry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin: 0 auto 90px;
+  width: 100%;
+  min-width: 0;
 }
-
-.elementor-2178 .elementor-element.elementor-element-c8a32ef .spaciaz-border-shape {
-  width: 30px;
-  height: 30px;
-  clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
-}
-
-.elementor-2178 .elementor-element.elementor-element-2c32b85 {
-  width: var( --container-widget-width, 465px );
+.vv-model-enquiry h2 {
   max-width: 465px;
-  --container-widget-width: 465px;
-  --container-widget-flex-grow: 0;
+  margin: 0;
   text-align: center;
+  color: var(--e-global-color-accent, #011c5b);
+  font-family: var(--e-global-typography-accent-font-family, 'Involve', sans-serif);
+  font-size: clamp(30px, 3vw, 42px);
+  font-weight: 600;
+  line-height: 1.2;
 }
-
-.elementor-2178 .elementor-element.elementor-element-2c32b85 > .elementor-widget-container {
-  margin: 0px 0px 30px 0px;
+.vv-model-enquiry .vv-model-enquiry__form { width: min(630px, 100%); }
+.vv-model-enquiry__fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  width: 100%;
 }
-
-.elementor-2178 .elementor-element.elementor-element-2c32b85 .spaciaz-border-shape {
-  width: 30px;
-  height: 30px;
-  clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
+.vv-model-enquiry .vv-model-enquiry__fields > input,
+.vv-model-enquiry .vv-model-enquiry__fields > select,
+.vv-model-enquiry .vv-model-enquiry__fields > textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 58px;
+  padding: 16px 22px;
+  border: 1px solid #e9e9e9;
+  border-radius: 30px;
+  background: #f2f2f2;
+  color: var(--accent, #011c5b);
+  font: inherit;
+  font-size: 15px;
+  line-height: 1.5;
 }
-
-.elementor-2178 .elementor-element.elementor-element-2c32b85 .elementor-heading-title {
-  color: var( --e-global-color-accent );
+.vv-model-enquiry .vv-model-enquiry__fields > textarea {
+  grid-column: 1 / -1;
+  min-height: 160px;
+  border-radius: 20px;
+  resize: vertical;
 }
-
-.elementor-2178 .elementor-element.elementor-element-981758f {
-  width: var( --container-widget-width, 630px );
-  max-width: 630px;
-  --container-widget-width: 630px;
-  --container-widget-flex-grow: 0;
+.vv-model-enquiry .vv-model-enquiry__fields > input:focus,
+.vv-model-enquiry .vv-model-enquiry__fields > select:focus,
+.vv-model-enquiry .vv-model-enquiry__fields > textarea:focus { background: #fff; border-color: var(--primary, #08aaec); }
+.vv-model-enquiry__consent { grid-column: 1 / -1; }
+.vv-model-enquiry__action { grid-column: 1 / -1; text-align: center; }
+.vv-model-enquiry__honeypot,
+.vv-model-enquiry__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
 }
-
-.elementor-2178 .elementor-element.elementor-element-981758f .spaciaz-border-shape {
-  width: 30px;
-  height: 30px;
-  clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
-}
-
-.elementor-2178 .elementor-element.elementor-element-981758f .wpcf7-button {
-  text-align: center;
-}
-
-.elementor-2178 .elementor-element.elementor-element-981758f .elementor-button-content-wrapper {
-  flex-direction: row;
-}
-
-.elementor-2178 .elementor-element.elementor-element-981758f .wpcf7-form button {
-  border-color: var( --e-global-color-primary );
-  background-color: var( --e-global-color-primary );
-  padding: 5px 5px 5px 30px;
-}
-
-.elementor-2178 .elementor-element.elementor-element-981758f .wpcf7-form button .elementor-button-icon {
-  background-color: var( --e-global-color-background );
-}
-
-.elementor-2178 .elementor-element.elementor-element-981758f .wpcf7-form button:hover {
-  color: var( --e-global-color-accent );
-}
-
-@media(max-width:767px) {
-
-  .elementor-2178 .elementor-element.elementor-element-c8a32ef {
-    --margin-top: 0px;
-    --margin-bottom: 60px;
-    --margin-left: 0px;
-    --margin-right: 0px;
-  }
+@media (max-width: 767px) {
+  .vv-model-enquiry { margin-bottom: 60px; }
+  .vv-model-enquiry__fields { grid-template-columns: minmax(0, 1fr); }
 }

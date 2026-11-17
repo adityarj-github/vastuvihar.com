@@ -1,71 +1,80 @@
-.elementor-2178 .elementor-element.elementor-element-a95c38b {
-  --display: flex;
-  --flex-direction: column;
-  --container-widget-width: 100%;
-  --container-widget-height: initial;
-  --container-widget-flex-grow: 0;
-  --container-widget-align-self: initial;
-  --flex-wrap-mobile: wrap;
-  --padding-top: 0px;
-  --padding-bottom: 0px;
-  --padding-left: 0px;
-  --padding-right: 0px;
-}
-
-.elementor-2178 .elementor-element.elementor-element-a95c38b .spaciaz-border-shape {
-  width: 30px;
-  height: 30px;
-  clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
-}
-
-.elementor-2178 .elementor-element.elementor-element-e8bb0a5 .spaciaz-border-shape {
-  width: 30px;
-  height: 30px;
-  clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
-}
-
-.elementor-widget-spaciaz-projects-navigation .post-navigation {
-  border: 1px solid var(--border);
+/* Original model Previous/Next navigation, independent of VVArrowButton. */
+.vv-model-navigation {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
+  border: 1px solid var(--border, #e2e2e2);
   border-radius: 30px;
+  overflow: hidden;
 }
-.elementor-widget-spaciaz-projects-navigation .post-navigation .nav-previous, .elementor-widget-spaciaz-projects-navigation .post-navigation .nav-next {
-  padding: 25px 50px;
+
+.vv-model-navigation__slot {
   display: flex;
+  align-items: center;
   justify-content: center;
+  min-width: 0;
+  padding: 25px 50px;
 }
-.elementor-widget-spaciaz-projects-navigation .post-navigation .nav-previous .reader-text, .elementor-widget-spaciaz-projects-navigation .post-navigation .nav-next .reader-text {
+
+.vv-model-navigation__slot:first-child {
+  border-right: 1px solid var(--border, #e2e2e2);
+}
+
+.vv-model-navigation__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 270px;
+  color: var(--accent, #011c5b);
+  text-decoration: none;
+}
+
+.vv-model-navigation__text {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--e-global-typography-text-font-family, 'Switzer', sans-serif);
   font-size: 20px;
   line-height: 1;
-  font-weight: bold;
-  color: var(--accent);
+  font-weight: 700;
   text-transform: lowercase;
-  margin-bottom: 0;
+  color: inherit;
 }
-.elementor-widget-spaciaz-projects-navigation .post-navigation .nav-previous a, .elementor-widget-spaciaz-projects-navigation .post-navigation .nav-next a {
-  max-width: 270px;
+
+.vv-model-navigation__text i {
+  display: inline-block;
+  color: var(--primary, #08aaec);
+  font-size: 20px;
+  line-height: 1;
+  transition: transform 0.25s ease;
 }
-.elementor-widget-spaciaz-projects-navigation .post-navigation .nav-previous a:hover .reader-text, .elementor-widget-spaciaz-projects-navigation .post-navigation .nav-next a:hover .reader-text {
+
+.vv-model-navigation__link:hover .vv-model-navigation__text {
   text-decoration: underline;
+  text-underline-offset: 3px;
 }
+
+.vv-model-navigation__link:hover .spaciaz-icon-chevron-left {
+  transform: translateX(-4px);
+}
+
+.vv-model-navigation__link:hover .spaciaz-icon-chevron-right {
+  transform: translateX(4px);
+}
+
+.vv-model-navigation__link:focus-visible {
+  outline: 2px solid var(--primary, #08aaec);
+  outline-offset: 5px;
+  border-radius: 4px;
+}
+
 @media (max-width: 767px) {
-  .elementor-widget-spaciaz-projects-navigation .post-navigation .nav-previous, .elementor-widget-spaciaz-projects-navigation .post-navigation .nav-next {
-    padding: 30px 15px;
-  }
-  .elementor-widget-spaciaz-projects-navigation .post-navigation .nav-previous .reader-text, .elementor-widget-spaciaz-projects-navigation .post-navigation .nav-next .reader-text {
-    margin-bottom: 0;
-  }
+  .vv-model-navigation { border-radius: 20px; }
+  .vv-model-navigation__slot { padding: 30px 15px; }
+  .vv-model-navigation__text { gap: 8px; font-size: 18px; }
+  .vv-model-navigation__text i { font-size: 18px; }
 }
-.elementor-widget-spaciaz-projects-navigation .post-navigation .nav-previous {
-  border-right: 1px solid var(--border);
-}
-.elementor-widget-spaciaz-projects-navigation .post-navigation .nav-previous .reader-text:before {
-  font-size: 20px;
-  color: var(--primary);
-}
-.elementor-widget-spaciaz-projects-navigation .post-navigation .nav-next {
-  border-left: 1px solid var(--border);
-}
-.elementor-widget-spaciaz-projects-navigation .post-navigation .nav-next .reader-text:after {
-  font-size: 20px;
-  color: var(--primary);
+
+@media (prefers-reduced-motion: reduce) {
+  .vv-model-navigation__text i { transition: none; }
 }

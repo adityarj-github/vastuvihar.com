@@ -1,0 +1,12 @@
+/* The route's visual layout lives in its individual components.
+   Keep the route level scoped, so it never needs legacy /styles/pages/projects.css. */
+.vv-model-details {
+   width: 100%;
+   min-width: 0;
+}
+
+.vv-model-details *,
+.vv-model-details *::before,
+.vv-model-details *::after {
+   box-sizing: border-box;
+}

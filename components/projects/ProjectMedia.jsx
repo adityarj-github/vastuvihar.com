@@ -1,6 +1,5 @@
 'use client';
 
-import './ProjectMedia.css';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import ConsentEmbed from '@/components/privacy/ConsentEmbed';
 import carouselStyles from './MediaCarousel.module.css';

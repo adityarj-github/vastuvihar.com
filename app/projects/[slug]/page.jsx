@@ -4,6 +4,7 @@ import { BreadcrumbJsonLd } from '@/components/JsonLd';
 import ProjectDetails from '@/components/projects/ProjectDetails';
 import { projects, getProject } from '@/data/projects';
 import { createPageMetadata } from '@/lib/metadata';
+import './project-detail.css';
 
 export const dynamicParams = false;
 

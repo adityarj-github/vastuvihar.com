@@ -15,6 +15,7 @@ export default function FilterDropdown({ name, label, options, defaultValue = ''
   const selectRef = useRef(null);
   const listRef = useRef(null);
   const typed = useRef({ text: '', at: 0 });
+  const previousDefaultValue = useRef(defaultValue);
 
   const [ready, setReady] = useState(false);
   const [value, setValue] = useState(defaultValue);
@@ -30,6 +31,17 @@ export default function FilterDropdown({ name, label, options, defaultValue = ''
     setValue(selectRef.current.value);
     setReady(true);
   }, []);
+
+  // The page can update query parameters without remounting this client component.
+  // Keep the visible dropdown in sync with the server-filtered URL while still
+  // allowing the browser to restore a selection before initial hydration.
+  useEffect(() => {
+    if (previousDefaultValue.current === defaultValue) return;
+    previousDefaultValue.current = defaultValue;
+    if (selectRef.current) selectRef.current.value = defaultValue;
+    setValue(defaultValue);
+    setOpen(false);
+  }, [defaultValue]);
 
   useEffect(() => {
     if (!open) return undefined;

@@ -1,16 +1,15 @@
-import './ProjectCard.css';
 import Link from 'next/link';
 import { modelType, getBudgetCategories } from '@/data/project-filters';
+import './ProjectCard.css';
 
 export default function ProjectCard({ model }) {
-  const budgetCategories = getBudgetCategories(model).join(',');
   return (
-    <div className="grid-item">
+    <article className="vv-model-card">
       <Link
         href={`/projects/${model.slug}/`}
         prefetch={false}
-        className="project-item project-style-2"
-        data-budget={budgetCategories}
+        className="vv-model-card__link"
+        data-budget={getBudgetCategories(model).join(',')}
         data-min-price={model.minPrice}
         data-max-price={model.maxPrice}
         data-type={modelType(model)}
@@ -18,35 +17,27 @@ export default function ProjectCard({ model }) {
         data-beds={model.bedrooms}
         aria-label={`${model.title} - ${model.priceRange}`}
       >
-        <div className="project-post-thumbnail">
+        <div className="vv-model-card__photo">
           <img
             width="1920"
             height="1344"
             src={model.image}
-            className="attachment-full size-full wp-post-image"
             alt={model.title}
             loading="lazy"
             decoding="async"
           />
         </div>
-        <div className="project-content">
-          <div className="project-status">
-            <span className="project-status-badge">
-              {model.priceRange}
-            </span>
+        <div className="vv-model-card__content">
+          <div className="vv-model-card__status">
+            <span>{model.priceRange}</span>
           </div>
-          <div className="project-location">
-            <i className="spaciaz-icon-marker" />
-            <span>
-              {model.bedrooms} BHK{model.builtUp !== 'Not specified' ? ` · ${model.builtUp}` : ''}
-            </span>
+          <div className="vv-model-card__location">
+            <i className="spaciaz-icon-marker" aria-hidden="true" />
+            <span>{model.bedrooms} BHK{model.builtUp !== 'Not specified' ? ` · ${model.builtUp}` : ''}</span>
           </div>
-          <h4 className="project-title delta">
-            <span>{model.title}</span>
-          </h4>
+          <h2 className="vv-model-card__title">{model.title}</h2>
         </div>
       </Link>
-    </div>
+    </article>
   );
 }
-
