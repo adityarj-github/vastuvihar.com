@@ -462,8 +462,8 @@ export const projectsData = {
         benefits: RAFT_FOUNDATION_BENEFITS,
         gallery: [
             "/thumb/Simplex.webp",
-            "/simplex/Simplex.webp",
             "/villa/simplex.webp",
+            "/simplex/Simplex.webp",
             "/simplex/simplex-row-building.webp",
         ],
 
@@ -665,7 +665,7 @@ export const projectsData = {
         benefits: RAFT_FOUNDATION_BENEFITS,
         gallery: [
             "/thumb/Godavari.webp",
-            "/godawari/godawari2.webp",
+            "/godawari/godawari2.png",
             "/godawari/godawari1.webp",
         ],
         modelTypes: [
@@ -1049,10 +1049,10 @@ export const projectsData = {
         ],
         gallery: [
             "/thumb/Rainbow.webp",
+            "/rainbow/gallery-rainbow-5.webp",
             "/rainbow/gallery-rainbow-1.webp",
             "/rainbow/gallery-rainbow-2.webp",
             "/rainbow/gallery-rainbow-4.webp",
-            "/rainbow/gallery-rainbow-5.webp",
             "/rainbow/gallery-rainbow-6.webp",
             "/rainbow/gallery-rainbow-7.webp",
             "/rainbow/gallery-rainbow-8.webp",
