@@ -290,7 +290,7 @@ export const projectsData = {
     //yamuna 7bhk
     "yamuna-bungalow-7bhk": {
         slug: "yamuna-bungalow-7bhk",
-        name: "Yamuna Bungalow (7 BHK)",
+        name: "Yamuna Bungalow 7BHK",
         price: "₹60 Lac - 1 Cr",
         minPrice: 60,
         maxPrice: 100,
@@ -313,7 +313,7 @@ export const projectsData = {
         modelTypes: [
             {
                 id: "yamuna-7bhk",
-                modelName: "Type B (7 BHK)",
+                modelName: "7 BHK",
                 stats: [
                     { label: "Plot Area", value: 1470, unit: "sqft" },
                     { label: "Carpet Area", value: 1680, unit: "sqft" },
@@ -369,7 +369,7 @@ export const projectsData = {
     //yamuna 5bhk
     "yamuna-bungalow": {
         slug: "yamuna-bungalow",
-        name: "Yamuna Bungalow (5 BHK)",
+        name: "Yamuna Bungalow 5BHK",
         price: "₹55 - 70 Lac*",
         minPrice: 55,
         maxPrice: 70,
@@ -391,7 +391,7 @@ export const projectsData = {
         modelTypes: [
             {
                 id: "yamuna-5bhk",
-                modelName: "Type A (5 BHK)",
+                modelName: "5 BHK",
                 stats: [
                     { label: "Plot Area", value: 1600, unit: "sqft" },
                     { label: "Carpet Area", value: 1680, unit: "sqft" },
@@ -470,7 +470,7 @@ export const projectsData = {
         modelTypes: [
             {
                 id: "simplex-new",
-                modelName: "Type A (Simplex New)",
+                modelName: "2BHK",
                 stats: [
                     { label: "Plot Area", value: 1000, unit: "sqft" },
                     { label: "Built-up Area", value: 1000, unit: "sqft" },
@@ -566,7 +566,7 @@ export const projectsData = {
         modelTypes: [
             {
                 id: "business-bungalow-3bhk",
-                modelName: "Type A (3 BHK Business Bungalow)",
+                modelName: "3 BHK Business Bungalow",
                 stats: [
                     { label: "Plot Area", value: 1000, unit: "sqft" },
                     { label: "Built-up", value: 1550, unit: "sqft" },
@@ -760,7 +760,7 @@ export const projectsData = {
         modelTypes: [
             {
                 id: "jayanti-original-3bhk",
-                modelName: "Type A (Std.)",
+                modelName: "3BHK standard",
                 stats: [
                     { label: "Land Area", value: 900, unit: "sqft" },
                     { label: "Built-up", value: 1300, unit: "sqft" },
@@ -1347,7 +1347,7 @@ export const projectsData = {
         modelTypes: [
             {
                 id: "apartment-3bhk-type-a",
-                modelName: "Type A (3 BHK Apartment)",
+                modelName: "3 BHK Apartment",
                 stats: [
                     { label: "Builtup Area", value: 750, unit: "sqft" },
                     { label: "Carpet Area", value: 670, unit: "sqft" },
