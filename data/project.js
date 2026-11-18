@@ -39,7 +39,7 @@ export const projectsData = {
                 id: "ananta-default",
                 modelName: "Ground, First & Terrace",
                 stats: [
-                    { label: "Plot Area", value: "1080 - 1104", unit: "sqft" }, // Bihar: 1080 sqft | Jharkhand: 1104 sqft
+                    { label: "Plot Area", value: "1080", unit: "sqft" }, // Bihar: 1080 sqft | Jharkhand: 1104 sqft
                     { label: "Built-up", value: 1800, unit: "sqft" },
                     { label: "Carpet Area", value: 1335, unit: "sqft" },
                     { label: "Bedrooms", value: 3 },

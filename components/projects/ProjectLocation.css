@@ -1,19 +1,23 @@
+
 /* =========================================================
    PROJECT LAYOUT & AREA
 ========================================================= */
 
 .vv-model-details .project-layout-section {
   width: 100%;
+  min-width: 0;
   padding: 60px 0;
   background: #ffffff;
+  box-sizing: border-box;
 }
 
 .vv-model-details .project-layout-container {
   width: 100%;
   max-width: none;
+  min-width: 0;
   margin: 0 auto;
+  box-sizing: border-box;
 }
-
 
 /* =========================================================
    SECTION HEADINGS
@@ -26,27 +30,22 @@
 .vv-model-details .section-label {
   display: block;
   margin-bottom: 8px;
-
   font-size: 12px;
   line-height: 1.4;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-
   color: var(--e-global-color-accent, #ed3237);
 }
 
 .vv-model-details .section-heading h3 {
   margin: 0;
-
   font-size: clamp(28px, 3vw, 42px);
   line-height: 1.1;
   font-weight: 600;
   letter-spacing: -0.03em;
-
   color: #111111;
 }
-
 
 /* =========================================================
    MODEL SPECIFICATIONS
@@ -54,60 +53,103 @@
 
 .vv-model-details .project-specifications {
   width: 100%;
+  min-width: 0;
   margin-bottom: 70px;
 }
 
 .vv-model-details .spec-table-wrapper {
   width: 100%;
+  min-width: 0;
 
   border: 1px solid #e8e8e8;
   border-radius: 20px;
 
   overflow: hidden;
   background: #ffffff;
+
+  box-sizing: border-box;
 }
 
-.vv-model-details .spec-table {
+/* Specification rows container */
+
+.vv-model-details .spec-grid {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  border-collapse: collapse;
-  table-layout: fixed;
+  min-width: 0;
 }
 
-.vv-model-details .spec-table tr {
+/* Each row uses equal-width columns */
+
+.vv-model-details .spec-row {
+  display: flex;
+  width: 100%;
+  min-width: 0;
   border-bottom: 1px solid #e8e8e8;
 }
 
-.vv-model-details .spec-table tr:last-child {
+.vv-model-details .spec-row:last-child {
   border-bottom: 0;
 }
 
-.vv-model-details .spec-table td {
-  padding: 22px 28px;
-  vertical-align: middle;
+/* Individual specification item */
+
+.vv-model-details .spec-item {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  justify-content: center;
+
+  gap: 10px;
+
+  min-width: 0;
+  width: auto;
+
+  padding: 24px 28px;
+
+  border-right: 1px solid #e8e8e8;
+
+  background: #ffffff;
+  box-sizing: border-box;
 }
 
-.vv-model-details .spec-label {
-  width: 50%;
+.vv-model-details .spec-item:last-child {
+  border-right: 0;
+}
 
-  font-size: 15px;
+/* Specification label */
+
+.vv-model-details .spec-label {
+  display: block;
+  width: 100%;
+  min-width: 0;
+
+  font-size: 14px;
   line-height: 1.5;
   font-weight: 500;
 
   color: #777777;
+
+  overflow-wrap: anywhere;
 }
+
+/* Specification value */
 
 .vv-model-details .spec-value {
-  width: 50%;
+  display: block;
+  width: 100%;
+  min-width: 0;
 
-  font-size: 17px;
-  line-height: 1.5;
+  font-size: clamp(15px, 1.5vw, 20px);
+  line-height: 1.4;
   font-weight: 600;
 
-  text-align: right;
-
+  text-align: left;
   color: #111111;
-}
 
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
 
 /* =========================================================
    AREA BREAKDOWN
@@ -115,63 +157,95 @@
 
 .vv-model-details .area-breakdown-section {
   width: 100%;
+  min-width: 0;
 }
 
 .vv-model-details .area-breakdown-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
   gap: 32px;
+
+  width: 100%;
+  min-width: 0;
+  align-items: stretch;
 }
 
+/* Individual area category */
+
 .vv-model-details .area-category {
+  display: flex;
+  flex-direction: column;
+
   width: 100%;
+  min-width: 0;
 
   border: 1px solid #e8e8e8;
   border-radius: 20px;
 
   overflow: hidden;
-
   background: #ffffff;
+
+  box-sizing: border-box;
 }
+
+/* Stretch last table for odd counts */
+
+.vv-model-details
+  .area-category:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+/* =========================================================
+   AREA CATEGORY HEADER
+========================================================= */
 
 .vv-model-details .area-category-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
 
+  gap: 20px;
   padding: 22px 28px;
 
   border-bottom: 1px solid #e8e8e8;
-
   background: #fafafa;
 }
 
 .vv-model-details .area-category-header h4 {
   margin: 0;
+  min-width: 0;
 
   font-size: 20px;
   line-height: 1.3;
   font-weight: 600;
 
   color: #111111;
+  overflow-wrap: anywhere;
 }
 
 .vv-model-details .model-name {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
   padding: 7px 12px;
 
   border: 1px solid #dedede;
   border-radius: 100px;
 
   font-size: 11px;
-  line-height: 1;
+  line-height: 1.2;
   font-weight: 600;
+
   text-transform: uppercase;
   letter-spacing: 0.05em;
 
   color: #666666;
+  white-space: nowrap;
 }
-
 
 /* =========================================================
    AREA TABLE
@@ -179,12 +253,16 @@
 
 .vv-model-details .area-table-wrapper {
   width: 100%;
+  min-width: 0;
+  flex: 1;
+
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .vv-model-details .area-table {
   width: 100%;
-  min-width: 620px;
+  min-width: 0;
 
   border-collapse: collapse;
   table-layout: fixed;
@@ -195,7 +273,7 @@
 }
 
 .vv-model-details .area-table th {
-  padding: 15px 28px;
+  padding: 15px 18px;
 
   border-bottom: 1px solid #e8e8e8;
 
@@ -207,21 +285,24 @@
   letter-spacing: 0.07em;
 
   text-align: left;
-
   color: #999999;
+
+  overflow-wrap: anywhere;
 }
 
 .vv-model-details .area-table td {
-  padding: 20px 28px;
+  padding: 20px 18px;
 
   border-bottom: 1px solid #eeeeee;
 
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.5;
 
   vertical-align: middle;
-
   color: #555555;
+
+  overflow-wrap: anywhere;
+  word-break: normal;
 }
 
 .vv-model-details .area-table tbody tr:last-child td {
@@ -235,6 +316,8 @@
 .vv-model-details .area-table tbody tr:hover {
   background: #fafafa;
 }
+
+/* Column widths */
 
 .vv-model-details .area-table th:nth-child(1),
 .vv-model-details .area-table td:nth-child(1) {
@@ -251,6 +334,8 @@
   width: 40%;
 }
 
+/* Room styles */
+
 .vv-model-details .room-name {
   font-weight: 600;
   color: #111111 !important;
@@ -264,7 +349,6 @@
 .vv-model-details .room-features {
   color: #777777 !important;
 }
-
 
 /* =========================================================
    EMPTY STATE
@@ -284,57 +368,68 @@
 
   font-size: 15px;
   line-height: 1.7;
-
   color: #777777;
 }
 
-
 /* =========================================================
-   TABLET
+   TABLET — MAX 1024px
 ========================================================= */
 
 @media (max-width: 1024px) {
+
   .vv-model-details .project-layout-section {
     padding: 55px 0;
-  }
-
-  .vv-model-details .project-layout-container {
-    width: 100%;
   }
 
   .vv-model-details .project-specifications {
     margin-bottom: 55px;
   }
 
-  .vv-model-details .spec-table td,
-  .vv-model-details .area-table td {
-    padding-left: 22px;
-    padding-right: 22px;
+  .vv-model-details .spec-item {
+    padding: 20px;
+    gap: 8px;
   }
 
-  .vv-model-details .area-table th {
-    padding-left: 22px;
-    padding-right: 22px;
+  .vv-model-details .spec-label {
+    font-size: 13px;
+  }
+
+  .vv-model-details .spec-value {
+    font-size: 17px;
+  }
+
+  .vv-model-details .area-breakdown-list {
+    gap: 20px;
   }
 
   .vv-model-details .area-category-header {
-    padding-left: 22px;
-    padding-right: 22px;
+    padding: 20px;
+    gap: 12px;
+  }
+
+  .vv-model-details .area-category-header h4 {
+    font-size: 18px;
+  }
+
+  .vv-model-details .area-table th,
+  .vv-model-details .area-table td {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .vv-model-details .area-table td {
+    font-size: 13px;
   }
 }
 
-
 /* =========================================================
-   MOBILE
+   MOBILE — MAX 767px
 ========================================================= */
 
 @media (max-width: 767px) {
+
   .vv-model-details .project-layout-section {
     padding: 45px 0;
-  }
-
-  .vv-model-details .project-layout-container {
-    width: 100%;
   }
 
   .vv-model-details .section-heading {
@@ -355,16 +450,65 @@
     border-radius: 14px;
   }
 
-  .vv-model-details .spec-table td {
+  /* Specifications — one item per row */
+
+  .vv-model-details .spec-row {
+    flex-direction: column;
+    border-bottom: 0;
+  }
+
+  .vv-model-details .spec-item {
+    display: grid;
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+
+    align-items: center;
+
+    flex: none;
+
+    width: 100%;
+    gap: 12px;
+
     padding: 17px 18px;
+
+    border-right: 0;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .vv-model-details .spec-row:last-child
+    .spec-item:last-child {
+    border-bottom: 0;
   }
 
   .vv-model-details .spec-label {
+    width: auto;
+    min-width: 0;
+
     font-size: 13px;
+    text-align: left;
   }
 
   .vv-model-details .spec-value {
+    width: auto;
+    min-width: 0;
+
     font-size: 14px;
+    text-align: right;
+
+    overflow-wrap: anywhere;
+  }
+
+  /* Area breakdown — one table per row */
+
+  .vv-model-details .area-breakdown-list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .vv-model-details
+    .area-category:last-child:nth-child(odd) {
+    grid-column: auto;
   }
 
   .vv-model-details .area-category-header {
@@ -372,7 +516,6 @@
 
     align-items: flex-start;
     flex-direction: column;
-
     gap: 10px;
   }
 
@@ -380,39 +523,116 @@
     font-size: 18px;
   }
 
+  .vv-model-details .model-name {
+    font-size: 10px;
+  }
+
+  .vv-model-details .area-table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+  }
+
   .vv-model-details .area-table th,
   .vv-model-details .area-table td {
-    padding-left: 18px;
-    padding-right: 18px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .vv-model-details .area-table th {
+    font-size: 10px;
+    letter-spacing: 0.03em;
   }
 
   .vv-model-details .area-table td {
     padding-top: 16px;
     padding-bottom: 16px;
+    font-size: 12px;
+  }
 
-    font-size: 14px;
+  .vv-model-details .area-table th:nth-child(1),
+  .vv-model-details .area-table td:nth-child(1) {
+    width: 34%;
+  }
+
+  .vv-model-details .area-table th:nth-child(2),
+  .vv-model-details .area-table td:nth-child(2) {
+    width: 31%;
+  }
+
+  .vv-model-details .area-table th:nth-child(3),
+  .vv-model-details .area-table td:nth-child(3) {
+    width: 35%;
   }
 }
 
-
 /* =========================================================
-   VERY SMALL DEVICES
+   VERY SMALL DEVICES — MAX 480px
 ========================================================= */
 
 @media (max-width: 480px) {
-  .vv-model-details .project-layout-container {
-    width: 100%;
-  }
 
-  .vv-model-details .spec-table td {
+  .vv-model-details .spec-item {
     padding: 15px;
+    gap: 10px;
   }
 
   .vv-model-details .spec-label {
-    width: 55%;
+    font-size: 12px;
   }
 
   .vv-model-details .spec-value {
-    width: 45%;
+    font-size: 13px;
+  }
+
+  .vv-model-details .area-table th,
+  .vv-model-details .area-table td {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .vv-model-details .area-table th {
+    font-size: 9px;
+  }
+
+  .vv-model-details .area-table td {
+    font-size: 11px;
+  }
+
+  .vv-model-details .area-category-header {
+    padding: 15px;
+  }
+
+  .vv-model-details .area-category-header h4 {
+    font-size: 17px;
+  }
+}
+
+/* =========================================================
+   ULTRA SMALL DEVICES — MAX 360px
+========================================================= */
+
+@media (max-width: 360px) {
+
+  .vv-model-details .spec-item {
+    padding: 12px;
+  }
+
+  .vv-model-details .spec-label {
+    font-size: 11px;
+  }
+
+  .vv-model-details .spec-value {
+    font-size: 12px;
+  }
+
+  .vv-model-details .area-table th,
+  .vv-model-details .area-table td {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+
+  .vv-model-details .area-table td {
+    font-size: 10px;
   }
 }

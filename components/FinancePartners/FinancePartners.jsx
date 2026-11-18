@@ -19,26 +19,43 @@ const BANK_PARTNERS = [
   { name: 'Union Bank of India', logo: 'union-bank-of-india.svg' },
 ];
 
-export default function FinancePartners() {
+/* =========================================
+   BALANCED ROW DISTRIBUTION
+========================================= */
+
+function getBalancedRows(items, maxPerRow) {
+  if (!items.length) return [];
+
+  const rowCount = Math.ceil(items.length / maxPerRow);
+  const baseSize = Math.floor(items.length / rowCount);
+  const remaining = items.length % rowCount;
+
+  const rows = [];
+  let start = 0;
+
+  for (let i = 0; i < rowCount; i++) {
+    const size = baseSize + (i < remaining ? 1 : 0);
+
+    rows.push(items.slice(start, start + size));
+    start += size;
+  }
+
+  return rows;
+}
+
+/* =========================================
+   BANK ROW COMPONENT
+========================================= */
+
+function BankRows({ rows }) {
   return (
-    <section
-      className={styles.section}
-      aria-labelledby="finance-partners-heading"
-    >
-      <div className={styles.container}>
-        <div className={styles.heading}>
-          <h2 id="finance-partners-heading">
-            Our Banking &amp; Finance Partners
-          </h2>
-
-          <p>
-            Explore our network of banking and housing finance
-            partners for your home financing needs.
-          </p>
-        </div>
-
-        <div className={styles.bankTable}>
-          {BANK_PARTNERS.map((bank) => (
+    <div className={styles.bankTable}>
+      {rows.map((row, rowIndex) => (
+        <div
+          className={styles.bankRow}
+          key={`bank-row-${rowIndex}`}
+        >
+          {row.map((bank) => (
             <div
               key={bank.logo}
               className={styles.bankCell}
@@ -55,11 +72,58 @@ export default function FinancePartners() {
             </div>
           ))}
         </div>
+      ))}
+    </div>
+  );
+}
+
+/* =========================================
+   MAIN COMPONENT
+========================================= */
+
+export default function FinancePartners() {
+  const desktopRows = getBalancedRows(BANK_PARTNERS, 5);
+  const tabletRows = getBalancedRows(BANK_PARTNERS, 4);
+  const mobileRows = getBalancedRows(BANK_PARTNERS, 2);
+
+  return (
+    <section
+      className={styles.section}
+      aria-labelledby="finance-partners-heading"
+    >
+      <div className={styles.container}>
+
+        <div className={styles.heading}>
+          <h2 id="finance-partners-heading">
+            Our Banking &amp; Finance Partners
+          </h2>
+
+          <p>
+            Explore our network of banking and housing finance
+            partners for your home financing needs.
+          </p>
+        </div>
+
+        {/* Desktop */}
+        <div className={styles.desktopLayout}>
+          <BankRows rows={desktopRows} />
+        </div>
+
+        {/* Tablet */}
+        <div className={styles.tabletLayout}>
+          <BankRows rows={tabletRows} />
+        </div>
+
+        {/* Mobile */}
+        <div className={styles.mobileLayout}>
+          <BankRows rows={mobileRows} />
+        </div>
 
         <p className={styles.disclaimer}>
           Loan eligibility, approval, interest rates and terms
           are subject to the respective financial institution.
         </p>
+
       </div>
     </section>
   );
