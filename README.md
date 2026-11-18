@@ -1,6 +1,6 @@
-# Spaciaz Website — Demo 5
+# vastu vihar new webiste
 
-This is the simplified, runnable Next.js website made from the uploaded Spaciaz project. **The fifth homepage is now the main website at `/`.** Every page uses the same Demo 5 header, footer, navigation, fonts, and shared interaction system.
+This is the simplified, runnable Next.js website made by vastu vihar internal team.
 
 ## Run the website
 
@@ -31,7 +31,6 @@ npm run dev -- --port 3001
 | `components/projects/` | One reusable project-detail layout, split into facts, hero, description, amenities, media, location, enquiry, and navigation. |
 | `components/team/` | One reusable team-member profile layout. |
 | `animations/` | Reveal effects, counters, carousels, tabs, menus, scrolling, filters, media, and career interactions. |
-| `styles/` | All CSS. `globals.css` imports the shared styles, individual page styles, animation styles, and layout adjustments. |
 | `public/images/` | Photographs, image assets, and the website logos. |
 | `public/fonts/` | Local font and icon-font files. |
 | `public/icons/` | Reusable partner SVG artwork extracted from the original page markup. |
@@ -44,7 +43,7 @@ There is no `src/generated/` folder, hash-named header/footer collection, asset 
 
 | Page group | URL / location |
 | --- | --- |
-| Home — Demo 5 design | `/` |
+| Home - | `/` |
 | About | `/about-us/` |
 | Core values | `/core-values/` |
 | Awards | `/our-awards/` |
