@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { SITE_CONTACT_DATA, TOTAL_SITES } from '@/data/site-contacts';
 import VVArrowButton from '@/components/common/VVArrowButton';
 import styles from './SiteContactView.module.css';
@@ -106,7 +106,7 @@ export function SiteCard({ site, city, state }) {
   return (
     <article className={styles.card}>
       <div className={styles.cardTop}>
-        <span className={styles.cardEyebrow}>Vastu Vihar project</span>
+        {/* <span className={styles.cardEyebrow}>Vastu Vihar project</span> */}
         <h4 className={styles.cardTitle}>{site.phase_name}</h4>
       </div>
 
@@ -173,6 +173,118 @@ export function SiteCard({ site, city, state }) {
         </span>
       )}
     </article>
+  );
+}
+
+
+/** Screenshot-style controlled filter dropdown; leaves the filter state in SiteContactView. */
+function SiteFilterSelect({ id, label, value, onChange, options }) {
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState(0);
+  const rootRef = useRef(null);
+  const triggerRef = useRef(null);
+  const listRef = useRef(null);
+  const uid = useId().replace(/:/g, '');
+  const listId = `${uid}-list`;
+  const selectedIndex = Math.max(0, options.findIndex((item) => item.value === value));
+  const selected = options[selectedIndex];
+
+  useEffect(() => {
+    if (!open) return undefined;
+    const onPointerDown = (event) => {
+      if (!rootRef.current?.contains(event.target)) setOpen(false);
+    };
+    const onEscape = (event) => {
+      if (event.key === 'Escape') {
+        setOpen(false);
+        triggerRef.current?.focus();
+      }
+    };
+    document.addEventListener('pointerdown', onPointerDown);
+    document.addEventListener('keydown', onEscape);
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown);
+      document.removeEventListener('keydown', onEscape);
+    };
+  }, [open]);
+
+  useEffect(() => {
+    if (open) listRef.current?.querySelector(`[data-option-index="${active}"]`)?.scrollIntoView({ block: 'nearest' });
+  }, [active, open]);
+
+  const show = () => {
+    setActive(selectedIndex);
+    setOpen(true);
+  };
+  const choose = (index) => {
+    const next = options[index];
+    if (!next) return;
+    onChange(next.value);
+    setOpen(false);
+    triggerRef.current?.focus();
+  };
+  const onKeyDown = (event) => {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      if (!open) {
+        show();
+      } else {
+        setActive((previous) => Math.max(0, Math.min(options.length - 1, previous + (event.key === 'ArrowDown' ? 1 : -1))));
+      }
+    } else if (event.key === 'Home' || event.key === 'End') {
+      event.preventDefault();
+      if (!open) show();
+      setActive(event.key === 'Home' ? 0 : options.length - 1);
+    } else if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      if (open) choose(active);
+      else show();
+    } else if (event.key === 'Tab') {
+      setOpen(false);
+    }
+  };
+
+  return (
+    <div ref={rootRef} className={`${styles.filterSelect} ${open ? styles.filterSelectOpen : ''}`}>
+      <button
+        ref={triggerRef}
+        id={id}
+        type="button"
+        className={styles.filterSelectTrigger}
+        aria-label={`${label}: ${selected?.label || ''}`}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-controls={listId}
+        aria-activedescendant={open ? `${uid}-option-${active}` : undefined}
+        onClick={() => (open ? setOpen(false) : show())}
+        onKeyDown={onKeyDown}
+      >
+        <span className={styles.filterSelectText}>
+          <span className={styles.filterSelectLabel}>{label}</span>
+          <span className={styles.filterSelectValue}>{selected?.label || ''}</span>
+        </span>
+        <span className={styles.filterSelectChevron}><Icon name="chevron" size={18} /></span>
+      </button>
+      {open && (
+        <div ref={listRef} id={listId} className={styles.filterSelectMenu} role="listbox" aria-label={label}>
+          {options.map((item, index) => (
+            <div
+              key={item.value || '__all__'}
+              id={`${uid}-option-${index}`}
+              role="option"
+              aria-selected={index === selectedIndex}
+              data-option-index={index}
+              className={`${styles.filterSelectOption} ${index === selectedIndex ? styles.filterSelectSelected : ''} ${index === active ? styles.filterSelectActive : ''}`}
+              onPointerEnter={() => setActive(index)}
+              onClick={() => choose(index)}
+            >
+              <span>{item.label}</span>
+              {index === selectedIndex && <Icon name="check" size={17} />}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -267,39 +379,29 @@ export default function SiteContactView() {
         </div>
 
         <div className={styles.field}>
-          <label className={styles.fieldLabel} htmlFor="site-contact-state">State</label>
-          <div className={styles.inputWrap}>
-            <select
-              id="site-contact-state"
-              className={styles.select}
-              value={state}
-              onChange={(event) => { setState(event.target.value); setCity(''); }}
-            >
-              <option value="">All states</option>
-              {SITE_CONTACT_DATA.map((group) => (
-                <option key={group.state} value={group.state}>{group.state}</option>
-              ))}
-            </select>
-            <span className={styles.selectIcon}><Icon name="chevron" size={16} /></span>
-          </div>
+          <SiteFilterSelect
+            id="site-contact-state"
+            label="State"
+            value={state}
+            onChange={(nextState) => { setState(nextState); setCity(''); }}
+            options={[
+              { value: '', label: 'All states' },
+              ...SITE_CONTACT_DATA.map((group) => ({ value: group.state, label: group.state })),
+            ]}
+          />
         </div>
 
         <div className={styles.field}>
-          <label className={styles.fieldLabel} htmlFor="site-contact-city">City</label>
-          <div className={styles.inputWrap}>
-            <select
-              id="site-contact-city"
-              className={styles.select}
-              value={city}
-              onChange={(event) => setCity(event.target.value)}
-            >
-              <option value="">All cities</option>
-              {cities.map((name) => (
-                <option key={name} value={name}>{name}</option>
-              ))}
-            </select>
-            <span className={styles.selectIcon}><Icon name="chevron" size={16} /></span>
-          </div>
+          <SiteFilterSelect
+            id="site-contact-city"
+            label="City"
+            value={city}
+            onChange={setCity}
+            options={[
+              { value: '', label: 'All cities' },
+              ...cities.map((name) => ({ value: name, label: name })),
+            ]}
+          />
         </div>
       </div>
 

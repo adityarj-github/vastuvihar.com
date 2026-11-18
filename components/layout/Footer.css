@@ -350,6 +350,10 @@
     flex-direction: column;
     align-items: flex-start;
   }
+  .vv-footer-legal button, .vv-footer a{
+    font-size: 12px !important;
+  }
+  
 }
 
 @media (max-width: 420px) {

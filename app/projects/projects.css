@@ -9,7 +9,7 @@
   min-height: 600px;
   background-color: #011c5b;
   background-image: linear-gradient(rgba(0,0,0,.42), rgba(0,0,0,.48)), url('/About.webp');
-  background-position: center;
+  background-position: center bottom;
   background-size: cover;
   background-repeat: no-repeat;
   color: #fff;

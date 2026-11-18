@@ -4,8 +4,8 @@ import './ProjectBreadcrumb.css';
 /** Reusable model-specific banner, without global breadcrumb-image overrides. */
 export default function ProjectBreadcrumb({ project }) {
   const bannerImage =
-    project?.image && /^\/[a-zA-Z0-9_./-]+$/.test(project.image)
-      ? project.image
+    project?.image && /^\/[a-zA-Z0-9_./-]+$/.test(project.heroImage)
+      ? project.heroImage
       : '/About.webp';
 
   return (

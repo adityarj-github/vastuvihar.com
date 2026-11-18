@@ -305,8 +305,8 @@ export const projectsData = {
         benefits: RAFT_FOUNDATION_BENEFITS,
         gallery: [
             "/thumb/Yamuna-2.webp",
-            "/yamuna/Yamuna.webp",
             "/yamuna/yamuna3.webp",
+            "/yamuna/Yamuna.webp",
             "/yamuna/yamuna1.webp",
             "/yamuna/yamuna2.webp",
         ],

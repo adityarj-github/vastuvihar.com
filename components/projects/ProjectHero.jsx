@@ -9,7 +9,7 @@ export default function ProjectHero({ project }) {
         decoding="async"
         width="1290"
         height="600"
-        src={project.image}
+        src={project.heroImage}
         alt={project.title}
       />
     </figure>
