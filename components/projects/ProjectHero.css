@@ -3,7 +3,7 @@
   display: block;
   width: 100%;
   height: auto;
-  max-height: 720px;
+  /* max-height: 850px; */
   object-fit: cover;
   border-radius: 30px;
 }
