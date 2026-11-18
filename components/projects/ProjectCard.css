@@ -83,6 +83,7 @@
   font-weight: 600;
   line-height: 1.25;
   transition: color .3s ease;
+  letter-spacing: 0;
 }
 .vv-model-card__link:hover .vv-model-card__title,
 .vv-model-card__link:focus-visible .vv-model-card__title { color: var(--primary, #08aaec); }

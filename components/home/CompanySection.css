@@ -875,7 +875,7 @@ body.rtl .vv-home-page .vv-block.vv-home-company__decoration {
   }
 
   .vv-home-page .vv-block.vv-home-company__decoration > .vv-widget-inner {
-    margin: 0px 0px 0px 0px;
+    margin: 0px 0px -60px 0px;
   }
 
   .vv-home-page .vv-block.vv-home-company__decoration img {
@@ -1045,6 +1045,13 @@ body.rtl .vv-home-page .vv-block.vv-home-company__decoration {
   .vv-home-page .vv-block.vv-home-company__headline {
     width: 100%;
     max-width: 100%;
+  }
+}/* On phones, avoid overflowing the introductory column with the desktop fixed width. */
+@media (max-width: 467px) {
+
+
+  .vv-home-page .vv-block.vv-home-company__decoration > .vv-widget-inner {
+    margin: 0px 0px -30px 0px;
   }
 }
 
