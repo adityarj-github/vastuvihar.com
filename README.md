@@ -4,7 +4,7 @@ This is the simplified, runnable Next.js website made by vastu vihar internal te
 
 ## Run the website
 
-Install **Node.js 20.9 or newer**, extract this ZIP, and open a terminal in the `spaciaz-website` folder — the folder containing `package.json`.
+Install **Node.js 20.9 or newer**, extract this ZIP, and open a terminal in the `vastuvihar-website` folder — the folder containing `package.json`.
 
 ```bash
 npm ci
@@ -85,7 +85,7 @@ Removed: all separate `/home-1/` through `/home-10/` demo routes, all service li
 
 All images use short public URLs, such as `/images/project_1.jpg`. To replace an image while keeping the same layout, replace the corresponding file in `public/images/` or update the URL in the relevant component/data record.
 
-The supplied Spaciaz sample copy, project facts, team information, contact details, and map locations are retained. Update those with your own business information before publishing. Some listing-page cards and homepage content remain page-specific; editing a detail record does not automatically rewrite those editorial sections.
+The supplied vastuvihar sample copy, project facts, team information, contact details, and map locations are retained. Update those with your own business information before publishing. Some listing-page cards and homepage content remain page-specific; editing a detail record does not automatically rewrite those editorial sections.
 
 ### Adding a page or project
 
