@@ -365,7 +365,6 @@ export const projectsData = {
         ]
     },
 
-
     //yamuna 5bhk
     "yamuna-bungalow": {
         slug: "yamuna-bungalow",
