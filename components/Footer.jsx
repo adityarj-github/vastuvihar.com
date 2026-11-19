@@ -59,9 +59,9 @@ const socials = [
 ];
 
 const legalLinks = [
-  { label: 'Privacy Policy', href: '/privacy-policy/' },
-  { label: 'Your Data Rights', href: '/privacy-rights/' },
-  { label: 'Terms & Conditions', href: '/terms-and-conditions/' },
+  { label: 'Privacy', href: '/privacy-policy/' },
+  { label: 'Data Rights', href: '/privacy-rights/' },
+  { label: 'Terms & Cond.', href: '/terms-and-conditions/' },
 ];
 
 export default function Footer() {

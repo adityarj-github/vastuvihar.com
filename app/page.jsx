@@ -1,4 +1,5 @@
-import '../styles/pages/home.css';
+import './home-foundation.css';
+import './home.css';
 import NewsSection from '@/components/home/NewsSection';
 import ImageSection from '@/components/home/ImageSection';
 import StatsSection from '@/components/home/StatsSection';
@@ -8,6 +9,7 @@ import ProjectsSection from '@/components/home/ProjectsSection';
 import CompanySection from '@/components/home/CompanySection';
 import PartnersSection from '@/components/home/PartnersSection';
 import HeroSection from '@/components/home/HeroSection';
+import HomeMotion from '@/components/home/HomeMotion';
 import PageLayout from '@/components/PageLayout';
 import { createPageMetadata } from '@/lib/metadata';
 
@@ -28,24 +30,14 @@ export default function HomePage() {
         <div className="col-fluid">
           <div id="primary" className="content-area">
             <main id="main" className="site-main">
-              <div
-                data-elementor-type="wp-page"
-                data-elementor-id="6353"
-                className="elementor elementor-6353"
-              >
+                <div className="vv-home-page">
+                <HomeMotion />
                 <HeroSection />
                 <PartnersSection />
                 <CompanySection />
-
                 <ProjectsSection />
                 <CareersSection />
-                <div
-                  className="custom-elementor-parallax"
-                  data-id="1659d28"
-                  data-settings={
-                    '{"type":"scroll","speed":"1.2","keepImg":"true","imgSize":"cover","imgPosition":"50% 0%","noAndroid":"false","noIos":"false"}'
-                  }
-                ></div>
+                <div className="vv-home-parallax-spacer" aria-hidden="true" />
                 <ValuesSection />
                 <StatsSection />
                 <ImageSection />

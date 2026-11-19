@@ -3,24 +3,20 @@ import './StatsSection.css';
 export default function StatsSection() {
   return (
     <div
-      className="elementor-element elementor-element-4c78a6e e-flex e-con-boxed e-con e-parent"
-      data-id="4c78a6e"
-      data-element_type="container"
+      className="vv-block vv-home-trust__trust vv-flex vv-boxed vv-con vv-parent"
     >
-      <div className="e-con-inner">
+      <div className="vv-inner">
         <div
-          className="elementor-element elementor-element-bf6d545 layout-special-yes animated-fast button-style-theme-default elementor-invisible elementor-widget elementor-widget-spaciaz-iconbox"
-          data-id="bf6d545"
-          data-element_type="widget"
-          data-settings={'{"_animation":"opal-move-up"}'}
-          data-widget_type="spaciaz-iconbox.default"
+          className="vv-block vv-home-trust__values-cards layout-special-yes animated-fast button-style-theme-default vv-reveal vv-widget vv-widget-spaciaz-iconbox"
+
+
         >
-          <div className="elementor-widget-container">
-            <div className="elementor-iconbox-item-wrapper">
+          <div className="vv-widget-inner">
+            <div className="vv-iconbox-item-wrapper">
               <div className="d-grid">
 
-                <div className="grid-item elementor-iconbox-item" data-count="01">
-                  <div className="iconbox-wrapper elementor-repeater-item-a03a5ae">
+                <div className="grid-item vv-iconbox-item" data-count="01">
+                  <div className="iconbox-wrapper vv-repeater-item-a03a5ae">
                     <div className="iconbox-icon">
                       <i
                         aria-hidden="true"
@@ -44,8 +40,8 @@ export default function StatsSection() {
                   </div>
                 </div>
 
-                <div className="grid-item elementor-iconbox-item" data-count="02">
-                  <div className="iconbox-wrapper elementor-repeater-item-6a7eb33">
+                <div className="grid-item vv-iconbox-item" data-count="02">
+                  <div className="iconbox-wrapper vv-repeater-item-6a7eb33">
                     <div className="iconbox-icon">
                       <i
                         aria-hidden="true"
@@ -69,8 +65,8 @@ export default function StatsSection() {
                   </div>
                 </div>
 
-                <div className="grid-item elementor-iconbox-item" data-count="03">
-                  <div className="iconbox-wrapper elementor-repeater-item-62add3e">
+                <div className="grid-item vv-iconbox-item" data-count="03">
+                  <div className="iconbox-wrapper vv-repeater-item-62add3e">
                     <div className="iconbox-icon">
                       <i
                         aria-hidden="true"
@@ -95,8 +91,8 @@ export default function StatsSection() {
                   </div>
                 </div>
 
-                <div className="grid-item elementor-iconbox-item" data-count="04">
-                  <div className="iconbox-wrapper elementor-repeater-item-abce355">
+                <div className="grid-item vv-iconbox-item" data-count="04">
+                  <div className="iconbox-wrapper vv-repeater-item-abce355">
                     <div className="iconbox-icon">
                       <i
                         aria-hidden="true"
@@ -121,8 +117,8 @@ export default function StatsSection() {
                   </div>
                 </div>
 
-                <div className="grid-item elementor-iconbox-item" data-count="05">
-                  <div className="iconbox-wrapper elementor-repeater-item-1211917">
+                <div className="grid-item vv-iconbox-item" data-count="05">
+                  <div className="iconbox-wrapper vv-repeater-item-1211917">
                     <div className="iconbox-icon">
                       <i
                         aria-hidden="true"
@@ -147,8 +143,8 @@ export default function StatsSection() {
                   </div>
                 </div>
 
-                <div className="grid-item elementor-iconbox-item" data-count="06">
-                  <div className="iconbox-wrapper elementor-repeater-item-2d34012">
+                <div className="grid-item vv-iconbox-item" data-count="06">
+                  <div className="iconbox-wrapper vv-repeater-item-2d34012">
                     <div className="iconbox-icon">
                       <i
                         aria-hidden="true"

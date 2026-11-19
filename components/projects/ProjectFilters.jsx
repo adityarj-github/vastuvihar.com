@@ -3,8 +3,7 @@ import FilterDropdown from './FilterDropdown';
 
 const FILTERS = [
   {
-    name: 'type',
-    label: 'Home Type',
+    name: 'type', label: 'Home Type',
     options: [
       { value: '', label: 'Any type' },
       { value: 'bungalow', label: 'Bungalow' },
@@ -13,8 +12,7 @@ const FILTERS = [
     ],
   },
   {
-    name: 'beds',
-    label: 'Bedrooms',
+    name: 'beds', label: 'Bedrooms',
     options: [
       { value: '', label: 'Any size' },
       { value: '1', label: '1 BHK' },
@@ -26,8 +24,7 @@ const FILTERS = [
     ],
   },
   {
-    name: 'budget',
-    label: 'Starting Price',
+    name: 'budget', label: 'Starting Price',
     options: [
       { value: '', label: 'Any price' },
       { value: 'under-20', label: 'Under ₹20 Lac' },
@@ -41,27 +38,20 @@ const FILTERS = [
 
 export default function ProjectFilters({ filters = {} }) {
   return (
-    <div className="spaciaz-project-filter">
-      <form
-        className="project-form-filter spaciaz-project-has-filter-style-1"
-        data-next-project-filter=""
-        method="get"
-        action="/projects/"
-      >
-        <h4 className="filter-title">Filter</h4>
-        {FILTERS.map(({ name, label, options }) => (
-          <FilterDropdown
-            key={name}
-            name={name}
-            label={label}
-            options={options}
-            defaultValue={options.some((option) => option.value === filters[name]) ? filters[name] : ''}
-          />
-        ))}
-        <div className="filter-wrap filter-wrap-button search-filter-model">
-          <button type="submit">Search</button>
-        </div>
-      </form>
-    </div>
+    <form className="vv-project-filters" method="get" action="/projects/" aria-label="Filter home models">
+      {FILTERS.map(({ name, label, options }) => (
+        <FilterDropdown
+          key={name}
+          name={name}
+          label={label}
+          options={options}
+          defaultValue={options.some((option) => option.value === filters[name]) ? filters[name] : ''}
+        />
+      ))}
+      <div className="vv-project-filters__action">
+        {/* Keep this original Search button: no shared VVArrowButton here. */}
+        <button className="vv-project-filters__search" type="submit">Search</button>
+      </div>
+    </form>
   );
 }

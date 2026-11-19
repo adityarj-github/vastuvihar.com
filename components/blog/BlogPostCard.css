@@ -1,0 +1,118 @@
+/* The blog listing card's previous global .post-* and .entry-* styles,
+   kept private to this component so other article/card layouts cannot change it. */
+.vv-blog-card {
+  min-width: 0;
+  margin: 0 0 10px;
+}
+
+.vv-blog-card__link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.vv-blog-card__link:hover,
+.vv-blog-card__link:focus {
+  text-decoration: none;
+}
+
+.vv-blog-card__link:focus-visible {
+  outline: 2px solid var(--e-global-color-primary, #08aaec);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.vv-blog-card__thumbnail {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  overflow: hidden;
+  margin-bottom: 20px;
+  border-radius: 30px;
+}
+
+.vv-blog-card__thumbnail img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  transition: opacity 0.35s ease, transform 0.45s ease, filter 0.35s ease;
+}
+
+.vv-blog-card__link:hover .vv-blog-card__thumbnail img,
+.vv-blog-card__link:focus-visible .vv-blog-card__thumbnail img {
+  transform: scale(1.2);
+}
+
+.vv-blog-card__body {
+  display: block;
+  width: 100%;
+}
+
+.vv-blog-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px 30px;
+  margin-bottom: 23px;
+  color: var(--text_light, #8a8a8a);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 2;
+}
+
+.vv-blog-card__meta::before {
+  content: '';
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 1px;
+  background: #ccc;
+  order: 1;
+}
+
+.vv-blog-card__category {
+  display: inline-block;
+  order: 0;
+  padding: 9px 20px;
+  border-radius: 20px;
+  background: var(--e-global-color-primary, #08aaec);
+  color: var(--e-global-color-accent, #011c5b);
+  line-height: 1;
+}
+
+.vv-blog-card__date {
+  display: inline-block;
+  order: 2;
+  color: var(--text_light, #8a8a8a);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.vv-blog-card__title {
+  margin: 0 0 13px;
+  font-family: var(--e-global-typography-accent-font-family, inherit);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2307692308;
+  letter-spacing: 0;
+  color: var(--e-global-color-accent, #011c5b);
+  overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vv-blog-card__thumbnail img {
+    transition: none;
+  }
+}

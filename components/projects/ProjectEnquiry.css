@@ -1,91 +1,236 @@
-.elementor-2178 .elementor-element.elementor-element-c8a32ef {
-  --display: flex;
-  --flex-direction: column;
-  --container-widget-width: calc( ( 1 - var( --container-widget-flex-grow ) ) * 100% );
-  --container-widget-height: initial;
-  --container-widget-flex-grow: 0;
-  --container-widget-align-self: initial;
-  --flex-wrap-mobile: wrap;
-  --align-items: center;
-  --margin-top: 0px;
-  --margin-bottom: 90px;
-  --margin-left: 0px;
-  --margin-right: 0px;
-  --padding-top: 0px;
-  --padding-bottom: 0px;
-  --padding-left: 0px;
-  --padding-right: 0px;
+.vv-model-enquiry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin: 0 auto 90px;
+  width: 100%;
+  min-width: 0;
 }
 
-.elementor-2178 .elementor-element.elementor-element-c8a32ef .spaciaz-border-shape {
-  width: 30px;
-  height: 30px;
-  clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
-}
-
-.elementor-2178 .elementor-element.elementor-element-2c32b85 {
-  width: var( --container-widget-width, 465px );
+.vv-model-enquiry h2 {
   max-width: 465px;
-  --container-widget-width: 465px;
-  --container-widget-flex-grow: 0;
+  margin: 0;
   text-align: center;
+  color: var(--e-global-color-accent, #011c5b);
+  font-family: var(--e-global-typography-accent-font-family, 'Involve', sans-serif);
+  font-size: clamp(30px, 3vw, 42px);
+  font-weight: 600;
+  line-height: 1.2;
 }
 
-.elementor-2178 .elementor-element.elementor-element-2c32b85 > .elementor-widget-container {
-  margin: 0px 0px 30px 0px;
+.vv-model-enquiry .vv-model-enquiry__form { width: min(630px, 100%); }
+
+.vv-model-enquiry__fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  width: 100%;
+  align-items: start;
 }
 
-.elementor-2178 .elementor-element.elementor-element-2c32b85 .spaciaz-border-shape {
-  width: 30px;
-  height: 30px;
-  clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
+.vv-model-enquiry .vv-model-enquiry__fields > input,
+.vv-model-enquiry .vv-model-enquiry__fields > textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 58px;
+  padding: 16px 22px;
+  border: 1px solid #e9e9e9;
+  border-radius: 30px;
+  background: #f2f2f2;
+  color: var(--accent, #011c5b);
+  font: inherit;
+  font-size: 15px;
+  line-height: 1.5;
 }
 
-.elementor-2178 .elementor-element.elementor-element-2c32b85 .elementor-heading-title {
-  color: var( --e-global-color-accent );
+.vv-model-enquiry .vv-model-enquiry__fields > textarea {
+  grid-column: 1 / -1;
+  min-height: 160px;
+  border-radius: 20px;
+  resize: vertical;
 }
 
-.elementor-2178 .elementor-element.elementor-element-981758f {
-  width: var( --container-widget-width, 630px );
-  max-width: 630px;
-  --container-widget-width: 630px;
-  --container-widget-flex-grow: 0;
+.vv-model-enquiry .vv-model-enquiry__fields > input:focus,
+.vv-model-enquiry .vv-model-enquiry__fields > textarea:focus {
+  background: #fff;
+  border-color: var(--primary, #08aaec);
 }
 
-.elementor-2178 .elementor-element.elementor-element-981758f .spaciaz-border-shape {
-  width: 30px;
-  height: 30px;
-  clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
+.vv-model-enquiry__consent { grid-column: 1 / -1; }
+.vv-model-enquiry__action { grid-column: 1 / -1; text-align: center; }
+
+.vv-model-enquiry__honeypot,
+.vv-model-enquiry__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
 }
 
-.elementor-2178 .elementor-element.elementor-element-981758f .wpcf7-button {
-  text-align: center;
+/* ===============================
+   Reference-style custom select
+   =============================== */
+.vv-model-enquiry .vv-enquiry-select {
+  position: relative;
+  width: 100%;
+  min-width: 0;
 }
 
-.elementor-2178 .elementor-element.elementor-element-981758f .elementor-button-content-wrapper {
-  flex-direction: row;
+.vv-model-enquiry .vv-enquiry-select--open { z-index: 100; }
+
+/* The native control handles form values and required validation. */
+.vv-model-enquiry .vv-enquiry-select__native {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
 }
 
-.elementor-2178 .elementor-element.elementor-element-981758f .wpcf7-form button {
-  border-color: var( --e-global-color-primary );
-  background-color: var( --e-global-color-primary );
-  padding: 5px 5px 5px 30px;
+.vv-model-enquiry .vv-enquiry-select__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 68px;
+  padding: 12px 25px;
+  border: 1px solid transparent;
+  border-radius: 35px;
+  background: #f2f2f2;
+  color: #09243d;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
 
-.elementor-2178 .elementor-element.elementor-element-981758f .wpcf7-form button .elementor-button-icon {
-  background-color: var( --e-global-color-background );
+.vv-model-enquiry .vv-enquiry-select__trigger:hover { background: #ebf5fa; }
+
+.vv-model-enquiry .vv-enquiry-select--open .vv-enquiry-select__trigger,
+.vv-model-enquiry .vv-enquiry-select__trigger:focus-visible {
+  border-color: #011c5b;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(8,170,236,.12);
+  outline: none;
 }
 
-.elementor-2178 .elementor-element.elementor-element-981758f .wpcf7-form button:hover {
-  color: var( --e-global-color-accent );
+.vv-model-enquiry .vv-enquiry-select__trigger-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
 }
 
-@media(max-width:767px) {
+.vv-model-enquiry .vv-enquiry-select__label {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: .25px;
+  text-transform: uppercase;
+  color: #555;
+}
 
-  .elementor-2178 .elementor-element.elementor-element-c8a32ef {
-    --margin-top: 0px;
-    --margin-bottom: 60px;
-    --margin-left: 0px;
-    --margin-right: 0px;
+.vv-model-enquiry .vv-enquiry-select__value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 400;
+  color: #09243d;
+}
+
+.vv-model-enquiry .vv-enquiry-select__chevron {
+  flex-shrink: 0;
+  transition: transform .2s ease;
+}
+
+.vv-model-enquiry .vv-enquiry-select--open .vv-enquiry-select__chevron {
+  transform: rotate(180deg);
+}
+
+.vv-model-enquiry .vv-enquiry-select__dropdown {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 8px);
+  z-index: 110;
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 450px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 8px;
+  border: 1px solid #e5e5e5;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 12px 35px rgba(0,0,0,.1);
+  animation: vv-enquiry-dropdown-in .18s ease-out;
+}
+
+.vv-model-enquiry .vv-enquiry-select__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: #09243d;
+  font: inherit;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: background .18s ease;
+}
+
+.vv-model-enquiry .vv-enquiry-select__option:hover { background: #f1f7fb; }
+.vv-model-enquiry .vv-enquiry-select__option--selected,
+.vv-model-enquiry .vv-enquiry-select__option--selected:hover {
+  background: #eaf6fd;
+  color: #011c5b;
+  font-weight: 500;
+}
+.vv-model-enquiry .vv-enquiry-select__option svg { flex-shrink: 0; }
+.vv-model-enquiry .vv-enquiry-select__dropdown::-webkit-scrollbar { width: 5px; }
+.vv-model-enquiry .vv-enquiry-select__dropdown::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #d2dce5;
+}
+.vv-model-enquiry .vv-enquiry-select__dropdown::-webkit-scrollbar-thumb:hover {
+  background: #08aaec;
+}
+
+@keyframes vv-enquiry-dropdown-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 767px) {
+  .vv-model-enquiry { margin-bottom: 60px; }
+  .vv-model-enquiry__fields { grid-template-columns: minmax(0, 1fr); }
+  .vv-model-enquiry .vv-enquiry-select__dropdown {
+    max-height: min(600px, 65dvh);
+    border-radius: 18px;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vv-model-enquiry .vv-enquiry-select__dropdown { animation: none; }
 }

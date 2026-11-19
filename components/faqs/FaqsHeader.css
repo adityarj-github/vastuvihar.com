@@ -1,252 +1,145 @@
-/* Frequently asked questions */
-
-.elementor-59 .elementor-element.elementor-element-184cccf {
-  --display: flex;
-  --flex-direction: column;
-  --container-widget-width: 100%;
-  --container-widget-height: initial;
-  --container-widget-flex-grow: 0;
-  --container-widget-align-self: initial;
-  --flex-wrap-mobile: wrap;
-  --justify-content: space-between;
-  --overlay-opacity: 0.4;
-  --padding-top: 0px;
-  --padding-bottom: 0px;
-  --padding-left: 0px;
-  --padding-right: 0px;
+/* FAQ hero: original banner image, title, breadcrumbs, and white curved edge. */
+.vv-faqs-header {
+  width: 100%;
+  background: #fff;
 }
 
-.elementor-59 .elementor-element.elementor-element-184cccf:not(.elementor-motion-effects-element-type-background), .elementor-59 .elementor-element.elementor-element-184cccf > .elementor-motion-effects-container > .elementor-motion-effects-layer {
-  background-image: url("/FAQ.webp");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
+.vv-faqs-header__hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  width: 100%;
+  min-height: 530px;
+  background: #011c5b url('/faq.webp') center center / cover no-repeat;
+  color: #fff;
 }
 
-.elementor-59 .elementor-element.elementor-element-184cccf::before, .elementor-59 .elementor-element.elementor-element-184cccf > .elementor-background-video-container::before, .elementor-59 .elementor-element.elementor-element-184cccf > .e-con-inner > .elementor-background-video-container::before, .elementor-59 .elementor-element.elementor-element-184cccf > .elementor-background-slideshow::before, .elementor-59 .elementor-element.elementor-element-184cccf > .e-con-inner > .elementor-background-slideshow::before, .elementor-59 .elementor-element.elementor-element-184cccf > .elementor-motion-effects-container > .elementor-motion-effects-layer::before {
-  background-color: #000000;
-  --background-overlay: '';
+.vv-faqs-header__hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgba(0, 0, 0, .4);
+  pointer-events: none;
 }
 
-.elementor-59 .elementor-element.elementor-element-184cccf .spaciaz-border-shape {
-  width: 30px;
-  height: 30px;
-  clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
+.vv-faqs-header__inner {
+  position: relative;
+  z-index: 1;
+  justify-content: end;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1730px;
+  min-width: 0;
+  margin-inline: auto;
+  padding: 175px 30px 90px;
 }
 
-.elementor-59 .elementor-element.elementor-element-514fb02 {
-  --display: flex;
-  --margin-top: 175px;
-  --margin-bottom: 40px;
-  --margin-left: 0px;
-  --margin-right: 0px;
-  --padding-top: 0px;
-  --padding-bottom: 0px;
-  --padding-left: 30px;
-  --padding-right: 30px;
-}
-
-.elementor-59 .elementor-element.elementor-element-514fb02 .spaciaz-border-shape {
-  width: 30px;
-  height: 30px;
-  clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
-}
-
-.elementor-59 .elementor-element.elementor-element-3183bcf > .elementor-widget-container {
-  margin: 0px 0px 150px 0px;
-}
-
-.elementor-59 .elementor-element.elementor-element-3183bcf .spaciaz-border-shape {
-  width: 30px;
-  height: 30px;
-  clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
-}
-
-.elementor-59 .elementor-element.elementor-element-3183bcf .elementor-heading-title, .elementor-59 .elementor-element.elementor-element-3183bcf .hfe-page-title a {
-  font-size: 90px;
+.vv-faqs-header__title {
+  padding: 0;
+  color: #fff;
+  font-family: var(--e-global-typography-accent-font-family, 'Involve', sans-serif);
+  font-size: 70px;
   font-weight: 700;
-  text-transform: none;
-  line-height: 1.06em;
+  line-height: 1.06;
   letter-spacing: -2px;
-  color: var( --e-global-color-background );
 }
 
-.elementor-59 .elementor-element.elementor-element-3183bcf .hfe-page-title-icon i {
-  color: var( --e-global-color-background );
+.vv-faqs-header__breadcrumb {
+  align-self: flex-start;
+  margin: 0;
+  font-family: var(--e-global-typography-text-font-family, 'Switzer', sans-serif);
 }
 
-.elementor-59 .elementor-element.elementor-element-3183bcf .hfe-page-title-icon svg {
-  fill: var( --e-global-color-background );
-}
-
-.elementor-59 .elementor-element.elementor-element-bd15d3b {
-  --display: flex;
-  --flex-direction: row;
-  --container-widget-width: calc( ( 1 - var( --container-widget-flex-grow ) ) * 100% );
-  --container-widget-height: 100%;
-  --container-widget-flex-grow: 1;
-  --container-widget-align-self: stretch;
-  --flex-wrap-mobile: wrap;
-  --justify-content: space-between;
-  --align-items: flex-end;
-  --padding-top: 0px;
-  --padding-bottom: 0px;
-  --padding-left: 0px;
-  --padding-right: 0px;
-}
-
-.elementor-59 .elementor-element.elementor-element-bd15d3b .spaciaz-border-shape {
-  width: 30px;
-  height: 30px;
-  clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
-}
-
-.elementor-59 .elementor-element.elementor-element-21df135 .spaciaz-border-shape {
-  width: 30px;
-  height: 30px;
-  clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
-}
-
-.elementor-59 .elementor-element.elementor-element-21df135 {
-  text-align: left;
-}
-
-.elementor-59 .elementor-element.elementor-element-21df135 ul.hfe-breadcrumbs li {
-  margin-right: 10px;
-}
-
-.elementor-59 .elementor-element.elementor-element-21df135 .hfe-breadcrumbs, .elementor-59 .elementor-element.elementor-element-21df135 .hfe-breadcrumbs .hfe-breadcrumbs-text {
-  color: #FFFFFF99;
-}
-
-.elementor-59 .elementor-element.elementor-element-21df135 .hfe-breadcrumbs svg {
-  fill: #FFFFFF99;
-}
-
-.elementor-59 .elementor-element.elementor-element-21df135 .hfe-breadcrumbs-item {
+.vv-faqs-header__crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  color: rgba(255, 255, 255, .6);
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
 }
 
-.elementor-59 .elementor-element.elementor-element-21df135 .hfe-breadcrumbs-item:hover a, .elementor-59 .elementor-element.elementor-element-21df135 .hfe-breadcrumbs-item:hover .hfe-breadcrumbs-text {
-  color: var( --e-global-color-primary );
+.vv-faqs-header__crumbs li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.elementor-59 .elementor-element.elementor-element-21df135 .hfe-breadcrumbs-first:hover .hfe-breadcrumbs-home-icon svg {
-  fill: var( --e-global-color-primary );
+.vv-faqs-header__crumbs a {
+  color: inherit;
+  text-decoration: none;
+  transition: color .25s ease;
 }
 
-.elementor-59 .elementor-element.elementor-element-21df135 .hfe-breadcrumbs-separator-icon {
-  font-size: 2px;
+.vv-faqs-header__crumbs a:hover,
+.vv-faqs-header__crumbs a:focus-visible {
+  color: var(--e-global-color-primary, #08aaec);
 }
 
-.elementor-59 .elementor-element.elementor-element-d2639a9 {
-  width: var( --container-widget-width, 410px );
-  max-width: 410px;
-  --container-widget-width: 410px;
-  --container-widget-flex-grow: 0;
+.vv-faqs-header__separator {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
 }
 
-.elementor-59 .elementor-element.elementor-element-d2639a9 .spaciaz-border-shape {
-  width: 30px;
-  height: 30px;
-  clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
+/* Overlap the hero so the top-left/top-right white corners remain visible. */
+.vv-faqs-header__curve {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 50px;
+  margin-top: -50px;
+  border-radius: 50px 50px 0 0;
+  background: #fff;
 }
 
-.elementor-59 .elementor-element.elementor-element-d2639a9 .elementor-heading-title {
-  font-size: 22px;
-  font-weight: 600;
-  line-height: 32px;
-  color: #FFFFFF99;
-}
-
-.elementor-59 .elementor-element.elementor-element-da75665 {
-  --spacer-size: 50px;
-}
-
-.elementor-59 .elementor-element.elementor-element-da75665 > .elementor-widget-container {
-  background-color: var( --e-global-color-background );
-  border-radius: 50px 50px 0px 0px;
-}
-
-.elementor-59 .elementor-element.elementor-element-da75665 .spaciaz-border-shape {
-  width: 30px;
-  height: 30px;
-  clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
-}
-
-@media(min-width:768px) {
-
-  .elementor-59 .elementor-element.elementor-element-514fb02 {
-    --content-width: 1730px;
-  }
-}
-
-@media(max-width:1200px) {
-
-  .elementor-59 .elementor-element.elementor-element-184cccf {
-    --min-height: 500px;
+@media (max-width: 1200px) {
+  .vv-faqs-header__hero {
+    min-height: 500px;
   }
 
-  .elementor-59 .elementor-element.elementor-element-3183bcf .elementor-heading-title, .elementor-59 .elementor-element.elementor-element-3183bcf .hfe-page-title a {
+  .vv-faqs-header__title {
     font-size: 64px;
   }
 }
 
-@media(max-width:1024px) {
-
-  .elementor-59 .elementor-element.elementor-element-3183bcf > .elementor-widget-container {
-    margin: 0px 0px 110px 0px;
-  }
-
-  .elementor-59 .elementor-element.elementor-element-3183bcf .elementor-heading-title, .elementor-59 .elementor-element.elementor-element-3183bcf .hfe-page-title a {
+@media (max-width: 1024px) {
+  .vv-faqs-header__title {
     font-size: 56px;
   }
 }
 
-@media(max-width:880px) {
-
-  .elementor-59 .elementor-element.elementor-element-184cccf {
-    --min-height: 500px;
-  }
-}
-
-@media(max-width:767px) {
-
-  .elementor-59 .elementor-element.elementor-element-184cccf {
-    --min-height: 300px;
+@media (max-width: 767px) {
+  .vv-faqs-header__hero {
+    min-height: 300px;
   }
 
-  .elementor-59 .elementor-element.elementor-element-514fb02 {
-    --margin-top: 120px;
-    --margin-bottom: 30px;
-    --margin-left: 0px;
-    --margin-right: 0px;
-    --padding-top: 0px;
-    --padding-bottom: 0px;
-    --padding-left: 15px;
-    --padding-right: 15px;
+  .vv-faqs-header__inner {
+    padding: 120px 15px 60px;
   }
 
-  .elementor-59 .elementor-element.elementor-element-3183bcf > .elementor-widget-container {
-    margin: 0px 0px 60px 0px;
-  }
-
-  .elementor-59 .elementor-element.elementor-element-3183bcf .elementor-heading-title, .elementor-59 .elementor-element.elementor-element-3183bcf .hfe-page-title a {
+  .vv-faqs-header__title {
     font-size: 42px;
     letter-spacing: -1px;
   }
 
-  .elementor-59 .elementor-element.elementor-element-da75665 {
-    --spacer-size: 30px;
-  }
-
-  .elementor-59 .elementor-element.elementor-element-da75665 > .elementor-widget-container {
-    border-radius: 20px 20px 0px 0px;
+  .vv-faqs-header__curve {
+    height: 30px;
+    margin-top: -30px;
+    border-radius: 20px 20px 0 0;
   }
 }
 
-.elementor-59 .elementor-element.elementor-element-21df135 .hfe-breadcrumbs-home-icon {
-  margin: 0;
+@media (prefers-reduced-motion: reduce) {
+  .vv-faqs-header__crumbs a {
+    transition: none;
+  }
 }

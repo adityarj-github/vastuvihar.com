@@ -1,0 +1,5 @@
+/* Homepage-level styles. The components own their visual rules. */
+.vv-home-page {
+  width: 100%;
+  min-width: 0;
+}

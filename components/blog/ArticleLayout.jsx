@@ -1,198 +1,140 @@
-import './ArticleLayout.css';
-import '../projects/ProjectBreadcrumb.css';
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
+import VVArrowButton from '@/components/common/VVArrowButton';
+import './ArticleLayout.css';
 
+/**
+ * Single-blog page shell. All visual styles live in ArticleLayout.css.
+ * `children` is the article HTML; `afterContent` is for comments and forms,
+ * so entry-content typography cannot unintentionally restyle form controls.
+ */
 export default function ArticleLayout({
   route,
-  postId = '12',
+  postId = 'post',
   category = 'Company',
   categoryHref = '/category/company/',
   title,
-  publishedDate = 'Mar 18, 2025',
-  publishedIso = '2025-03-18T08:29:42+00:00',
-  updatedDate = 'Apr 16, 2025',
-  updatedIso = '2025-04-16T01:33:11+00:00',
+  publishedDate = 'Nov 20, 2026',
+  publishedIso = '2026-11-20T08:29:42+00:00',
+  updatedDate,
+  updatedIso,
   image,
   imageAlt,
   prevPost,
   nextPost,
+  afterContent,
   children,
 }) {
+  const postHref = route ? `/blog/${encodeURIComponent(route)}/` : '/blog/';
+
   return (
     <PageLayout route={route}>
-      <div className="breadcrumb-wrap breadcrumb-wrap-article">
-        <div className="breadcrumb-overlay" />
-        <div data-elementor-type="wp-post" data-elementor-id="2399" className="elementor elementor-2399">
-          <div
-            className="elementor-element elementor-element-2e5eb79 e-con-full e-flex e-con e-parent"
-            data-id="2e5eb79"
-            data-element_type="container"
-          >
-            <div
-              className="elementor-element elementor-element-1b51338 e-flex e-con-boxed e-con e-child"
-              data-id="1b51338"
-              data-element_type="container"
-            >
-              <div className="e-con-inner">
-                <div
-                  className="elementor-element elementor-element-17a4b8a elementor-widget elementor-widget-hfe-breadcrumbs-widget"
-                  data-id="17a4b8a"
-                  data-element_type="widget"
-                  data-widget_type="hfe-breadcrumbs-widget.default"
-                >
-                  <div className="elementor-widget-container">
-                    <nav aria-label="Breadcrumb">
-                      <ul className="hfe-breadcrumbs hfe-breadcrumbs-show-home">
-                        <li className="hfe-breadcrumbs-item hfe-breadcrumbs-first">
-                          <span className="hfe-breadcrumbs-home-icon" />
-                          <Link href="/" prefetch={false}>
-                            <span className="hfe-breadcrumbs-text">Home</span>
-                          </Link>
-                        </li>
-                        <li className="hfe-breadcrumbs-separator">
-                          <span className="hfe-breadcrumbs-separator-icon">
-                            <svg
-                              aria-hidden="true"
-                              className="e-font-icon-svg e-fas-square-full"
-                              viewBox="0 0 512 512"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M512 512H0V0h512v512z" />
-                            </svg>
-                          </span>
-                        </li>
-                        <li className="hfe-breadcrumbs-item ">
-                          <Link href={categoryHref} prefetch={false}>
-                            <span className="hfe-breadcrumbs-text">{category}</span>
-                          </Link>
-                        </li>
-                        <li className="hfe-breadcrumbs-separator">
-                          <span className="hfe-breadcrumbs-separator-icon">
-                            <svg
-                              aria-hidden="true"
-                              className="e-font-icon-svg e-fas-square-full"
-                              viewBox="0 0 512 512"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M512 512H0V0h512v512z" />
-                            </svg>
-                          </span>
-                        </li>
-                        <li className="hfe-breadcrumbs-item hfe-breadcrumbs-last">
-                          <span className="hfe-breadcrumbs-text" aria-current="page">
-                            {title}
-                          </span>
-                        </li>
-                      </ul>
-                    </nav>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              className="elementor-element elementor-element-c50fdb1 elementor-widget elementor-widget-spacer"
-              data-id="c50fdb1"
-              data-element_type="widget"
-              data-widget_type="spacer.default"
-            >
-              <div className="elementor-widget-container">
-                <div className="elementor-spacer">
-                  <div className="elementor-spacer-inner" />
-                </div>
-              </div>
-            </div>
+      <div className="article-layout">
+        <header className="article-layout__hero">
+          <div className="article-layout__hero-inner">
+            <nav className="article-layout__breadcrumbs" aria-label="Breadcrumb">
+              <ol className="article-layout__breadcrumb-list">
+                <li className="article-layout__breadcrumb-item">
+                  <Link href="/" prefetch={false}>Home</Link>
+                </li>
+                <li className="article-layout__breadcrumb-item">
+                  <Link href="/blog/" prefetch={false}>Blog</Link>
+                </li>
+                <li className="article-layout__breadcrumb-item">
+                  <Link href={categoryHref} prefetch={false}>{category}</Link>
+                </li>
+                <li className="article-layout__breadcrumb-item article-layout__breadcrumb-item--current">
+                  <span aria-current="page" title={title}>{title}</span>
+                </li>
+              </ol>
+            </nav>
           </div>
-        </div>
-      </div>
+          <div className="article-layout__hero-round-edge" aria-hidden="true" />
+        </header>
 
-      <div id="content" className="site-content clear" tabIndex="-1">
-        <div className="col-full">
-          <div id="primary" className="content-area">
-            <main id="main" className="site-main">
-              <article
-                id={`post-${postId}`}
-                className={`post-${postId} post type-post status-publish format-standard has-post-thumbnail hentry`}
-              >
-                <div className="single-content">
-                  <header className="entry-header header-post-thumbnail">
-                    <div className="entry-meta">
-                      <div className="entry-meta-inner">
-                        <div className="categories-link">
-                          <span className="screen-reader-text">Categories</span>
+        <div id="content" className="site-content clear article-layout__site-content" tabIndex={-1}>
+          <div className="col-full">
+            <div id="primary" className="content-area">
+              <main id="main" className="site-main">
+                <article
+                  id={`post-${postId}`}
+                  className={`article-layout__article post type-post status-publish format-standard hentry${image ? ' has-post-thumbnail' : ''}`}
+                >
+                  <div className="article-layout__single">
+                    <header className="article-layout__entry-header">
+                      <div className="article-layout__meta">
+                        <div className="article-layout__category">
                           <Link href={categoryHref} rel="category tag" prefetch={false}>
                             {category}
                           </Link>
                         </div>
-                        <div className="posted-on">
-                          <Link href={`/${route}/`} rel="bookmark" prefetch={false}>
-                            <time className="entry-date published" dateTime={publishedIso}>
-                              {publishedDate}
-                            </time>
-                            <time className="updated" dateTime={updatedIso}>
-                              {updatedDate}
-                            </time>
+                        <div className="article-layout__date">
+                          <Link href={postHref} rel="bookmark" prefetch={false}>
+                            <time dateTime={publishedIso}>{publishedDate}</time>
                           </Link>
+                          {updatedDate && updatedIso && (
+                            <time dateTime={updatedIso} hidden>{updatedDate}</time>
+                          )}
                         </div>
                       </div>
-                    </div>
-                    <h1 className="beta entry-title">{title}</h1>
-                  </header>
-                  {image && (
-                    <div className="post-thumbnail">
-                      <img
-                        width="1290"
-                        height="600"
-                        src={image}
-                        className="attachment-post-thumbnail size-post-thumbnail wp-post-image"
-                        alt={imageAlt || title}
-                        decoding="async"
-                      />
-                    </div>
-                  )}
-                  
-                  <div className="entry-content">
-                    {/* The dynamic blog content and new CommentForm will render here from page.tsx */}
-                    {children}
-                  </div>
-                  
-                  <aside className="entry-taxonomy" />
-                  
-                  {(prevPost || nextPost) && (
-                    <nav
-                      id="post-navigation"
-                      className="navigation post-navigation"
-                      role="navigation"
-                      aria-label="Post Navigation"
-                    >
-                      <h2 className="screen-reader-text">Post navigation</h2>
-                      <div className="nav-links">
-                        {prevPost && (
-                          <div className="nav-previous">
-                            <Link href={prevPost.href} rel="prev" prefetch={false}>
-                              <span className="nav-content">
-                                <span className="reader-text">Previous post </span>
-                                <span className="title">{prevPost.title}</span>
-                              </span>
-                            </Link>
-                          </div>
-                        )}
-                        {nextPost && (
-                          <div className="nav-next">
-                            <Link href={nextPost.href} rel="next" prefetch={false}>
-                              <span className="nav-content">
-                                <span className="reader-text">Next post </span>
-                                <span className="title">{nextPost.title}</span>
-                              </span>
-                            </Link>
-                          </div>
-                        )}
+                      <h1 className="article-layout__title entry-title">{title}</h1>
+                    </header>
+
+                    {image && (
+                      <div className="article-layout__featured">
+                        <img
+                          width="1290"
+                          height="600"
+                          src={image}
+                          alt={imageAlt || title}
+                          decoding="async"
+                        />
                       </div>
-                    </nav>
-                  )}
-                </div>
-              </article>
-            </main>
+                    )}
+
+                    <div className="article-layout__body entry-content">
+                      {children}
+                    </div>
+
+                    {afterContent && (
+                      <div className="article-layout__after-content">{afterContent}</div>
+                    )}
+
+                    {(prevPost || nextPost) && (
+                      <nav className="article-layout__post-navigation" aria-label="Post navigation">
+                        <div className="article-layout__nav-links">
+                          {prevPost ? (
+                            <div className="article-layout__nav-item article-layout__nav-item--previous">
+                              <span className="article-layout__nav-label">Previous post</span>
+                              <VVArrowButton
+                                href={prevPost.href}
+                                ariaLabel={`Previous post: ${prevPost.title}`}
+                                className="article-layout__nav-button"
+                              >
+                                <span className="article-layout__nav-title">{prevPost.title}</span>
+                              </VVArrowButton>
+                            </div>
+                          ) : <div className="article-layout__nav-placeholder" aria-hidden="true" />}
+
+                          {nextPost && (
+                            <div className="article-layout__nav-item article-layout__nav-item--next">
+                              <span className="article-layout__nav-label">Next post</span>
+                              <VVArrowButton
+                                href={nextPost.href}
+                                ariaLabel={`Next post: ${nextPost.title}`}
+                                className="article-layout__nav-button"
+                              >
+                                <span className="article-layout__nav-title">{nextPost.title}</span>
+                              </VVArrowButton>
+                            </div>
+                          )}
+                        </div>
+                      </nav>
+                    )}
+                  </div>
+                </article>
+              </main>
+            </div>
           </div>
         </div>
       </div>

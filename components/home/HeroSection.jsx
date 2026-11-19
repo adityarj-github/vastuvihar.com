@@ -1,9 +1,10 @@
 'use client';
 
+import VVArrowButton from '@/components/common/VVArrowButton';
+
 import './HeroSection.css';
 import { useState } from 'react';
 
-import Link from 'next/link';
 import { useMediaConsent } from '@/lib/privacy/cookieChoices';
 
 const YOUTUBE_IDS = [
@@ -20,11 +21,9 @@ export default function HeroSection() {
 
   return (
     <div
-      className="elementor-element elementor-element-71f6b7a e-con-full e-flex e-con e-parent"
-      data-id="71f6b7a"
-      data-element_type="container"
+      className="vv-block vv-home-hero__hero vv-full vv-flex vv-con vv-parent"
       id="tab_video"
-      data-settings={'{"background_background":"classic"}'}
+
     >
       {/* Direct child of the outer hero: covers the entire hero, not an inner column. */}
       <div className="vv-hero-background" aria-hidden="true">
@@ -54,81 +53,44 @@ export default function HeroSection() {
         )}
       </div>
       <div
-        className="elementor-element elementor-element-ec08bea e-flex e-con-boxed e-con e-child"
-        data-id="ec08bea"
-        data-element_type="container"
+        className="vv-block vv-home-hero__inner vv-flex vv-boxed vv-con vv-child"
       >
-        <div className="e-con-inner">
+        <div className="vv-inner">
           <div
-            className="elementor-element elementor-element-d8f80a9 e-con-full e-flex e-con e-child"
-            data-id="d8f80a9"
-            data-element_type="container"
-            data-settings={'{"background_background":"video"}'}
+            className="vv-block vv-home-hero__copy vv-full vv-flex vv-con vv-child"
+
           >
             <div
-              className="elementor-element elementor-element-49eaa0f elementor-widget__width-initial elementor-invisible elementor-widget elementor-widget-heading"
-              data-id="49eaa0f"
-              data-element_type="widget"
-              data-settings={'{"_animation":"opal-move-up"}'}
-              data-widget_type="heading.default"
+              className="vv-block vv-home-hero__headline vv-widget--width-initial vv-reveal vv-widget vv-heading-widget"
+
+
             >
-              <div className="elementor-widget-container">
-                <h1 className="elementor-heading-title elementor-size-default">
+              <div className="vv-widget-inner">
+                <h1 className="vv-heading vv-text-default">
                   Your Dream Home, Our Commitment.
                 </h1>{' '}
               </div>
             </div>
             <div
-              className="elementor-element elementor-element-d452400 enable-style-icon-yes animated-fast elementor-button-default icon-spaciaz-right elementor-invisible elementor-widget elementor-widget-spaciaz-button"
-              data-id="d452400"
-              data-element_type="widget"
-              data-settings={'{"_animation":"opal-move-up"}'}
-              data-widget_type="spaciaz-button.default"
+              className="vv-block vv-home-hero__cta enable-style-icon-yes animated-fast vv-button-default icon-spaciaz-right vv-reveal vv-widget vv-arrow-widget"
+
+
             >
-              <div className="elementor-widget-container">
-                <div className="elementor-button-wrapper">
-                  <Link
-                    href="/projects/"
-                    className="elementor-button-link elementor-button elementor-size-sm"
-                    role="button"
-                    prefetch={false}
-                  >
-                    <span className="elementor-button-content-wrapper">
-                      <span className="elementor-button-icon">
-                        <span className="btn-icon-wrap">
-                          <span className="btn-icon">
-                            <i
-                              aria-hidden="true"
-                              className="spaciaz-icon- spaciaz-icon-arrow-long-right"
-                            ></i>{' '}
-                          </span>
-                          <span className="btn-icon-hover">
-                            <i
-                              aria-hidden="true"
-                              className="spaciaz-icon- spaciaz-icon-arrow-long-right"
-                            ></i>{' '}
-                          </span>
-                        </span>
-                      </span>
-                      <span className="elementor-button-text" data-name="view all projects">
-                        <span>View all Models</span>
-                      </span>
-                    </span>
-                  </Link>
+              <div className="vv-widget-inner">
+                <div className="vv-button-wrap">
+                  <VVArrowButton href="/projects/" label="View all Models" className="vv-home-page__hero-cta" />
                 </div>
               </div>
             </div>
             <div
-              className="elementor-element elementor-element-3b2477b elementor-video-style-container elementor-widget elementor-widget-spaciaz-video-tabs"
-              data-id="3b2477b"
-              data-element_type="widget"
-              data-widget_type="spaciaz-video-tabs.default"
+              className="vv-block vv-home-hero__video-tabs vv-video-style vv-widget vv-video-tabs-widget"
+
             >
-              <div className="elementor-widget-container">
-                <div className="video-tabs-element" data-relative="#tab_video">
+              <div className="vv-widget-inner">
+                <div className="video-tabs-element" >
                   <div className="video-tabs-nav">
                     <div className={`video-tab-nav-item ${activeVideo === 0 ? "active" : ""}`} data-tab="video-tab-0" role="button" tabIndex={0} aria-label="Play video 1" aria-pressed={activeVideo === 0} onClick={() => setActiveVideo(0)} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); setActiveVideo(0); } }}>
-                      <div className="elementor-video-tabs-image">
+                      <div className="vv-video-tabs-image">
                         <img
                           decoding="async"
                           width="190"
@@ -140,7 +102,7 @@ export default function HeroSection() {
                       </div>
                     </div>
                     <div className={`video-tab-nav-item ${activeVideo === 1 ? "active" : ""}`} data-tab="video-tab-1" role="button" tabIndex={0} aria-label="Play video 2" aria-pressed={activeVideo === 1} onClick={() => setActiveVideo(1)} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); setActiveVideo(1); } }}>
-                      <div className="elementor-video-tabs-image">
+                      <div className="vv-video-tabs-image">
                         <img
                           loading="lazy"
                           decoding="async"
@@ -153,7 +115,7 @@ export default function HeroSection() {
                       </div>
                     </div>
                     <div className={`video-tab-nav-item ${activeVideo === 2 ? "active" : ""}`} data-tab="video-tab-2" role="button" tabIndex={0} aria-label="Play video 3" aria-pressed={activeVideo === 2} onClick={() => setActiveVideo(2)} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); setActiveVideo(2); } }}>
-                      <div className="elementor-video-tabs-image">
+                      <div className="vv-video-tabs-image">
                         <img
                           loading="lazy"
                           decoding="async"
@@ -173,25 +135,21 @@ export default function HeroSection() {
         </div>
       </div>
       <div
-        className="elementor-element elementor-element-1e6e2a6 elementor-widget elementor-widget-spacer"
-        data-id="1e6e2a6"
-        data-element_type="widget"
-        data-widget_type="spacer.default"
+        className="vv-block vv-home-hero__white-curve vv-widget vv-spacer-widget"
+
       >
-        <div className="elementor-widget-container">
-          <div className="elementor-spacer">
-            <div className="elementor-spacer-inner"></div>
+        <div className="vv-widget-inner">
+          <div className="vv-spacer">
+            <div className="vv-spacer-inner"></div>
           </div>
         </div>
       </div>
       <div
-        className="elementor-element elementor-element-88c322d elementor-absolute elementor-widget elementor-widget-image"
-        data-id="88c322d"
-        data-element_type="widget"
-        data-settings={'{"_position":"absolute"}'}
-        data-widget_type="image.default"
+        className="vv-block vv-home-hero__poster vv-absolute vv-widget vv-image-widget"
+
+
       >
-        <div className="elementor-widget-container">
+        <div className="vv-widget-inner">
           <img
             loading="lazy"
             decoding="async"

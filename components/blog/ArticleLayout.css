@@ -1,175 +1,300 @@
-
-/* ==========================================
-   VASTU VIHAR - ARTICLE LAYOUT
-   ========================================== */
- .breadcrumb-wrap-article{
-  background-image: url("/blog-hero.webp") !important;
-
+/* Single-blog article. No Elementor widget IDs and no global selector leakage. */
+.article-layout {
+  --article-brand: var(--e-global-color-primary, #08aaec);
+  --article-accent: var(--accent, #011c5b);
+  --article-text: var(--text, #111111);
+  --article-highlight: var(--highlight, #ed3136);
+  --article-highlight-hover: var(--highlight-hover, #c92227);
+  width: 100%;
+  min-width: 0;
 }
 
-/* Main article container */
-.site-content .single-content {
+/* Breadcrumb banner; replaces the unrelated ProjectBreadcrumb.css import. */
+.article-layout__hero {
+  isolation: isolate;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 500px;
+  width: 100%;
+  background: url('/blog-hero.webp') center bottom / cover no-repeat;
+}
+
+.article-layout__hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+.article-layout__hero-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1730px;
+  min-width: 0;
+  margin-inline: auto;
+  padding: 0 30px 40px;
+}
+
+.article-layout__breadcrumb-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.article-layout__breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  gap: 10px;
+}
+
+.article-layout__breadcrumb-item:not(:first-child)::before {
+  content: '';
+  display: inline-block;
+  flex: 0 0 2px;
+  width: 2px;
+  height: 2px;
+  background: currentColor;
+}
+
+.article-layout__breadcrumbs a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.article-layout__breadcrumbs a:hover,
+.article-layout__breadcrumbs a:focus-visible {
+  color: var(--article-brand);
+}
+
+.article-layout__breadcrumbs a:focus-visible {
+  outline: 2px solid var(--article-brand);
+  outline-offset: 3px;
+}
+
+.article-layout__breadcrumb-item--current {
+  flex: 0 1 auto;
+  max-width: min(100%, 600px);
+}
+
+.article-layout__breadcrumb-item--current span {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.article-layout__hero-round-edge {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 50px;
+  height: 50px;
+  width: 100%;
+  border-radius: 50px 50px 0 0;
+  background: var(--e-global-color-background, #fff);
+}
+
+/* Article body: retain shared PageLayout containers, not Elementor styling. */
+.article-layout__site-content {
+  min-width: 0;
+  padding-top: 0;
+}
+
+.article-layout__article {
+  min-width: 0;
   max-width: 1100px;
   margin: 0 auto;
   padding: 0;
-  overflow: hidden;
 }
 
-.single-content .entry-header.header-post-thumbnail {
+.article-layout__single {
+  min-width: 0;
+  padding: 0;
+}
+
+.article-layout__entry-header {
   margin-bottom: 32px;
   padding: 0;
 }
 
-/* Metadata */
-.single-content .entry-meta {
-  margin-bottom: 18px;
+.article-layout__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 0 0 18px;
 }
 
-/* Date styling */
-.single-content .posted-on,
-.single-content .posted-on a,
-.single-content .posted-on time {
-  color: #777;
-  font-size: 13px;
-  font-weight: 500;
+.article-layout__category {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 20px;
+  padding: 9px 20px;
+  background: var(--article-brand);
+  line-height: 1;
+}
+
+.article-layout__category a {
+  color: var(--article-accent);
+  font-size: 14px;
+  font-weight: 600;
   text-decoration: none;
 }
 
-/* Hide updated date to avoid duplicate dates */
-.single-content .posted-on .updated {
-  display: none;
+.article-layout__category a:hover {
+  color: var(--article-accent);
+  text-decoration: underline;
 }
 
-/* ==========================================
-   MAIN ARTICLE TITLE
-   ========================================== */
+.article-layout__date,
+.article-layout__date a,
+.article-layout__date time {
+  color: #777;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-decoration: none;
+}
 
-.single-content .entry-header .entry-title {
+.article-layout__date a:hover {
+  color: var(--article-brand);
+}
+
+.article-layout .article-layout__title {
+  position: relative;
+  max-width: 950px;
+  margin: 0 0 24px;
+  padding: 0 0 20px;
+  color: var(--article-text);
   font-size: clamp(26px, 2.6vw, 38px);
   font-weight: 700;
   line-height: 1.3;
   letter-spacing: -0.6px;
-  color: var(--text, #111111);
-
-  max-width: 950px;
-  margin: 0 0 24px;
-  padding: 0 0 20px;
-
-  position: relative;
   overflow-wrap: break-word;
 }
 
-/* Red decorative underline */
-.single-content .entry-header .entry-title::after {
-  content: "";
+.article-layout__title::after {
+  content: '';
   position: absolute;
   bottom: 0;
   left: 0;
   width: 55px;
   height: 3px;
   border-radius: 3px;
-  background: var(--highlight, #ed3136);
+  background: var(--article-highlight);
 }
 
-/* ==========================================
-   FEATURED IMAGE
-   ========================================== */
-
-.single-post .single-content .post-thumbnail,
-.single-content .post-thumbnail {
+/* Avoid global .post-thumbnail padding-top and absolute-positioned image. */
+.article-layout__featured {
   width: 100%;
   margin: 0 0 38px;
   border-radius: 16px;
   overflow: hidden;
 }
 
-.single-content .post-thumbnail img {
+.article-layout__featured img {
   display: block;
   width: 100%;
+  max-width: 100%;
   height: auto;
+  border-radius: inherit;
   object-fit: cover;
-  border-radius: 16px;
 }
 
-/* ==========================================
-   ARTICLE CONTENT
-   ========================================== */
-
-.single-content .entry-content {
-  margin-top: 25px;
-  font-size: 16px;
-  line-height: 1.85;
+/* Rich-text rules apply to the article only, never comments or forms. */
+.article-layout .article-layout__body {
+  min-width: 0;
+  max-width: none;
+  margin: 25px 0 0;
+  padding: 0;
   color: #444;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.85;
+  overflow-wrap: break-word;
 }
 
-.single-content .entry-content::before {
+.article-layout .article-layout__body::before {
+  content: none;
   display: none;
 }
 
-.single-content .entry-content p {
+.article-layout__body p {
   margin: 0 0 20px;
 }
 
-.single-content .entry-content h2 {
+.article-layout__body h2 {
+  margin: 38px 0 16px;
+  color: var(--article-text);
   font-size: clamp(22px, 2.2vw, 30px);
   font-weight: 700;
   line-height: 1.35;
   letter-spacing: -0.3px;
-  margin: 38px 0 16px;
-  color: var(--text, #111111);
 }
 
-.single-content .entry-content h3 {
+.article-layout__body h3 {
+  margin: 28px 0 14px;
+  color: var(--article-text);
   font-size: clamp(19px, 1.8vw, 24px);
   font-weight: 650;
   line-height: 1.4;
-  margin: 28px 0 14px;
-  color: var(--text, #111111);
 }
 
-.single-content .entry-content h4 {
+.article-layout__body h4 {
+  margin: 24px 0 12px;
+  color: var(--article-text);
   font-size: 19px;
   font-weight: 600;
   line-height: 1.45;
-  margin: 24px 0 12px;
-  color: var(--text, #111111);
 }
 
-/* Links */
-.single-content .entry-content a {
-  color: var(--highlight, #ed3136);
+.article-layout__body a {
+  color: var(--article-highlight);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
-.single-content .entry-content a:hover {
-  color: var(--highlight-hover, #c92227);
+.article-layout__body a:hover {
+  color: var(--article-highlight-hover);
 }
 
-/* Lists */
-.single-content .entry-content ul,
-.single-content .entry-content ol {
+.article-layout__body :is(ul, ol) {
   margin: 0 0 24px;
   padding-left: 25px;
 }
 
-.single-content .entry-content li {
+.article-layout__body li {
   margin-bottom: 10px;
   line-height: 1.8;
 }
 
-/* Images within article */
-.single-content .entry-content img {
+.article-layout__body img {
   max-width: 100%;
   height: auto;
   border-radius: 14px;
 }
 
-.single-content .entry-content .wp-block-image {
+.article-layout__body .wp-block-image {
   margin: 25px 0 30px;
 }
 
-.single-post .single-content .entry-content .wp-block-image img {
+.article-layout .article-layout__body .wp-block-image img {
+  display: block;
   width: 100%;
   height: auto;
   max-height: 543px;
@@ -177,113 +302,101 @@
   border-radius: 16px;
 }
 
-/* Blockquotes */
-.single-content .entry-content blockquote {
+/* The theme adds large quote decorations; use the original article quote. */
+.article-layout .article-layout__body blockquote,
+.article-layout .article-layout__body .wp-block-quote {
+  position: relative;
   margin: 30px 0;
   padding: 20px 25px;
-  border-left: 4px solid var(--highlight, #ed3136);
-  background: #f8f8f8;
+  border: 0;
+  border-left: 4px solid var(--article-highlight);
   border-radius: 0 10px 10px 0;
-  font-style: italic;
+  background: #f8f8f8;
   color: #333;
+  font-size: inherit;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.7;
+  text-align: left;
 }
 
-/* ==========================================
-   POST NAVIGATION
-   ========================================== */
+.article-layout .article-layout__body blockquote::before,
+.article-layout .article-layout__body blockquote::after,
+.article-layout .article-layout__body .wp-block-quote::before,
+.article-layout .article-layout__body .wp-block-quote::after {
+  content: none;
+  display: none;
+}
 
-.single-content .post-navigation {
+.article-layout .article-layout__body blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Post links reuse VVArrowButton; never restyle its two-glyph animation. */
+.article-layout__post-navigation {
   margin-top: 50px;
   padding-top: 25px;
   border-top: 1px solid #e2e2e2;
 }
 
-.single-content .post-navigation .nav-links {
+.article-layout__nav-links {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
 }
 
-.single-content .post-navigation .nav-previous,
-.single-content .post-navigation .nav-next {
+.article-layout__nav-item {
   min-width: 0;
 }
 
-.single-content .post-navigation .nav-next {
+.article-layout__nav-item--next {
+  grid-column: 2;
   text-align: right;
 }
 
-.single-content .post-navigation a {
+.article-layout__nav-label {
   display: block;
-  text-decoration: none;
-  color: var(--text, #111111);
-  transition: color 0.2s ease;
-}
-
-.single-content .post-navigation a:hover {
-  color: var(--highlight, #ed3136);
-}
-
-.single-content .post-navigation .reader-text {
-  display: block;
-  margin-bottom: 8px;
+  margin: 0 0 8px;
   color: #888;
   font-size: 12px;
   font-weight: 600;
+  line-height: 1.4;
   text-transform: uppercase;
   letter-spacing: 0.6px;
 }
 
-.single-content .post-navigation .nav-content .title {
+.article-layout__nav-button.vv-arrow-button {
+  display: inline-flex;
+  width: 100%;
+  text-align: left;
+  text-transform: none;
+}
+
+.article-layout__nav-button .vv-arrow-button__text {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: normal;
+}
+
+.article-layout__nav-title {
   display: block;
+  overflow-wrap: anywhere;
   font-size: 17px;
   font-weight: 600;
   line-height: 1.5;
 }
 
-/* ==========================================
-   SOCIAL SHARE
-   ========================================== */
-
-.single-post .spaciaz-social-share a {
-  color: var(--accent);
-  transition: color 0.2s ease;
+/* The previous arrow points left; the shared icon and hover animation stay intact. */
+.article-layout__nav-item--previous .vv-arrow-button__icon-clip {
+  transform: scaleX(-1);
 }
-
-.single-post .spaciaz-social-share a:hover {
-  color: var(--primary);
-}
-
-/* ==========================================
-   ADDITIONAL ORIGINAL STYLES
-   ========================================== */
-
-.single-post .single-content .entry-header-content {
-  margin-bottom: 32px;
-}
-
-.single-post .single-content .entry-title {
-  margin-bottom: 24px;
-}
-
-.single-post .hidden-spaciaz-title-single-yes .spaciaz-title {
-  display: none;
-}
-
-/* ==========================================
-   TABLET RESPONSIVE
-   ========================================== */
 
 @media (max-width: 768px) {
-  .site-content .single-content {
-    padding: 0;
-  }
-
-  .single-content .entry-header.header-post-thumbnail {
+  .article-layout__entry-header {
     margin-bottom: 24px;
   }
 
-  .single-content .entry-header .entry-title {
+  .article-layout .article-layout__title {
     font-size: 27px;
     line-height: 1.35;
     letter-spacing: -0.3px;
@@ -291,57 +404,61 @@
     padding-bottom: 18px;
   }
 
-  .single-content .entry-meta {
+  .article-layout__meta {
     margin-bottom: 16px;
   }
 
-  .single-content .post-thumbnail {
+  .article-layout__featured {
     margin-bottom: 28px;
     border-radius: 12px;
   }
 
-  .single-content .post-thumbnail img {
-    border-radius: 12px;
-  }
-
-  .single-content .entry-content {
+  .article-layout .article-layout__body {
     font-size: 15px;
     line-height: 1.8;
   }
 
-  .single-content .entry-content h2 {
+  .article-layout__body h2 {
     font-size: 25px;
     margin: 30px 0 14px;
   }
 
-  .single-content .entry-content h3 {
+  .article-layout__body h3 {
     font-size: 21px;
     margin: 24px 0 12px;
   }
 
-  .single-content .post-navigation {
+  .article-layout__post-navigation {
     margin-top: 35px;
   }
 
-  .single-content .post-navigation .nav-content .title {
+  .article-layout__nav-title {
     font-size: 15px;
   }
 }
 
-/* ==========================================
-   MOBILE RESPONSIVE
-   ========================================== */
-
-@media (max-width: 480px) {
-  .site-content .single-content {
-    padding: 0;
+@media (max-width: 767px) {
+  .article-layout__hero-inner {
+    padding: 0 15px 30px;
   }
 
-  .single-content .entry-header.header-post-thumbnail {
+  .article-layout__hero-round-edge {
+    height: 30px;
+    flex-basis: 30px;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .article-layout__breadcrumb-item--current {
+    max-width: min(100%, 230px);
+  }
+}
+
+@media (max-width: 480px) {
+  .article-layout__entry-header {
     margin-bottom: 20px;
   }
 
-  .single-content .entry-header .entry-title {
+  .article-layout .article-layout__title {
     font-size: 24px;
     line-height: 1.4;
     letter-spacing: -0.2px;
@@ -349,69 +466,76 @@
     padding-bottom: 16px;
   }
 
-  .single-content .entry-header .entry-title::after {
+  .article-layout__title::after {
     width: 45px;
-    height: 3px;
   }
 
-  .single-content .entry-meta {
+  .article-layout__meta {
     margin-bottom: 14px;
   }
 
-  .single-content .posted-on,
-  .single-content .posted-on a,
-  .single-content .posted-on time {
+  .article-layout__date,
+  .article-layout__date a,
+  .article-layout__date time {
     font-size: 12px;
   }
 
-  .single-content .post-thumbnail {
+  .article-layout__featured {
     margin-bottom: 24px;
     border-radius: 10px;
   }
 
-  .single-content .post-thumbnail img {
-    border-radius: 10px;
-  }
-
-  .single-content .entry-content {
+  .article-layout .article-layout__body {
     margin-top: 18px;
     font-size: 15px;
     line-height: 1.75;
   }
 
-  .single-content .entry-content p {
+  .article-layout__body p {
     margin-bottom: 16px;
   }
 
-  .single-content .entry-content h2 {
+  .article-layout__body h2 {
     font-size: 22px;
     margin: 26px 0 12px;
   }
 
-  .single-content .entry-content h3 {
+  .article-layout__body h3 {
     font-size: 19px;
     margin: 22px 0 10px;
   }
 
-  .single-content .entry-content h4 {
+  .article-layout__body h4 {
     font-size: 17px;
   }
 
-  .single-content .entry-content blockquote {
-    padding: 15px 18px;
+  .article-layout .article-layout__body blockquote {
     margin: 22px 0;
+    padding: 15px 18px;
   }
 
-  .single-content .post-navigation .nav-links {
-    grid-template-columns: 1fr;
+  .article-layout__nav-links {
+    grid-template-columns: minmax(0, 1fr);
     gap: 24px;
   }
 
-  .single-content .post-navigation .nav-next {
+  .article-layout__nav-placeholder {
+    display: none;
+  }
+
+  .article-layout__nav-item--next {
+    grid-column: 1;
     text-align: left;
   }
 
-  .single-content .post-navigation .nav-content .title {
+  .article-layout__nav-title {
     font-size: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .article-layout__breadcrumbs a,
+  .article-layout__body a {
+    transition: none;
   }
 }

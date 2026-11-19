@@ -1,77 +1,106 @@
-import './FaqAccordion.css';
-import { faqs } from '@/data/faqs';
+'use client';
 
+import { useRef, useState } from 'react';
+import { faqs } from '@/data/faqs';
+import './FaqAccordion.css';
+
+/**
+ * Accessible FAQ accordion: first answer open; only one answer open at once.
+ * The original Elementor page used 400ms transitions and custom keyboard rules.
+ */
 export default function FaqAccordion() {
+  const [openIndex, setOpenIndex] = useState(0);
+  const triggerRefs = useRef([]);
+
+  const handleKeyDown = (event, index) => {
+    let next = null;
+
+    switch (event.key) {
+      case 'ArrowDown':
+        next = (index + 1) % faqs.length;
+        break;
+      case 'ArrowUp':
+        next = (index - 1 + faqs.length) % faqs.length;
+        break;
+      case 'Home':
+        next = 0;
+        break;
+      case 'End':
+        next = faqs.length - 1;
+        break;
+      case 'Escape':
+        if (openIndex !== null) {
+          event.preventDefault();
+          setOpenIndex(null);
+        }
+        return;
+      default:
+        return;
+    }
+
+    event.preventDefault();
+    triggerRefs.current[next]?.focus();
+  };
+
   return (
-    <div
-      className="elementor-element elementor-element-062102f elementor-widget__width-inherit animated-fast elementor-invisible elementor-widget elementor-widget-n-accordion"
-      data-id="062102f"
-      data-element_type="widget"
-      data-settings='{"_animation":"opal-move-up","default_state":"expanded","max_items_expended":"one","n_accordion_animation_duration":{"unit":"ms","size":400,"sizes":[]}}'
-      data-widget_type="nested-accordion.default"
-    >
-      <div className="elementor-widget-container">
-        <div
-          className="e-n-accordion"
-          aria-label="Accordion. Open links with Enter or Space, close with Escape, and navigate with Arrow Keys"
-        >
-          {faqs.map((faq, index) => (
-            <details
-              key={faq.id}
-              id={faq.id}
-              className="e-n-accordion-item"
-              open={index === 0}
+    <section className="vv-faq-accordion" aria-labelledby="vv-faqs-heading">
+      <div className="vv-faq-accordion__list">
+        {faqs.map((faq, index) => {
+          const expanded = index === openIndex;
+          const triggerId = `vv-faq-${index}-trigger`;
+          const panelId = `vv-faq-${index}-panel`;
+
+          return (
+            <article
+              key={faq.id ?? index}
+              className={`vv-faq-accordion__item${expanded ? ' vv-faq-accordion__item--open' : ''}`}
             >
-              <summary
-                className="e-n-accordion-item-title"
-                data-accordion-index={faq.index}
-                tabIndex={index === 0 ? 0 : -1}
-                aria-expanded={index === 0 ? 'true' : 'false'}
-                aria-controls={faq.id}
-              >
-                <span className="e-n-accordion-item-title-header">
-                  {/* <span className="faq-question-badge" aria-hidden="true">?</span> */}
-                  <h6 className="e-n-accordion-item-title-text">{faq.question}</h6>
-                </span>
-                <span className="e-n-accordion-item-title-icon" aria-hidden="true">
-                  <svg
-                    className="faq-toggle-chevron"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <polyline points="6 9 12 15 18 9" />
-                  </svg>
-                </span>
-              </summary>
-              <div
-                role="region"
-                aria-labelledby={faq.id}
-                className="elementor-element elementor-element-8af5d05 e-con-full e-flex e-con e-child"
-                data-id="8af5d05"
-                data-element_type="container"
-              >
-                <div
-                  className="elementor-element elementor-element-bd48e85 elementor-widget__width-initial elementor-widget elementor-widget-text-editor"
-                  data-id="bd48e85"
-                  data-element_type="widget"
-                  data-widget_type="text-editor.default"
+              <h3 className="vv-faq-accordion__heading">
+                <button
+                  ref={(node) => { triggerRefs.current[index] = node; }}
+                  id={triggerId}
+                  type="button"
+                  className="vv-faq-accordion__trigger"
+                  aria-expanded={expanded}
+                  aria-controls={panelId}
+                  onClick={() => setOpenIndex(expanded ? null : index)}
+                  onKeyDown={(event) => handleKeyDown(event, index)}
                 >
-                  <div className="elementor-widget-container">
-                    <p>{faq.answer}</p>
-                  </div>
+                  <span className="vv-faq-accordion__question">{faq.question}</span>
+                  <span className="vv-faq-accordion__toggle" aria-hidden="true">
+                    <svg
+                      className="vv-faq-accordion__chevron"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </span>
+                </button>
+              </h3>
+
+              <div
+                id={panelId}
+                className="vv-faq-accordion__panel"
+                role="region"
+                aria-labelledby={triggerId}
+                aria-hidden={!expanded}
+                inert={!expanded}
+              >
+                <div className="vv-faq-accordion__panel-inner">
+                  <p className="vv-faq-accordion__answer">{faq.answer}</p>
                 </div>
               </div>
-            </details>
-          ))}
-        </div>
+            </article>
+          );
+        })}
       </div>
-    </div>
+    </section>
   );
 }
-

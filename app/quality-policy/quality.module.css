@@ -3,8 +3,8 @@
    headings inherit the theme's "Involve" font, body text "Switzer". */
 
 /* Banner: the shared Breadcrumb hero, with its own photo. */
-.banner :global(.breadcrumb-wrap) {
-  background-image: url('/core-value.webp');
+.banner :global(.vv-breadcrumb-banner) {
+  background-image: url('/core-v.webp');
 }
 
 .page {

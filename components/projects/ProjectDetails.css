@@ -1,12 +1,36 @@
-.single-projects-header .project-location {
-  margin-bottom: 20px;
+.vv-model-details__main {
+  box-sizing: border-box;
+  width: min(1600px, 100%);
+  padding: 30px 30px 110px;
+  margin: 0 auto;
 }
-.single-projects-header .project-location a {
+.vv-model-details__heading,
+.vv-model-details__content { width: 100%; min-width: 0; }
+.vv-model-details__heading { margin: 0 0 38px; }
+.vv-model-details__location {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 20px;
+}
+.vv-model-details__location i { font-size: 24px; color: var(--primary, #08aaec); }
+.vv-model-details__location a {
+  color: var(--accent, #011c5b);
   font-size: 16px;
   font-weight: 600;
+  text-decoration: none;
 }
-.single-projects-header .project-location i {
-  color: var(--primary);
-  padding-right: 10px;
-  font-size: 24px;
+.vv-model-details__location a:hover { color: var(--primary, #08aaec); }
+.vv-model-details__title {
+  margin: 0;
+  font-family: var(--e-global-typography-accent-font-family, 'Involve', sans-serif);
+  font-size: clamp(36px, 4.6vw, 68px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -.03em;
+  color: var(--accent, #011c5b);
+}
+@media (max-width: 767px) {
+  .vv-model-details__main { padding: 20px 15px 70px; }
+  .vv-model-details__heading { margin-bottom: 26px; }
 }

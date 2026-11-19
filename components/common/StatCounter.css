@@ -1,54 +1,66 @@
-/* Widget Counter */
-.elementor-counter {
-    align-items: stretch;
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: center
+/* StatCounter.css
+ * Shared counter widget CSS moved from the global .elementor-counter rules.
+ * About-specific typography and alignment are in AboutStats.css.
+ */
+
+.stat-counter,
+.stat-counter * {
+  box-sizing: border-box;
 }
 
-.elementor-counter .elementor-counter-number {
-    flex-grow: var(--counter-number-grow, 0)
-}
-
-.elementor-counter .elementor-counter-number-wrapper {
-    display: flex;
-    flex: 1;
-    font-size: 69px;
-    font-weight: 600;
-    line-height: 1;
-    text-align: center
-}
-
-.elementor-counter .elementor-counter-number-prefix {
-    flex-grow: var(--counter-prefix-grow, 1);
-    text-align: end;
-    white-space: pre-wrap
-}
-
-.elementor-counter .elementor-counter-number-suffix {
-    flex-grow: var(--counter-suffix-grow, 1);
-    text-align: start;
-    white-space: pre-wrap
-}
-
-.elementor-counter .elementor-counter-title {
-    align-items: center;
-    display: flex;
-    flex: 1;
-    font-size: 19px;
-    font-weight: 400;
-    justify-content: center;
-    line-height: 2.5;
-    margin: 0;
-    padding: 0
-}
-
-.elementor-counter .elementor-counter-number-wrapper {
+.stat-counter {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: stretch;
   justify-content: center;
+  width: 100%;
+  min-width: 0;
 }
-.elementor-counter .elementor-counter-number-wrapper .elementor-counter-number-prefix, .elementor-counter .elementor-counter-number-wrapper .elementor-counter-number-suffix {
+
+.stat-counter__number-wrapper {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  min-width: 0;
+  color: inherit;
+  font-size: 69px;
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+}
+
+.stat-counter__number {
+  flex-grow: var(--counter-number-grow, 0);
+}
+
+.stat-counter__prefix,
+.stat-counter__suffix {
   flex-grow: 0;
+  white-space: pre-wrap;
 }
-.elementor-counter .elementor-counter-number-wrapper .elementor-counter-number-prefix sup, .elementor-counter .elementor-counter-number-wrapper .elementor-counter-number-suffix sup {
+
+.stat-counter__prefix {
+  text-align: end;
+}
+
+.stat-counter__suffix {
+  text-align: start;
+}
+
+.stat-counter__prefix sup,
+.stat-counter__suffix sup {
+  position: relative;
   top: -0.5em;
+}
+
+.stat-counter__title {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 2.5;
 }

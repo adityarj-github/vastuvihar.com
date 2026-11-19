@@ -1,0 +1,119 @@
+/* Reusable, isolated version of AboutHeader's original outlined Spaciaz CTA. */
+.vv-arrow-button {
+  --vv-arrow-primary: var(--e-global-color-primary, #08aaec);
+  --vv-arrow-accent: #011C5B;
+  --vv-arrow-border: var(--e-global-color-border, #e0e0e0);
+  box-sizing: border-box;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 60px;
+  padding: 5px 5px 5px 30px;
+  border: 1px solid var(--vv-arrow-border);
+  border-radius: 30px;
+  background: transparent;
+  color: var(--vv-arrow-accent);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 24px;
+  text-decoration: none;
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.vv-arrow-button__text {
+  color: inherit;
+}
+
+.vv-arrow-button__icon {
+  display: flex;
+  flex: 0 0 50px;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--vv-arrow-primary);
+  color: var(--vv-arrow-accent);
+}
+
+.vv-arrow-button__icon-clip {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  overflow: hidden;
+}
+
+.vv-arrow-button__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  font-size: 13px;
+  transform: translate3d(0, 0, 0) scale3d(1, 1, 1) rotate(-45deg);
+  transform-style: preserve-3d;
+  transition: transform 0.35s linear;
+}
+
+.vv-arrow-button__arrow--hover {
+  position: absolute;
+  transform: translate3d(-17px, 17px, 0) scale3d(0.2, 0.2, 1) rotate(-45deg);
+}
+
+.vv-arrow-button:hover,
+.vv-arrow-button:focus-visible {
+  border-color: var(--vv-arrow-accent);
+  background: var(--vv-arrow-accent);
+  color: #fff;
+  text-decoration: none;
+}
+
+.vv-arrow-button:hover .vv-arrow-button__arrow:not(.vv-arrow-button__arrow--hover),
+.vv-arrow-button:focus-visible .vv-arrow-button__arrow:not(.vv-arrow-button__arrow--hover) {
+  transform: translate3d(17px, -17px, 0) scale3d(0.2, 0.2, 1) rotate(-45deg);
+}
+
+.vv-arrow-button:hover .vv-arrow-button__arrow--hover,
+.vv-arrow-button:focus-visible .vv-arrow-button__arrow--hover {
+  transform: translate3d(0, 0, 0) scale3d(1, 1, 1) rotate(-45deg);
+}
+
+.vv-arrow-button:focus-visible {
+  outline: 2px solid var(--vv-arrow-primary);
+  outline-offset: 3px;
+}
+
+.vv-arrow-button--icon-only {
+  justify-content: center;
+  min-width: 60px;
+  width: 60px;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.vv-arrow-button:disabled,
+.vv-arrow-button--disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.vv-arrow-button:disabled:hover,
+.vv-arrow-button--disabled:hover {
+  color: var(--vv-arrow-accent);
+  background: transparent;
+  border-color: var(--vv-arrow-border);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vv-arrow-button,
+  .vv-arrow-button__arrow {
+    transition: none;
+  }
+}

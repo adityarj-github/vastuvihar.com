@@ -1,54 +1,42 @@
+import VVArrowButton from '@/components/common/VVArrowButton';
 import './CareersSection.css';
-import Link from 'next/link';
 
 export default function CareersSection() {
   return (
     <div
-      className="elementor-element elementor-element-1659d28 e-flex e-con-boxed e-con e-parent"
-      data-id="1659d28"
-      data-element_type="container"
-      data-settings={'{"background_background":"classic"}'}
+      className="vv-block vv-home-careers__careers vv-flex vv-boxed vv-con vv-parent"
+
     >
-      <div className="e-con-inner">
+      <div className="vv-inner">
         <div
-          className="elementor-element elementor-element-8f3e9a0 animated-fast elementor-invisible elementor-widget elementor-widget-heading"
-          data-id="8f3e9a0"
-          data-element_type="widget"
-          data-settings={'{"_animation":"opal-move-up"}'}
-          data-widget_type="heading.default"
+          className="vv-block vv-home-careers__lead-title animated-fast vv-reveal vv-widget vv-heading-widget"
+
+
         >
-          <div className="elementor-widget-container">
-            <h2 className="elementor-heading-title elementor-size-default">Make your next</h2>{' '}
+          <div className="vv-widget-inner">
+            <h2 className="vv-heading vv-text-default">Make your next</h2>{' '}
           </div>
         </div>
         <div
-          className="elementor-element elementor-element-a1ce5d1 e-con-full animated-fast e-flex elementor-invisible e-con e-child"
-          data-id="a1ce5d1"
-          data-element_type="container"
-          data-settings={'{"animation":"opal-move-up"}'}
+          className="vv-block vv-home-careers__main-line vv-full animated-fast vv-flex vv-reveal vv-con vv-child"
+
         >
           <div
-            className="elementor-element elementor-element-6eb9c40 elementor-widget elementor-widget-heading"
-            data-id="6eb9c40"
-            data-element_type="widget"
-            data-widget_type="heading.default"
+            className="vv-block vv-home-careers__career-word vv-widget vv-heading-widget"
+
           >
-            <div className="elementor-widget-container">
-              <h2 className="elementor-heading-title elementor-size-default">career </h2>{' '}
+            <div className="vv-widget-inner">
+              <h2 className="vv-heading vv-text-default">career </h2>{' '}
             </div>
           </div>
           <div
-            className="elementor-element elementor-element-0635422 e-con-full e-flex e-con e-child"
-            data-id="0635422"
-            data-element_type="container"
+            className="vv-block vv-home-careers__team vv-full vv-flex vv-con vv-child"
           >
             <div
-              className="elementor-element elementor-element-b4d2ae9 elementor-widget elementor-widget-image"
-              data-id="b4d2ae9"
-              data-element_type="widget"
-              data-widget_type="image.default"
+              className="vv-block vv-home-careers__portrait-one vv-widget vv-image-widget"
+
             >
-              <div className="elementor-widget-container">
+              <div className="vv-widget-inner">
                 <img
                   loading="lazy"
                   decoding="async"
@@ -61,12 +49,10 @@ export default function CareersSection() {
               </div>
             </div>
             <div
-              className="elementor-element elementor-element-7685f0a elementor-widget elementor-widget-image"
-              data-id="7685f0a"
-              data-element_type="widget"
-              data-widget_type="image.default"
+              className="vv-block vv-home-careers__portrait-two vv-widget vv-image-widget"
+
             >
-              <div className="elementor-widget-container">
+              <div className="vv-widget-inner">
                 <img
                   loading="lazy"
                   decoding="async"
@@ -79,12 +65,10 @@ export default function CareersSection() {
               </div>
             </div>
             <div
-              className="elementor-element elementor-element-d90fca2 elementor-widget elementor-widget-image"
-              data-id="d90fca2"
-              data-element_type="widget"
-              data-widget_type="image.default"
+              className="vv-block vv-home-careers__portrait-three vv-widget vv-image-widget"
+
             >
-              <div className="elementor-widget-container">
+              <div className="vv-widget-inner">
                 <img
                   loading="lazy"
                   decoding="async"
@@ -97,14 +81,12 @@ export default function CareersSection() {
               </div>
             </div>
             <div
-              className="elementor-element elementor-element-ed9c45f elementor-view-stacked elementor-shape-circle elementor-widget elementor-widget-icon"
-              data-id="ed9c45f"
-              data-element_type="widget"
-              data-widget_type="icon.default"
+              className="vv-block vv-home-careers__team-plus vv-icon-stacked vv-icon-circle vv-widget vv-icon-widget"
+
             >
-              <div className="elementor-widget-container">
-                <div className="elementor-icon-wrapper">
-                  <div className="elementor-icon">
+              <div className="vv-widget-inner">
+                <div className="vv-icon-wrapper">
+                  <div className="vv-icon">
                     <i aria-hidden="true" className="spaciaz-icon- spaciaz-icon-plus"></i>{' '}
                   </div>
                 </div>
@@ -112,69 +94,34 @@ export default function CareersSection() {
             </div>
           </div>
           <div
-            className="elementor-element elementor-element-0fb0e07 elementor-widget elementor-widget-heading"
-            data-id="0fb0e07"
-            data-element_type="widget"
-            data-widget_type="heading.default"
+            className="vv-block vv-home-careers__move-word vv-widget vv-heading-widget"
+
           >
-            <div className="elementor-widget-container">
-              <h2 className="elementor-heading-title elementor-size-default">move</h2>{' '}
+            <div className="vv-widget-inner">
+              <h2 className="vv-heading vv-text-default">move</h2>{' '}
             </div>
           </div>
         </div>
         <div
-          className="elementor-element elementor-element-991911a e-con-full e-flex e-con e-child"
-          data-id="991911a"
-          data-element_type="container"
+          className="vv-block vv-home-careers__bottom-row vv-full vv-flex vv-con vv-child"
         >
           <div
-            className="elementor-element elementor-element-dd790e5 elementor-widget-mobile_extra__width-initial elementor-widget-mobile__width-inherit elementor-invisible elementor-widget elementor-widget-text-editor"
-            data-id="dd790e5"
-            data-element_type="widget"
-            data-settings={'{"_animation":"opal-move-left"}'}
-            data-widget_type="text-editor.default"
+            className="vv-block vv-home-careers__description vv-widget-mobile-extra--width-initial vv-widget-mobile--width-inherit vv-reveal vv-widget vv-copy-widget"
+
+
           >
-            <div className="elementor-widget-container">
+            <div className="vv-widget-inner">
               Shape your future with us, building careers, developing communities.{' '}
             </div>
           </div>
           <div
-            className="elementor-element elementor-element-d700979 enable-style-icon-yes animated-fast elementor-button-default icon-spaciaz-right elementor-invisible elementor-widget elementor-widget-spaciaz-button"
-            data-id="d700979"
-            data-element_type="widget"
-            data-settings={'{"_animation":"opal-move-right"}'}
-            data-widget_type="spaciaz-button.default"
+            className="vv-block vv-home-careers__cta enable-style-icon-yes animated-fast vv-button-default icon-spaciaz-right vv-reveal vv-widget vv-arrow-widget"
+
+
           >
-            <div className="elementor-widget-container">
-              <div className="elementor-button-wrapper">
-                <Link
-                  href="/careers/"
-                  className="elementor-button-link elementor-button elementor-size-sm"
-                  role="button"
-                  prefetch={false}
-                >
-                  <span className="elementor-button-content-wrapper">
-                    <span className="elementor-button-icon">
-                      <span className="btn-icon-wrap">
-                        <span className="btn-icon">
-                          <i
-                            aria-hidden="true"
-                            className="spaciaz-icon- spaciaz-icon-arrow-long-right"
-                          ></i>{' '}
-                        </span>
-                        <span className="btn-icon-hover">
-                          <i
-                            aria-hidden="true"
-                            className="spaciaz-icon- spaciaz-icon-arrow-long-right"
-                          ></i>{' '}
-                        </span>
-                      </span>
-                    </span>
-                    <span className="elementor-button-text" data-name="join our team">
-                      <span>join our team</span>
-                    </span>
-                  </span>
-                </Link>
+            <div className="vv-widget-inner">
+              <div className="vv-button-wrap">
+                <VVArrowButton href="/careers/" label="Join our team" className="vv-home-page__careers-cta" />
               </div>
             </div>
           </div>

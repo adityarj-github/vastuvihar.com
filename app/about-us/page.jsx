@@ -1,11 +1,12 @@
-import Breadcrumb from '@/components/Breadcrumb';
 import PageLayout from '@/components/PageLayout';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
+
 import AboutHeader from '@/components/about/AboutHeader';
 import AboutStats from '@/components/about/AboutStats';
 import AboutMilestones from '@/components/about/AboutMilestones';
 import AboutLeadership from '@/components/about/AboutLeadership';
 import AboutTestimonials from '@/components/about/AboutTestimonials';
+
 import { createPageMetadata } from '@/lib/metadata';
 
 export const metadata = createPageMetadata({
@@ -18,12 +19,15 @@ export const metadata = createPageMetadata({
 export default function AboutUsPage() {
   return (
     <PageLayout route="about-us">
-      {/* <Breadcrumb title="About us" /> */}
-      <div id="content" className="site-content-page clear" tabIndex="-1">
+      <div
+        id="content"
+        className="site-content-page clear"
+        tabIndex={-1}
+      >
         <div className="col-fluid">
           <div id="primary" className="content-area">
             <main id="main" className="site-main">
-              <div data-elementor-type="wp-page" data-elementor-id="49" className="elementor elementor-49">
+              <div className="about-page">
                 <AboutHeader />
                 <AboutStats />
                 <AboutMilestones />
@@ -34,7 +38,10 @@ export default function AboutUsPage() {
           </div>
         </div>
       </div>
-      <BreadcrumbJsonLd items={[{ name: 'About Us' }]} />
+
+      <BreadcrumbJsonLd
+        items={[{ name: 'About Us' }]}
+      />
     </PageLayout>
   );
 }

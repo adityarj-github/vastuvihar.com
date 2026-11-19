@@ -10,11 +10,11 @@
 
 .hero {
     position: relative;
-    min-height: 480px; 
+    min-height: 480px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; 
-    background: linear-gradient(rgb(0 0 0/48%), rgb(0 0 0/48%)), url('/images/about-bc.webp') center/cover no-repeat
+    justify-content: flex-end;
+    background: linear-gradient(rgb(0 0 0/48%), rgb(0 0 0/48%)), url('/price-list.webp') center/cover no-repeat
 }
 
 .heroInner {
@@ -46,7 +46,7 @@
     margin: 0;
     color: #fff;
     /* Scaled down heading size */
-    font-size: clamp(40px, 5vw, 72px); 
+    font-size: clamp(40px, 5vw, 72px);
     font-weight: 700;
     line-height: 1.05;
     letter-spacing: -.03em
@@ -280,7 +280,8 @@
 .scheduleCard h3 {
     max-width: 80%;
     margin: 0 0 24px;
-    font-size: 22px; /* Scaled down */
+    font-size: 22px;
+    /* Scaled down */
     line-height: 1.25;
     letter-spacing: -.02em
 }
@@ -322,7 +323,7 @@
     padding: 52px;
     border-radius: 30px;
     color: #fff;
-    background: #0588bc; 
+    background: #0588bc;
 }
 
 .notesGrid .kicker {
@@ -415,6 +416,7 @@
 }
 
 @media(max-width:767px) {
+
     .container,
     .heroInner {
         width: min(100% - 30px, 1730px)
@@ -426,7 +428,8 @@
 
     .hero h1 {
         margin: 12px 0 16px;
-        font-size: 36px /* Scaled down for mobile */
+        font-size: 36px
+            /* Scaled down for mobile */
     }
 
     .heroBottom {
@@ -472,7 +475,8 @@
     .sectionTitleRow h2,
     .notesGrid h2,
     .footerCta h2 {
-        font-size: 28px /* Scaled down for mobile */
+        font-size: 28px
+            /* Scaled down for mobile */
     }
 
     .scheduleCard,
@@ -485,4 +489,8 @@
     .footerCta {
         margin-bottom: 70px
     }
+}
+
+.headPrice {
+    color: black !important;
 }

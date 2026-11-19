@@ -1,5 +1,4 @@
-import '@/styles/globals.css';
-import Script from 'next/script';
+import './globals.css';
 import { site } from '@/data/site';
 import CookieConsent from '@/components/CookieConsent/CookieConsent';
 import NavigationShell from '@/components/NavigationShell/NavigationShell';
@@ -31,7 +30,7 @@ const siteJsonLd = {
         addressCountry: 'IN',
       },
       sameAs: [
-        'https://www.facebook.com/vastu-vihar',
+        'https://www.facebook.com/VastuViharOfficial',
         'https://www.instagram.com/vastuvihar_official',
         'https://www.youtube.com/@vastu_vihar',
         'https://in.linkedin.com/company/vastu-vihar-technoculture-building-centre-pvt-ltd',

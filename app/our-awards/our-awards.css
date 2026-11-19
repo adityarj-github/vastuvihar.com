@@ -1,0 +1,13 @@
+/* Awards route: page-scoped foundations only. No Elementor selectors. */
+.vv-awards-page {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  background: #fff;
+}
+
+.vv-awards-page *,
+.vv-awards-page *::before,
+.vv-awards-page *::after {
+  box-sizing: border-box;
+}

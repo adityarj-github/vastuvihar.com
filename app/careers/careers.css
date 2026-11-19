@@ -1,0 +1,50 @@
+/* Careers page layout: this file lives beside app/careers/page.jsx.
+   Do not import styles/pages/careers.css or rely on Elementor layout variables. */
+.vv-careers-page {
+  width: 100%;
+  min-width: 0;
+}
+
+.vv-careers-page__content {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: calc(var(--container, 1320px) + 24px);
+  margin: 135px auto 100px;
+  padding-inline: 30px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  align-items: start;
+  gap: 30px;
+}
+
+.vv-careers-page__content > * {
+  min-width: 0;
+}
+
+@media (max-width: 1200px) {
+  .vv-careers-page__content {
+    margin-top: 110px;
+    margin-bottom: 50px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .vv-careers-page__content {
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 90px;
+    margin-bottom: 30px;
+  }
+
+  /* Match the original tablet ordering: job list before the opportunity card. */
+  .vv-careers-page__content > .vv-careers-showcase {
+    order: -1;
+  }
+}
+
+@media (max-width: 767px) {
+  .vv-careers-page__content {
+    margin-top: 60px;
+    padding-inline: 15px;
+    gap: 30px;
+  }
+}

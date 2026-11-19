@@ -1,0 +1,134 @@
+/* Original /blog Elementor banner re-expressed as stand-alone CSS. */
+.vv-blog-hero {
+  --vv-blog-brand: var(--e-global-color-primary, #08aaec);
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: url('/blog-hero.webp') center bottom / cover no-repeat;
+}
+
+.vv-blog-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+.vv-blog-hero__content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1730px;
+  min-width: 0;
+  margin-inline: auto;
+  padding: 175px 30px 40px;
+}
+
+.vv-blog-hero__title {
+  margin-top: 100px;
+  font-family: var(--e-global-typography-accent-font-family, inherit);
+  font-size: 70px;
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -2px;
+  text-transform: none;
+  color: #fff;
+}
+
+.vv-blog-hero__breadcrumbs {
+  width: 100%;
+}
+
+.vv-blog-hero__breadcrumb-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.vv-blog-hero__breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.vv-blog-hero__breadcrumb-list a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.vv-blog-hero__breadcrumb-list a:hover,
+.vv-blog-hero__breadcrumb-list a:focus-visible {
+  color: var(--vv-blog-brand);
+}
+
+.vv-blog-hero__breadcrumb-list a:focus-visible {
+  outline: 2px solid var(--vv-blog-brand);
+  outline-offset: 3px;
+}
+
+.vv-blog-hero__separator {
+  display: inline-block;
+  flex: 0 0 2px;
+  width: 2px;
+  height: 2px;
+  background: currentColor;
+}
+
+.vv-blog-hero__round-edge {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 50px;
+  flex: 0 0 50px;
+  background: var(--e-global-color-background, #fff);
+  border-radius: 50px 50px 0 0;
+}
+
+@media (max-width: 1200px) {
+  .vv-blog-hero__title {
+    font-size: 64px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .vv-blog-hero__title {
+    font-size: 56px;
+  }
+}
+
+@media (max-width: 767px) {
+  .vv-blog-hero__content {
+    padding: 120px 15px 30px;
+  }
+
+  .vv-blog-hero__title {
+    font-size: 42px;
+    letter-spacing: -1px;
+  }
+
+  .vv-blog-hero__round-edge {
+    height: 30px;
+    flex-basis: 30px;
+    border-radius: 20px 20px 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vv-blog-hero__breadcrumb-list a {
+    transition: none;
+  }
+}

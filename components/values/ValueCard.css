@@ -1,29 +1,193 @@
-/* Card look and hover come from the homepage iconbox in home/StatsSection.css.
-   These rules only fit it to the narrower four-column grid on this page. */
-
-.elementor-51 .value-card {
+/* Isolated reproduction of the original homepage iconbox: circular color
+   reveal, numbered top-left corner, SVG replacing the number on hover. */
+.vv-value-card {
+  --vv-card-icon: 50px;
+  --vv-card-cutout: 60px;
+  --vv-card-blue: var(--e-global-color-primary, #08aaec);
+  position: relative;
+  display: flex;
+  flex-direction: column;
   min-width: 0;
-}
-
-/* Keep every card in a row the same height. */
-.elementor-51 .value-card .iconbox-wrapper {
   height: 100%;
+  border-radius: 0 30px 30px;
+  overflow: hidden;
+  isolation: isolate;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity .6s ease, transform .6s ease;
+  transition-delay: var(--vv-value-card-delay, 0ms);
 }
 
-.elementor-51 .value-card .iconbox-content {
-  flex: 1;
+.vv-value-card--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.vv-value-card::before {
+  content: attr(data-count) '.';
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--vv-card-icon);
+  height: var(--vv-card-icon);
+  color: var(--e-global-color-accent, #011c5b);
+  font-family: var(--e-global-typography-accent-font-family, 'Involve', sans-serif);
+  font-size: 12px;
+  line-height: 1.2;
+  font-weight: 600;
+  transition: opacity .4s ease, transform .4s ease;
+}
+
+.vv-value-card::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: var(--vv-card-icon);
+  height: var(--vv-card-icon);
+  border-radius: 50%;
+  background: var(--vv-card-blue);
+  transform: scale3d(1, 1, 1);
+  transform-origin: center;
+  transition: transform .8s ease;
+  pointer-events: none;
+}
+
+.vv-value-card:hover::after { transform: scale3d(45, 45, 1); }
+.vv-value-card:hover::before { opacity: 0; transform: scale(.2); }
+
+.vv-value-card__icon {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--vv-card-icon);
+  height: var(--vv-card-icon);
+  border-radius: 50%;
+  background: var(--vv-card-blue);
+}
+
+.vv-value-card__icon svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+  fill: var(--e-global-color-accent, #011c5b);
+  opacity: 0;
+  transform: scale(.5);
+  transition: opacity .4s ease, transform .4s ease;
+}
+
+.vv-value-card:hover .vv-value-card__icon svg {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.vv-value-card__content {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 30px;
   min-height: 370px;
   padding: 80px 30px 40px;
+  border-radius: 30px;
+  background: #f5f5f5;
   text-align: left;
 }
 
-.elementor-51 .value-card .iconbox-icon svg {
-  height: 24px;
+.vv-value-card__cutout {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  width: var(--vv-card-cutout);
+  height: var(--vv-card-cutout);
+  border-bottom-right-radius: 30px;
+  background: #fff;
+  pointer-events: none;
 }
 
+.vv-value-card__cutout::before,
+.vv-value-card__cutout::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  clip-path: path('M0 0 Q0,30 30,30 L 0 30 Z');
+}
+
+.vv-value-card__cutout::before {
+  top: 100%;
+  left: 0;
+  transform: rotate(90deg);
+}
+
+.vv-value-card__cutout::after {
+  top: 0;
+  left: 100%;
+  transform: rotate(90deg);
+}
+
+.vv-value-card__title,
+.vv-value-card__description {
+  position: relative;
+  z-index: 3;
+  transition: color .35s ease;
+}
+
+.vv-value-card__title {
+  margin: 0;
+  color: var(--e-global-color-accent, #011c5b);
+  font-family: var(--e-global-typography-accent-font-family, 'Involve', sans-serif);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.23;
+  overflow-wrap: anywhere;
+}
+
+.vv-value-card__description {
+  color: var(--e-global-color-text, #4b4b4b);
+  font-family: var(--e-global-typography-text-font-family, 'Switzer', sans-serif);
+  font-size: 18px;
+  line-height: 1.4444444444;
+}
+
+.vv-value-card__description p {
+  margin: 0;
+  color: inherit;
+  font: inherit;
+}
+
+.vv-value-card:hover .vv-value-card__title,
+.vv-value-card:hover .vv-value-card__description { color: #fff; }
+
 @media (max-width: 1200px) {
-  .elementor-51 .value-card .iconbox-content {
+  .vv-value-card__content {
     min-height: 300px;
     padding: 80px 40px 40px;
   }
+}
+
+@media (max-width: 767px) {
+  .vv-value-card__content { padding: 80px 30px 40px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vv-value-card { opacity: 1; transform: none; }
+  .vv-value-card,
+  .vv-value-card::before,
+  .vv-value-card::after,
+  .vv-value-card__icon svg,
+  .vv-value-card__title,
+  .vv-value-card__description { transition: none; }
 }

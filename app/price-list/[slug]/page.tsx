@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import PageLayout from '@/components/PageLayout'; 
+import PageLayout from '@/components/PageLayout';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 import styles from './price-list-detail.module.css';
 import { priceLists } from '@/data/priceLists';
@@ -80,7 +80,7 @@ function DataTable({
       <div className={styles.sectionTitleRow}>
         <div>
           <span className={styles.kicker}>Unit options</span>
-          <h2>{title}</h2>
+          <h2 className={styles.headPrice}>{title}</h2>
         </div>
         <span>{items.length.toString().padStart(2, '0')} options</span>
       </div>
@@ -149,7 +149,7 @@ export default async function PriceListDetailPage({ params }: PageProps) {
             <div className={styles.projectIntroGrid}>
               <div>
                 <span className={styles.kicker}>Project price list</span>
-                <h2>Project information</h2>
+                <h2 className={styles.headPrice}>Project information</h2>
               </div>
 
               <div className={styles.contactGrid}>
@@ -175,7 +175,7 @@ export default async function PriceListDetailPage({ params }: PageProps) {
               <div className={styles.sectionTitleRow}>
                 <div>
                   <span className={styles.kicker}>Additional options</span>
-                  <h2>Parking</h2>
+                  <h2 className={styles.headPrice}>Parking</h2>
                 </div>
               </div>
               <div className={styles.tableShell}>
@@ -203,7 +203,7 @@ export default async function PriceListDetailPage({ params }: PageProps) {
             <div className={styles.sectionTitleRow}>
               <div>
                 <span className={styles.kicker}>Purchase process</span>
-                <h2>Payment schedule</h2>
+                <h2 className={styles.headPrice}>Payment schedule</h2>
               </div>
             </div>
 
@@ -230,7 +230,7 @@ export default async function PriceListDetailPage({ params }: PageProps) {
               <div className={styles.sectionTitleRow}>
                 <div>
                   <span className={styles.kicker}>Construction details</span>
-                  <h2>Specifications</h2>
+                  <h2 className={styles.headPrice}>Specifications</h2>
                 </div>
               </div>
 
@@ -258,7 +258,7 @@ export default async function PriceListDetailPage({ params }: PageProps) {
               <div className={styles.sectionTitleRow}>
                 <div>
                   <span className={styles.kicker}>Commercial units</span>
-                  <h2>Shop specifications</h2>
+                  <h2 className={styles.headPrice}>Shop specifications</h2>
                 </div>
               </div>
 

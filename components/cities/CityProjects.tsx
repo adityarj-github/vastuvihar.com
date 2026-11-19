@@ -206,7 +206,15 @@ export default function CityProjects({ city }: { city: CityData }) {
   const [hasChangedPhase, setHasChangedPhase] = useState(false);
   const [indicator, setIndicator] = useState({ x: 0, width: 0, ready: false });
   const [canScroll, setCanScroll] = useState({ left: false, right: false });
+  // The phase-tab strip has an intentionally hidden scrollbar. Track its actual
+  // overflow separately from the model carousel to expose desktop controls.
+  const [phaseScroll, setPhaseScroll] = useState({
+    overflow: false,
+    left: false,
+    right: false,
+  });
 
+  const phaseSticky = useRef<HTMLDivElement>(null);
   const phaseScroller = useRef<HTMLDivElement>(null);
   const phaseTrack = useRef<HTMLDivElement>(null);
   const phaseButtons = useRef<(HTMLButtonElement | null)[]>([]);
@@ -235,6 +243,54 @@ export default function CityProjects({ city }: { city: CityData }) {
     observer.observe(track);
     return () => observer.disconnect();
   }, [activeIndex, city.slug]);
+
+  const measurePhaseScroll = useCallback(() => {
+    const viewport = phaseScroller.current;
+    const track = phaseTrack.current;
+    const wrapper = phaseSticky.current;
+    if (!viewport || !track || !wrapper) return;
+
+    // Compare the tabs' intrinsic width against the full available width.
+    // This prevents a control-visibility loop when the arrows take up space.
+    const overflow = track.scrollWidth > wrapper.clientWidth + 2;
+    const left = overflow && viewport.scrollLeft > 2;
+    const right =
+      overflow &&
+      viewport.scrollLeft + viewport.clientWidth < viewport.scrollWidth - 2;
+
+    setPhaseScroll((previous) =>
+      previous.overflow === overflow &&
+      previous.left === left &&
+      previous.right === right
+        ? previous
+        : { overflow, left, right }
+    );
+  }, []);
+
+  useEffect(() => {
+    const viewport = phaseScroller.current;
+    const track = phaseTrack.current;
+    const wrapper = phaseSticky.current;
+    if (!viewport || !track || !wrapper) return;
+
+    measurePhaseScroll();
+    const observer = new ResizeObserver(measurePhaseScroll);
+    observer.observe(viewport);
+    observer.observe(track);
+    observer.observe(wrapper);
+    return () => observer.disconnect();
+  }, [city.slug, city.phases.length, measurePhaseScroll]);
+
+  const scrollPhaseTabs = (direction: -1 | 1) => {
+    const viewport = phaseScroller.current;
+    if (!viewport) return;
+
+    // Move approximately a screenful at a time, not the whole page or panel.
+    viewport.scrollBy({
+      left: direction * Math.max(140, Math.round(viewport.clientWidth * 0.75)),
+      behavior: 'smooth',
+    });
+  };
 
   const measureCarousel = useCallback(() => {
     const scroller = modelsScroller.current;
@@ -344,8 +400,13 @@ export default function CityProjects({ city }: { city: CityData }) {
         </div>
 
         {/* No background for inactive tabs; active background connects to panel. */}
-        <div className={styles.tabsSticky}>
-          <div className={styles.tabsViewport} ref={phaseScroller}>
+        <div className={styles.tabsSticky} ref={phaseSticky}>
+          <div
+            className={styles.tabsViewport}
+            ref={phaseScroller}
+            onScroll={measurePhaseScroll}
+            aria-label={`${city.name} phase tabs; scroll horizontally to see more`}
+          >
             <div
               className={styles.tabsTrack}
               ref={phaseTrack}
@@ -383,6 +444,35 @@ export default function CityProjects({ city }: { city: CityData }) {
               ))}
             </div>
           </div>
+
+          {phaseScroll.overflow && (
+            <div
+              className={styles.phaseNav}
+              role="group"
+              aria-label="Scroll project phase tabs"
+            >
+              <button
+                type="button"
+                className={styles.phaseNavButton}
+                aria-label="Scroll phases left"
+                title="Previous phases"
+                disabled={!phaseScroll.left}
+                onClick={() => scrollPhaseTabs(-1)}
+              >
+                <ArrowIcon left />
+              </button>
+              <button
+                type="button"
+                className={styles.phaseNavButton}
+                aria-label="Scroll phases right"
+                title="More phases"
+                disabled={!phaseScroll.right}
+                onClick={() => scrollPhaseTabs(1)}
+              >
+                <ArrowIcon />
+              </button>
+            </div>
+          )}
         </div>
 
         {/* The background remains fixed when changing phases. */}

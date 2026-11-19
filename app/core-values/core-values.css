@@ -1,0 +1,13 @@
+/* Scoped to the Core Values route. Shared PageLayout styles remain intact. */
+.vv-core-values-page {
+  min-width: 0;
+  width: 100%;
+  overflow-x: clip;
+  background: #fff;
+}
+
+.vv-core-values-page *,
+.vv-core-values-page *::before,
+.vv-core-values-page *::after {
+  box-sizing: border-box;
+}

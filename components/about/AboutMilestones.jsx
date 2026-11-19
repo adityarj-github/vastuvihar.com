@@ -36,14 +36,10 @@ export default function AboutMilestones() {
   const sliderRef = useRef(null);
 
   const scroll = (direction) => {
-    if (!sliderRef.current) return;
-
     const slider = sliderRef.current;
+    if (!slider) return;
 
-    const amount = Math.min(
-      slider.clientWidth * 0.85,
-      700
-    );
+    const amount = Math.min(slider.clientWidth * 0.85, 700);
 
     slider.scrollBy({
       left: direction === 'left' ? -amount : amount,
@@ -52,30 +48,22 @@ export default function AboutMilestones() {
   };
 
   return (
-    <section className="milestones">
-      <div className="milestones-container">
-        {/* Header */}
-        <div className="milestones-header">
-          <span className="milestones-label">
-            OUR STORY
-          </span>
-
-          <h2>32+ years of a remarkable journey</h2>
+    <section className="about-milestones">
+      <div className="about-milestones__container">
+        <div className="about-milestones__header">
+          <span className="about-milestones__label">OUR STORY</span>
+          <h2 className="about-milestones__heading">32+ years of a remarkable journey</h2>
         </div>
 
-        {/* Slider */}
-        <div className="milestones-slider-wrapper">
-          {/* Left Button */}
+        <div className="about-milestones__slider-wrapper">
           <button
             type="button"
-            className="milestones-arrow milestones-arrow-left"
+            className="about-milestones__arrow about-milestones__arrow--left"
             onClick={() => scroll('left')}
             aria-label="Previous milestones"
+            aria-controls="about-milestones-slider"
           >
-            <svg
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
               <path
                 d="M15 18l-6-6 6-6"
                 fill="none"
@@ -87,19 +75,16 @@ export default function AboutMilestones() {
             </svg>
           </button>
 
-          {/* Scrollable Area */}
           <div
+            id="about-milestones-slider"
             ref={sliderRef}
-            className="milestones-slider"
+            className="about-milestones__slider"
           >
             {milestones.map((milestone) => (
-              <article
-                className="milestone-card"
-                key={milestone.year}
-              >
-                <h3>{milestone.year}</h3>
+              <article className="about-milestones__card" key={milestone.year}>
+                <h3 className="about-milestones__year">{milestone.year}</h3>
 
-                <div className="milestone-image">
+                <div className="about-milestones__image">
                   <img
                     src={milestone.image}
                     alt={`Vastu Vihar journey ${milestone.year}`}
@@ -107,28 +92,23 @@ export default function AboutMilestones() {
                   />
                 </div>
 
-                <div className="milestone-line">
-                  <span className="milestone-dot" />
+                <div className="about-milestones__line" aria-hidden="true">
+                  <span className="about-milestones__dot" />
                 </div>
 
-                <p>{milestone.text}</p>
+                <p className="about-milestones__description">{milestone.text}</p>
               </article>
             ))}
 
-            {/* Final CTA */}
-            <article className="milestone-card milestone-cta-card">
+            <article className="about-milestones__card about-milestones__card--cta">
               <Link
                 href="/contact/"
-                className="milestone-cta"
+                className="about-milestones__cta"
                 prefetch={false}
               >
                 <span>Plan your</span>
                 <strong>site visit</strong>
-
-                <svg
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path
                     d="M5 12h14M13 6l6 6-6 6"
                     fill="none"
@@ -142,17 +122,14 @@ export default function AboutMilestones() {
             </article>
           </div>
 
-          {/* Right Button */}
           <button
             type="button"
-            className="milestones-arrow milestones-arrow-right"
+            className="about-milestones__arrow about-milestones__arrow--right"
             onClick={() => scroll('right')}
             aria-label="Next milestones"
+            aria-controls="about-milestones-slider"
           >
-            <svg
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
               <path
                 d="M9 6l6 6-6 6"
                 fill="none"
@@ -165,7 +142,6 @@ export default function AboutMilestones() {
           </button>
         </div>
       </div>
-
     </section>
   );
 }

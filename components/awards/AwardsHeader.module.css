@@ -1,123 +1,144 @@
+/* Original Awards image and layout, with the working white curve used across the site. */
+.root {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  background: #fff;
+}
+
 .hero {
-    position: relative;
-    min-height: 480px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    background: linear-gradient(rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0.48)), url('/awards/hero.webp') bottom/cover no-repeat;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  min-height: 480px;
+  background: #011c5b url('/awards/hero.webp') center bottom / cover no-repeat;
+  color: #fff;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgb(0 0 0 / 48%);
+  pointer-events: none;
 }
 
 .heroInner {
-    width: min(1730px, calc(100% - 60px));
-    margin: 0 auto;
-    padding-bottom: 32px;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1730px;
+  min-width: 0;
+  margin: 0 auto;
+  padding: 150px 30px 82px;
 }
 
-.hero h1 {
-    margin: 0 0 16px;
-    color: #fff;
-    font-size: clamp(40px, 5vw, 72px);
-    font-weight: 700;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
+.title {
+  margin: 0 0 16px;
+  padding: 0;
+  color: #fff;
+  font-family: var(--e-global-typography-accent-font-family, 'Involve', sans-serif);
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
 }
 
 .breadcrumbs {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: rgba(255, 255, 255, 0.62);
-    font-size: 0.875rem;
-    font-weight: 600;
+  margin: 0;
+  font-family: var(--e-global-typography-text-font-family, 'Switzer', sans-serif);
 }
 
-.breadcrumbs a {
-    color: inherit;
-    text-decoration: none;
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: rgb(255 255 255 / 62%);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
 }
 
-.breadcrumbs a:hover {
-    color: #ed3237;
+.crumbs li { margin: 0; padding: 0; list-style: none; }
+
+.crumbs a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.25s ease;
 }
+
+.crumbs a:hover,
+.crumbs a:focus-visible {
+  color: var(--e-global-color-primary, #08aaec);
+}
+
+.crumbs li[aria-current='page'] { color: #fff; }
 
 .separator {
-    width: 4px;
-    height: 4px;
-    background: currentColor;
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
 }
 
-.breadcrumbs strong {
-    color: #fff;
-    font-weight: 600;
-}
-
+/* Negative margin is important: the corner radius must visibly OVERLAP the hero. */
 .curve {
-    height: 50px;
-    border-radius: 50px 50px 0 0;
-    background: #fff;
-    flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 50px;
+  margin-top: -50px;
+  border-radius: 50px 50px 0 0;
+  background: #fff;
 }
 
 .introContainer {
-    width: min(1730px, calc(100% - 60px));
-    margin: 0 auto;
-    padding: 60px 0 90px;
-    text-align: center;
+  width: min(1730px, calc(100% - 60px));
+  margin: 0 auto;
+  padding: 60px 0 90px;
+  text-align: center;
 }
 
-/* Tablet Effect applied to Marquee */
-.marqueeTablet {
-    padding: 5px;
-    border: 1px solid #07b3d6;
-    border-radius: 20px;
-    display: inline-block;
-    overflow: hidden;
-    margin: 0 auto 30px;
-    max-width: 100px;
+.introContent { min-width: 0; }
+
+.introTitle {
+  margin: 20px 0 16px;
+  padding: 0;
+  color: var(--e-global-color-accent, #011c5b);
+  font-family: var(--e-global-typography-accent-font-family, 'Involve', sans-serif);
+  font-size: clamp(32px, 3.5vw, 48px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
 }
 
-.introContent h2 {
-    margin: 20px 0 16px;
-    font-size: clamp(32px, 3.5vw, 48px);
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    color: #111;
-}
-
-.introContent p {
-    max-width: 800px;
-    margin: 0 auto;
-    color: #565656;
-    font-size: 1rem;
-    line-height: 1.6;
+.introDescription {
+  max-width: 800px;
+  margin: 0 auto;
+  color: var(--e-global-color-text, #565656);
+  font-family: var(--e-global-typography-text-font-family, 'Switzer', sans-serif);
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 @media (max-width: 767px) {
-    .hero {
-        min-height: 360px;
-    }
+  .hero { min-height: 360px; }
+  .heroInner { padding: 120px 15px 44px; }
+  .title { font-size: 36px; }
+  .curve { height: 24px; margin-top: -24px; border-radius: 16px 16px 0 0; }
+  .introContainer { width: calc(100% - 30px); padding: 40px 0 70px; }
+  .introTitle { font-size: 28px; margin-top: 20px; }
+  .introDescription { font-size: 15px; }
+}
 
-    .heroInner {
-        width: min(100% - 30px, 1730px);
-        padding-bottom: 20px;
-    }
-
-    .hero h1 {
-        font-size: 2.25rem;
-    }
-
-    .curve {
-        height: 24px;
-        border-radius: 16px 16px 0 0;
-    }
-
-    .introContainer {
-        width: min(100% - 30px, 1730px);
-        padding: 40px 0 70px;
-    }
-
-    .introContent h2 {
-        font-size: 1.75rem;
-        margin-top: 20px;
-    }
+@media (prefers-reduced-motion: reduce) {
+  .crumbs a { transition: none; }
 }

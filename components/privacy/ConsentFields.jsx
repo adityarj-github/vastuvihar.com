@@ -12,8 +12,12 @@ import {
 import styles from './ConsentFields.module.css';
 
 /**
- * The notice and consent controls for any form. Both boxes start unticked. Values
- * reach the server through FormData as consentPrimary, consentMarketing and noticeLanguage.
+ * Shared form notice and consent controls.
+ * The mandatory consent stays unchecked by default; an optional marketing
+ * checkbox appears only when the consuming form requests it.
+ *
+ * Existing FormData names are preserved for the API: consentPrimary,
+ * consentMarketing, noticeLanguage and noticeVersion.
  */
 export default function ConsentFields({ form, marketing = false, compact = false }) {
   const [language, setLanguage] = useState('en');
@@ -39,11 +43,17 @@ export default function ConsentFields({ form, marketing = false, compact = false
 
       <p className={styles.notice} lang={language}>
         {notice.notice}{' '}
-        <Link href="/privacy-policy/" prefetch={false} target="_blank">{labels.policy}</Link>
+        <Link href="/privacy-policy/" prefetch={false} target="_blank" rel="noopener noreferrer">
+          {labels.policy}
+        </Link>
         {' · '}
-        <Link href="/privacy-rights/" prefetch={false} target="_blank">{labels.rights}</Link>
+        <Link href="/privacy-rights/" prefetch={false} target="_blank" rel="noopener noreferrer">
+          {labels.rights}
+        </Link>
       </p>
-      <p className={styles.other} lang={language}>{labels.other}</p>
+      <p className={styles.other} lang={language}>
+        {labels.other}
+      </p>
     </>
   );
 
@@ -53,7 +63,6 @@ export default function ConsentFields({ form, marketing = false, compact = false
       <input type="hidden" name="noticeVersion" value={NOTICE_VERSION} />
 
       {compact ? (
-        // The full notice stays one click away, ahead of the consent box.
         <details className={styles.details}>
           <summary className={styles.summary}>
             How we use your details · <span className={styles.summaryLink}>Read full notice</span>

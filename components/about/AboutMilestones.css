@@ -1,15 +1,37 @@
-/* ==========================================================
-   ABOUT MILESTONES
-========================================================== */
+/* AboutMilestones.css
+ * Standalone styling for AboutMilestones.jsx.
+ * All selectors are scoped to the about-milestones block.
+ * The original colors, layout, slider arrows, CTA arrow and breakpoints are
+ * retained; global.css does not need to be modified.
+ */
 
-.milestones {
+.about-milestones {
+  --about-milestones-primary: var(--e-global-color-primary, #ed3237);
+  --about-milestones-accent: var(--e-global-color-accent, #111);
+  --about-milestones-background: var(--e-global-color-background_light, #f7f7f5);
+  --about-milestones-body-font: var(--e-global-typography-text-font-family, 'Switzer', Arial, sans-serif);
+  --about-milestones-heading-font: var(--e-global-typography-accent-font-family, 'Involve', Arial, sans-serif);
+
   position: relative;
   overflow: hidden;
-  background: var(--e-global-color-background_light, #f7f7f5);
+  width: 100%;
   padding: 130px 0 120px;
+  background: var(--about-milestones-background);
+  color: var(--e-global-color-text, #4b4b4b);
+  font-family: var(--about-milestones-body-font);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.4444444444;
 }
 
-.milestones-container {
+.about-milestones,
+.about-milestones *,
+.about-milestones *::before,
+.about-milestones *::after {
+  box-sizing: border-box;
+}
+
+.about-milestones__container {
   position: relative;
   z-index: 2;
   width: 100%;
@@ -17,469 +39,315 @@
   margin: 0 auto;
 }
 
-
-/* ==========================================================
-   HEADER
-========================================================== */
-
-.milestones-header {
+/* Section heading */
+.about-milestones__header {
   padding: 0 60px;
   margin-bottom: 65px;
 }
 
-.milestones-label {
+.about-milestones__label {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-
   padding: 7px 18px;
-
-  border: 1px solid var(--e-global-color-primary, #ed3237);
+  border: 1px solid var(--about-milestones-primary);
   border-radius: 100px;
-
+  color: var(--about-milestones-primary);
   font-size: 12px;
   font-weight: 500;
   line-height: 1;
-
   letter-spacing: 0.06em;
   text-transform: uppercase;
-
-  color: var(--e-global-color-primary, #ed3237);
 }
 
-.milestones-header h2 {
+.about-milestones__heading {
   max-width: 750px;
   margin: 28px 0 0;
-
+  color: var(--about-milestones-accent);
+  font-family: var(--about-milestones-heading-font);
   font-size: clamp(38px, 4.2vw, 68px);
-  line-height: 1.03;
   font-weight: 500;
+  line-height: 1.03;
   letter-spacing: -0.04em;
-
-  color: var(--e-global-color-accent, #111);
 }
 
-
-/* ==========================================================
-   SLIDER WRAPPER
-========================================================== */
-
-.milestones-slider-wrapper {
+/* Horizontal slider */
+.about-milestones__slider-wrapper {
   position: relative;
   width: 100%;
 }
 
-
-/* ==========================================================
-   HORIZONTAL SCROLLER
-========================================================== */
-
-.milestones-slider {
+.about-milestones__slider {
   display: flex;
   align-items: stretch;
   gap: 0;
-
   width: 100%;
-
   overflow-x: auto;
   overflow-y: hidden;
-
   padding: 0 70px;
-
   scroll-behavior: smooth;
-
-  /* Hide Firefox scrollbar */
   scrollbar-width: none;
-
-  /* Hide old Edge / IE scrollbar */
   -ms-overflow-style: none;
-
-  /* Better mobile scrolling */
   -webkit-overflow-scrolling: touch;
-
   overscroll-behavior-inline: contain;
-
   scroll-snap-type: x proximity;
 }
 
-
-/* Hide Chrome / Safari scrollbar */
-.milestones-slider::-webkit-scrollbar {
+.about-milestones__slider::-webkit-scrollbar {
+  display: none;
   width: 0;
   height: 0;
-  display: none;
 }
 
-
-/* ==========================================================
-   MILESTONE CARDS
-========================================================== */
-
-.milestone-card {
+/* Cards */
+.about-milestones__card {
   position: relative;
-
   flex: 0 0 33.333%;
   min-width: 0;
-
   padding: 0 45px 30px;
-
   text-align: center;
-
   scroll-snap-align: start;
 }
 
-.milestone-card h3 {
+.about-milestones__year {
   position: relative;
   z-index: 2;
   margin: 0 0 -5px;
+  color: var(--about-milestones-primary);
+  font-family: var(--about-milestones-heading-font);
   font-size: clamp(42px, 4vw, 70px);
-  line-height: 1;
   font-weight: 500;
+  line-height: 1;
   letter-spacing: -0.04em;
-  color: var(--e-global-color-primary, #ed3237);
 }
 
-
-/* ==========================================================
-   IMAGE
-========================================================== */
-
-.milestone-image {
+.about-milestones__image {
   position: relative;
-
   width: 100%;
   max-width: 270px;
   height: 190px;
-
   margin: 0 auto;
-
   overflow: hidden;
-
   border-radius: 2px;
 }
 
-.milestone-image img {
+.about-milestones__image img {
   display: block;
-
   width: 100%;
   height: 100%;
-
   object-fit: cover;
 }
 
-
-/* ==========================================================
-   TIMELINE
-========================================================== */
-
-.milestone-line {
+/* Timeline line and dot */
+.about-milestones__line {
   position: relative;
-
   width: calc(100% + 90px);
   height: 50px;
-
-  margin-left: -45px;
   margin-top: 5px;
+  margin-left: -45px;
 }
 
-.milestone-line::before {
+.about-milestones__line::before {
   content: '';
-
   position: absolute;
-
   top: 50%;
   left: 0;
-
   width: 100%;
   height: 1px;
-
   background: rgba(0, 0, 0, 0.18);
-
   transform: translateY(-50%);
 }
 
-.milestone-dot {
+.about-milestones__dot {
   position: absolute;
-
   top: 50%;
   left: 50%;
-
   width: 14px;
   height: 14px;
-
   border-radius: 50%;
-
-  background: var(--e-global-color-primary, #ed3237);
-
+  background: var(--about-milestones-primary);
   transform: translate(-50%, -50%);
 }
 
-.milestone-dot::after {
+.about-milestones__dot::after {
   content: '';
-
   position: absolute;
-
   inset: -6px;
-
-  border: 1px solid
-    color-mix(
-      in srgb,
-      var(--e-global-color-primary, #ed3237) 35%,
-      transparent
-    );
-
+  border: 1px solid color-mix(in srgb, var(--about-milestones-primary) 35%, transparent);
   border-radius: 50%;
 }
 
-
-/* ==========================================================
-   TEXT
-========================================================== */
-
-.milestone-card p {
+.about-milestones__description {
   max-width: 300px;
-
   margin: 4px auto 0;
-
-  font-size: 15px;
-  line-height: 1.7;
-  font-weight: 400;
-
   color: rgba(17, 17, 17, 0.72);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.7;
 }
 
-
-/* ==========================================================
-   ARROWS
-========================================================== */
-
-.milestones-arrow {
+/* Slider controls: preserve the original SVG chevrons and hover styles. */
+.about-milestones__arrow {
   position: absolute;
-
   top: 50%;
-
   z-index: 20;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   width: 52px;
   height: 52px;
-
   padding: 0;
-
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 50%;
-
   background: #fff;
-
   color: #111;
-
   cursor: pointer;
-
   transform: translateY(-50%);
-
   transition:
     background-color 0.25s ease,
     color 0.25s ease,
     transform 0.25s ease,
     border-color 0.25s ease;
-
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
 }
 
-.milestones-arrow svg {
+.about-milestones__arrow svg {
   width: 23px;
   height: 23px;
 }
 
-.milestones-arrow:hover {
-  background: var(--e-global-color-primary, #ed3237);
-  border-color: var(--e-global-color-primary, #ed3237);
-
+.about-milestones__arrow:hover {
+  background: var(--about-milestones-primary);
+  border-color: var(--about-milestones-primary);
   color: #fff;
 }
 
-.milestones-arrow:active {
+.about-milestones__arrow:active {
   transform: translateY(-50%) scale(0.94);
 }
 
-
-/* Left middle */
-.milestones-arrow-left {
+.about-milestones__arrow--left {
   left: 22px;
 }
 
-
-/* Right middle */
-.milestones-arrow-right {
+.about-milestones__arrow--right {
   right: 22px;
 }
 
-
-/* ==========================================================
-   CTA CARD
-========================================================== */
-
-.milestone-cta-card {
+/* Final call-to-action card and its original inline SVG arrow. */
+.about-milestones__card--cta {
   display: flex;
   align-items: center;
   justify-content: center;
-
   min-height: 360px;
 }
 
-.milestone-cta {
+.about-milestones__cta {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   width: 180px;
   height: 180px;
-
   padding: 25px;
-
   border-radius: 50%;
-
+  background: var(--about-milestones-primary);
+  color: #fff;
   text-decoration: none;
   text-align: center;
-
-  background: var(--e-global-color-primary, #ed3237);
-  color: #fff;
-
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.milestone-cta:hover {
+.about-milestones__cta:hover {
   transform: scale(1.06);
   color: white !important;
-  box-shadow:
-    0 20px 45px
-    color-mix(
-      in srgb,
-      var(--e-global-color-primary, #ed3237) 25%,
-      transparent
-    );
+  box-shadow: 0 20px 45px color-mix(in srgb, var(--about-milestones-primary) 25%, transparent);
 }
 
-.milestone-cta span,
-.milestone-cta strong {
+.about-milestones__cta span,
+.about-milestones__cta strong {
   display: block;
 }
 
-.milestone-cta span {
+.about-milestones__cta span {
   font-size: 14px;
 }
 
-.milestone-cta strong {
+.about-milestones__cta strong {
   margin-top: 2px;
-
   font-size: 20px;
   font-weight: 500;
 }
 
-.milestone-cta svg {
+.about-milestones__cta svg {
   width: 25px;
   margin-top: 14px;
 }
 
-
-/* ==========================================================
-   DECORATIVE BACKGROUND
-========================================================== */
-
-.milestones-decoration {
-  position: absolute;
-
-  right: -110px;
-  bottom: -40px;
-
-  z-index: 0;
-
-  width: min(750px, 55vw);
-
-  opacity: 0.35;
-
-  pointer-events: none;
-}
-
-
-/* ==========================================================
-   TABLET
-========================================================== */
-
+/* Tablet: retain two visible cards. */
 @media (max-width: 1200px) {
-  .milestones {
+  .about-milestones {
     padding: 100px 0;
   }
 
-  .milestone-card {
+  .about-milestones__card {
     flex-basis: 50%;
   }
 }
 
-
-/* ==========================================================
-   MOBILE
-========================================================== */
-
+/* Mobile: retain the original 88%-width card carousel. */
 @media (max-width: 767px) {
-  .milestones {
+  .about-milestones {
     padding: 75px 0;
   }
 
-  .milestones-header {
+  .about-milestones__header {
     padding: 0 20px;
     margin-bottom: 45px;
   }
 
-  .milestones-header h2 {
+  .about-milestones__heading {
     font-size: 40px;
   }
 
-  .milestones-slider {
+  .about-milestones__slider {
     padding: 0 20px;
   }
 
-  .milestone-card {
+  .about-milestones__card {
     flex: 0 0 88%;
-
     padding-left: 25px;
     padding-right: 25px;
   }
 
-  .milestone-line {
+  .about-milestones__line {
     width: calc(100% + 50px);
     margin-left: -25px;
   }
 
-  .milestones-arrow {
+  .about-milestones__arrow {
     width: 44px;
     height: 44px;
   }
 
-  .milestones-arrow svg {
+  .about-milestones__arrow svg {
     width: 20px;
     height: 20px;
   }
 
-  .milestones-arrow-left {
+  .about-milestones__arrow--left {
     left: 8px;
   }
 
-  .milestones-arrow-right {
+  .about-milestones__arrow--right {
     right: 8px;
   }
 
-  .milestone-image {
+  .about-milestones__image {
     height: 180px;
   }
 
-  .milestone-cta-card {
+  .about-milestones__card--cta {
     min-height: 330px;
   }
 }

@@ -1,4 +1,4 @@
-.elementor-6353 .elementor-element.elementor-element-abc7beb {
+.vv-home-page .vv-block.vv-home-partners__partners {
   --display: flex;
   --flex-direction: column;
   --container-widget-width: 100%;
@@ -16,89 +16,89 @@
   --padding-right: 30px;
 }
 
-.elementor-6353 .elementor-element.elementor-element-abc7beb .spaciaz-border-shape {
+.vv-home-page .vv-block.vv-home-partners__partners .spaciaz-border-shape {
   width: 30px;
   height: 30px;
   clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
 }
 
-.elementor-6353 .elementor-element.elementor-element-6e381eb > .elementor-widget-container {
+.vv-home-page .vv-block.vv-home-partners__title > .vv-widget-inner {
   margin: 0px 0px 40px 0px;
 }
 
-.elementor-6353 .elementor-element.elementor-element-6e381eb .spaciaz-border-shape {
+.vv-home-page .vv-block.vv-home-partners__title .spaciaz-border-shape {
   width: 30px;
   height: 30px;
   clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
 }
 
-.elementor-6353 .elementor-element.elementor-element-6e381eb {
+.vv-home-page .vv-block.vv-home-partners__title {
   text-align: center;
 }
 
-.elementor-6353 .elementor-element.elementor-element-6e381eb .elementor-heading-title {
+.vv-home-page .vv-block.vv-home-partners__title .vv-heading {
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
   line-height: 14px;
   letter-spacing: 0px;
-  color: var( --e-global-color-accent );
+  color: var( --vv-accent );
 }
 
-.elementor-6353 .elementor-element.elementor-element-a0deccc > .elementor-widget-container {
+.vv-home-page .vv-block.vv-home-partners__ticker > .vv-widget-inner {
   padding: 0px 0px 50px 0px;
   border-style: solid;
   border-width: 0px 0px 1px 0px;
-  border-color: var( --e-global-color-border );
+  border-color: var( --vv-border );
 }
 
-.elementor-6353 .elementor-element.elementor-element-a0deccc .spaciaz-border-shape {
+.vv-home-page .vv-block.vv-home-partners__ticker .spaciaz-border-shape {
   width: 30px;
   height: 30px;
   clip-path: path("M0 0 Q0,30 30,30 L 0 30 Z");
 }
 
-.elementor-6353 .elementor-element.elementor-element-a0deccc .elementor-scrolling-inner {
+.vv-home-page .vv-block.vv-home-partners__ticker .vv-scrolling-inner {
   animation-duration: 30s;
   align-items: center;
 }
 
-.elementor-6353 .elementor-element.elementor-element-a0deccc .elementor-scrolling-wrapper .elementor-scrolling-item-inner {
+.vv-home-page .vv-block.vv-home-partners__ticker .vv-scrolling-wrapper .vv-scrolling-item-inner {
   align-items: center;
 }
 
-.elementor-6353 .elementor-element.elementor-element-a0deccc .elementor-scrolling-wrapper .elementor-scrolling-item {
+.vv-home-page .vv-block.vv-home-partners__ticker .vv-scrolling-wrapper .vv-scrolling-item {
   padding-left: calc(15px/2);
   padding-right: calc(15px/2);
 }
 
-.elementor-6353 .elementor-element.elementor-element-a0deccc .elementor-scrolling-item-inner:hover {
-  background-color: var( --e-global-color-primary );
+.vv-home-page .vv-block.vv-home-partners__ticker .vv-scrolling-item-inner:hover {
+  background-color: var( --vv-primary );
 }
 
-.elementor-6353 .elementor-element.elementor-element-a0deccc {
+.vv-home-page .vv-block.vv-home-partners__ticker {
   --scrolling_gap: 0px;
 }
 
-.elementor-6353 .elementor-element.elementor-element-a0deccc .elementor-scrolling-item-inner {
+.vv-home-page .vv-block.vv-home-partners__ticker .vv-scrolling-item-inner {
   padding: 17px 50px 17px 50px;
   border-radius: 20px 20px 20px 20px;
 }
 
-.elementor-6353 .elementor-element.elementor-element-a0deccc .elementor-icon i {
+.vv-home-page .vv-block.vv-home-partners__ticker .vv-icon i {
   font-size: 107px;
 }
 
-.elementor-6353 .elementor-element.elementor-element-a0deccc .elementor-icon svg {
+.vv-home-page .vv-block.vv-home-partners__ticker .vv-icon svg {
   width: 107px;
   height: 107px;
 }
 
-.elementor-6353 .elementor-element.elementor-element-a0deccc .elementor-scrolling-item:hover .elementor-icon i {
+.vv-home-page .vv-block.vv-home-partners__ticker .vv-scrolling-item:hover .vv-icon i {
   color: #E4ED6400;
 }
 
-.elementor-6353 .elementor-element.elementor-element-a0deccc .elementor-scrolling-item:hover .elementor-icon svg {
+.vv-home-page .vv-block.vv-home-partners__ticker .vv-scrolling-item:hover .vv-icon svg {
   fill: #E4ED6400;
 }
 
@@ -107,7 +107,7 @@
 
 @media(max-width:1200px) {
 
-  .elementor-6353 .elementor-element.elementor-element-abc7beb {
+  .vv-home-page .vv-block.vv-home-partners__partners {
     --margin-top: 0px;
     --margin-bottom: 100px;
     --margin-left: 0px;
@@ -117,28 +117,28 @@
 
 @media(max-width:1024px) {
 
-  .elementor-6353 .elementor-element.elementor-element-abc7beb {
+  .vv-home-page .vv-block.vv-home-partners__partners {
     --margin-top: 0px;
     --margin-bottom: 80px;
     --margin-left: 0px;
     --margin-right: 0px;
   }
 
-  .elementor-6353 .elementor-element.elementor-element-a0deccc .elementor-scrolling-item-inner {
+  .vv-home-page .vv-block.vv-home-partners__ticker .vv-scrolling-item-inner {
     padding: 15px 35px 15px 35px;
   }
 }
 
 @media(max-width:880px) {
 
-  .elementor-6353 .elementor-element.elementor-element-6e381eb > .elementor-widget-container {
+  .vv-home-page .vv-block.vv-home-partners__title > .vv-widget-inner {
     margin: 0px 0px 15px 0px;
   }
 }
 
 @media(max-width:767px) {
 
-  .elementor-6353 .elementor-element.elementor-element-abc7beb {
+  .vv-home-page .vv-block.vv-home-partners__partners {
     --margin-top: 0px;
     --margin-bottom: 60px;
     --margin-left: 0px;
@@ -149,15 +149,15 @@
     --padding-right: 0px;
   }
 
-  .elementor-6353 .elementor-element.elementor-element-6e381eb > .elementor-widget-container {
+  .vv-home-page .vv-block.vv-home-partners__title > .vv-widget-inner {
     margin: 0px 15px 20px 15px;
   }
 
-  .elementor-6353 .elementor-element.elementor-element-a0deccc > .elementor-widget-container {
+  .vv-home-page .vv-block.vv-home-partners__ticker > .vv-widget-inner {
     padding: 0px 0px 30px 0px;
   }
 
-  .elementor-6353 .elementor-element.elementor-element-a0deccc .elementor-scrolling-item-inner {
+  .vv-home-page .vv-block.vv-home-partners__ticker .vv-scrolling-item-inner {
     padding: 10px 25px 10px 25px;
   }
 }

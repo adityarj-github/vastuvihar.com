@@ -70,6 +70,7 @@
   border: 1px solid #268ddc;
   color: #fff;
   cursor: pointer;
+  border-radius: 50px;
   font: inherit;
   font-size: 14px;
   font-weight: 600;
@@ -131,6 +132,7 @@
 }
 
 @media (max-width: 700px) {
+
   .row,
   .row3 {
     grid-template-columns: 1fr;

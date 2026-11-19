@@ -1,4 +1,8 @@
 :global(.vv-project-media).mediaScope {
+  /* Share the same width as the other model sections instead of Elementor's 1140px boxed default. */
+  --content-width: 100%;
+  width: 100%;
+  max-width: none;
   overflow: visible;
   margin-bottom: 60px;
 }
@@ -8,6 +12,8 @@
   > :global(.e-con-inner).mediaScope {
   display: block;
   width: 100%;
+  max-width: none;
+  padding-inline: 0;
 }
 
 
@@ -17,6 +23,7 @@
 :global(.vv-media-tabs).mediaScope,
 :global(.vv-media-content).mediaScope {
   width: 100%;
+  max-width: none;
   overflow: visible;
 }
 
