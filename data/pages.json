@@ -192,6 +192,14 @@
     "description": "FilterProject StatusCompletedUnder ConstructionProject TypeApartmentBuildingIndustrialOfficeResidentialVillaProject LocationBay Shore, NYChula Vista, CAHollywood, FloridaHuntsville, AlabamaNew York, NYPhoenix, AZSpotswood, NJSurprise, AZWoo"
   },
   {
+    "route": "cities",
+    "path": "/cities/",
+    "title": "Projects by City",
+    "type": "Collection",
+    "bodyClass": "page theme-spaciaz elementor-default elementor-kit-4",
+    "description": "Explore Vastu Vihar projects across the cities we build in."
+  },
+  {
     "route": "price-list",
     "path": "/price-list/",
     "title": "Price List",
