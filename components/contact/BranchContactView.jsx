@@ -1,11 +1,9 @@
 'use client';
-
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { BRANCH_GROUPS, TOTAL_BRANCHES } from '@/data/branch-contacts';
 import ConsentEmbed from '@/components/privacy/ConsentEmbed';
 import VVArrowButton from '@/components/common/VVArrowButton';
 import styles from './BranchContactView.module.css';
-
 function Icon({ name, size = 18 }) {
   const props = {
     width: size,
@@ -18,7 +16,6 @@ function Icon({ name, size = 18 }) {
     strokeLinejoin: 'round',
     'aria-hidden': true,
   };
-
   switch (name) {
     case 'search':
       return <svg {...props}><circle cx="11" cy="11" r="7" /><path d="m20 20-4.2-4.2" /></svg>;
@@ -42,7 +39,6 @@ function Icon({ name, size = 18 }) {
       return null;
   }
 }
-
 async function copyToClipboard(text) {
   if (navigator.clipboard?.writeText) {
     try {
@@ -52,7 +48,6 @@ async function copyToClipboard(text) {
       // Fall back for browsers without Clipboard API permission.
     }
   }
-
   const input = document.createElement('textarea');
   input.value = text;
   input.setAttribute('readonly', '');
@@ -68,10 +63,8 @@ async function copyToClipboard(text) {
     input.remove();
   }
 }
-
 function Phones({ phones }) {
   if (!phones?.length) return null;
-
   return (
     <div className={styles.phoneList}>
       {phones.map((phone, index) => {
@@ -85,12 +78,10 @@ function Phones({ phones }) {
     </div>
   );
 }
-
 function SplitPerson({ person }) {
   const match = person.name.match(/^(.+?)\s*\(([^()]+)\)\s*$/);
   const displayName = match ? match[1] : person.name;
   const role = match ? match[2] : '';
-
   return (
     <div className={styles.person}>
       <span className={styles.detailIcon}><Icon name="user" size={17} /></span>
@@ -102,7 +93,6 @@ function SplitPerson({ person }) {
     </div>
   );
 }
-
 export function BranchCard({ branch, state }) {
   const [showMap, setShowMap] = useState(false);
   const [copyStatus, setCopyStatus] = useState('');
@@ -110,7 +100,6 @@ export function BranchCard({ branch, state }) {
   const mapSearch = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
     [branch.name, branch.address, state, 'India'].join(', ')
   )}`;
-
   const handleCopyLocation = async () => {
     try {
       await copyToClipboard(mapSearch);
@@ -119,14 +108,12 @@ export function BranchCard({ branch, state }) {
       setCopyStatus('Could not copy location');
     }
   };
-
   return (
     <article className={styles.card}>
       <div className={styles.cardTop}>
-        <span className={styles.cardEyebrow}>Vastu Vihar branch</span>
+        {/* <span className={styles.cardEyebrow}>Vastu Vihar branch</span> */}
         <h3 className={styles.cardTitle}>{branch.name}</h3>
       </div>
-
       <div className={styles.cardDetails}>
         <div className={styles.detail}>
           <span className={styles.detailIcon}><Icon name="pin" /></span>
@@ -153,7 +140,6 @@ export function BranchCard({ branch, state }) {
           </div>
         )}
       </div>
-
       <div className={styles.cardActions}>
         <VVArrowButton
           type="button"
@@ -181,13 +167,11 @@ export function BranchCard({ branch, state }) {
           <Icon name={copyStatus === 'Location link copied' ? 'check' : 'copy'} size={19} />
         </button>
       </div>
-
       {copyStatus && (
         <span className={styles.copyFeedback} role="status" aria-live="polite">
           {copyStatus}
         </span>
       )}
-
       {showMap && (
         <div className={styles.mapPanel} id={mapId}>
           <ConsentEmbed provider="Google Maps">
@@ -205,17 +189,132 @@ export function BranchCard({ branch, state }) {
   );
 }
 
+/** Custom filter dropdown: controlled, keyboard-friendly, 600px scroll area. */
+function FilterDropdown({ id, label, value, onChange, options, placeholder }) {
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState(0);
+  const root = useRef(null);
+  const button = useRef(null);
+  const optionRefs = useRef([]);
+  const items = [{ value: '', label: placeholder }, ...options.map((item) =>
+    typeof item === 'string' ? { value: item, label: item } : item
+  )];
+  const selected = Math.max(0, items.findIndex((item) => item.value === value));
+
+  useEffect(() => {
+    if (!open) return;
+    function outside(event) {
+      if (!root.current?.contains(event.target)) setOpen(false);
+    }
+    function escape(event) {
+      if (event.key === 'Escape') {
+        setOpen(false);
+        button.current?.focus();
+      }
+    }
+    document.addEventListener('pointerdown', outside);
+    document.addEventListener('keydown', escape);
+    return () => {
+      document.removeEventListener('pointerdown', outside);
+      document.removeEventListener('keydown', escape);
+    };
+  }, [open]);
+
+  useEffect(() => {
+    if (open) optionRefs.current[active]?.scrollIntoView({ block: 'nearest' });
+  }, [open, active]);
+
+  const choose = (index) => {
+    onChange(items[index].value);
+    setOpen(false);
+    button.current?.focus();
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      if (!open) {
+        setActive(selected);
+        setOpen(true);
+      } else {
+        setActive((previous) =>
+          event.key === 'ArrowDown'
+            ? Math.min(previous + 1, items.length - 1)
+            : Math.max(previous - 1, 0)
+        );
+      }
+    } else if (event.key === 'Home' && open) {
+      event.preventDefault(); setActive(0);
+    } else if (event.key === 'End' && open) {
+      event.preventDefault(); setActive(items.length - 1);
+    } else if ((event.key === 'Enter' || event.key === ' ') && open) {
+      event.preventDefault(); choose(active);
+    }
+  };
+
+  return (
+    <div ref={root} className={`${styles.filterSelect} ${open ? styles.filterSelectOpen : ''}`}>
+      <button
+        id={id}
+        ref={button}
+        type="button"
+        className={styles.filterSelectTrigger}
+        aria-label={label}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-controls={`${id}-options`}
+        onClick={() => {
+          if (!open) setActive(selected);
+          setOpen(!open);
+        }}
+        onKeyDown={handleKeyDown}
+      >
+        <span className={styles.filterSelectText}>
+          <span className={styles.filterSelectLabel}>{label}</span>
+          <span className={styles.filterSelectValue}>{items[selected].label}</span>
+        </span>
+        <span className={styles.filterSelectChevron} aria-hidden="true"><Icon name="chevron" size={18} /></span>
+      </button>
+      {open && (
+        <div
+          id={`${id}-options`}
+          role="listbox"
+          aria-label={label}
+          className={styles.filterSelectMenu}
+          aria-activedescendant={`${id}-option-${active}`}
+        >
+          {items.map((item, index) => (
+            <button
+              key={`${item.value}-${index}`}
+              ref={(node) => { optionRefs.current[index] = node; }}
+              id={`${id}-option-${index}`}
+              type="button"
+              role="option"
+              aria-selected={selected === index}
+              tabIndex={-1}
+              className={`${styles.filterSelectOption} ${selected === index ? styles.filterSelectOptionSelected : ''} ${active === index ? styles.filterSelectOptionActive : ''}`}
+              onMouseEnter={() => setActive(index)}
+              onClick={() => choose(index)}
+            >
+              <span>{item.label}</span>
+              {selected === index && <span aria-hidden="true"><Icon name="check" size={17} /></span>}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function BranchContactView() {
   const [search, setSearch] = useState('');
   const [state, setState] = useState('');
   const [city, setCity] = useState('');
   const [openState, setOpenState] = useState(BRANCH_GROUPS[0]?.state ?? null);
-
   const cities = useMemo(() => {
     const allowed = BRANCH_GROUPS.filter((group) => !state || group.state === state);
     return [...new Set(allowed.flatMap((group) => group.branches.map((branch) => branch.name)))].sort();
   }, [state]);
-
   const groups = useMemo(() => {
     const needle = search.trim().toLowerCase();
     return BRANCH_GROUPS
@@ -238,16 +337,13 @@ export default function BranchContactView() {
       }))
       .filter((group) => group.branches.length > 0);
   }, [search, state, city]);
-
   // Reveal the first matching state when filters change; manual toggle remains independent.
   useEffect(() => {
     setOpenState(groups[0]?.state ?? null);
   }, [groups]);
-
   const toggleState = (stateName) => {
     setOpenState((current) => (current === stateName ? null : stateName));
   };
-
   const count = groups.reduce((sum, group) => sum + group.branches.length, 0);
   const filtered = Boolean(search || state || city);
   const clear = () => {
@@ -255,7 +351,6 @@ export default function BranchContactView() {
     setState('');
     setCity('');
   };
-
   return (
     <section className={styles.directory} aria-label="Vastu Vihar branch contacts">
       <div className={styles.filters} role="search" aria-label="Branch contact filters">
@@ -283,49 +378,33 @@ export default function BranchContactView() {
             )}
           </div>
         </div>
-
-        <div className={styles.field}>
-          <label className={styles.fieldLabel} htmlFor="branch-state">State</label>
-          <div className={styles.inputWrap}>
-            <select
-              id="branch-state"
-              className={styles.select}
-              value={state}
-              onChange={(event) => { setState(event.target.value); setCity(''); }}
-            >
-              <option value="">All states</option>
-              {BRANCH_GROUPS.map((group) => (
-                <option value={group.state} key={group.state}>{group.state}</option>
-              ))}
-            </select>
-            <span className={styles.selectIcon}><Icon name="chevron" size={16} /></span>
-          </div>
-        </div>
-
-        <div className={styles.field}>
-          <label className={styles.fieldLabel} htmlFor="branch-city">City</label>
-          <div className={styles.inputWrap}>
-            <select
-              id="branch-city"
-              className={styles.select}
-              value={city}
-              onChange={(event) => setCity(event.target.value)}
-            >
-              <option value="">All cities</option>
-              {cities.map((name) => <option key={name} value={name}>{name}</option>)}
-            </select>
-            <span className={styles.selectIcon}><Icon name="chevron" size={16} /></span>
-          </div>
-        </div>
+      <div className={styles.field}>
+        <FilterDropdown
+          id="branch-state"
+          label="State"
+          placeholder="All states"
+          value={state}
+          onChange={(nextState) => { setState(nextState); setCity(''); }}
+          options={BRANCH_GROUPS.map((group) => group.state)}
+        />
       </div>
-
+      <div className={styles.field}>
+        <FilterDropdown
+          id="branch-city"
+          label="City"
+          placeholder="All cities"
+          value={city}
+          onChange={setCity}
+          options={cities}
+        />
+      </div>
+      </div>
       <div className={styles.resultsInfo} aria-live="polite">
         <p>Showing <strong>{count}</strong> of {TOTAL_BRANCHES} branches</p>
         {filtered && (
           <VVArrowButton type="button" label="Clear filters" onClick={clear} className={styles.clearFilters} />
         )}
       </div>
-
       {groups.length ? (
         <div className={styles.results}>
           {groups.map((group) => {

@@ -10,7 +10,15 @@ interface Env {
 }
 
 export default {
-  fetch: handler.fetch,
+  // Production is temporarily reachable on workers.dev until vastuvihar.org moves to
+  // Cloudflare. That copy must never be indexed, so it is marked noindex by hostname.
+  async fetch(request: Request, env: Env, ctx: { waitUntil(promise: Promise<unknown>): void }) {
+    const response: Response = await handler.fetch(request, env, ctx);
+    if (!new URL(request.url).hostname.endsWith('.workers.dev')) return response;
+    const marked = new Response(response.body, response);
+    marked.headers.set('X-Robots-Tag', 'noindex, nofollow');
+    return marked;
+  },
 
   async scheduled(_controller: unknown, env: Env, ctx: { waitUntil(promise: Promise<unknown>): void }) {
     const secret = env.RETENTION_CRON_SECRET;

@@ -1,11 +1,14 @@
 // One entry point for Cloudflare builds and deploys, so every environment is built the
 // same way and nothing reaches Cloudflare without passing the preflight checks.
 //
-//   node scripts/cf.mjs preflight <uat|production>
-//   node scripts/cf.mjs build     <local|uat|production>
-//   node scripts/cf.mjs migrate   <local|uat|production>
-//   node scripts/cf.mjs deploy    <uat|production> [--confirm-production]
-//   node scripts/cf.mjs upload    <uat|production>        (new version, no traffic moved)
+//   node scripts/cf.mjs preflight production
+//   node scripts/cf.mjs build     <local|production>
+//   node scripts/cf.mjs migrate   <local|production>
+//   node scripts/cf.mjs deploy    production --confirm-production
+//   node scripts/cf.mjs upload    production --confirm-production   (new version, no traffic moved)
+//
+// UAT was removed for now. Its Worker and D1 still exist in Cloudflare; to bring it back,
+// restore env.uat in wrangler.jsonc and the uat entry below from git history.
 //
 // Production deploys also need --confirm-production and a clean, committed tree.
 import { spawnSync } from 'node:child_process';
@@ -18,13 +21,6 @@ process.chdir(root);
 
 const ENVIRONMENTS = {
   local: { wranglerEnv: null, appEnv: 'local', siteUrl: 'http://localhost:8787', allowTags: false },
-  uat: {
-    wranglerEnv: 'uat',
-    appEnv: 'uat',
-    siteUrl: process.env.UAT_SITE_URL || 'https://vastuvihar-website-uat.aditya-7c7.workers.dev',
-    // UAT visits must never reach the production analytics or advertising accounts.
-    allowTags: process.env.UAT_ALLOW_TAGS === '1',
-  },
   production: {
     wranglerEnv: null,
     appEnv: 'production',
@@ -48,11 +44,11 @@ const BUNDLED_ENV_FILES = ['.env', '.env.local', '.env.production', '.env.produc
 const [command, target, ...flags] = process.argv.slice(2);
 const env = ENVIRONMENTS[target];
 if (!['preflight', 'build', 'migrate', 'deploy', 'upload'].includes(command) || !env) {
-  console.error('Usage: node scripts/cf.mjs <preflight|build|migrate|deploy|upload> <local|uat|production>');
+  console.error('Usage: node scripts/cf.mjs <preflight|build|migrate|deploy|upload> <local|production>');
   process.exit(1);
 }
 if (['preflight', 'deploy', 'upload'].includes(command) && target === 'local') {
-  console.error(`"${command}" needs uat or production.`);
+  console.error(`"${command}" needs production.`);
   process.exit(1);
 }
 
@@ -90,12 +86,13 @@ async function preflight() {
   // Cloudflare Access in every deployed environment.
   if (config.vars?.REQUIRE_CF_ACCESS !== '1') problems.push('vars.REQUIRE_CF_ACCESS must be "1".');
   if (target === 'production') {
-    if (config.workers_dev !== false) problems.push('Production must set "workers_dev": false.');
+    // Temporarily allowed until vastuvihar.org moves to Cloudflare (see wrangler.jsonc).
+    if (config.workers_dev !== false) warnings.push('workers_dev is on. Turn it off at cutover so nothing routes around the WAF.');
     if (config.preview_urls !== false) problems.push('Production must set "preview_urls": false.');
   }
 
   // R2 must exist before a deploy that binds it.
-  const buckets = spawnSync('npx', ['wrangler', 'r2', 'bucket', 'list'], { encoding: 'utf8', shell: isWindows, env: process.env });
+  const buckets = spawnSync('npx', ['wrangler', 'r2', 'bucket', 'list'], { encoding: 'utf8', shell: isWindows, env: { ...process.env, CLOUDFLARE_ACCOUNT_ID: config.account_id } });
   const bucketText = `${buckets.stdout}${buckets.stderr}`;
   if (/enable R2|10042/i.test(bucketText)) problems.push('R2 is not enabled on this Cloudflare account (dashboard > R2).');
   else {
@@ -108,7 +105,7 @@ async function preflight() {
   const secrets = spawnSync('npx', ['wrangler', 'secret', 'list', '--format', 'json', ...envArgs], {
     encoding: 'utf8',
     shell: isWindows,
-    env: process.env,
+    env: { ...process.env, CLOUDFLARE_ACCOUNT_ID: config.account_id },
   });
   let names = [];
   try {

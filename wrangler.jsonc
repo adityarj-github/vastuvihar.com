@@ -1,9 +1,8 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  // Deploy with scripts/cf.mjs (npm run cf:deploy:uat / cf:deploy:production), which builds
-  // each environment separately and refuses to deploy while a REPLACE_ value remains.
-  // The top level is PRODUCTION. UAT is `env.uat`, with its own Worker, D1 and R2.
-  // Bindings and vars are not inherited by environments, so each block lists them all.
+  // Deploy with scripts/cf.mjs (npm run cf:deploy:production), which refuses to deploy
+  // while a REPLACE_ value remains. This file describes PRODUCTION only. UAT was removed
+  // from the config for now; its Worker and D1 still exist in Cloudflare.
   "account_id": "7c744d89a9c22ae3cdd2ae56f60024f4",
   "name": "vastuvihar-website",
   // Wraps the OpenNext worker to add the daily retention job (cloudflare/worker.ts).
@@ -15,9 +14,10 @@
     "binding": "ASSETS"
   },
   "observability": { "enabled": true },
-  // Production is reached only through its custom domain, where Cloudflare Access protects
-  // /admin. No workers.dev or preview URL, so nothing can route around the WAF.
-  "workers_dev": false,
+  // TEMPORARY: workers.dev is on until vastuvihar.org moves to Cloudflare, so the site can
+  // be checked. Set this back to false at cutover so nothing routes around the WAF. The
+  // workers.dev copy is marked noindex (cloudflare/worker.ts) and /admin stays behind Access.
+  "workers_dev": true,
   "preview_urls": false,
   // 02:00 IST daily. A no-op until retention periods are approved in the admin panel.
   "triggers": { "crons": ["30 20 * * *"] },
@@ -46,33 +46,4 @@
   },
   // Secrets (npx wrangler secret put <NAME>): PRIVACY_HASH_SECRET, RETENTION_CRON_SECRET.
   // Optional: ADMIN_PASSWORD, ADMIN_EMAIL.
-
-  "env": {
-    "uat": {
-      "name": "vastuvihar-website-uat",
-      // UAT is reached on workers.dev. Its admin area is still behind Access.
-      "workers_dev": true,
-      "preview_urls": false,
-      "triggers": { "crons": ["30 20 * * *"] },
-      "d1_databases": [
-        {
-          "binding": "DB",
-          "database_name": "vastuvihar-db-uat",
-          "database_id": "e7c2092f-bdf6-45f7-8a92-7ab062207927",
-          "migrations_dir": "migrations"
-        }
-      ],
-      "r2_buckets": [
-        { "binding": "PRIVATE_FILES", "bucket_name": "vastuvihar-uat-private" },
-        { "binding": "MEDIA", "bucket_name": "vastuvihar-uat-media" }
-      ],
-      "vars": {
-        "APP_ENV": "uat",
-        "CLIENT_IP_HEADER": "cf-connecting-ip",
-        "REQUIRE_CF_ACCESS": "1",
-        "CF_ACCESS_TEAM_DOMAIN": "REPLACE_WITH_TEAM.cloudflareaccess.com",
-        "CF_ACCESS_AUD": "REPLACE_WITH_UAT_ACCESS_AUD"
-      }
-    }
-  }
 }

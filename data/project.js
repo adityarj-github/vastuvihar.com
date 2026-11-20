@@ -39,7 +39,7 @@ export const projectsData = {
                 id: "ananta-default",
                 modelName: "Ground, First & Terrace",
                 stats: [
-                    { label: "Plot Area", value: "1080 - 1104", unit: "sqft" }, // Bihar: 1080 sqft | Jharkhand: 1104 sqft
+                    { label: "Plot Area", value: "1080", unit: "sqft" }, // Bihar: 1080 sqft | Jharkhand: 1104 sqft
                     { label: "Built-up", value: 1800, unit: "sqft" },
                     { label: "Carpet Area", value: 1335, unit: "sqft" },
                     { label: "Bedrooms", value: 3 },
@@ -290,7 +290,7 @@ export const projectsData = {
     //yamuna 7bhk
     "yamuna-bungalow-7bhk": {
         slug: "yamuna-bungalow-7bhk",
-        name: "Yamuna Bungalow (7 BHK)",
+        name: "Yamuna Bungalow 7BHK",
         price: "₹60 Lac - 1 Cr",
         minPrice: 60,
         maxPrice: 100,
@@ -305,15 +305,15 @@ export const projectsData = {
         benefits: RAFT_FOUNDATION_BENEFITS,
         gallery: [
             "/thumb/Yamuna-2.webp",
-            "/yamuna/Yamuna.webp",
             "/yamuna/yamuna3.webp",
+            "/yamuna/Yamuna.webp",
             "/yamuna/yamuna1.webp",
             "/yamuna/yamuna2.webp",
         ],
         modelTypes: [
             {
                 id: "yamuna-7bhk",
-                modelName: "Type B (7 BHK)",
+                modelName: "7 BHK",
                 stats: [
                     { label: "Plot Area", value: 1470, unit: "sqft" },
                     { label: "Carpet Area", value: 1680, unit: "sqft" },
@@ -365,11 +365,10 @@ export const projectsData = {
         ]
     },
 
-
     //yamuna 5bhk
     "yamuna-bungalow": {
         slug: "yamuna-bungalow",
-        name: "Yamuna Bungalow (5 BHK)",
+        name: "Yamuna Bungalow 5BHK",
         price: "₹55 - 70 Lac*",
         minPrice: 55,
         maxPrice: 70,
@@ -391,7 +390,7 @@ export const projectsData = {
         modelTypes: [
             {
                 id: "yamuna-5bhk",
-                modelName: "Type A (5 BHK)",
+                modelName: "5 BHK",
                 stats: [
                     { label: "Plot Area", value: 1600, unit: "sqft" },
                     { label: "Carpet Area", value: 1680, unit: "sqft" },
@@ -462,15 +461,15 @@ export const projectsData = {
         benefits: RAFT_FOUNDATION_BENEFITS,
         gallery: [
             "/thumb/Simplex.webp",
-            "/simplex/Simplex.webp",
             "/villa/simplex.webp",
+            "/simplex/Simplex.webp",
             "/simplex/simplex-row-building.webp",
         ],
 
         modelTypes: [
             {
                 id: "simplex-new",
-                modelName: "Type A (Simplex New)",
+                modelName: "2BHK",
                 stats: [
                     { label: "Plot Area", value: 1000, unit: "sqft" },
                     { label: "Built-up Area", value: 1000, unit: "sqft" },
@@ -566,7 +565,7 @@ export const projectsData = {
         modelTypes: [
             {
                 id: "business-bungalow-3bhk",
-                modelName: "Type A (3 BHK Business Bungalow)",
+                modelName: "3 BHK Business Bungalow",
                 stats: [
                     { label: "Plot Area", value: 1000, unit: "sqft" },
                     { label: "Built-up", value: 1550, unit: "sqft" },
@@ -752,15 +751,13 @@ export const projectsData = {
             "/jayanti/5.webp",
             "/jayanti/1.webp",
             "/jayanti/2.webp",
-            // "/jayanti/3.webp",
-            // "/jayanti/4.webp",
             "/jayanti/6.webp",
             "/jayanti/8.webp",
         ],
         modelTypes: [
             {
                 id: "jayanti-original-3bhk",
-                modelName: "Type A (Std.)",
+                modelName: "3BHK standard",
                 stats: [
                     { label: "Land Area", value: 900, unit: "sqft" },
                     { label: "Built-up", value: 1300, unit: "sqft" },
@@ -1049,10 +1046,10 @@ export const projectsData = {
         ],
         gallery: [
             "/thumb/Rainbow.webp",
+            "/rainbow/gallery-rainbow-5.webp",
             "/rainbow/gallery-rainbow-1.webp",
             "/rainbow/gallery-rainbow-2.webp",
             "/rainbow/gallery-rainbow-4.webp",
-            "/rainbow/gallery-rainbow-5.webp",
             "/rainbow/gallery-rainbow-6.webp",
             "/rainbow/gallery-rainbow-7.webp",
             "/rainbow/gallery-rainbow-8.webp",
@@ -1347,7 +1344,7 @@ export const projectsData = {
         modelTypes: [
             {
                 id: "apartment-3bhk-type-a",
-                modelName: "Type A (3 BHK Apartment)",
+                modelName: "3 BHK Apartment",
                 stats: [
                     { label: "Builtup Area", value: 750, unit: "sqft" },
                     { label: "Carpet Area", value: 670, unit: "sqft" },

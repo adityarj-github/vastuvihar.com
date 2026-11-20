@@ -194,10 +194,10 @@
   {
     "route": "cities",
     "path": "/cities/",
-    "title": "Projects by City",
+    "title": "Residential Projects by City - Vastu Vihar",
     "type": "Collection",
     "bodyClass": "page theme-spaciaz elementor-default elementor-kit-4",
-    "description": "Explore Vastu Vihar projects across the cities we build in."
+    "description": "Browse Vastu Vihar residential projects by city and state, with project phases in Bihar, Jharkhand, Uttar Pradesh, West Bengal and Odisha."
   },
   {
     "route": "price-list",

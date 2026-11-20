@@ -1,21 +1,18 @@
 name: Cloudflare
 
 # Pull requests: build and test only, no secrets, nothing deployed.
-# Push to the `uat` branch, or run manually: deploy to UAT.
-# Production: manual only, from `main`, behind the `production` environment's required
-# reviewers (Settings > Environments). It uploads a new version without moving traffic;
-# promote it with `wrangler versions deploy` after checking it (docs/CLOUDFLARE_DEPLOYMENT.md).
+# Pushes to `main` are deployed by Cloudflare Workers Builds (dashboard), not here.
+# Manual run: upload a production version without moving traffic, from `main`, behind the
+# `production` environment's required reviewers; promote it with `wrangler versions deploy`.
 on:
   pull_request:
-  push:
-    branches: [uat]
   workflow_dispatch:
     inputs:
       target:
         description: Where to deploy
         type: choice
-        options: [uat, production]
-        default: uat
+        options: [production]
+        default: production
 
 concurrency:
   group: cloudflare-${{ github.event.inputs.target || github.ref_name }}
@@ -41,24 +38,6 @@ jobs:
         run: node scripts/cf.mjs build local
       - name: Check the bundle with Wrangler
         run: npx wrangler deploy --dry-run --outdir dist-dry-run
-
-  deploy-uat:
-    name: Deploy UAT
-    needs: check
-    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.target == 'uat')
-    runs-on: ubuntu-latest
-    environment: uat
-    env:
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run cf:deploy:uat
 
   upload-production:
     name: Upload production version (no traffic)

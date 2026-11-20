@@ -1,6 +1,7 @@
 import ContactForm from '@/components/ContactForm';
 import ConsentFields from '@/components/privacy/ConsentFields';
 import VVArrowButton from '@/components/common/VVArrowButton';
+import VVEnquirySelect from '@/components/common/VVEnquirySelect';
 import './ProjectEnquiry.css';
 
 const PREFERRED_CITIES = [
@@ -35,28 +36,41 @@ export default function ProjectEnquiry({ project }) {
         <div className="vv-model-enquiry__fields">
           <label className="vv-model-enquiry__sr-only" htmlFor="vv-project-first">First name (required)</label>
           <input id="vv-project-first" type="text" name="firstName" placeholder="First Name*" autoComplete="given-name" required />
+
           <label className="vv-model-enquiry__sr-only" htmlFor="vv-project-last">Last name (required)</label>
           <input id="vv-project-last" type="text" name="lastName" placeholder="Last Name*" autoComplete="family-name" required />
+
           <label className="vv-model-enquiry__sr-only" htmlFor="vv-project-phone">Phone number (required)</label>
           <input id="vv-project-phone" type="tel" name="phone" placeholder="Phone Number*" autoComplete="tel" required />
+
           <label className="vv-model-enquiry__sr-only" htmlFor="vv-project-email">Email address (optional)</label>
           <input id="vv-project-email" type="email" name="email" placeholder="Email Address (optional)" autoComplete="email" />
-          <label className="vv-model-enquiry__sr-only" htmlFor="vv-project-city">Preferred city (required)</label>
-          <select id="vv-project-city" name="city" defaultValue="" required>
-            <option value="" disabled>Preferred City*</option>
-            {PREFERRED_CITIES.map((city) => <option value={city} key={city}>{city}</option>)}
-          </select>
-          <label className="vv-model-enquiry__sr-only" htmlFor="vv-project-budget">Budget range (optional)</label>
-          <select id="vv-project-budget" name="budget" defaultValue="">
-            <option value="">Budget Range (optional)</option>
-            {BUDGETS.map(([value, label]) => <option key={value} value={value}>{label}</option>)}
-          </select>
+
+          <VVEnquirySelect
+            id="vv-project-city"
+            name="city"
+            label="Preferred City*"
+            placeholder="Select a city"
+            required
+            options={PREFERRED_CITIES}
+          />
+
+          <VVEnquirySelect
+            id="vv-project-budget"
+            name="budget"
+            label="Budget Range (optional)"
+            placeholder="Any budget"
+            options={[
+              { value: '', label: 'Any budget' },
+              ...BUDGETS.map(([value, label]) => ({ value, label })),
+            ]}
+          />
+
           <label className="vv-model-enquiry__sr-only" htmlFor="vv-project-message">Message</label>
           <textarea id="vv-project-message" name="message" rows={6} placeholder="Message..." />
+
           <div className="vv-model-enquiry__consent"><ConsentFields form="enquiry" marketing /></div>
-          <div className="vv-model-enquiry__action">
-            <VVArrowButton type="submit" label="Submit" />
-          </div>
+          <div className="vv-model-enquiry__action"><VVArrowButton type="submit" label="Submit" /></div>
         </div>
       </ContactForm>
     </section>
