@@ -841,3 +841,127 @@
   .cityHeading { margin-bottom: 16px; }
   .cityHeading h3 { font-size: 20px; }
 }
+
+
+/* --------------------------------------------------------
+   Screenshot-matched State / City dropdowns (scoped CSS)
+   -------------------------------------------------------- */
+.filters {
+  position: relative;
+  z-index: 5;
+}
+
+.filterSelect {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+.filterSelectOpen { z-index: 20; }
+.filterSelectTrigger {
+  appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  width: 100%;
+  min-height: 68px;
+  margin: 0;
+  padding: 12px 24px;
+  border: 1px solid transparent;
+  border-radius: 35px;
+  background: #f2f2f2;
+  box-shadow: none;
+  color: #09243d;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+.filterSelectTrigger:hover { background: #ebf5fa; }
+.filterSelectOpen .filterSelectTrigger {
+  background: #fff;
+  border-color: #011c5b;
+  box-shadow: 0 0 0 3px rgb(8 170 236 / 12%);
+}
+.filterSelectTrigger:focus-visible {
+  outline: 2px solid #08aaec;
+  outline-offset: 3px;
+}
+.filterSelectText { display: flex; min-width: 0; flex-direction: column; gap: 4px; }
+.filterSelectLabel {
+  color: #555;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: .25px;
+}
+.filterSelectValue {
+  overflow: hidden;
+  color: #09243d;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.filterSelectChevron {
+  flex: none;
+  color: #09243d;
+  transition: transform 220ms ease;
+}
+.filterSelectOpen .filterSelectChevron { transform: rotate(180deg); }
+.filterSelectMenu {
+  position: absolute;
+  z-index: 50;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 100%;
+  max-height: min(500px, 60dvh);
+  padding: 8px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid #e5e5e5;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 12px 35px rgb(0 0 0 / 10%);
+  scrollbar-width: thin;
+  scrollbar-color: #d2dce5 transparent;
+  animation: siteDropdownOpen 180ms ease-out;
+}
+.filterSelectMenu::-webkit-scrollbar { width: 5px; }
+.filterSelectMenu::-webkit-scrollbar-thumb { border-radius: 10px; background: #d2dce5; }
+.filterSelectOption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  color: #09243d;
+  font-size: 14px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+.filterSelectOption:hover,
+.filterSelectActive { background: #f1f7fb; }
+.filterSelectSelected,
+.filterSelectSelected:hover,
+.filterSelectSelected.filterSelectActive {
+  background: #eaf6fd;
+  color: #011c5b;
+  font-weight: 500;
+}
+@keyframes siteDropdownOpen {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 768px) {
+  .filterSelectTrigger { min-height: 68px; padding: 12px 25px; }
+  .filterSelectMenu { border-radius: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .filterSelectMenu { animation: none; }
+  .filterSelectChevron, .filterSelectTrigger { transition: none; }
+}

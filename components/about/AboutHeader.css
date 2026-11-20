@@ -26,10 +26,9 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 480px;
+  min-height: 550px;
   max-height: 620px;
-  aspect-ratio: 2000 / 1125;
-  background: url('/About.webp') center / cover no-repeat;
+  background: url('/About.webp') center bottom / cover no-repeat;
 }
 
 .about-header__hero::before {

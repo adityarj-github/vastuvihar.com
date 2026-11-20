@@ -27,6 +27,7 @@ export const projects = modelSlugs.map((slug, index) => {
     title: model.name,
     type: getHomeType(model),
     image: model.gallery?.[0] || '',
+    heroImage: model.gallery?.[1] || '',
     bedrooms: getStat(model, ['Bedrooms', 'Bedroom']),
     bathrooms: getStat(model, ['Bathrooms', 'Bathroom']),
     builtUp: getStat(model, ['Built-up', 'Built-up Area', 'Builtup Area']),
