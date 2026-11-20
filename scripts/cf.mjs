@@ -73,13 +73,24 @@ async function preflight() {
 
   // Every value, binding and ID must be real.
   const serialised = JSON.stringify({ vars: config.vars, d1: config.d1_databases, r2: config.r2_buckets, name: config.name });
-  for (const match of serialised.matchAll(/"([A-Z_]+)":"(REPLACE_[^"]*)"/g)) problems.push(`${match[1]} is still "${match[2]}" in wrangler.jsonc.`);
+  for (const match of serialised.matchAll(/"([A-Z_]+)":"(REPLACE_[^"]*)"/g)) {
+    // Placeholder Access values keep the admin area closed (proxy.ts answers 503), so they
+    // are safe to deploy with. Every other placeholder blocks the deploy.
+    if (match[1].startsWith('CF_ACCESS_')) continue;
+    problems.push(`${match[1]} is still "${match[2]}" in wrangler.jsonc.`);
+  }
   for (const match of serialised.matchAll(/"(database_id|bucket_name)":"(REPLACE_[^"]*)"/g)) problems.push(`${match[1]} is still "${match[2]}".`);
+  if (/REPLACE_/.test(`${config.vars?.CF_ACCESS_TEAM_DOMAIN}${config.vars?.CF_ACCESS_AUD}`)) {
+    warnings.push('Cloudflare Access is not configured, so the admin area is LOCKED (503) for everyone. Fill CF_ACCESS_TEAM_DOMAIN and CF_ACCESS_AUD to open it.');
+  }
 
   const d1 = (config.d1_databases || []).find((db) => db.binding === 'DB');
   if (!d1?.database_id) problems.push('The DB binding has no database_id.');
+  // R2 bindings may be left out until R2 is enabled. Uploads then answer "File storage is
+  // not available" (lib/privateStorage.ts) and the rest of the site works.
+  const boundR2 = config.r2_buckets || [];
   for (const binding of ['PRIVATE_FILES', 'MEDIA']) {
-    if (!(config.r2_buckets || []).some((bucket) => bucket.binding === binding)) problems.push(`R2 binding ${binding} is missing.`);
+    if (!boundR2.some((bucket) => bucket.binding === binding)) warnings.push(`R2 binding ${binding} is not set, so file uploads (resumes, blog and gallery images) are off.`);
   }
   if (config.vars?.APP_ENV !== env.appEnv) problems.push(`vars.APP_ENV is "${config.vars?.APP_ENV}", expected "${env.appEnv}".`);
 
@@ -93,11 +104,14 @@ async function preflight() {
   }
 
   // R2 must exist before a deploy that binds it.
-  const buckets = spawnSync('npx', ['wrangler', 'r2', 'bucket', 'list'], { encoding: 'utf8', shell: isWindows, env: { ...process.env, CLOUDFLARE_ACCOUNT_ID: config.account_id } });
+  const buckets = boundR2.length
+    ? spawnSync('npx', ['wrangler', 'r2', 'bucket', 'list'], { encoding: 'utf8', shell: isWindows, env: { ...process.env, CLOUDFLARE_ACCOUNT_ID: config.account_id } })
+    : { status: 0, stdout: '', stderr: '' };
   const bucketText = `${buckets.stdout}${buckets.stderr}`;
   if (/enable R2|10042/i.test(bucketText)) problems.push('R2 is not enabled on this Cloudflare account (dashboard > R2).');
   else if (buckets.status !== 0) {
-    const reason = bucketText.split('\n').find((line) => /error|auth|permission/i.test(line)) || 'unknown error';
+    const lines = bucketText.split('\n').map((line) => line.replace(/\x1b\[[0-9;]*m/g, '').trim());
+    const reason = lines.find((line) => /\[ERROR\]|\[code: \d+\]/.test(line)) || lines.find((line) => /error|permission|unauthori[sz]ed/i.test(line)) || 'unknown error';
     problems.push(`Could not list R2 buckets (does the API token have R2 access?): ${reason.trim()}`);
   } else {
     for (const bucket of config.r2_buckets || []) {

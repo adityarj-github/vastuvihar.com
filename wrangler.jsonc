@@ -29,11 +29,13 @@
       "migrations_dir": "migrations"
     }
   ],
-  // Keep public access off on both buckets.
-  "r2_buckets": [
-    { "binding": "PRIVATE_FILES", "bucket_name": "vastuvihar-private" },
-    { "binding": "MEDIA", "bucket_name": "vastuvihar-media" }
-  ],
+  // TEMPORARY: R2 is not enabled on the account yet, so the buckets are not bound and file
+  // uploads answer "File storage is not available". Once R2 is on, create both buckets
+  // (public access off) and uncomment this block.
+  // "r2_buckets": [
+  //   { "binding": "PRIVATE_FILES", "bucket_name": "vastuvihar-private" },
+  //   { "binding": "MEDIA", "bucket_name": "vastuvihar-media" }
+  // ],
   "vars": {
     "APP_ENV": "production",
     // Set by Cloudflare on every request, and a client cannot forge it.
