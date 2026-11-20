@@ -95,7 +95,7 @@ async function preflight() {
   }
 
   // R2 must exist before a deploy that binds it.
-  const buckets = spawnSync('npx', ['wrangler', 'r2', 'bucket', 'list'], { encoding: 'utf8', shell: isWindows, env: process.env });
+  const buckets = spawnSync('npx', ['wrangler', 'r2', 'bucket', 'list'], { encoding: 'utf8', shell: isWindows, env: { ...process.env, CLOUDFLARE_ACCOUNT_ID: config.account_id } });
   const bucketText = `${buckets.stdout}${buckets.stderr}`;
   if (/enable R2|10042/i.test(bucketText)) problems.push('R2 is not enabled on this Cloudflare account (dashboard > R2).');
   else {
@@ -108,7 +108,7 @@ async function preflight() {
   const secrets = spawnSync('npx', ['wrangler', 'secret', 'list', '--format', 'json', ...envArgs], {
     encoding: 'utf8',
     shell: isWindows,
-    env: process.env,
+    env: { ...process.env, CLOUDFLARE_ACCOUNT_ID: config.account_id },
   });
   let names = [];
   try {
