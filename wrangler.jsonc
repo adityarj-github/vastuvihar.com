@@ -14,10 +14,9 @@
     "binding": "ASSETS"
   },
   "observability": { "enabled": true },
-  // TEMPORARY: workers.dev is on until vastuvihar.org moves to Cloudflare, so the site can
-  // be checked. Set this back to false at cutover so nothing routes around the WAF. The
-  // workers.dev copy is marked noindex (cloudflare/worker.ts) and /admin stays behind Access.
-  "workers_dev": true,
+  // Off: the site is served on vastuvihar.com, and a workers.dev copy would route around
+  // the WAF. The noindex marking in cloudflare/worker.ts stays as a fallback.
+  "workers_dev": false,
   "preview_urls": false,
   // 02:00 IST daily. A no-op until retention periods are approved in the admin panel.
   "triggers": { "crons": ["30 20 * * *"] },
