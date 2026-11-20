@@ -5,6 +5,7 @@
 //   node scripts/cf.mjs build     <local|production>
 //   node scripts/cf.mjs migrate   <local|production>
 //   node scripts/cf.mjs deploy    production --confirm-production
+//   node scripts/cf.mjs ci        production   (Workers Builds: preflight, build, migrate; its deploy step deploys)
 //   node scripts/cf.mjs upload    production --confirm-production   (new version, no traffic moved)
 //
 // UAT was removed for now. Its Worker and D1 still exist in Cloudflare; to bring it back,
@@ -43,11 +44,11 @@ const BUNDLED_ENV_FILES = ['.env', '.env.local', '.env.production', '.env.produc
 
 const [command, target, ...flags] = process.argv.slice(2);
 const env = ENVIRONMENTS[target];
-if (!['preflight', 'build', 'migrate', 'deploy', 'upload'].includes(command) || !env) {
-  console.error('Usage: node scripts/cf.mjs <preflight|build|migrate|deploy|upload> <local|production>');
+if (!['preflight', 'build', 'migrate', 'deploy', 'upload', 'ci'].includes(command) || !env) {
+  console.error('Usage: node scripts/cf.mjs <preflight|build|migrate|deploy|upload|ci> <local|production>');
   process.exit(1);
 }
-if (['preflight', 'deploy', 'upload'].includes(command) && target === 'local') {
+if (['preflight', 'deploy', 'upload', 'ci'].includes(command) && target === 'local') {
   console.error(`"${command}" needs production.`);
   process.exit(1);
 }
@@ -95,7 +96,10 @@ async function preflight() {
   const buckets = spawnSync('npx', ['wrangler', 'r2', 'bucket', 'list'], { encoding: 'utf8', shell: isWindows, env: { ...process.env, CLOUDFLARE_ACCOUNT_ID: config.account_id } });
   const bucketText = `${buckets.stdout}${buckets.stderr}`;
   if (/enable R2|10042/i.test(bucketText)) problems.push('R2 is not enabled on this Cloudflare account (dashboard > R2).');
-  else {
+  else if (buckets.status !== 0) {
+    const reason = bucketText.split('\n').find((line) => /error|auth|permission/i.test(line)) || 'unknown error';
+    problems.push(`Could not list R2 buckets (does the API token have R2 access?): ${reason.trim()}`);
+  } else {
     for (const bucket of config.r2_buckets || []) {
       if (!bucketText.includes(bucket.bucket_name)) problems.push(`R2 bucket ${bucket.bucket_name} does not exist.`);
     }
@@ -162,6 +166,15 @@ function migrate() {
 if (command === 'preflight') await preflight();
 if (command === 'build') build();
 if (command === 'migrate') migrate();
+if (command === 'ci') {
+  if (!process.env.WORKERS_CI) {
+    console.error('"ci" is for Cloudflare Workers Builds. Use "deploy" elsewhere.');
+    process.exit(1);
+  }
+  await preflight();
+  build();
+  migrate();
+}
 if (command === 'deploy' || command === 'upload') {
   await preflight();
   build();

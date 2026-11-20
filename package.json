@@ -7,7 +7,7 @@
     "dev": "next dev --webpack",
     "compress": "node scripts/auto-compress.mjs && node scripts/gallery-manifest.mjs",
     "build:next": "node scripts/gallery-manifest.mjs && next build --webpack",
-    "build": "node scripts/gallery-manifest.mjs && prisma generate && next build",
+    "build": "node scripts/build.mjs",
     "start": "next start",
     "start:standalone": "node .next/standalone/server.js",
     "cf:build": "node scripts/cf.mjs build local",
