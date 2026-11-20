@@ -1,0 +1,106 @@
+name: Security scan (0security)
+
+# AI security review of the codebase with 0security (https://github.com/0sec-labs/0security).
+# It reads the code and sends it to the model provider whose key is set below; it never
+# deploys anything. Findings go to the repository's Security tab (code scanning) and to a
+# downloadable report.
+#
+# Setup: add the repository secret ANTHROPIC_API_KEY (Settings > Secrets and variables >
+# Actions). Without it the job is skipped with a notice instead of failing.
+# Each run stops at SCAN_BUDGET_USD of model spend.
+on:
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "30 3 * * 1" # Mondays 03:30 UTC (09:00 IST)
+  workflow_dispatch:
+
+concurrency:
+  group: security-scan-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  ZERO_VERSION: v0.41.0
+  # From the release's checksums.txt. Update both lines together when upgrading.
+  ZERO_SHA256: 98fcb404c1d9bc18a1dce81aa46cb41aaae6683288deaf0465548be9183de644
+  SCAN_BUDGET_USD: "3"
+  SCAN_MODEL: claude-sonnet-5-5
+
+jobs:
+  scan:
+    name: 0security scan
+    # Pull requests from forks get no secrets, so skip them.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - name: Check for the model key
+        id: key
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::notice::ANTHROPIC_API_KEY is not set, so the 0security scan was skipped."
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.key.outputs.present == 'true'
+        with:
+          persist-credentials: false
+
+      - name: Install 0security (pinned and checksum-verified)
+        if: steps.key.outputs.present == 'true'
+        run: |
+          curl -fsSL -o 0 "https://github.com/0sec-labs/0security/releases/download/${ZERO_VERSION}/0-linux-x64"
+          echo "${ZERO_SHA256}  0" | sha256sum -c -
+          chmod +x 0
+          sudo mv 0 /usr/local/bin/0
+          0 --version
+
+      - name: Scan the repository
+        if: steps.key.outputs.present == 'true'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ZERO_SELECTED_PROVIDER: anthropic
+        run: |
+          set +e
+          0 scan . --model "$SCAN_MODEL" --budget "$SCAN_BUDGET_USD" --format sarif -o 0security.sarif --fail-on high
+          code=$?
+          set -e
+          echo "exit_code=$code" >> "$GITHUB_ENV"
+          case $code in
+            0) echo "No high or critical findings." ;;
+            1) echo "::error::0security reported a high or critical finding, or the scan failed. See the Security tab and the report artifact." ;;
+            3) echo "::warning::The scan stopped at the budget or time limit; the report is partial." ;;
+            *) echo "::error::0security exited with code $code." ;;
+          esac
+
+      - name: Upload findings to code scanning
+        if: always() && steps.key.outputs.present == 'true' && hashFiles('0security.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: 0security.sarif
+          category: 0security
+
+      - name: Keep the report
+        if: always() && steps.key.outputs.present == 'true' && hashFiles('0security.sarif') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: 0security-report
+          path: 0security.sarif
+          retention-days: 30
+
+      - name: Fail on high or critical findings
+        if: steps.key.outputs.present == 'true'
+        run: |
+          # 3 (partial report at the budget) is a warning, not a failure.
+          if [ "${exit_code:-0}" != "0" ] && [ "${exit_code:-0}" != "3" ]; then exit 1; fi
