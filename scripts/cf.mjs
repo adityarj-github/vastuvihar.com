@@ -80,7 +80,7 @@ async function preflight() {
     problems.push(`${match[1]} is still "${match[2]}" in wrangler.jsonc.`);
   }
   for (const match of serialised.matchAll(/"(database_id|bucket_name)":"(REPLACE_[^"]*)"/g)) problems.push(`${match[1]} is still "${match[2]}".`);
-  if (/REPLACE_/.test(`${config.vars?.CF_ACCESS_TEAM_DOMAIN}${config.vars?.CF_ACCESS_AUD}`)) {
+  if (config.vars?.REQUIRE_CF_ACCESS === '1' && /REPLACE_/.test(`${config.vars?.CF_ACCESS_TEAM_DOMAIN}${config.vars?.CF_ACCESS_AUD}`)) {
     warnings.push('Cloudflare Access is not configured, so the admin area is LOCKED (503) for everyone. Fill CF_ACCESS_TEAM_DOMAIN and CF_ACCESS_AUD to open it.');
   }
 
@@ -94,9 +94,10 @@ async function preflight() {
   }
   if (config.vars?.APP_ENV !== env.appEnv) problems.push(`vars.APP_ENV is "${config.vars?.APP_ENV}", expected "${env.appEnv}".`);
 
-  // The admin login keeps a built-in master account, so the admin area must sit behind
-  // Cloudflare Access in every deployed environment.
-  if (config.vars?.REQUIRE_CF_ACCESS !== '1') problems.push('vars.REQUIRE_CF_ACCESS must be "1".');
+  // Without Access, the admin login is the only gate (owner's decision, see wrangler.jsonc).
+  if (config.vars?.REQUIRE_CF_ACCESS !== '1') {
+    warnings.push('Cloudflare Access is off. The admin login page is public; only passwords protect it.');
+  }
   if (target === 'production') {
     // Temporarily allowed until vastuvihar.org moves to Cloudflare (see wrangler.jsonc).
     if (config.workers_dev !== false) warnings.push('workers_dev is on. Turn it off at cutover so nothing routes around the WAF.');
@@ -133,6 +134,9 @@ async function preflight() {
   }
   for (const name of REQUIRED_SECRETS) {
     if (names.length && !names.includes(name)) problems.push(`Secret ${name} is not set: npx wrangler secret put ${name} ${envArgs.join(' ')}`);
+  }
+  if (names.length && !names.includes('ADMIN_PASSWORD')) {
+    warnings.push(`Secret ADMIN_PASSWORD is not set, so the master admin login is off: npx wrangler secret put ADMIN_PASSWORD ${envArgs.join(' ')}`);
   }
 
   for (const file of BUNDLED_ENV_FILES) {

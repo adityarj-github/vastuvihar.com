@@ -2,12 +2,13 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { endSession, getCurrentAdmin, startFallbackSession, startSession } from '@/lib/adminAuth';
 import { audit } from '@/lib/audit';
-import { hashPassword, verifyPassword } from '@/lib/security/crypto';
+import { hashPassword, safeEqual, verifyPassword } from '@/lib/security/crypto';
 import { guardPublicPost, isSameOrigin, jsonError, logError } from '@/lib/security/request';
 import { normalizeEmail } from '@/lib/validation';
 
 const MAX_FAILED_LOGINS = 5;
 const LOCK_MINUTES = 15;
+const MIN_MASTER_PASSWORD = 16;
 const INVALID = 'Invalid email or password.';
 
 // Verified against when the email is unknown, so timing does not reveal valid accounts.
@@ -34,14 +35,15 @@ export async function POST(request: Request) {
     const password = typeof body.password === 'string' ? body.password.slice(0, 256) : '';
     if (!email || !password) return jsonError(INVALID, 401);
 
+    // The master login accepts only the ADMIN_PASSWORD secret (npx wrangler secret put
+    // ADMIN_PASSWORD). No password is written in the code, and a missing or short secret
+    // turns the master login off.
     const masterEmail = (process.env.ADMIN_EMAIL || 'info@vastuvihar.org').toLowerCase().trim();
-    const masterPassword = process.env.ADMIN_PASSWORD || 'info1234';
+    const masterPassword = process.env.ADMIN_PASSWORD || '';
     const isMasterCandidate =
+      masterPassword.length >= MIN_MASTER_PASSWORD &&
       email === masterEmail &&
-      (password === masterPassword ||
-        password === 'info1234' ||
-        password === 'vastu@admin2025' ||
-        password === 'YourPassword123');
+      safeEqual(password, masterPassword);
 
     let user = null;
     let dbAvailable = true;
