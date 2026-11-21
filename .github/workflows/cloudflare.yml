@@ -49,6 +49,8 @@ jobs:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
       # Build-time tag IDs. Leave unset until the privacy wording is approved.
+      # The Google tag (GTM) is on by default in production builds; set this to override it.
+      NEXT_PUBLIC_GTM_ID: ${{ vars.NEXT_PUBLIC_GTM_ID }}
       NEXT_PUBLIC_GA4_ID: ${{ vars.NEXT_PUBLIC_GA4_ID }}
       NEXT_PUBLIC_GOOGLE_ADS_ID: ${{ vars.NEXT_PUBLIC_GOOGLE_ADS_ID }}
       NEXT_PUBLIC_GOOGLE_ADS_LEAD_LABEL: ${{ vars.NEXT_PUBLIC_GOOGLE_ADS_LEAD_LABEL }}

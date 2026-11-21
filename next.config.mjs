@@ -1,3 +1,5 @@
+import { gtmContainerId } from './lib/privacy/gtm.mjs';
+
 const isStaticExport = process.env.STATIC_EXPORT === '1';
 const isDev = process.env.NODE_ENV !== 'production';
 
@@ -12,6 +14,16 @@ if (process.env.NODE_ENV === 'development' && process.env.USE_CLOUDFLARE === '1'
 // A tag's hosts are only allowed when its ID is set, so a site with no tags allows none.
 const isSet = (name) => Boolean((process.env[name] || '').trim());
 const tagHosts = [
+  // The Google tag container and the Google Analytics and Google Ads tags it is expected to
+  // hold. A tag added in GTM that talks to another host also needs that host added here.
+  ...(gtmContainerId()
+    ? [{
+        script: 'https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com',
+        connect: 'https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.googleadservices.com',
+        img: 'https://*.google-analytics.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.google.co.in https://www.googleadservices.com',
+        frame: 'https://td.doubleclick.net https://www.googletagmanager.com',
+      }]
+    : []),
   ...(isSet('NEXT_PUBLIC_GA4_ID')
     ? [{
         script: 'https://www.googletagmanager.com',
