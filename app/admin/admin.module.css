@@ -7,7 +7,8 @@
   color: #0f172a;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  /* clip, not hidden: hidden makes this a scroll container and stops the sticky top bar sticking. */
+  overflow-x: clip;
 }
 
 /* ================= SIDEBAR (DARK BLUE THEME) ================= */
