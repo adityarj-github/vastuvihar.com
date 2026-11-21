@@ -8,7 +8,7 @@ import { normalizeEmail } from '@/lib/validation';
 
 const MAX_FAILED_LOGINS = 5;
 const LOCK_MINUTES = 15;
-const MIN_MASTER_PASSWORD = 16;
+const MIN_MASTER_PASSWORD = 8;
 const INVALID = 'Invalid email or password.';
 
 // Verified against when the email is unknown, so timing does not reveal valid accounts.
@@ -37,7 +37,7 @@ export async function POST(request: Request) {
 
     // The master login accepts only the ADMIN_PASSWORD secret (npx wrangler secret put
     // ADMIN_PASSWORD). No password is written in the code, and a missing or short secret
-    // turns the master login off.
+    // turns the master login off. The owner chose an 8-character minimum.
     const masterEmail = (process.env.ADMIN_EMAIL || 'info@vastuvihar.org').toLowerCase().trim();
     const masterPassword = process.env.ADMIN_PASSWORD || '';
     const isMasterCandidate =

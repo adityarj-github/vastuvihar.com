@@ -41,12 +41,12 @@
     "CLIENT_IP_HEADER": "cf-connecting-ip",
     // Cloudflare Access is OFF for now, by the owner's decision: Access could not be set up.
     // The admin login is the only gate, and its master account accepts only the
-    // ADMIN_PASSWORD secret (16+ characters). To turn Access on, set this to "1" and fill
+    // ADMIN_PASSWORD secret (8+ characters). To turn Access on, set this to "1" and fill
     // the two values below (lib/security/cfAccess.ts).
     "REQUIRE_CF_ACCESS": "0",
     "CF_ACCESS_TEAM_DOMAIN": "REPLACE_WITH_TEAM.cloudflareaccess.com",
     "CF_ACCESS_AUD": "REPLACE_WITH_PRODUCTION_ACCESS_AUD"
   },
   // Secrets (npx wrangler secret put <NAME>): PRIVACY_HASH_SECRET, RETENTION_CRON_SECRET.
-  // ADMIN_PASSWORD (16+ characters) enables the master admin login; ADMIN_EMAIL is optional.
+  // ADMIN_PASSWORD (8+ characters) enables the master admin login; ADMIN_EMAIL is optional.
 }

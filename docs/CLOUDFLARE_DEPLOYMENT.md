@@ -40,7 +40,7 @@ preview URLs are on, or `--confirm-production` is missing.
 
 `app/api/admin/auth/route.ts` keeps, by request, a master login for `info@vastuvihar.org`
 (or `ADMIN_EMAIL`) that creates or re-activates a SUPER_ADMIN account on use. It accepts
-**only** the `ADMIN_PASSWORD` Worker secret, and only when that secret is at least 16
+**only** the `ADMIN_PASSWORD` Worker secret, and only when that secret is at least 8
 characters; with no secret the master login is off. No password is written in the code.
 
 ```bash
