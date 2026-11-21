@@ -100,19 +100,6 @@ export const PROCESSORS = [
         location: 'Outside India (review against government transfer restrictions)',
       }]
     : []),
-  ...(TAG_IDS.metaPixel
-    ? [{
-        name: 'Meta Pixel (Facebook, Instagram)',
-        role: 'Pending: confirm under Meta\'s terms',
-        purpose: 'Remarketing and measuring adverts',
-        data: 'IP address, browser details, pages viewed, cookies, and the fact that an enquiry was sent',
-        receivesPersonalData: false,
-        trigger: 'Only after the visitor allows Advertising & Remarketing',
-        legalBasis: 'Consent',
-        contract: 'Pending: accept and review Meta\'s business terms',
-        location: 'Outside India (review against government transfer restrictions)',
-      }]
-    : []),
 ];
 
 export const REMOVED_INTEGRATIONS = [

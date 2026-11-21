@@ -35,7 +35,6 @@ const TAG_VARS = [
   'NEXT_PUBLIC_GA4_ID',
   'NEXT_PUBLIC_GOOGLE_ADS_ID',
   'NEXT_PUBLIC_GOOGLE_ADS_LEAD_LABEL',
-  'NEXT_PUBLIC_META_PIXEL_ID',
   'NEXT_PUBLIC_CLARITY_ID',
 ];
 // OpenNext copies these files into the Worker bundle (compile-env-files.js), so local

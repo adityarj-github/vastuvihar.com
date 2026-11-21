@@ -3,7 +3,7 @@ import { site } from '@/data/site';
 import CookieConsent from '@/components/CookieConsent/CookieConsent';
 import NavigationShell from '@/components/NavigationShell/NavigationShell';
 import TrackingTags from '@/components/privacy/TrackingTags';
-import MetaCtaTracker from '@/components/privacy/MetaCtaTracker';
+import CtaClickTracker from '@/components/privacy/CtaClickTracker';
 import JsonLd from '@/components/JsonLd';
 import { SITE_URL } from '@/lib/metadata';
 
@@ -72,7 +72,7 @@ export default function RootLayout({ children }) {
           {children}
         </NavigationShell>
         <TrackingTags />
-        <MetaCtaTracker />
+        <CtaClickTracker />
       </body>
     </html>
   );

@@ -89,21 +89,6 @@ export default function ApplyForm() {
       }
 
       setSuccess(true);
-
-      // Keep the existing analytics events, but only after a successful POST.
-      const fbq = (window as Window & {
-        fbq?: (...args: unknown[]) => void;
-      }).fbq;
-      if (typeof fbq === 'function') {
-        try {
-          fbq('track', 'SubmitApplication');
-          fbq('trackCustom', 'Job_Application_Submitted', {
-            jobTitle: formData.jobTitle || 'General',
-          });
-        } catch {
-          // A blocked analytics script must never invalidate a saved application.
-        }
-      }
     } catch {
       setError('A network error occurred. Please try again.');
     } finally {

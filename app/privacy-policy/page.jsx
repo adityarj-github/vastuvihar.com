@@ -20,7 +20,7 @@ const Icon = ({ children }) => <span className={styles.icon} aria-hidden="true">
 
 // The policy only describes tags this deployment has switched on.
 const hasAnalytics = Boolean(TAG_IDS.ga4 || TAG_IDS.clarity);
-const hasAdvertising = Boolean(TAG_IDS.googleAds || TAG_IDS.metaPixel);
+const hasAdvertising = Boolean(TAG_IDS.googleAds);
 const hasTags = hasAnalytics || hasAdvertising;
 
 export default function PrivacyPage() {
