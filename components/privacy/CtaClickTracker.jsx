@@ -5,78 +5,20 @@ import { usePathname } from 'next/navigation';
 import { useCookieChoice } from '@/lib/privacy/cookieChoices';
 
 /**
- * MetaCtaTracker
- * Global Automatic CTA & Interaction Tracker for Meta Pixel.
- * Automatically tracks:
- * - Phone clicks (tel:) -> fbq('track', 'Contact') + fbq('trackCustom', 'PhoneCall_Click')
- * - WhatsApp clicks (wa.me) -> fbq('track', 'Contact') + fbq('trackCustom', 'WhatsApp_Click')
- * - Email clicks (mailto:) -> fbq('track', 'Contact') + fbq('trackCustom', 'Email_Click')
- * - Price lists & Brochures -> fbq('track', 'ViewContent') + fbq('trackCustom', 'PriceList_Brochure_Click')
- * - Site Visits / Bookings -> fbq('track', 'Schedule') + fbq('trackCustom', 'SiteVisit_Click')
- * - Enquiry Buttons -> fbq('track', 'Contact') + fbq('trackCustom', 'Enquiry_CTA_Click')
- * - Career Apply Clicks -> fbq('trackCustom', 'Job_Apply_Click')
- * - All other buttons & CTAs -> fbq('trackCustom', 'CTA_Click')
- * - Next.js SPA page transitions -> contextual ViewContent/FindLocation
- *
- * Meta events only run after the visitor allows Advertising, and Clarity events only
- * after they allow Analytics. PageView is sent by lib/privacy/tags.js, not here.
+ * CtaClickTracker
+ * Sends a named Microsoft Clarity event for important clicks: phone, WhatsApp, email,
+ * price lists and brochures, site visits, enquiries, career applications and other CTAs.
+ * Runs only after the visitor allows Analytics. Only the event name is sent.
  */
-export default function MetaCtaTracker() {
+export default function CtaClickTracker() {
   const pathname = usePathname();
   const choice = useCookieChoice();
-  const advertising = choice?.advertising === true;
   const analytics = choice?.analytics === true;
   // The click listener reads the latest choice without being re-added on every change.
-  const consent = useRef({ advertising, analytics });
-  consent.current = { advertising, analytics };
+  const consent = useRef({ analytics });
+  consent.current = { analytics };
 
-  // 1. SPA Route changes: PageView and contextual page events
-  useEffect(() => {
-    if (!pathname || pathname.startsWith('/admin') || !advertising) return;
-
-    if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
-
-      // Track ViewContent for project models
-      if (pathname.startsWith('/projects/') && pathname.length > 10) {
-        const slug = pathname.replace(/^\/projects\//, '').replace(/\/$/, '');
-        window.fbq('track', 'ViewContent', {
-          content_name: slug,
-          content_category: 'Project Model',
-          content_type: 'product',
-        });
-      }
-
-      // Track ViewContent for price lists
-      if (pathname.startsWith('/price-list/') && pathname.length > 12) {
-        const slug = pathname.replace(/^\/price-list\//, '').replace(/\/$/, '');
-        window.fbq('track', 'ViewContent', {
-          content_name: `Price List: ${slug}`,
-          content_category: 'Price List',
-          content_type: 'price_list',
-        });
-      }
-
-      // Track FindLocation for city townships
-      if (pathname.startsWith('/cities/') && pathname.length > 8) {
-        const slug = pathname.replace(/^\/cities\//, '').replace(/\/$/, '');
-        window.fbq('track', 'FindLocation', {
-          content_name: `City: ${slug}`,
-          content_category: 'City Township',
-        });
-      }
-
-      // Track Contact page visit
-      if (pathname === '/contact' || pathname === '/contact/') {
-        window.fbq('track', 'Contact', {
-          content_name: 'Contact Page View',
-          content_category: 'Contact',
-        });
-      }
-    }
-
-  }, [pathname, advertising]);
-
-  // 2. Global CTA Click Event Listener
+  // Global CTA click listener
   useEffect(() => {
     if (typeof window === 'undefined') return;
     if (pathname?.startsWith('/admin')) return;
@@ -130,16 +72,10 @@ export default function MetaCtaTracker() {
           }
         };
 
-        const fireFbq = (type, eventName, params = {}) => {
-          if (consent.current.advertising && typeof window !== 'undefined' && typeof window.fbq === 'function') {
-            window.fbq(type, eventName, { ...params, page_path: currentPath });
-            if (process.env.NODE_ENV !== 'production') {
-              console.log(`[Meta Pixel ${type}]`, eventName, params);
-            }
-          }
-          if (type === 'trackCustom') {
-            fireClarity(eventName);
-          }
+        // Kept the old call shape so the click rules below read unchanged. Only
+        // 'trackCustom' names reach Clarity; nothing goes to any advertiser.
+        const fireFbq = (type, eventName) => {
+          if (type === 'trackCustom') fireClarity(eventName);
         };
 
         // A. Phone calls (tel:...)
@@ -286,7 +222,7 @@ export default function MetaCtaTracker() {
         }
       } catch (err) {
         if (process.env.NODE_ENV !== 'production') {
-          console.error('[MetaCtaTracker error]', err);
+          console.error('[CtaClickTracker error]', err);
         }
       }
     }

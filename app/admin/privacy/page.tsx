@@ -319,7 +319,7 @@ function CookieLogTab() {
       <p className={styles.sub}>These count saved choices, not people. A visitor who changes their mind is counted again.</p>
       {data?.tags && (
         <p className={styles.sub}>
-          Tags on this deployment: Google Analytics {data.tags.googleAnalytics ? 'on' : 'not configured'}, Google Ads {data.tags.googleAds ? 'on' : 'not configured'}, Meta Pixel {data.tags.metaPixel ? 'on' : 'not configured'}.
+          Tags on this deployment: Google Analytics {data.tags.googleAnalytics ? 'on' : 'not configured'}, Google Ads {data.tags.googleAds ? 'on' : 'not configured'}.
         </p>
       )}
 

@@ -286,7 +286,7 @@ const activityId = `${run}`.padEnd(32, 'b');
 const activityEvents = [
   { kind: 'page_view', category: 'advertising', path: '/projects/', cookies: ['_fbp', '_gcl_au', 'vv_admin_session', '_ga'], adSource: { channel: 'google_ads', utmSource: 'google', utmMedium: 'cpc', utmCampaign: 'patna-homes' } },
   { kind: 'page_view', category: 'analytics', path: '/contact/', cookies: ['_ga'] },
-  { kind: 'tag_event', category: 'advertising', provider: 'meta_pixel', eventName: 'PageView', path: '/projects/' },
+  { kind: 'tag_event', category: 'advertising', provider: 'google_ads', eventName: 'page_view', path: '/projects/' },
 ];
 const postActivity = (body) => http('/api/privacy/visitor-activity', { method: 'POST', body });
 const chooseCookies = (browserId, choices) => http('/api/privacy/cookie-consent', { method: 'POST', body: { browserId, choices, source: 'cookie_banner' } });
@@ -308,7 +308,7 @@ await check('Visitor activity', 'Only cookie names of the right category are kep
   equal(json.stored, 3, 'stored');
   const { json: log } = await http(`/api/admin/privacy/visitor-activity?consentId=${activityId}&kind=page_view&category=advertising`, { cookie });
   equal(log.total, 1, 'rows');
-  equal(log.rows[0].cookies, '_fbp,_gcl_au', 'cookie names');
+  equal(log.rows[0].cookies, '_gcl_au', 'cookie names');
   equal(log.rows[0].adChannel, 'google_ads', 'channel');
   equal(log.rows[0].adUtmCampaign, 'patna-homes', 'campaign');
   expect(!JSON.stringify(log).includes(activityId), 'raw ID returned');
@@ -323,8 +323,8 @@ await check('Visitor activity', 'Malformed events, admin pages and contact detai
     { kind: 'page_view', category: 'analytics', path: '/admin/privacy/' },
     { kind: 'page_view', category: 'analytics', path: 'https://evil.example/' },
     { kind: 'page_view', category: 'analytics', path: '/contact/?phone=9999999999' },
-    { kind: 'tag_event', category: 'analytics', provider: 'meta_pixel', eventName: 'PageView', path: '/' },
-    { kind: 'tag_event', category: 'advertising', provider: 'meta_pixel', eventName: 'Anything', path: '/' },
+    { kind: 'tag_event', category: 'analytics', provider: 'google_ads', eventName: 'page_view', path: '/' },
+    { kind: 'tag_event', category: 'advertising', provider: 'meta_pixel', eventName: 'PageView', path: '/' },
   ];
   equal((await postActivity({ browserId: activityId, events: bad })).json.stored, 0, 'bad events stored');
   await postActivity({ browserId: activityId, events: [{ kind: 'page_view', category: 'advertising', path: '/faqs/', adSource: { channel: 'campaign', utmCampaign: 'me@example.test' } }] });
