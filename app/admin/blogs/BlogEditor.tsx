@@ -747,7 +747,7 @@ export default function BlogEditor({ blogId }: { blogId?: string }) {
                     <div className={styles.serpSiteUrl}>
                       <span className={styles.serpSiteName}>Vastu Vihar</span>
                       <span className={styles.serpUrl}>
-                        https://vastuvihar.org › blog › {slug || 'post-slug'}
+                        https://vastuvihar.com › blog › {slug || 'post-slug'}
                       </span>
                     </div>
                   </div>

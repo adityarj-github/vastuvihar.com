@@ -15,6 +15,7 @@ export const RETENTION_CATEGORIES = [
   { category: 'CHAT', description: 'Legacy chat sessions from the removed chat endpoint' },
   { category: 'PRIVACY_REQUEST', description: 'Resolved privacy requests and grievances, measured from resolution' },
   { category: 'CONSENT_RECORD', description: 'Hashed consent ledger entries' },
+  { category: 'CONSENT_AUDIT', description: 'Consent audit trail: cookie choices with consent ID, masked IP and notice hash, measured from when they were saved' },
   { category: 'VISITOR_EVENT', description: 'Visitor activity log: pages, cookie names, ad sources and tag events, measured from when they happened' },
   { category: 'AUDIT_LOG', description: 'Administrative audit log entries' },
 ];
@@ -108,6 +109,11 @@ const handlers: Record<string, Handler> = {
     }
     if (dryRun) return ids.length;
     return (await prisma.consentRecord.deleteMany({ where: { id: { in: ids } } })).count;
+  },
+  async CONSENT_AUDIT(cutoff, dryRun) {
+    const where = { createdAt: { lt: cutoff } };
+    if (dryRun) return prisma.consentAuditEvent.count({ where });
+    return (await prisma.consentAuditEvent.deleteMany({ where })).count;
   },
   async VISITOR_EVENT(cutoff, dryRun) {
     const where = { createdAt: { lt: cutoff } };

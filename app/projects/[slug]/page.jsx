@@ -2,15 +2,9 @@ import { notFound } from 'next/navigation';
 import PageLayout from '@/components/PageLayout';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 import ProjectDetails from '@/components/projects/ProjectDetails';
-import { projects, getProject } from '@/data/projects';
+import { getProject } from '@/data/projects';
 import { createPageMetadata } from '@/lib/metadata';
 import './project-detail.css';
-
-export const dynamicParams = false;
-
-export function generateStaticParams() {
-  return projects.map(({ slug }) => ({ slug }));
-}
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;

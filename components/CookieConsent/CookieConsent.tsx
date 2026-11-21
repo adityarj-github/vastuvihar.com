@@ -55,9 +55,9 @@ export default function CookieConsent() {
     };
   }, []);
 
-  const saveConsent = useCallback((next: Choices) => {
+  const saveConsent = useCallback((next: Choices, action: 'accept_all' | 'reject_all' | 'save_preferences') => {
     setChoices(next);
-    saveChoices(next, 'cookie_banner', language);
+    saveChoices(next, 'cookie_banner', language, action);
     setIsOpen(false);
   }, [language]);
 
@@ -209,21 +209,21 @@ export default function CookieConsent() {
             <button
               type="button"
               className={styles.saveBtn}
-              onClick={() => saveConsent(allCategories(() => false))}
+              onClick={() => saveConsent(allCategories(() => false), 'reject_all')}
             >
               Reject Optional
             </button>
             <button
               type="button"
               className={styles.saveBtn}
-              onClick={() => saveConsent(choices)}
+              onClick={() => saveConsent(choices, 'save_preferences')}
             >
               Save Preferences
             </button>
             <button
               type="button"
               className={styles.acceptAllBtn}
-              onClick={() => saveConsent(allCategories(() => true))}
+              onClick={() => saveConsent(allCategories(() => true), 'accept_all')}
             >
               Accept All
             </button>

@@ -14,7 +14,7 @@ export default function ConsentEmbed({ provider, children, poster, className = '
       style={poster ? { backgroundImage: `linear-gradient(rgb(0 0 0 / 60%), rgb(0 0 0 / 60%)), url('${poster}')` } : undefined}
     >
       <p>This {provider} content is off. Loading it sends your IP address and browser details to {provider}.</p>
-      <button type="button" onClick={() => saveChoices({ media: true }, 'embed')}>
+      <button type="button" onClick={() => saveChoices({ media: true }, 'embed', 'en', 'allow_embed')}>
         Allow videos and maps
       </button>
     </div>
