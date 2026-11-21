@@ -16,3 +16,4 @@ prisma/dev.db
 
 # TypeScript incremental build cache
 *.tsbuildinfo
+.directory
