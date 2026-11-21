@@ -36,25 +36,30 @@ binding is missing; R2 is not enabled or a bucket does not exist; `PRIVACY_HASH_
 `.env` file exists; and, for production, the git tree is not clean, workers.dev or
 preview URLs are on, or `--confirm-production` is missing.
 
-## 2. The built-in admin login, and why Access is mandatory
+## 2. The built-in admin login, and Access
 
 `app/api/admin/auth/route.ts` keeps, by request, a master login for `info@vastuvihar.org`
-that accepts fixed passwords written in the source code, and creates or
-re-activates a SUPER_ADMIN account on use. Anyone who can reach the login form can
-therefore take over the admin area: every enquiry, CV, privacy request and admin user.
+(or `ADMIN_EMAIL`) that creates or re-activates a SUPER_ADMIN account on use. It accepts
+**only** the `ADMIN_PASSWORD` Worker secret, and only when that secret is at least 16
+characters; with no secret the master login is off. No password is written in the code.
 
-On Cloudflare this is contained by **Cloudflare Access**, enforced twice:
+```bash
+npx wrangler secret put ADMIN_PASSWORD   # a long random password, kept in a password manager
+```
 
-1. Access applications in front of `/admin` and `/api/admin` (set up in section 3).
-2. The app itself (`proxy.ts`, `lib/security/cfAccess.ts`) verifies the Access token
-   (RS256 signature against the team's keys, issuer, audience, expiry) on every `/admin`
-   and `/api/admin` request when `REQUIRE_CF_ACCESS=1`. So the gate also holds on any
-   URL Access does not cover. Placeholder values make the admin area answer **503**, a
-   request without a valid token gets **403**.
+**Cloudflare Access is currently OFF** (`REQUIRE_CF_ACCESS: "0"` in `wrangler.jsonc`), by
+the owner's decision, because Access could not be set up. The admin login page is
+therefore public, and the master password is the only thing protecting it (plus the
+login rate limit). Preflight warns about this on every deploy.
 
-**A public launch is safe only with Access configured and limited to named staff.** It
-is still a risk worth removing: anyone given Access (or a compromised staff account)
-can use the master password, and the login cannot be revoked or audited per person.
+To turn Access back on: create an Access application in front of `/admin` and
+`/api/admin` (section 3), put its AUD and team domain in `wrangler.jsonc` and set
+`REQUIRE_CF_ACCESS` to `"1"`. The app (`proxy.ts`, `lib/security/cfAccess.ts`) then
+verifies the Access token on every admin request, so the gate also holds on URLs Access
+does not cover. Placeholder values make the admin area answer **503**, a request
+without a valid token gets **403**.
+
+The master login cannot be revoked or audited per person.
 Replace it with per-person accounts (`npm run admin:create:d1`) when you can.
 
 ## 3. One-time setup (needs the account owner)

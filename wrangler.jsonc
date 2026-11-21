@@ -39,12 +39,14 @@
     "APP_ENV": "production",
     // Set by Cloudflare on every request, and a client cannot forge it.
     "CLIENT_IP_HEADER": "cf-connecting-ip",
-    // The admin area requires a Cloudflare Access token (lib/security/cfAccess.ts). With
-    // placeholder values the admin area answers 503, so it fails closed.
-    "REQUIRE_CF_ACCESS": "1",
+    // Cloudflare Access is OFF for now, by the owner's decision: Access could not be set up.
+    // The admin login is the only gate, and its master account accepts only the
+    // ADMIN_PASSWORD secret (16+ characters). To turn Access on, set this to "1" and fill
+    // the two values below (lib/security/cfAccess.ts).
+    "REQUIRE_CF_ACCESS": "0",
     "CF_ACCESS_TEAM_DOMAIN": "REPLACE_WITH_TEAM.cloudflareaccess.com",
     "CF_ACCESS_AUD": "REPLACE_WITH_PRODUCTION_ACCESS_AUD"
   },
   // Secrets (npx wrangler secret put <NAME>): PRIVACY_HASH_SECRET, RETENTION_CRON_SECRET.
-  // Optional: ADMIN_PASSWORD, ADMIN_EMAIL.
+  // ADMIN_PASSWORD (16+ characters) enables the master admin login; ADMIN_EMAIL is optional.
 }
