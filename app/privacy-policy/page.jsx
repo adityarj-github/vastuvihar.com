@@ -19,8 +19,8 @@ export const metadata = createPageMetadata({
 const Icon = ({ children }) => <span className={styles.icon} aria-hidden="true">{children}</span>;
 
 // The policy only describes tags this deployment has switched on.
-const hasAnalytics = Boolean(TAG_IDS.ga4 || TAG_IDS.clarity);
-const hasAdvertising = Boolean(TAG_IDS.googleAds);
+const hasAnalytics = Boolean(TAG_IDS.ga4 || TAG_IDS.clarity || TAG_IDS.gtm);
+const hasAdvertising = Boolean(TAG_IDS.googleAds || TAG_IDS.gtm);
 const hasTags = hasAnalytics || hasAdvertising;
 
 export default function PrivacyPage() {
@@ -98,6 +98,7 @@ export default function PrivacyPage() {
                 <li><strong>Google (YouTube, Google Maps) and Vimeo</strong> receive your IP address and browser details only after you allow videos and maps. They act independently under their own privacy policies, and may process data outside India.</li>
                 <li><strong>WhatsApp (Meta):</strong> if our sales team replies to your enquiry on WhatsApp, your name and phone number are used on that service.</li>
                 {TAG_IDS.clarity && <li><strong>Microsoft Clarity</strong> records the pages you view and how you scroll and click on them, only after you allow analytics, and may process it outside India.</li>}
+                {TAG_IDS.gtm && <li><strong>Google</strong> (through the Google tag, which includes Google Analytics and Google Ads) receives the data described in section 07 only after you allow analytics or advertising, and may process it outside India.</li>}
                 {TAG_IDS.ga4 && <li><strong>Google Analytics</strong> receives the data described in section 07 only after you allow analytics, and may process it outside India.</li>}
                 {hasAdvertising && <li><strong>Our advertising partners</strong> receive the data described in section 07 only after you allow advertising and remarketing, and may process it outside India.</li>}
               </ul>
