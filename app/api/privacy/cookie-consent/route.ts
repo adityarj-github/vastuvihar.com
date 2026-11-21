@@ -1,14 +1,19 @@
 import { NextResponse } from 'next/server';
-import { guardPublicPost, jsonError, logError } from '@/lib/security/request';
+import { clientIp, guardPublicPost, jsonError, logError } from '@/lib/security/request';
 import { cleanText, oneOf } from '@/lib/validation';
 import { noticeLanguage, recordConsent } from '@/lib/privacy/consent';
+import { CONSENT_ACTIONS, recordConsentAudit } from '@/lib/privacy/consentAudit';
 import { CATEGORY_PURPOSES } from '@/lib/privacy/cookieConfig';
 import { deleteVisitorEvents } from '@/lib/privacy/visitorLog';
 import { keyedHash } from '@/lib/security/crypto';
 
 const SOURCES = ['cookie_banner', 'embed', 'privacy_policy'] as const;
 
-/** Logs a browser's cookie choices against a random browser ID, with no contact data or IP. */
+/**
+ * Logs a browser's cookie choices against its random consent ID, with no contact data.
+ * The per-category ledger gates the visitor activity log. The audit row keeps the whole
+ * choice with a masked IP and the hash of the notice shown (Admin > Privacy > Consent audit).
+ */
 export async function POST(request: Request) {
   try {
     const blocked = await guardPublicPost(request, 'cookie-consent', 30, 60 * 60 * 1000);
@@ -36,6 +41,14 @@ export async function POST(request: Request) {
         source,
       });
     }
+    await recordConsentAudit({
+      anonymousId: browserId,
+      action: oneOf(body.action, CONSENT_ACTIONS),
+      source,
+      choices: Object.fromEntries(entries.map(([category]) => [category, body.choices[category] === true])),
+      language,
+      ip: clientIp(request),
+    });
     await deleteVisitorEvents(
       browserKey,
       (['analytics', 'advertising'] as const).filter((category) => body.choices?.[category] === false),

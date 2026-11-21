@@ -33,6 +33,7 @@ Everything the website collects, where it goes, and why. Update this file and `d
 | Comment | Name and comment (public once approved), email (never public) | Publishing comments | CONTENT, PRIVACY_OFFICER, SUPER_ADMIN |
 | Rights request | Name, contact, details, nominee | Handling the request | PRIVACY_OFFICER, SUPER_ADMIN |
 | Consent ledger | Keyed hash of contact, purpose, version, language, time | Evidence of consent | PRIVACY_OFFICER, SUPER_ADMIN (hashes are not displayed) |
+| Consent audit trail | Random consent ID, action, answer per cookie category, language, masked IP (IPv4 /24, IPv6 /48), notice version and SHA-256 hash of the notice text, time (`ConsentAuditEvent`) | Prove what each browser chose and under which wording | Anyone with `privacy:read`, in Admin > Privacy > Consent audit. Retention category `CONSENT_AUDIT` |
 | Visitor activity | Keyed hash of browser ID, pages, tag cookie names (never values), ad channel, UTM values (never click IDs), tag events | Check the tags and measure adverts | PRIVACY_OFFICER, SUPER_ADMIN (only the first 10 characters of the hash are displayed) |
 | Enquiry ad source | Ad channel, UTM values | Measure adverts | SALES, SUPER_ADMIN, PRIVACY_OFFICER |
 | Rate limiting | Keyed hash of IP, purged after 24 hours | Abuse prevention | Nobody through the UI |

@@ -179,6 +179,29 @@ model ConsentRecord {
   @@index([createdAt])
 }
 
+// One row each time a visitor saves cookie choices: the consent audit trail shown in
+// Admin > Privacy > Consent audit. Holds the random consent ID the browser created, never
+// contact details. The IP address is masked before it is stored (IPv4 /24, IPv6 /48), and
+// noticeHash is the SHA-256 of the exact notice text shown, so the wording can be proven.
+model ConsentAuditEvent {
+  id          String   @id @default(cuid())
+  anonymousId String // the visitor's consent ID, shown under Cookie Preferences
+  action      String // "accept_all" | "reject_all" | "save_preferences" | "allow_embed" | "policy_update"
+  source      String // "cookie_banner" | "embed" | "privacy_policy"
+  necessary   Boolean  @default(true)
+  media       Boolean? // null: not answered in this save
+  analytics   Boolean?
+  advertising Boolean?
+  language    String   @default("en")
+  maskedIp    String?
+  noticeVersion String
+  noticeHash  String
+  createdAt   DateTime @default(now())
+
+  @@index([anonymousId])
+  @@index([createdAt])
+}
+
 // What happened in a browser after its visitor allowed analytics or advertising.
 // Holds a keyed hash of the browser ID, never contact details, IP addresses or cookie
 // values. A category's rows are deleted when the visitor withdraws that category.

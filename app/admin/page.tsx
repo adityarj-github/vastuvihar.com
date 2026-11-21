@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import GalleryManager from '@/components/admin/GalleryManager';
 import UsersPanel from '@/components/admin/UsersPanel';
+import ConsentAuditTab from '@/components/admin/ConsentAuditTab';
 import styles from './admin.module.css';
 
 interface Lead {
@@ -76,7 +77,7 @@ const CITIES_LIST = [
   'Siliguri',
 ];
 
-type AdminTab = 'leads' | 'vacancies' | 'applications' | 'blogs' | 'gallery' | 'users';
+type AdminTab = 'leads' | 'vacancies' | 'applications' | 'blogs' | 'gallery' | 'users' | 'consent';
 
 const TAB_HEADINGS: Record<AdminTab, { title: string; subtitle: string }> = {
   leads: { title: 'Property Leads & Inquiries', subtitle: 'Track, filter, and contact customer inquiries in real time' },
@@ -85,6 +86,7 @@ const TAB_HEADINGS: Record<AdminTab, { title: string; subtitle: string }> = {
   blogs: { title: 'Blog Posts', subtitle: 'Publish and manage articles' },
   gallery: { title: 'Gallery', subtitle: 'Add, replace, or delete photos on the public gallery' },
   users: { title: 'Users', subtitle: 'See who can access the admin panel and what role they have' },
+  consent: { title: 'Consent Audit', subtitle: 'Every saved cookie choice, with a masked IP and the SHA-256 of the notice shown' },
 };
 
 export default function AdminDashboardPage() {
@@ -137,8 +139,10 @@ export default function AdminDashboardPage() {
           const granted: string[] = data.user?.permissions || [];
           setPermissions(granted);
           setCurrentAdminId(data.user?.id || '');
-          // Open the first tab this role may use.
-          if (granted.includes('leads:read')) setActiveTab('leads');
+          // ?tab=consent opens the consent audit directly. Otherwise open the first tab this role may use.
+          const requested = new URLSearchParams(window.location.search).get('tab');
+          if (requested === 'consent' && granted.includes('privacy:read')) setActiveTab('consent');
+          else if (granted.includes('leads:read')) setActiveTab('leads');
           else if (granted.includes('applications:read')) setActiveTab('applications');
           else if (granted.includes('blogs:manage')) setActiveTab('blogs');
           else if (granted.includes('gallery:manage')) setActiveTab('gallery');
@@ -609,6 +613,22 @@ export default function AdminDashboardPage() {
                 </svg>
               </span>
               <span>Users</span>
+            </div>
+          </button>}
+
+          {/* Nav Item: Consent audit */}
+          {can('privacy:read') && <button
+            onClick={() => handleNavTab('consent')}
+            className={`${styles.navItem} ${activeTab === 'consent' ? styles.navItemActive : ''}`}
+          >
+            <div className={styles.navItemLeft}>
+              <span className={styles.navIcon}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 11l3 3L22 4" />
+                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+                </svg>
+              </span>
+              <span>Consent Audit</span>
             </div>
           </button>}
 
@@ -1159,6 +1179,8 @@ export default function AdminDashboardPage() {
           {activeTab === 'gallery' && can('gallery:manage') && <GalleryManager />}
 
           {activeTab === 'users' && can('users:manage') && <UsersPanel currentId={currentAdminId} />}
+
+          {activeTab === 'consent' && can('privacy:read') && <ConsentAuditTab heading={false} />}
 
           {activeTab === 'blogs' && (
             <div>

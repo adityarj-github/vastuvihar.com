@@ -11,7 +11,7 @@ export default function CookiePreferences() {
   const necessary = categoryText('necessary');
 
   function change(category, allowed) {
-    saveChoices({ [category]: allowed }, 'privacy_policy');
+    saveChoices({ [category]: allowed }, 'privacy_policy', 'en', 'policy_update');
     setSaved(true);
   }
 

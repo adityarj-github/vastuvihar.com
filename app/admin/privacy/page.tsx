@@ -5,26 +5,53 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { api, useLoad, when } from '@/components/admin/adminApi';
 import UsersPanel from '@/components/admin/UsersPanel';
+import ConsentAuditTab from '@/components/admin/ConsentAuditTab';
 import styles from './privacy-admin.module.css';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-type Tab = { id: string; label: string; permission: string };
+type Tab = { id: string; label: string; permission: string; group: string; description: string; icon: string };
+
+// Feather-style icon paths, drawn in a 24px box.
+const ICONS: Record<string, string> = {
+  inbox: 'M22 12h-6l-2 3h-4l-2-3H2 M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z',
+  alert: 'M12 9v4 M12 17h.01 M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z',
+  file: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M9 15l2 2 4-4',
+  check: 'M9 11l3 3L22 4 M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11',
+  cookie: 'M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5 M8.5 8.5h.01 M16 15.5h.01 M12 12h.01 M11 17h.01 M7 14h.01',
+  activity: 'M22 12h-4l-3 9L9 3l-3 9H2',
+  mail: 'M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z M22 6l-10 7L2 6',
+  message: 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z',
+  shield: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z M12 8v4 M12 16h.01',
+  clock: 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z M12 6v6l4 2',
+  share: 'M18 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z M6 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z M18 22a3 3 0 1 0 0-6 3 3 0 0 0 0 6z M8.59 13.51l6.83 3.98 M15.41 6.51l-6.82 3.98',
+  users: 'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2 M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M23 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75',
+  list: 'M8 6h13 M8 12h13 M8 18h13 M3 6h.01 M3 12h.01 M3 18h.01',
+};
 
 const TABS: Tab[] = [
-  { id: 'requests', label: 'Rights requests', permission: 'privacy:read' },
-  { id: 'grievances', label: 'Grievances', permission: 'privacy:read' },
-  { id: 'consents', label: 'Consent records', permission: 'privacy:read' },
-  { id: 'cookies', label: 'Cookie log', permission: 'privacy:read' },
-  { id: 'activity', label: 'Visitor activity', permission: 'privacy:read' },
-  { id: 'newsletter', label: 'Newsletter', permission: 'newsletter:manage' },
-  { id: 'comments', label: 'Comments', permission: 'comments:moderate' },
-  { id: 'breaches', label: 'Breach register', permission: 'breach:manage' },
-  { id: 'retention', label: 'Retention', permission: 'retention:manage' },
-  { id: 'processors', label: 'Data sharing', permission: 'privacy:read' },
-  { id: 'users', label: 'Staff access', permission: 'users:manage' },
-  { id: 'audit', label: 'Audit log', permission: 'audit:read' },
+  { id: 'requests', label: 'Rights requests', permission: 'privacy:read', group: 'Requests', icon: 'inbox', description: 'Access, correction, erasure and nomination requests, with their response deadlines.' },
+  { id: 'grievances', label: 'Grievances', permission: 'privacy:read', group: 'Requests', icon: 'alert', description: 'Complaints about how personal data is handled, tracked to resolution.' },
+  { id: 'consents', label: 'Consent records', permission: 'privacy:read', group: 'Consent & tracking', icon: 'file', description: 'Consent given or withdrawn on the website forms, looked up by phone or email.' },
+  { id: 'consent-audit', label: 'Consent audit', permission: 'privacy:read', group: 'Consent & tracking', icon: 'check', description: 'Every saved cookie choice, with a masked IP and the SHA-256 of the notice shown.' },
+  { id: 'cookies', label: 'Cookie log', permission: 'privacy:read', group: 'Consent & tracking', icon: 'cookie', description: 'Cookie choices per category, the tags on this deployment and the published cookie list.' },
+  { id: 'activity', label: 'Visitor activity', permission: 'privacy:read', group: 'Consent & tracking', icon: 'activity', description: 'What happened in browsers that allowed analytics or advertising.' },
+  { id: 'newsletter', label: 'Newsletter', permission: 'newsletter:manage', group: 'Communications', icon: 'mail', description: 'Newsletter subscribers and unsubscribes.' },
+  { id: 'comments', label: 'Comments', permission: 'comments:moderate', group: 'Communications', icon: 'message', description: 'Blog comments waiting for approval, and those already published.' },
+  { id: 'breaches', label: 'Breach register', permission: 'breach:manage', group: 'Governance', icon: 'shield', description: 'Personal data breaches, their assessment and the notices sent.' },
+  { id: 'retention', label: 'Retention', permission: 'retention:manage', group: 'Governance', icon: 'clock', description: 'How long each kind of data is kept, legal holds and deletion runs.' },
+  { id: 'processors', label: 'Data sharing', permission: 'privacy:read', group: 'Governance', icon: 'share', description: 'Who receives personal data, why, and on what terms.' },
+  { id: 'users', label: 'Staff access', permission: 'users:manage', group: 'Administration', icon: 'users', description: 'Who can sign in to the admin, and with which role.' },
+  { id: 'audit', label: 'Audit log', permission: 'audit:read', group: 'Administration', icon: 'list', description: 'Every action staff have taken in the admin.' },
 ];
+
+function Icon({ name }: { name: string }) {
+  return (
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d={ICONS[name]} />
+    </svg>
+  );
+}
 
 function Status({ value }: { value: string }) {
   return <span className={styles.status} data-status={value}>{value.replace(/_/g, ' ')}</span>;
@@ -922,41 +949,112 @@ export default function PrivacyAdminPage() {
           return;
         }
         setMe(data.user);
-        const first = TABS.find((candidate) => data.user.permissions.includes(candidate.permission));
-        setTab(first?.id || '');
+        // ?tab=consent-audit opens that tab directly, if this user may see it.
+        const allowed = TABS.filter((candidate) => data.user.permissions.includes(candidate.permission));
+        const requested = new URLSearchParams(window.location.search).get('tab');
+        setTab(allowed.find((candidate) => candidate.id === requested)?.id || allowed[0]?.id || '');
       })
       .catch(() => router.replace('/admin/login/'));
   }, [router]);
 
-  if (!me) return <div className={styles.page}>Loading…</div>;
+  if (!me) {
+    return (
+      <div className={styles.page}>
+        <div className={styles.loading} role="status"><span className={styles.spinner} aria-hidden="true" />Loading Privacy &amp; Compliance…</div>
+      </div>
+    );
+  }
 
   const visible = TABS.filter((candidate) => me.permissions.includes(candidate.permission));
+  const groups = [...new Set(visible.map((candidate) => candidate.group))];
+  const current = visible.find((candidate) => candidate.id === tab);
   const canManage = me.permissions.includes('privacy:manage');
+  const initials = (me.name || me.email || '?').split(/\s+/).map((part: string) => part[0]).join('').slice(0, 2).toUpperCase();
+
+  // Keeps the address in step, so a section can be bookmarked or shared.
+  const open = (id: string) => {
+    setTab(id);
+    window.history.replaceState(null, '', `?tab=${id}`);
+    window.scrollTo({ top: 0 });
+  };
 
   return (
     <div className={styles.page}>
       <header className={styles.header}>
-        <div>
+        <div className={styles.headerMain}>
+          <nav className={styles.crumbs} aria-label="Breadcrumb">
+            <Link href="/admin/" prefetch={false}>Admin</Link>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">Privacy &amp; Compliance</span>
+          </nav>
           <h1>Privacy &amp; Compliance</h1>
-          <p>Signed in as {me.name} ({me.role.replace(/_/g, ' ')})</p>
+          <p>DPDP Act requests, consent evidence and data governance in one place.</p>
         </div>
-        <Link href="/admin/" prefetch={false} className={styles.secondary}>Back to dashboard</Link>
+        <div className={styles.headerSide}>
+          <span className={styles.user}>
+            <span className={styles.avatar} aria-hidden="true">{initials}</span>
+            <span>
+              <strong>{me.name}</strong>
+              <small>{me.role.replace(/_/g, ' ').toLowerCase()}</small>
+            </span>
+          </span>
+          <Link href="/admin/" prefetch={false} className={styles.secondary}>← Dashboard</Link>
+        </div>
       </header>
 
-      <nav className={styles.tabs} aria-label="Privacy sections">
-        {visible.map((candidate) => (
-          <button key={candidate.id} type="button" className={tab === candidate.id ? styles.tabActive : styles.tab} aria-current={tab === candidate.id} onClick={() => setTab(candidate.id)}>
-            {candidate.label}
-          </button>
-        ))}
-      </nav>
+      <div className={styles.layout}>
+        <aside className={styles.sidebar}>
+          <label className={styles.mobileNav}>
+            <span>Section</span>
+            <select className={styles.input} value={tab} onChange={(event) => open(event.target.value)}>
+              {groups.map((group) => (
+                <optgroup key={group} label={group}>
+                  {visible.filter((candidate) => candidate.group === group).map((candidate) => (
+                    <option key={candidate.id} value={candidate.id}>{candidate.label}</option>
+                  ))}
+                </optgroup>
+              ))}
+            </select>
+          </label>
+          <nav className={styles.nav} aria-label="Privacy sections">
+            {groups.map((group) => (
+              <div key={group} className={styles.navGroup}>
+                <span className={styles.navTitle}>{group}</span>
+                {visible.filter((candidate) => candidate.group === group).map((candidate) => (
+                  <button
+                    key={candidate.id}
+                    type="button"
+                    className={tab === candidate.id ? styles.navItemActive : styles.navItem}
+                    aria-current={tab === candidate.id ? 'page' : undefined}
+                    onClick={() => open(candidate.id)}
+                  >
+                    <Icon name={candidate.icon} />
+                    <span>{candidate.label}</span>
+                  </button>
+                ))}
+              </div>
+            ))}
+          </nav>
+        </aside>
 
-      <main className={styles.body}>
-        {!visible.length && <p>Your role has no access to this area.</p>}
+        <main className={styles.content}>
+          {current && (
+            <div className={styles.sectionHead}>
+              <span className={styles.sectionIcon}><Icon name={current.icon} /></span>
+              <div>
+                <span className={styles.sectionGroup}>{current.group}</span>
+                <h2>{current.label}</h2>
+                <p>{current.description}</p>
+              </div>
+            </div>
+          )}
+          <div className={styles.body}>
+        {!visible.length && <p className={styles.empty}>Your role has no access to this area.</p>}
         {tab === 'requests' && <RequestsTab key="requests" view="requests" canManage={canManage} />}
         {tab === 'grievances' && <RequestsTab key="grievances" view="grievances" canManage={canManage} />}
         {tab === 'consents' && <ConsentsTab />}
         {tab === 'cookies' && <CookieLogTab />}
+        {tab === 'consent-audit' && <ConsentAuditTab heading={false} />}
         {tab === 'activity' && <VisitorActivityTab />}
         {tab === 'newsletter' && <NewsletterTab />}
         {tab === 'comments' && <CommentsTab />}
@@ -965,7 +1063,9 @@ export default function PrivacyAdminPage() {
         {tab === 'processors' && <ProcessorsTab />}
         {tab === 'users' && <UsersPanel currentId={me.id} />}
         {tab === 'audit' && <AuditTab />}
-      </main>
+          </div>
+        </main>
+      </div>
     </div>
   );
 }
