@@ -18,8 +18,37 @@ function safeEnv(): any {
   }
 }
 
-const privateFiles = () => safeEnv().PRIVATE_FILES;
-const media = () => safeEnv().MEDIA;
+/**
+ * Workers KV behind the small part of the R2 API this file uses (put, get, delete), so
+ * files can live in KV while R2 is not enabled. When an R2 binding exists it wins; moving
+ * to R2 later is a wrangler.jsonc change (copy existing files across first).
+ * KV values are limited to 25 MiB; uploads here are at most 8 MB.
+ */
+function kvAsBucket(kv: any) {
+  if (!kv) return undefined;
+  return {
+    async put(key: string, value: Buffer, options?: { httpMetadata?: { contentType?: string } }) {
+      const bytes = value.buffer.slice(value.byteOffset, value.byteOffset + value.byteLength);
+      await kv.put(key, bytes, { metadata: { contentType: options?.httpMetadata?.contentType } });
+    },
+    async get(key: string) {
+      const data: ArrayBuffer | null = await kv.get(key, { type: 'arrayBuffer' });
+      if (!data) return null;
+      return {
+        arrayBuffer: async () => data,
+        get body() {
+          return new Response(data).body;
+        },
+      };
+    },
+    async delete(key: string) {
+      await kv.delete(key);
+    },
+  };
+}
+
+const privateFiles = () => safeEnv().PRIVATE_FILES || kvAsBucket(safeEnv().PRIVATE_FILES_KV);
+const media = () => safeEnv().MEDIA || kvAsBucket(safeEnv().MEDIA_KV);
 
 /**
  * True inside a Cloudflare Worker. A Worker has no writable disk, so there every file

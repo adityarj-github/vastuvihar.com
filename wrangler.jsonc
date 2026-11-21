@@ -28,9 +28,16 @@
       "migrations_dir": "migrations"
     }
   ],
-  // TEMPORARY: R2 is not enabled on the account yet, so the buckets are not bound and file
-  // uploads answer "File storage is not available". Once R2 is on, create both buckets
-  // (public access off) and uncomment this block.
+  // R2 is not enabled on the account (it needs a payment method), so uploaded files
+  // (resumes, blog and gallery images) are stored in Workers KV instead
+  // (lib/privateStorage.ts). Both namespaces are private: nothing reads them except the
+  // Worker. KV free tier: 1 GB stored, 1,000 writes a day.
+  "kv_namespaces": [
+    { "binding": "PRIVATE_FILES_KV", "id": "b7903062ba8a48749db2bbc3407bfdb5" },
+    { "binding": "MEDIA_KV", "id": "f03378e752324d559c90dc9185e852f0" }
+  ],
+  // To move to R2 later: create both buckets (public access off), copy the KV files
+  // across, and uncomment this block. An R2 binding takes precedence over KV.
   // "r2_buckets": [
   //   { "binding": "PRIVATE_FILES", "bucket_name": "vastuvihar-private" },
   //   { "binding": "MEDIA", "bucket_name": "vastuvihar-media" }

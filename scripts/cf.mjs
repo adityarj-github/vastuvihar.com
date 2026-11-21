@@ -86,11 +86,14 @@ async function preflight() {
 
   const d1 = (config.d1_databases || []).find((db) => db.binding === 'DB');
   if (!d1?.database_id) problems.push('The DB binding has no database_id.');
-  // R2 bindings may be left out until R2 is enabled. Uploads then answer "File storage is
-  // not available" (lib/privateStorage.ts) and the rest of the site works.
+  // Each store needs an R2 bucket, or a KV namespace while R2 is not enabled
+  // (lib/privateStorage.ts). With neither, uploads answer "File storage is not available".
   const boundR2 = config.r2_buckets || [];
+  const boundKv = config.kv_namespaces || [];
   for (const binding of ['PRIVATE_FILES', 'MEDIA']) {
-    if (!boundR2.some((bucket) => bucket.binding === binding)) warnings.push(`R2 binding ${binding} is not set, so file uploads (resumes, blog and gallery images) are off.`);
+    const hasR2 = boundR2.some((bucket) => bucket.binding === binding);
+    const hasKv = boundKv.some((ns) => ns.binding === `${binding}_KV` && ns.id);
+    if (!hasR2 && !hasKv) warnings.push(`Neither R2 binding ${binding} nor KV binding ${binding}_KV is set, so file uploads (resumes, blog and gallery images) are off.`);
   }
   if (config.vars?.APP_ENV !== env.appEnv) problems.push(`vars.APP_ENV is "${config.vars?.APP_ENV}", expected "${env.appEnv}".`);
 
