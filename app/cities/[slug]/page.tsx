@@ -83,10 +83,6 @@ function getCityWithModels(city: CityConfig): CityData {
   };
 }
 
-export function generateStaticParams() {
-  return Object.keys(cities).map((slug) => ({ slug }));
-}
-
 export async function generateMetadata({ params }: CityPageProps) {
   const { slug } = await params;
   const city = cities[slug.toLowerCase()];

@@ -69,7 +69,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...STATIC_PATHS.map((path) => entry(path)),
     ...projects.map(({ slug }) => entry(`/projects/${slug}/`)),
     ...priceLists.map(({ slug }) => entry(`/price-list/${slug}/`)),
-    // Same keys as app/cities/[slug]'s generateStaticParams.
+    // Same keys app/cities/[slug] accepts.
     ...Object.keys(cities).map((slug) => entry(`/cities/${slug}/`)),
     ...albums.filter((album) => album.count > 0).map(({ slug }) => entry(`/gallery/${slug}/`)),
     ...blogEntries,

@@ -178,7 +178,7 @@ by these procedures, so they need no rollback.
 - Logs: Workers & Pages > Worker > Observability (`observability.enabled`).
 - Retention runs daily at 02:00 IST (`triggers.crons`). It deletes nothing until periods
   are approved in Admin > Privacy > Retention.
-- Pages that read the database render on each request (`dynamic = 'force-dynamic'`);
+- Every page renders on each request (`dynamic = 'force-dynamic'` in `app/layout.jsx`);
   the build output cache is read-only (`open-next.config.ts`). Do not add `revalidate`.
 - `proxy.ts` runs as Node.js middleware, which OpenNext marks experimental on Cloudflare.
   It passed every test here; re-test admin access after upgrading OpenNext or Next.js.

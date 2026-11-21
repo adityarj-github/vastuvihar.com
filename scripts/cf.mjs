@@ -25,7 +25,7 @@ const ENVIRONMENTS = {
   production: {
     wranglerEnv: null,
     appEnv: 'production',
-    siteUrl: process.env.PRODUCTION_SITE_URL || 'https://vastuvihar.org',
+    siteUrl: process.env.PRODUCTION_SITE_URL || 'https://vastuvihar.com',
     allowTags: true,
   },
 };
@@ -102,7 +102,7 @@ async function preflight() {
     warnings.push('Cloudflare Access is off. The admin login page is public; only passwords protect it.');
   }
   if (target === 'production') {
-    // Temporarily allowed until vastuvihar.org moves to Cloudflare (see wrangler.jsonc).
+    // vastuvihar.com is served by this Worker, so workers.dev should stay off (see wrangler.jsonc).
     if (config.workers_dev !== false) warnings.push('workers_dev is on. Turn it off at cutover so nothing routes around the WAF.');
     if (config.preview_urls !== false) problems.push('Production must set "preview_urls": false.');
   }

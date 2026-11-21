@@ -10,6 +10,10 @@ import { gtmContainerId, gtmSnippet } from '@/lib/privacy/gtm.mjs';
 import { CONSENT_STORAGE_KEY } from '@/lib/privacy/cookieConfig';
 import { NOTICE_VERSION } from '@/lib/privacy/notices';
 
+// Every page, and every route below this layout, is rendered on the server for each
+// request. Nothing is prerendered at build time.
+export const dynamic = 'force-dynamic';
+
 const gtmId = gtmContainerId();
 
 
