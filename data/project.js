@@ -527,7 +527,7 @@ export const projectsData = {
     "business-bungalow": {
         slug: "business-bungalow",
         name: "Business Bungalow",
-        price: "35 - 50Lac",
+        price: "₹ 35 - 50 Lac",
         minPrice: 35,
         maxPrice: 50,
         description:
@@ -1323,7 +1323,7 @@ export const projectsData = {
     "aditi": {
         slug: "aditi",
         name: "Aditi 1.0",
-        price: "16 - 24Lac",
+        price: "₹ 16 - 24 Lac",
         minPrice: 16,
         maxPrice: 24,
         description:
@@ -1379,7 +1379,7 @@ export const projectsData = {
     "nano": {
         slug: "nano",
         name: "Nano Apartment",
-        price: "7 - 15 Lac",
+        price: "₹ 7 - 15 Lac",
         minPrice: 7,
         maxPrice: 15,
         description:
