@@ -472,6 +472,10 @@ export default function AdminDashboardPage() {
   const handleNavTab = (tab: AdminTab) => {
     setActiveTab(tab);
     setSidebarOpen(false);
+    // Tabs that can be opened by link get their address; others drop old tab filters.
+    const linked: Partial<Record<AdminTab, string>> = { priceLists: 'price-lists', consent: 'consent' };
+    const next = linked[tab] ? `/admin/?tab=${linked[tab]}` : '/admin/';
+    if (window.location.pathname + window.location.search !== next) window.history.replaceState(null, '', next);
   };
 
   return (

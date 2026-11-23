@@ -20,10 +20,15 @@ export type PriceListParking = { name: string; size?: string; price?: string };
 export type PriceListProject = {
   slug: string;
   projectName: string;
-  /** Where the list appears on /price-list. Lists without a city are reachable only by link. */
+  /** The city (PriceListCity slug) it appears under on /price-list. None = reachable only by link. */
+  citySlug?: string;
+  /** Older lists name their city as text instead; resolveCitySlug() matches these by name. */
   state?: string;
   city?: string;
+  /** The button label under the city, for example "Phase 02". */
   phaseLabel?: string;
+  /** Fields taken from the city's shared details instead of this list's own values. */
+  useCityDetails?: SharedField[];
   effectiveDate: string;
   officeAddress: string;
   siteAddress: string;
@@ -335,9 +340,9 @@ export function cleanPriceList(input: unknown): { project?: PriceListProject; er
   const project = compact({
     slug: cleanText(input.slug, 80).toLowerCase(),
     projectName: cleanText(input.projectName, SHORT),
-    state: optional(input.state),
-    city: optional(input.city),
+    citySlug: optional(input.citySlug, 80)?.toLowerCase(),
     phaseLabel: optional(input.phaseLabel),
+    useCityDetails: cleanSharedFields(input.useCityDetails),
     effectiveDate: cleanText(input.effectiveDate, SHORT),
     officeAddress: cleanText(input.officeAddress, 400),
     siteAddress: cleanText(input.siteAddress, 400),
@@ -373,10 +378,13 @@ export function cleanPriceList(input: unknown): { project?: PriceListProject; er
   if (!SLUG_PATTERN.test(project.slug)) errors.push('The URL slug may use only lowercase letters, numbers and dashes.');
   if (!project.projectName) errors.push('Project name is required.');
   if (!project.effectiveDate) errors.push('Effective date is required.');
-  if (!project.officeAddress) errors.push('Office address is required.');
-  if (!project.siteAddress) errors.push('Site address is required.');
-  if (!project.contactPhones) errors.push('Contact phone is required.');
-  if (project.city && !project.state) errors.push('Choose a state for the city.');
+  // A field taken from the city is checked against the city by checkCityDetails().
+  const fromCity = new Set(project.useCityDetails || []);
+  if (!project.officeAddress && !fromCity.has('officeAddress')) errors.push('Office address is required.');
+  if (!project.siteAddress && !fromCity.has('siteAddress')) errors.push('Site address is required.');
+  if (!project.contactPhones && !fromCity.has('contactPhones')) errors.push('Contact phone is required.');
+  if (fromCity.size && !project.citySlug) errors.push('Choose a city before using its shared details.');
+  if (project.citySlug && !SLUG_PATTERN.test(project.citySlug)) errors.push('Choose a city from the list.');
   if (![project.bungalows, project.flats, project.shops].some((group) => group?.length)) {
     errors.push('Add at least one bungalow, flat or shop.');
   }
@@ -449,6 +457,66 @@ export function cleanPdfTemplate(input: unknown, base: PdfTemplate = DEFAULT_PDF
   };
 }
 
+// ---------------------------------------------------------------------------
+// Active / inactive status. A list is shown only when it is switched on, not
+// deleted, and today (India time) falls inside its optional active window.
+// ---------------------------------------------------------------------------
+
+export type PriceListStatus = 'active' | 'inactive' | 'scheduled' | 'expired' | 'deleted';
+
+export const STATUS_NAMES: Record<PriceListStatus, string> = {
+  active: 'Active',
+  inactive: 'Inactive',
+  scheduled: 'Scheduled',
+  expired: 'Expired',
+  deleted: 'Deleted',
+};
+
+const DATE = /^\d{4}-\d{2}-\d{2}$/;
+
+/** A real calendar date as YYYY-MM-DD, or null. */
+export function cleanScheduleDate(value: unknown): string | null {
+  if (typeof value !== 'string' || !DATE.test(value.trim())) return null;
+  const date = value.trim();
+  const parsed = new Date(`${date}T00:00:00Z`);
+  return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === date ? date : null;
+}
+
+/** Today's date in India as YYYY-MM-DD. The schedule is in India time wherever the server runs. */
+export function todayInIndia(now = new Date()) {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata', year: 'numeric', month: '2-digit', day: '2-digit' }).format(now);
+}
+
+export function priceListStatus(
+  entry: { isPublished: boolean; isDeleted: boolean; activeFrom: string | null; activeUntil: string | null },
+  today = todayInIndia(),
+): PriceListStatus {
+  if (entry.isDeleted) return 'deleted';
+  if (!entry.isPublished) return 'inactive';
+  if (entry.activeFrom && today < entry.activeFrom) return 'scheduled';
+  if (entry.activeUntil && today > entry.activeUntil) return 'expired';
+  return 'active';
+}
+
+/** Reads { activeFrom, activeUntil } from a request body. Blank means no limit. */
+export function readSchedule(body: unknown): { activeFrom: string | null; activeUntil: string | null; error?: string } {
+  const b = isObject(body) ? body : {};
+  const blank = (value: unknown) => value === undefined || value === null || value === '';
+  const activeFrom = cleanScheduleDate(b.activeFrom);
+  const activeUntil = cleanScheduleDate(b.activeUntil);
+  if (!blank(b.activeFrom) && !activeFrom) return { activeFrom, activeUntil, error: 'The "Active from" date is not valid.' };
+  if (!blank(b.activeUntil) && !activeUntil) return { activeFrom, activeUntil, error: 'The "Active until" date is not valid.' };
+  if (activeFrom && activeUntil && activeUntil < activeFrom) {
+    return { activeFrom, activeUntil, error: '"Active until" must be on or after "Active from".' };
+  }
+  return { activeFrom, activeUntil };
+}
+
+/** "12 Jan 2027" from YYYY-MM-DD. */
+export function formatScheduleDate(date: string) {
+  return new Date(`${date}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
+}
+
 /** Parses stored JSON without throwing. */
 export function parseJson(value: string | null | undefined): unknown {
   if (!value) return null;
@@ -457,4 +525,161 @@ export function parseJson(value: string | null | undefined): unknown {
   } catch {
     return null;
   }
+}
+
+// ---------------------------------------------------------------------------
+// Cities on the /price-list index.
+// ---------------------------------------------------------------------------
+
+export type PriceListCity = {
+  slug: string;
+  state: string;
+  name: string;
+  sortOrder: number;
+  isActive: boolean;
+  /** Contact details its price lists can share (see SHARED_FIELDS). */
+  details: CityDetails;
+};
+
+const sameText = (a?: string, b?: string) => Boolean(a && b) && a!.trim().toLowerCase() === b!.trim().toLowerCase();
+
+/** The city a list belongs to: its citySlug, or for older lists the city named in its text fields. */
+export function resolveCitySlug(project: Pick<PriceListProject, 'citySlug' | 'state' | 'city'>, cities: PriceListCity[]) {
+  if (project.citySlug) return cities.some((c) => c.slug === project.citySlug) ? project.citySlug : null;
+  if (!project.city) return null;
+  const match =
+    cities.find((c) => sameText(c.name, project.city) && (!project.state || sameText(c.state, project.state))) ??
+    cities.find((c) => sameText(c.name, project.city));
+  return match?.slug ?? null;
+}
+
+/** States in the order their first city appears. */
+export function statesInOrder(cities: PriceListCity[]) {
+  const sorted = [...cities].sort((a, b) => a.sortOrder - b.sortOrder);
+  return [...new Set(sorted.map((c) => c.state))];
+}
+
+/** Cleans { state, name } for a new or renamed city. */
+export function cleanCityInput(input: unknown): { state: string; name: string; error?: string } {
+  const b = isObject(input) ? input : {};
+  const state = cleanText(b.state, 80);
+  const name = cleanText(b.name, 80);
+  if (!state) return { state, name, error: 'Choose or type a state.' };
+  if (!name) return { state, name, error: 'Type the city name.' };
+  if (!slugify(name)) return { state, name, error: 'The city name needs at least one letter or number.' };
+  return { state, name };
+}
+
+// ---------------------------------------------------------------------------
+// Admin table rows: just what the grouped list shows. The full list is
+// fetched when it is opened, so the table stays fast with many lists.
+// ---------------------------------------------------------------------------
+
+export type PriceListSummary = {
+  project: Pick<PriceListProject, 'slug' | 'projectName' | 'phaseLabel' | 'effectiveDate'>;
+  citySlug: string | null;
+  isPublished: boolean;
+  isBuiltIn: boolean;
+  isModified: boolean;
+  isDeleted: boolean;
+  activeFrom: string | null;
+  activeUntil: string | null;
+  status: PriceListStatus;
+  sortOrder: number;
+  hasOwnDesign: boolean;
+  updatedAt: string | null;
+};
+
+/** How many days "expiring soon" looks ahead. */
+export const EXPIRING_DAYS = 30;
+
+/** Whole days from today (India) to a YYYY-MM-DD date; negative once it has passed. */
+export function daysUntil(date: string, today = todayInIndia()) {
+  return Math.round((Date.parse(`${date}T00:00:00Z`) - Date.parse(`${today}T00:00:00Z`)) / 86_400_000);
+}
+
+/** An active list whose "Active until" date is within the next EXPIRING_DAYS days (today included). */
+export function isExpiringSoon(entry: { status: PriceListStatus; activeUntil: string | null }, today = todayInIndia()) {
+  return entry.status === 'active' && Boolean(entry.activeUntil) && daysUntil(entry.activeUntil as string, today) <= EXPIRING_DAYS;
+}
+
+// ---------------------------------------------------------------------------
+// Details a city shares with its price lists. A list picks, field by field,
+// whether to use the city's value (useCityDetails) or its own.
+// ---------------------------------------------------------------------------
+
+export const SHARED_FIELDS = ['officeAddress', 'siteAddress', 'contactPhones', 'email', 'footerMessage', 'notes'] as const;
+export type SharedField = (typeof SHARED_FIELDS)[number];
+
+export const SHARED_FIELD_NAMES: Record<SharedField, string> = {
+  officeAddress: 'Office address',
+  siteAddress: 'Site address',
+  contactPhones: 'Contact phones',
+  email: 'Email',
+  footerMessage: 'Footer message',
+  notes: 'Notes & terms',
+};
+
+/** Fields a list cannot do without; a city cannot clear one while lists rely on it. */
+export const REQUIRED_SHARED: SharedField[] = ['officeAddress', 'siteAddress', 'contactPhones'];
+
+export type CityDetails = {
+  officeAddress?: string;
+  siteAddress?: string;
+  contactPhones?: string;
+  email?: string;
+  footerMessage?: string;
+  notes?: string[];
+};
+
+export function cleanSharedFields(value: unknown): SharedField[] | undefined {
+  if (!Array.isArray(value)) return undefined;
+  const fields = SHARED_FIELDS.filter((field) => value.includes(field));
+  return fields.length ? fields : undefined;
+}
+
+/** Cleans stored or submitted city details; empty fields are left out. */
+export function cleanCityDetails(input: unknown): CityDetails {
+  const b = isObject(input) ? input : {};
+  const notes = list(b.notes)
+    .map((line) => cleanText(line, LONG).replace(/^\(?\(?\d+\)\s*/, ''))
+    .filter(Boolean);
+  return compact({
+    officeAddress: optional(b.officeAddress, 400),
+    siteAddress: optional(b.siteAddress, 400),
+    contactPhones: optional(b.contactPhones),
+    email: optional(b.email),
+    footerMessage: optional(b.footerMessage),
+    notes: notes.length ? notes : undefined,
+  }) as CityDetails;
+}
+
+/** True when the city has a usable value for this field. */
+export function cityHas(details: CityDetails | undefined, field: SharedField) {
+  const value = details?.[field];
+  return Array.isArray(value) ? value.length > 0 : Boolean(value);
+}
+
+/**
+ * The list as visitors see it: every field in useCityDetails replaced by the city's
+ * value. A field the city has no value for keeps the list's own value.
+ */
+export function applyCityDetails<T extends Partial<PriceListProject>>(project: T, city: Pick<PriceListCity, 'details'> | null | undefined): T {
+  const fields = project.useCityDetails || [];
+  if (!fields.length || !city) return project;
+  const next: Record<string, unknown> = { ...project };
+  fields.forEach((field) => {
+    if (cityHas(city.details, field)) next[field] = city.details[field];
+  });
+  return next as T;
+}
+
+/** Problems with a list's shared details against its city (null city = not found). */
+export function checkCityDetails(project: PriceListProject, city: PriceListCity | null | undefined): string[] {
+  const fields = project.useCityDetails || [];
+  if (!fields.length) return [];
+  if (!city) return ['Choose a city before using its shared details.'];
+  return fields
+    .filter((field) => REQUIRED_SHARED.includes(field) && !cityHas(city.details, field) && !project[field])
+    .map((field) => `${city.name} has no ${SHARED_FIELD_NAMES[field].toLowerCase()} yet. Add it under Cities, or untick "Same as city".`);
 }

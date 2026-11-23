@@ -1,9 +1,11 @@
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 import { createPageMetadata } from '@/lib/metadata';
-import { getPublishedPriceLists } from '@/lib/priceLists';
-import PriceListView, { type ListedPhase } from './PriceListView';
+import { getCities } from '@/lib/priceListCities';
+import { getAllPriceLists } from '@/lib/priceLists';
+import { statesInOrder } from '@/lib/priceListTypes';
+import PriceListView, { type StateGroup } from './PriceListView';
 
-// Lists are added and edited in the admin panel, so each request reads the current set.
+// Cities and lists are managed in the admin panel, so each request reads the current set.
 export const dynamic = 'force-dynamic';
 
 export const metadata = createPageMetadata({
@@ -13,19 +15,29 @@ export const metadata = createPageMetadata({
 });
 
 export default async function PriceListPage() {
-  const lists = await getPublishedPriceLists();
-  const listed: ListedPhase[] = lists
-    .filter((list) => list.state && list.city)
-    .map((list) => ({
-      state: list.state as string,
-      city: list.city as string,
-      name: list.phaseLabel || list.projectName,
-      link: `/price-list/${list.slug}/`,
-    }));
+  const [cities, entries] = await Promise.all([getCities(), getAllPriceLists()]);
+  const shown = cities.filter((city) => city.isActive);
+  // Entries are already in the admin's display order, so phases keep that order.
+  const active = entries.filter((entry) => entry.status === 'active' && entry.citySlug);
+
+  const groups: StateGroup[] = statesInOrder(shown).map((state) => ({
+    state,
+    cities: shown
+      .filter((city) => city.state === state)
+      .map((city) => ({
+        name: city.name,
+        phases: active
+          .filter((entry) => entry.citySlug === city.slug)
+          .map((entry) => ({
+            name: entry.project.phaseLabel || entry.project.projectName,
+            link: `/price-list/${entry.project.slug}/`,
+          })),
+      })),
+  }));
 
   return (
     <>
-      <PriceListView listed={listed} />
+      <PriceListView groups={groups} />
       <BreadcrumbJsonLd items={[{ name: 'Price List' }]} />
     </>
   );

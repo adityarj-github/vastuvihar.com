@@ -17,114 +17,17 @@ type City = {
   phases: Phase[];
 };
 
-type StateGroup = {
+/** States and cities from the admin panel (Price Lists > Cities), with each city's active lists. */
+export type StateGroup = {
   state: string;
   cities: City[];
 };
 
-/** A published price list with a state and city set in the admin panel. */
-export type ListedPhase = { state: string; city: string; name: string; link: string };
-
-const sameName = (a: string, b: string) => a.trim().toLowerCase() === b.trim().toLowerCase();
-
-/** Puts each published list under its city; a new state or city is added at the end. */
-function withPhases(listed: ListedPhase[]): StateGroup[] {
-  const groups = PRICE_LIST_DATA.map((group) => ({
-    ...group,
-    cities: group.cities.map((city) => ({ ...city, phases: [...city.phases] })),
-  }));
-  listed.forEach((phase) => {
-    let group = groups.find((item) => sameName(item.state, phase.state));
-    if (!group) {
-      group = { state: phase.state, cities: [] };
-      groups.push(group);
-    }
-    let city = group.cities.find((item) => sameName(item.name, phase.city));
-    if (!city) {
-      city = { name: phase.city, phases: [] };
-      group.cities.push(city);
-    }
-    city.phases.push({ name: phase.name, link: phase.link });
-  });
-  return groups;
-}
-// { name: 'Phase 2 & 3', link: '/price-list/purnea-phase-2-3/' }, { name: 'Phase 2 Flats', link: '/price-list/purnea-phase-2-flats/' }, { name: 'Phase 4 Flats (1 & 3 BHK)', link: '/price-list/purnea-phase-4-flats-1-3-bhk/' }, { name: 'Phase 4 Flats (2 BHK)', link: '/price-list/purnea-phase-4-flats-2-bhk/' }, { name: 'Phase 4 Bungalows', link: '/price-list/purnea-phase-4-bungalows/' }, { name: 'Phase 4, 01 Ext. Flats', link: '/price-list/purnea-phase-4-01-ext-flats/' }, { name: 'Phase 4, 01 Ext. Bungalows', link: '/price-list/purnea-phase-4-01-ext-bungalows/' 
-const PRICE_LIST_DATA: StateGroup[] = [
-  {
-    state: 'Bihar',
-    cities: [
-      { name: 'Ara', phases: [] },
-      { name: 'Aurangabad', phases: [] },
-      { name: 'Dehri on Sone', phases: [] },
-      { name: 'Katihar', phases: [] },
-      { name: 'Purnea', phases: [] },
-      { name: 'Gaya', phases: [] },
-      { name: 'Patna', phases: [] },
-      { name: 'Muzaffarpur', phases: [] },
-      { name: 'Banka', phases: [] },
-      { name: 'Begusarai', phases: [] },
-      { name: 'Bettiah', phases: [] },
-      { name: 'Bhagalpur', phases: [] },
-      { name: 'Buxar', phases: [] },
-      { name: 'Chhapra', phases: [] },
-      { name: 'Biharsarif', phases: [] },
-      { name: 'Darbhanga', phases: [] },
-      { name: 'Hajipur', phases: [] },
-      { name: 'Jehanabad', phases: [] },
-      { name: 'Madhubani', phases: [] },
-      { name: 'Motihari', phases: [] },
-      { name: 'Munger', phases: [] },
-      { name: 'Saharsa', phases: [] },
-      { name: 'Samastipur', phases: [] },
-      { name: 'Sasaram', phases: [] },
-      { name: 'Raxaul', phases: [] },
-      { name: 'Siwan', phases: [] },
-      { name: 'Sitamarhi', phases: [] },
-    ],
-  },
-  {
-    state: 'Jharkhand',
-    cities: [
-      { name: 'Bokaro', phases: [] },
-      { name: 'Deoghar', phases: [] },
-      { name: 'Dhanbad', phases: [] },
-      { name: 'Giridih', phases: [] },
-      { name: 'Hazaribagh', phases: [] },
-      { name: 'Ranchi', phases: [] },
-      { name: 'Jamshedpur', phases: [] },
-    ],
-  },
-  {
-    state: 'West Bengal',
-    cities: [
-      { name: 'Alipurduar', phases: [] },
-      { name: 'Asansol', phases: [] },
-      { name: 'Durgapur', phases: [] },
-      { name: 'Kolkata', phases: [] },
-      { name: 'Siliguri', phases: [] },
-    ],
-  },
-  {
-    state: 'Uttar Pradesh',
-    cities: [
-      { name: 'Gorakhpur', phases: [] },
-      { name: 'Mirzapur', phases: [] },
-      { name: 'Varanasi', phases: [] },
-    ],
-  },
-  {
-    state: 'Odisha',
-    cities: [
-      { name: 'Bhubaneshwar', phases: [] },
-      { name: 'Rourkela', phases: [] },
-    ],
-  },
-];
-
-export default function PriceListView({ listed }: { listed: ListedPhase[] }) {
+export default function PriceListView({ groups }: { groups: StateGroup[] }) {
   const [searchQuery, setSearchQuery] = useState('');
-  const [openState, setOpenState] = useState<string | null>('Bihar');
-  const allData = useMemo(() => withPhases(listed), [listed]);
+  const firstState = groups[0]?.state ?? null;
+  const [openState, setOpenState] = useState<string | null>(firstState);
+  const allData = groups;
 
   // Filter states, cities and project phases.
   const filteredData = useMemo(() => {
@@ -169,9 +72,9 @@ export default function PriceListView({ listed }: { listed: ListedPhase[] }) {
     if (searchQuery.trim()) {
       setOpenState(filteredData[0]?.state ?? null);
     } else {
-      setOpenState('Bihar');
+      setOpenState(firstState);
     }
-  }, [searchQuery, filteredData]);
+  }, [searchQuery, filteredData, firstState]);
 
   // Keep only one accordion expanded at a time.
   const toggleState = (state: string) => {

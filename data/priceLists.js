@@ -1,8 +1,7 @@
 export const priceLists = [
     {
         "slug": "ara-phase-02-ext",
-        "state": "Bihar",
-        "city": "Ara",
+        "citySlug": "ara",
         "phaseLabel": "Phase 02 Ext",
         "projectName": "Ara Phase-2 Extension",
         "effectiveDate": "16 Oct. 2026 to 31 Mar. 2027",
@@ -116,8 +115,7 @@ export const priceLists = [
     },
     {
         "slug": "ara-phase-4",
-        "state": "Bihar",
-        "city": "Ara",
+        "citySlug": "ara",
         "phaseLabel": "Phase 04",
         "projectName": "Ara Phase-4",
         "effectiveDate": "16 Oct. 2026 to 31 Mar. 2027",
@@ -228,8 +226,7 @@ export const priceLists = [
     },
     {
         "slug": "aurangabad-project-2",
-        "state": "Bihar",
-        "city": "Aurangabad",
+        "citySlug": "aurangabad",
         "phaseLabel": "Phase 02",
         "projectName": "Aurangabad Project-2",
         "effectiveDate": "16 Oct. 2026 to 31 Mar. 2027",
@@ -389,8 +386,7 @@ export const priceLists = [
     },
     {
         "slug": "aurangabad-project-4",
-        "state": "Bihar",
-        "city": "Aurangabad",
+        "citySlug": "aurangabad",
         "phaseLabel": "Phase 04",
         "projectName": "Aurangabad Project-4",
         "effectiveDate": "16 Oct. 2026 to 31 Mar. 2027",
@@ -510,8 +506,7 @@ export const priceLists = [
     },
     {
         "slug": "dehri-on-sone-project-3",
-        "state": "Bihar",
-        "city": "Dehri on Sone",
+        "citySlug": "dehri-on-sone",
         "phaseLabel": "Phase 03",
         "projectName": "Dehri On Sone Project-3",
         "effectiveDate": "16 Oct. 2026 to 31 Mar. 2027",
@@ -629,8 +624,7 @@ export const priceLists = [
     },
     {
         "slug": "katihar-phase-2",
-        "state": "Bihar",
-        "city": "Katihar",
+        "citySlug": "katihar",
         "phaseLabel": "Phase 02",
         "projectName": "Katihar Phase-2",
         "effectiveDate": "16 Oct. 2026 to 31 Mar. 2027",

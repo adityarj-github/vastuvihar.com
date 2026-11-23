@@ -1,9 +1,18 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
+  applyCityDetails,
+  cityHas,
+  formatScheduleDate,
+  priceListStatus,
+  resolveCitySlug,
   slugify,
+  statesInOrder,
+  STATUS_NAMES,
   type PdfTemplate,
+  type PriceListCity,
+  type SharedField,
   type PriceListParking,
   type PriceListProject,
   type PriceListSpec,
@@ -34,17 +43,20 @@ export type EditorTarget = {
   isNew: boolean;
   isBuiltIn: boolean;
   isPublished: boolean;
+  activeFrom: string | null;
+  activeUntil: string | null;
   pdfDesign: PdfTemplate | null;
 };
-
-const KNOWN_STATES = ['Bihar', 'Jharkhand', 'West Bengal', 'Uttar Pradesh', 'Odisha'];
 
 /** "(01) Booking amount" → "Booking amount". The PDF and the page number the lines. */
 const stripNumber = (line: string) => line.replace(/^\(?\(?\d+\)\s*/, '');
 
-function toForm(p: PriceListProject): Form {
+/** Older lists name their city as text; the form always works with the city slug. */
+function toForm(p: PriceListProject, cities: PriceListCity[]): Form {
+  const { state: _state, city: _city, ...rest } = p;
   return {
-    ...p,
+    ...rest,
+    citySlug: resolveCitySlug(p, cities) ?? undefined,
     bungalows: p.bungalows || [],
     flats: p.flats || [],
     shops: p.shops || [],
@@ -204,19 +216,32 @@ function LinesField({ label, value, onChange, rows = 4 }: { label: string; value
 export default function PriceListEditor({
   target,
   sharedTemplate,
+  cities,
   onSaved,
   onCancel,
 }: {
   target: EditorTarget;
   sharedTemplate: PdfTemplate;
+  cities: PriceListCity[];
   onSaved: (message: string) => void;
   onCancel: () => void;
 }) {
-  const [form, setForm] = useState<Form>(() => toForm(target.project));
+  const [form, setForm] = useState<Form>(() => toForm(target.project, cities));
+  const chosenCity = cities.find((city) => city.slug === form.citySlug);
   const [isPublished, setIsPublished] = useState(target.isPublished);
+  const [activeFrom, setActiveFrom] = useState(target.activeFrom || '');
+  const [activeUntil, setActiveUntil] = useState(target.activeUntil || '');
   const [ownDesign, setOwnDesign] = useState<PdfTemplate | null>(target.pdfDesign);
   const [slugTouched, setSlugTouched] = useState(!target.isNew || Boolean(target.project.slug));
   const [dirty, setDirty] = useState(false);
+
+  // Refreshing or closing the tab with unsaved changes asks first.
+  useEffect(() => {
+    if (!dirty) return;
+    const warn = (event: BeforeUnloadEvent) => event.preventDefault();
+    window.addEventListener('beforeunload', warn);
+    return () => window.removeEventListener('beforeunload', warn);
+  }, [dirty]);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
 
@@ -230,6 +255,8 @@ export default function PriceListEditor({
   };
 
   const project = useMemo(() => toProject(form), [form]);
+  const previewProject = useMemo(() => applyCityDetails(project, chosenCity), [project, chosenCity]);
+  const liveStatus = priceListStatus({ isPublished, isDeleted: false, activeFrom: activeFrom || null, activeUntil: activeUntil || null });
   const previewTemplate = ownDesign ?? sharedTemplate;
 
   async function save() {
@@ -240,7 +267,7 @@ export default function PriceListEditor({
       const response = await fetch(url, {
         method: target.isNew ? 'POST' : 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ project, isPublished, pdfDesign: ownDesign }),
+        body: JSON.stringify({ project, isPublished, activeFrom: activeFrom || null, activeUntil: activeUntil || null, pdfDesign: ownDesign }),
       });
       const data = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(data.error || 'Could not save the price list.');
@@ -267,6 +294,50 @@ export default function PriceListEditor({
         onChange={(e) => update({ [key]: e.target.value } as Partial<Form>)}
       />
     </label>
+  );
+
+  // ---- Details shared with the city ----
+  const usesCity = (field: SharedField) => (form.useCityDetails || []).includes(field);
+  const cityOffers = (field: SharedField) => Boolean(chosenCity && cityHas(chosenCity.details, field));
+  /** Showing the city's value: ticked, and the city has one. */
+  const fromCity = (field: SharedField) => usesCity(field) && cityOffers(field);
+  const setUsesCity = (field: SharedField, on: boolean) => {
+    const current = new Set(form.useCityDetails || []);
+    if (on) current.add(field);
+    else current.delete(field);
+    update({ useCityDetails: current.size ? [...current] : undefined });
+  };
+
+  const sameAsCity = (field: SharedField) =>
+    chosenCity && (cityOffers(field) || usesCity(field)) ? (
+      <label className={styles.sameAs}>
+        <input type="checkbox" checked={usesCity(field)} onChange={(e) => setUsesCity(field, e.target.checked)} />
+        Same as {chosenCity.name}
+      </label>
+    ) : null;
+
+  const missingNote = (field: SharedField) =>
+    usesCity(field) && !cityOffers(field) ? (
+      <span className={styles.slug}>{chosenCity ? `${chosenCity.name} has no value for this yet, so this list's own is used.` : 'Choose a city to use its details.'}</span>
+    ) : null;
+
+  /** A text field that can come from the city instead. */
+  const shared = (field: Exclude<SharedField, 'notes'>, label: string, props: { placeholder?: string; type?: string } = {}) => (
+    <div className={styles.field}>
+      <span className={styles.fieldHead}>
+        <span>{label}</span>
+        {sameAsCity(field)}
+      </span>
+      <input
+        type={props.type || 'text'}
+        aria-label={label}
+        placeholder={props.placeholder}
+        disabled={fromCity(field)}
+        value={fromCity(field) ? String(chosenCity?.details[field] ?? '') : ((form[field] as string | undefined) ?? '')}
+        onChange={(e) => update({ [field]: e.target.value } as Partial<Form>)}
+      />
+      {missingNote(field)}
+    </div>
   );
 
   return (
@@ -305,24 +376,83 @@ export default function PriceListEditor({
                 </label>
                 {text('effectiveDate', 'Effective date *', { placeholder: '16 Oct. 2026 to 31 Mar. 2027' })}
                 {text('bookingStatus', 'Booking status stamp', { placeholder: 'Booking Open' })}
-                {text('contactPhones', 'Contact phones *', { placeholder: '8102921821 / 7488049821' })}
-                {text('email', 'Email', { type: 'email' })}
+                {shared('contactPhones', 'Contact phones *', { placeholder: '8102921821 / 7488049821' })}
+                {shared('email', 'Email', { type: 'email' })}
               </div>
               {target.isNew ? null : <p className={styles.hint}>The URL can&apos;t change once a list exists. Duplicate the list to publish it at a new URL.</p>}
-              {text('officeAddress', 'Office address *')}
-              {text('siteAddress', 'Site address *')}
-              {text('footerMessage', 'Footer message (blank uses the design default)', { placeholder: 'Thanks For Visit' })}
-              <label className={styles.check}>
-                <input
-                  type="checkbox"
-                  checked={isPublished}
-                  onChange={(e) => {
-                    setIsPublished(e.target.checked);
+              {shared('officeAddress', 'Office address *')}
+              {shared('siteAddress', 'Site address *')}
+              {shared('footerMessage', 'Footer message (blank uses the design default)', { placeholder: 'Thanks For Visit' })}
+              {chosenCity && Object.keys(chosenCity.details).length ? (
+                <p className={styles.hint}>
+                  Ticked fields show {chosenCity.name}&apos;s shared details (set under Cities), so changing them there updates every phase that uses
+                  them. Untick a field to give this list its own value.
+                </p>
+              ) : chosenCity ? (
+                <p className={styles.hint}>
+                  {chosenCity.name} has no shared details yet. Add them under Cities to fill phases in once.
+                </p>
+              ) : null}
+            </div>
+          </details>
+
+          <details className={styles.section} open>
+            <summary>Status &amp; schedule</summary>
+            <div className={styles.sectionBody}>
+              <label className={styles.switchRow}>
+                <span
+                  role="switch"
+                  tabIndex={0}
+                  aria-checked={isPublished}
+                  aria-label="Active"
+                  className={`${styles.switch} ${isPublished ? styles.switchOn : ''}`}
+                  onClick={() => {
+                    setIsPublished(!isPublished);
                     setDirty(true);
                   }}
+                  onKeyDown={(e) => {
+                    if (e.key === ' ' || e.key === 'Enter') {
+                      e.preventDefault();
+                      setIsPublished(!isPublished);
+                      setDirty(true);
+                    }
+                  }}
                 />
-                Published (visible on the website)
+                <span>{isPublished ? 'Active: shown on the website' : 'Inactive: hidden from the website'}</span>
               </label>
+              <div className={styles.grid2}>
+                <label className={styles.field}>
+                  Active from (optional)
+                  <input
+                    type="date"
+                    value={activeFrom}
+                    max={activeUntil || undefined}
+                    onChange={(e) => {
+                      setActiveFrom(e.target.value);
+                      setDirty(true);
+                    }}
+                  />
+                </label>
+                <label className={styles.field}>
+                  Active until (optional, includes that day)
+                  <input
+                    type="date"
+                    value={activeUntil}
+                    min={activeFrom || undefined}
+                    onChange={(e) => {
+                      setActiveUntil(e.target.value);
+                      setDirty(true);
+                    }}
+                  />
+                </label>
+              </div>
+              <p className={styles.hint}>
+                Now: <strong>{STATUS_NAMES[liveStatus]}</strong>
+                {liveStatus === 'scheduled' && activeFrom ? ` (goes live on ${formatScheduleDate(activeFrom)})` : ''}
+                {liveStatus === 'expired' && activeUntil ? ` (ended after ${formatScheduleDate(activeUntil)}; change the date to show it again)` : ''}
+                {liveStatus === 'active' && activeUntil ? ` (until ${formatScheduleDate(activeUntil)})` : ''}
+                . Dates follow India time. Leave both blank to keep the list active until you switch it off.
+              </p>
             </div>
           </details>
 
@@ -331,18 +461,49 @@ export default function PriceListEditor({
             <div className={styles.sectionBody}>
               <div className={styles.grid2}>
                 <label className={styles.field}>
-                  State
-                  <input list="price-list-states" value={form.state || ''} onChange={(e) => update({ state: e.target.value })} />
-                  <datalist id="price-list-states">
-                    {KNOWN_STATES.map((s) => (
-                      <option key={s} value={s} />
+                  City
+                  <select
+                    value={form.citySlug || ''}
+                    onChange={(e) => {
+                      const citySlug = e.target.value || undefined;
+                      const city = cities.find((c) => c.slug === citySlug);
+                      if (target.isNew && city) {
+                        const empty = (field: SharedField) => {
+                          const own = form[field];
+                          return Array.isArray(own) ? own.length === 0 : !own;
+                        };
+                        const fields = (['officeAddress', 'siteAddress', 'contactPhones', 'email', 'footerMessage', 'notes'] as SharedField[]).filter(
+                          (field) => cityHas(city.details, field) && (empty(field) || usesCity(field)),
+                        );
+                        update({ citySlug, useCityDetails: fields.length ? fields : undefined });
+                      } else {
+                        update({ citySlug });
+                      }
+                    }}
+                  >
+                    <option value="">Not on the index (link only)</option>
+                    {statesInOrder(cities).map((state) => (
+                      <optgroup key={state} label={state}>
+                        {cities
+                          .filter((city) => city.state === state)
+                          .map((city) => (
+                            <option key={city.slug} value={city.slug}>
+                              {city.name}
+                              {city.isActive ? '' : ' (city switched off)'}
+                            </option>
+                          ))}
+                      </optgroup>
                     ))}
-                  </datalist>
+                  </select>
                 </label>
-                {text('city', 'City', { placeholder: 'Ara' })}
-                {text('phaseLabel', 'Button label', { placeholder: 'Phase 02 Ext' })}
+                {text('phaseLabel', 'Button label under the city', { placeholder: 'Phase 02 Ext' })}
               </div>
-              <p className={styles.hint}>Leave the city blank to keep the list off the index. It stays reachable by its link.</p>
+              {chosenCity && !chosenCity.isActive ? (
+                <p className={styles.hint}>{chosenCity.name} is switched off, so it is hidden on the index. Switch it on under Cities.</p>
+              ) : null}
+              <p className={styles.hint}>
+                A missing city? Add it under <strong>Cities</strong> on the price list screen. Without a city the list stays reachable by its link.
+              </p>
             </div>
           </details>
 
@@ -440,7 +601,16 @@ export default function PriceListEditor({
           <details className={styles.section} open>
             <summary>Notes &amp; terms</summary>
             <div className={styles.sectionBody}>
-              <LinesField label="One note per line (numbered automatically)" value={form.notes} rows={Math.max(5, form.notes.length + 1)} onChange={(notes) => update({ notes })} />
+              {sameAsCity('notes')}
+              {fromCity('notes') ? (
+                <label className={styles.field}>
+                  {chosenCity?.name}&apos;s notes (edit them under Cities)
+                  <textarea rows={Math.max(5, (chosenCity?.details.notes || []).length + 1)} value={(chosenCity?.details.notes || []).join('\n')} disabled />
+                </label>
+              ) : (
+                <LinesField label="One note per line (numbered automatically)" value={form.notes} rows={Math.max(5, form.notes.length + 1)} onChange={(notes) => update({ notes })} />
+              )}
+              {missingNote('notes')}
             </div>
           </details>
 
@@ -503,7 +673,7 @@ export default function PriceListEditor({
         </div>
 
         <div className={styles.previewColumn}>
-          <PdfPreview project={project} template={previewTemplate} />
+          <PdfPreview project={previewProject} template={previewTemplate} />
         </div>
       </div>
     </div>
