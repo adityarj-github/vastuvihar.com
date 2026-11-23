@@ -26,18 +26,10 @@ const PRICE_LIST_DATA: StateGroup[] = [
   {
     state: 'Bihar',
     cities: [
-      // Project price list pages are switched off, so this city shows "Contact us for prices".
-      // { name: 'Ara', phases: [{ name: 'Phase 02 Ext', link: '/price-list/ara-phase-02-ext/' }, { name: 'Phase 04', link: '/price-list/ara-phase-4/' }] },
-      { name: 'Ara', phases: [] },
-      // Project price list pages are switched off, so this city shows "Contact us for prices".
-      // { name: 'Aurangabad', phases: [{ name: 'Phase 02', link: '/price-list/aurangabad-project-2/' }, { name: 'Phase 04', link: '/price-list/aurangabad-project-4/' }] },
-      { name: 'Aurangabad', phases: [] },
-      // Project price list pages are switched off, so this city shows "Contact us for prices".
-      // { name: 'Dehri on Sone', phases: [{ name: 'Phase 03', link: '/price-list/dehri-on-sone-project-3/' }] },
-      { name: 'Dehri on Sone', phases: [] },
-      // Project price list pages are switched off, so this city shows "Contact us for prices".
-      // { name: 'Katihar', phases: [{ name: 'Phase 02', link: '/price-list/katihar-phase-2/' }] },
-      { name: 'Katihar', phases: [] },
+      { name: 'Ara', phases: [{ name: 'Phase 02 Ext', link: '/price-list/ara-phase-02-ext/' }, { name: 'Phase 04', link: '/price-list/ara-phase-4/' }] },
+      { name: 'Aurangabad', phases: [{ name: 'Phase 02', link: '/price-list/aurangabad-project-2/' }, { name: 'Phase 04', link: '/price-list/aurangabad-project-4/' }] },
+      { name: 'Dehri on Sone', phases: [{ name: 'Phase 03', link: '/price-list/dehri-on-sone-project-3/' }] },
+      { name: 'Katihar', phases: [{ name: 'Phase 02', link: '/price-list/katihar-phase-2/' }] },
       { name: 'Purnea', phases: [] },
       { name: 'Gaya', phases: [] },
       { name: 'Patna', phases: [] },

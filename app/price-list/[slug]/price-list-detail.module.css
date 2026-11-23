@@ -394,6 +394,39 @@
     transform: translateY(-2px)
 }
 
+.footerActions .downloadButton {
+    min-height: 52px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 22px;
+    border: 0;
+    border-radius: 999px;
+    color: #fff;
+    background: #111;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer
+}
+
+.footerActions .downloadButton:hover {
+    transform: translateY(-2px)
+}
+
+.footerActions .downloadButton:disabled {
+    cursor: progress;
+    opacity: .7;
+    transform: none
+}
+
+.footerActions [role="alert"] {
+    flex-basis: 100%;
+    color: #ed3237;
+    font-size: 14px;
+    font-weight: 600
+}
+
 @media(max-width:1024px) {
     .hero {
         min-height: 420px
