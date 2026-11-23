@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 import cities from '@/data/cities.json';
-import { priceLists } from '@/data/priceLists';
+// import { priceLists } from '@/data/priceLists'; // price list pages switched off
 import { projects } from '@/data/projects';
 import { BLOG_CATEGORIES } from '@/lib/blogCategories';
 import { getGalleryAlbums } from '@/lib/gallery';
@@ -68,7 +68,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     ...STATIC_PATHS.map((path) => entry(path)),
     ...projects.map(({ slug }) => entry(`/projects/${slug}/`)),
-    ...priceLists.map(({ slug }) => entry(`/price-list/${slug}/`)),
+    // ...priceLists.map(({ slug }) => entry(`/price-list/${slug}/`)), // project price list pages redirect to /price-list/
     // Same keys app/cities/[slug] accepts.
     ...Object.keys(cities).map((slug) => entry(`/cities/${slug}/`)),
     ...albums.filter((album) => album.count > 0).map(({ slug }) => entry(`/gallery/${slug}/`)),
