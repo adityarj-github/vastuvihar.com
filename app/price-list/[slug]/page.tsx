@@ -3,17 +3,20 @@ import { notFound } from 'next/navigation';
 import PageLayout from '@/components/PageLayout';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 import styles from './price-list-detail.module.css';
-import { priceLists } from '@/data/priceLists';
 import { createPageMetadata } from '@/lib/metadata';
-import type { PriceListPdfProject } from '@/lib/priceListPdf';
+import { getPublicPriceList } from '@/lib/priceLists';
+import type { PriceListProject } from '@/lib/priceListTypes';
 import DownloadPriceListButton from './DownloadPriceListButton';
+
+// Lists are edited in the admin panel, so each request reads the current version.
+export const dynamic = 'force-dynamic';
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
 /** The lowest home price in rupees, ignoring shops, parking and per-sq.ft. rates. */
-function lowestHomePrice(project: (typeof priceLists)[number]) {
+function lowestHomePrice(project: PriceListProject) {
   const prices = [...(project.bungalows || []), ...(project.flats || [])]
     .flatMap((unit) => [unit.deluxePrice, unit.luxuryPrice])
     .filter((price): price is string => Boolean(price) && !String(price).includes('/Sq.'))
@@ -24,8 +27,8 @@ function lowestHomePrice(project: (typeof priceLists)[number]) {
 }
 
 export function generateMetadata({ params }: PageProps) {
-  return params.then(({ slug }) => {
-    const project = priceLists.find((item) => item.slug === slug);
+  return params.then(async ({ slug }) => {
+    const project = (await getPublicPriceList(slug))?.project;
     if (!project) return { title: 'Price list not found' };
 
     const lowest = lowestHomePrice(project);
@@ -114,9 +117,10 @@ function DataTable({
 
 export default async function PriceListDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const project = priceLists.find((item) => item.slug === slug);
+  const found = await getPublicPriceList(slug);
 
-  if (!project) notFound();
+  if (!found) notFound();
+  const { project, pdfTemplate } = found;
 
   return (
     <PageLayout route="price-list-detail">
@@ -182,9 +186,7 @@ export default async function PriceListDetailPage({ params }: PageProps) {
                         <td><strong>{item.name}</strong></td>
                         <td>{item.size}</td>
                         <td className={styles.priceCell}>
-                          {typeof item.price === 'number'
-                            ? `₹${item.price.toLocaleString('en-IN')}`
-                            : item.price}
+                          {formatPrice(item.price)}
                         </td>
                       </tr>
                     ))}
@@ -298,7 +300,7 @@ export default async function PriceListDetailPage({ params }: PageProps) {
             </div>
 
             <div className={styles.footerActions}>
-              <DownloadPriceListButton project={project as PriceListPdfProject} className={styles.downloadButton} />
+              <DownloadPriceListButton project={project} template={pdfTemplate} className={styles.downloadButton} />
               <a href={`tel:${project.contactPhones.split(/[\/,]/)[0].trim()}`}>Call project team</a>
               {project.email ? <a href={`mailto:${project.email}`}>Send email</a> : null}
             </div>

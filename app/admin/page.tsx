@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import GalleryManager from '@/components/admin/GalleryManager';
+import PriceListsManager from '@/components/admin/PriceListsManager';
 import UsersPanel from '@/components/admin/UsersPanel';
 import ConsentAuditTab from '@/components/admin/ConsentAuditTab';
 import styles from './admin.module.css';
@@ -77,7 +78,7 @@ const CITIES_LIST = [
   'Siliguri',
 ];
 
-type AdminTab = 'leads' | 'vacancies' | 'applications' | 'blogs' | 'gallery' | 'users' | 'consent';
+type AdminTab = 'leads' | 'vacancies' | 'applications' | 'blogs' | 'gallery' | 'priceLists' | 'users' | 'consent';
 
 const TAB_HEADINGS: Record<AdminTab, { title: string; subtitle: string }> = {
   leads: { title: 'Property Leads & Inquiries', subtitle: 'Track, filter, and contact customer inquiries in real time' },
@@ -85,6 +86,7 @@ const TAB_HEADINGS: Record<AdminTab, { title: string; subtitle: string }> = {
   applications: { title: 'Job Applications', subtitle: 'Review and shortlist candidates' },
   blogs: { title: 'Blog Posts', subtitle: 'Publish and manage articles' },
   gallery: { title: 'Gallery', subtitle: 'Add, replace, or delete photos on the public gallery' },
+  priceLists: { title: 'Price Lists', subtitle: 'Edit project prices, schedules and specifications, and design the downloadable PDF' },
   users: { title: 'Users', subtitle: 'See who can access the admin panel and what role they have' },
   consent: { title: 'Consent Audit', subtitle: 'Every saved cookie choice, with a masked IP and the SHA-256 of the notice shown' },
 };
@@ -142,10 +144,12 @@ export default function AdminDashboardPage() {
           // ?tab=consent opens the consent audit directly. Otherwise open the first tab this role may use.
           const requested = new URLSearchParams(window.location.search).get('tab');
           if (requested === 'consent' && granted.includes('privacy:read')) setActiveTab('consent');
+          else if (requested === 'price-lists' && granted.includes('pricelists:manage')) setActiveTab('priceLists');
           else if (granted.includes('leads:read')) setActiveTab('leads');
           else if (granted.includes('applications:read')) setActiveTab('applications');
           else if (granted.includes('blogs:manage')) setActiveTab('blogs');
           else if (granted.includes('gallery:manage')) setActiveTab('gallery');
+          else if (granted.includes('pricelists:manage')) setActiveTab('priceLists');
           else if (granted.includes('privacy:read') || granted.includes('comments:moderate')) {
             router.replace('/admin/privacy/');
             return;
@@ -595,6 +599,24 @@ export default function AdminDashboardPage() {
                 </svg>
               </span>
               <span>Gallery</span>
+            </div>
+          </button>}
+
+          {/* Nav Item: Price Lists */}
+          {can('pricelists:manage') && <button
+            onClick={() => handleNavTab('priceLists')}
+            className={`${styles.navItem} ${activeTab === 'priceLists' ? styles.navItemActive : ''}`}
+          >
+            <div className={styles.navItemLeft}>
+              <span className={styles.navIcon}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="8" y1="13" x2="16" y2="13" />
+                  <line x1="8" y1="17" x2="13" y2="17" />
+                </svg>
+              </span>
+              <span>Price Lists</span>
             </div>
           </button>}
 
@@ -1177,6 +1199,8 @@ export default function AdminDashboardPage() {
 
           {/* ================= TAB 4: BLOGS ================= */}
           {activeTab === 'gallery' && can('gallery:manage') && <GalleryManager />}
+
+          {activeTab === 'priceLists' && can('pricelists:manage') && <PriceListsManager />}
 
           {activeTab === 'users' && can('users:manage') && <UsersPanel currentId={currentAdminId} />}
 

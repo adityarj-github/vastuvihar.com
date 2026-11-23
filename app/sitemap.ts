@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 import cities from '@/data/cities.json';
-import { priceLists } from '@/data/priceLists';
+import { getPublishedPriceLists } from '@/lib/priceLists';
 import { projects } from '@/data/projects';
 import { BLOG_CATEGORIES } from '@/lib/blogCategories';
 import { getGalleryAlbums } from '@/lib/gallery';
@@ -63,7 +63,7 @@ async function getBlogEntries(): Promise<MetadataRoute.Sitemap> {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [albums, blogEntries] = await Promise.all([getGalleryAlbums(), getBlogEntries()]);
+  const [albums, blogEntries, priceLists] = await Promise.all([getGalleryAlbums(), getBlogEntries(), getPublishedPriceLists()]);
 
   return [
     ...STATIC_PATHS.map((path) => entry(path)),

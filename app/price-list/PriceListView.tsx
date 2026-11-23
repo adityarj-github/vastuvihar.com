@@ -21,15 +21,42 @@ type StateGroup = {
   state: string;
   cities: City[];
 };
+
+/** A published price list with a state and city set in the admin panel. */
+export type ListedPhase = { state: string; city: string; name: string; link: string };
+
+const sameName = (a: string, b: string) => a.trim().toLowerCase() === b.trim().toLowerCase();
+
+/** Puts each published list under its city; a new state or city is added at the end. */
+function withPhases(listed: ListedPhase[]): StateGroup[] {
+  const groups = PRICE_LIST_DATA.map((group) => ({
+    ...group,
+    cities: group.cities.map((city) => ({ ...city, phases: [...city.phases] })),
+  }));
+  listed.forEach((phase) => {
+    let group = groups.find((item) => sameName(item.state, phase.state));
+    if (!group) {
+      group = { state: phase.state, cities: [] };
+      groups.push(group);
+    }
+    let city = group.cities.find((item) => sameName(item.name, phase.city));
+    if (!city) {
+      city = { name: phase.city, phases: [] };
+      group.cities.push(city);
+    }
+    city.phases.push({ name: phase.name, link: phase.link });
+  });
+  return groups;
+}
 // { name: 'Phase 2 & 3', link: '/price-list/purnea-phase-2-3/' }, { name: 'Phase 2 Flats', link: '/price-list/purnea-phase-2-flats/' }, { name: 'Phase 4 Flats (1 & 3 BHK)', link: '/price-list/purnea-phase-4-flats-1-3-bhk/' }, { name: 'Phase 4 Flats (2 BHK)', link: '/price-list/purnea-phase-4-flats-2-bhk/' }, { name: 'Phase 4 Bungalows', link: '/price-list/purnea-phase-4-bungalows/' }, { name: 'Phase 4, 01 Ext. Flats', link: '/price-list/purnea-phase-4-01-ext-flats/' }, { name: 'Phase 4, 01 Ext. Bungalows', link: '/price-list/purnea-phase-4-01-ext-bungalows/' 
 const PRICE_LIST_DATA: StateGroup[] = [
   {
     state: 'Bihar',
     cities: [
-      { name: 'Ara', phases: [{ name: 'Phase 02 Ext', link: '/price-list/ara-phase-02-ext/' }, { name: 'Phase 04', link: '/price-list/ara-phase-4/' }] },
-      { name: 'Aurangabad', phases: [{ name: 'Phase 02', link: '/price-list/aurangabad-project-2/' }, { name: 'Phase 04', link: '/price-list/aurangabad-project-4/' }] },
-      { name: 'Dehri on Sone', phases: [{ name: 'Phase 03', link: '/price-list/dehri-on-sone-project-3/' }] },
-      { name: 'Katihar', phases: [{ name: 'Phase 02', link: '/price-list/katihar-phase-2/' }] },
+      { name: 'Ara', phases: [] },
+      { name: 'Aurangabad', phases: [] },
+      { name: 'Dehri on Sone', phases: [] },
+      { name: 'Katihar', phases: [] },
       { name: 'Purnea', phases: [] },
       { name: 'Gaya', phases: [] },
       { name: 'Patna', phases: [] },
@@ -94,19 +121,20 @@ const PRICE_LIST_DATA: StateGroup[] = [
   },
 ];
 
-export default function PriceListView() {
+export default function PriceListView({ listed }: { listed: ListedPhase[] }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [openState, setOpenState] = useState<string | null>('Bihar');
+  const allData = useMemo(() => withPhases(listed), [listed]);
 
   // Filter states, cities and project phases.
   const filteredData = useMemo(() => {
     const lowerQuery = searchQuery.trim().toLowerCase();
 
     if (!lowerQuery) {
-      return PRICE_LIST_DATA;
+      return allData;
     }
 
-    return PRICE_LIST_DATA.map((group) => {
+    return allData.map((group) => {
       const stateMatch = group.state
         .toLowerCase()
         .includes(lowerQuery);
@@ -134,7 +162,7 @@ export default function PriceListView() {
         cities: filteredCities,
       };
     }).filter((group) => group.cities.length > 0);
-  }, [searchQuery]);
+  }, [searchQuery, allData]);
 
   // Automatically open the first matching state when searching.
   useEffect(() => {

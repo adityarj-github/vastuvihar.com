@@ -1,6 +1,9 @@
 export const priceLists = [
     {
         "slug": "ara-phase-02-ext",
+        "state": "Bihar",
+        "city": "Ara",
+        "phaseLabel": "Phase 02 Ext",
         "projectName": "Ara Phase-2 Extension",
         "effectiveDate": "16 Oct. 2026 to 31 Mar. 2027",
         "officeAddress": "1st Floor, Mahuli Tower, K.G. Road, Ara",
@@ -113,6 +116,9 @@ export const priceLists = [
     },
     {
         "slug": "ara-phase-4",
+        "state": "Bihar",
+        "city": "Ara",
+        "phaseLabel": "Phase 04",
         "projectName": "Ara Phase-4",
         "effectiveDate": "16 Oct. 2026 to 31 Mar. 2027",
         "officeAddress": "1st Floor, Mahuli Tower, K.G. Road, Ara",
@@ -222,6 +228,9 @@ export const priceLists = [
     },
     {
         "slug": "aurangabad-project-2",
+        "state": "Bihar",
+        "city": "Aurangabad",
+        "phaseLabel": "Phase 02",
         "projectName": "Aurangabad Project-2",
         "effectiveDate": "16 Oct. 2026 to 31 Mar. 2027",
         "officeAddress": "1st Floor, Sai Complex, M.G. Road, Opp. H.P. Petrol Pump, Aurangabad, Bihar",
@@ -380,6 +389,9 @@ export const priceLists = [
     },
     {
         "slug": "aurangabad-project-4",
+        "state": "Bihar",
+        "city": "Aurangabad",
+        "phaseLabel": "Phase 04",
         "projectName": "Aurangabad Project-4",
         "effectiveDate": "16 Oct. 2026 to 31 Mar. 2027",
         "officeAddress": "1st Floor, Sai Complex, M.G. Road, Opp. H.P. Petrol Pump, Aurangabad, Bihar",
@@ -498,6 +510,9 @@ export const priceLists = [
     },
     {
         "slug": "dehri-on-sone-project-3",
+        "state": "Bihar",
+        "city": "Dehri on Sone",
+        "phaseLabel": "Phase 03",
         "projectName": "Dehri On Sone Project-3",
         "effectiveDate": "16 Oct. 2026 to 31 Mar. 2027",
         "officeAddress": "Sahara Complex, Near Bandana Hotel, Pali Road, Dehri-On-Sone",
@@ -614,6 +629,9 @@ export const priceLists = [
     },
     {
         "slug": "katihar-phase-2",
+        "state": "Bihar",
+        "city": "Katihar",
+        "phaseLabel": "Phase 02",
         "projectName": "Katihar Phase-2",
         "effectiveDate": "16 Oct. 2026 to 31 Mar. 2027",
         "officeAddress": "Near BMP Field, Shive Puri Gate, Katihar-854015 (Bihar)",

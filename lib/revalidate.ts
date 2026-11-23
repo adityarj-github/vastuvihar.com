@@ -52,3 +52,12 @@ export function revalidateGallery() {
 export function revalidateCareers() {
   refresh([['/careers', undefined]]);
 }
+
+/** Price list pages: a list or the PDF design was created, edited or deleted. */
+export function revalidatePriceLists() {
+  refresh([
+    ['/price-list', undefined],
+    ['/price-list/[slug]', 'page'],
+    SITEMAP,
+  ]);
+}

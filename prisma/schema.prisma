@@ -429,3 +429,25 @@ model PrivacySetting {
   updatedBy String?
   updatedAt DateTime @updatedAt
 }
+// Admin edits to the price lists. A row with the slug of a list in data/priceLists.js
+// replaces it (isDeleted hides it); any other slug is a list added in the admin panel.
+model PriceList {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  data        String? // JSON: PriceListProject (lib/priceListTypes.ts); null keeps the file version
+  pdfDesign   String? // JSON: PdfTemplate for this list only; null uses the shared design
+  isPublished Boolean  @default(true)
+  isDeleted   Boolean  @default(false)
+  sortOrder   Int      @default(0)
+  updatedBy   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// The shared PDF design (one row, id "default"). JSON: PdfTemplate.
+model PriceListTemplate {
+  id        String   @id
+  data      String
+  updatedBy String?
+  updatedAt DateTime @updatedAt
+}
