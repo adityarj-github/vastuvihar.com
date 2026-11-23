@@ -1,7 +1,8 @@
-import { cookies } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { keyedHash, randomToken, safeEqual, sha256 } from '@/lib/security/crypto';
+import { DEV_BYPASS_EMAIL, isDevBypassRequest } from '@/lib/security/devBypass';
 import { isSameOrigin, jsonError } from '@/lib/security/request';
 
 export const COOKIE_NAME = 'vv_admin_session';
@@ -66,6 +67,9 @@ export const MASTER_ADMIN: AdminPrincipal = {
 };
 
 export async function getCurrentAdmin(): Promise<AdminPrincipal | null> {
+  // Only under `npm run dev:local` (next dev bound to 127.0.0.1). See lib/security/devBypass.ts.
+  if (isDevBypassRequest(await headers())) return { ...MASTER_ADMIN, email: DEV_BYPASS_EMAIL };
+
   const cookieStore = await cookies();
   const token = cookieStore.get(COOKIE_NAME)?.value;
   if (!token) return null;

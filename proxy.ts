@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { accessSetting, accessToken, verifyAccessToken } from '@/lib/security/cfAccess';
+import { isDevBypassRequest } from '@/lib/security/devBypass';
 
 const SESSION_COOKIE = 'vv_admin_session';
 
@@ -48,7 +49,7 @@ export async function proxy(request: NextRequest) {
     const isLogin = pathname.startsWith('/admin/login');
     // A convenience redirect only. Every admin API checks the session and role itself,
     // and the admin pages hold no personal data until those APIs return it.
-    if (!isLogin && !request.cookies.get(SESSION_COOKIE)?.value) {
+    if (!isLogin && !request.cookies.get(SESSION_COOKIE)?.value && !isDevBypassRequest(request.headers)) {
       return NextResponse.redirect(new URL('/admin/login/', request.url));
     }
     const response = NextResponse.next();
