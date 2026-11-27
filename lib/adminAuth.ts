@@ -46,6 +46,8 @@ export const ROLE_PERMISSIONS: Record<string, readonly Permission[]> = {
   SALES: ['leads:read', 'leads:write', 'leads:export'],
   HR: ['applications:read', 'applications:write', 'vacancies:manage'],
   CONTENT: ['blogs:manage', 'gallery:manage', 'pricelists:manage', 'comments:moderate', 'newsletter:manage'],
+  // Price lists only: projects, prices, cities and the PDF design. Nothing else in the admin area.
+  PRICE_LIST_MANAGER: ['pricelists:manage'],
 };
 
 export const ROLES = Object.keys(ROLE_PERMISSIONS);

@@ -5,7 +5,7 @@ import { promisify } from 'node:util';
 import { PrismaClient } from '@prisma/client';
 
 const scrypt = promisify(scryptCallback);
-const ROLES = ['SUPER_ADMIN', 'PRIVACY_OFFICER', 'SALES', 'HR', 'CONTENT'];
+const ROLES = ['SUPER_ADMIN', 'PRIVACY_OFFICER', 'SALES', 'HR', 'CONTENT', 'PRICE_LIST_MANAGER'];
 
 const [email, name, role = 'SUPER_ADMIN'] = process.argv.slice(2);
 const password = process.env.ADMIN_BOOTSTRAP_PASSWORD || '';
