@@ -26,7 +26,8 @@ const ROLE_DETAILS: Record<string, { label: string; description: string }> = {
   PRIVACY_OFFICER: { label: 'Privacy officer', description: 'Privacy requests, compliance records and the audit log.' },
   SALES: { label: 'Sales', description: 'Leads and lead exports.' },
   HR: { label: 'HR', description: 'Vacancies and job applications.' },
-  CONTENT: { label: 'Content', description: 'Blog, gallery, comments and newsletter.' },
+  CONTENT: { label: 'Content', description: 'Blog, gallery, price lists, comments and newsletter.' },
+  PRICE_LIST_MANAGER: { label: 'Price lists only', description: 'Price lists, cities and the price list PDF. No leads, users or other sections.' },
 };
 
 const roleLabel = (role: string) => ROLE_DETAILS[role]?.label || role;

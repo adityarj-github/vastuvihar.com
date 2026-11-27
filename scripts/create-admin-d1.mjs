@@ -11,7 +11,7 @@ import path from 'node:path';
 import { promisify } from 'node:util';
 
 const scrypt = promisify(scryptCallback);
-const ROLES = ['SUPER_ADMIN', 'PRIVACY_OFFICER', 'SALES', 'HR', 'CONTENT'];
+const ROLES = ['SUPER_ADMIN', 'PRIVACY_OFFICER', 'SALES', 'HR', 'CONTENT', 'PRICE_LIST_MANAGER'];
 
 const args = process.argv.slice(2);
 const envIndex = args.indexOf('--env');

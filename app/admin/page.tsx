@@ -98,6 +98,7 @@ export default function AdminDashboardPage() {
   const [loading, setLoading] = useState(true);
   const [permissions, setPermissions] = useState<string[]>([]);
   const [currentAdminId, setCurrentAdminId] = useState('');
+  const [currentAdminName, setCurrentAdminName] = useState('Admin');
   const can = (permission: string) => permissions.includes(permission);
 
   // Leads State
@@ -141,6 +142,7 @@ export default function AdminDashboardPage() {
           const granted: string[] = data.user?.permissions || [];
           setPermissions(granted);
           setCurrentAdminId(data.user?.id || '');
+          setCurrentAdminName(data.user?.name || data.user?.email || 'Admin');
           // ?tab=consent opens the consent audit directly. Otherwise open the first tab this role may use.
           const requested = new URLSearchParams(window.location.search).get('tab');
           if (requested === 'consent' && granted.includes('privacy:read')) setActiveTab('consent');
@@ -808,8 +810,8 @@ export default function AdminDashboardPage() {
             </button>
 
             <div className={styles.adminProfile}>
-              <div className={styles.avatar}>A</div>
-              <span className={styles.profileName}>Admin</span>
+              <div className={styles.avatar}>{currentAdminName.trim().charAt(0).toUpperCase() || 'A'}</div>
+              <span className={styles.profileName}>{currentAdminName}</span>
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.6 }}>
                 <polyline points="6 9 12 15 18 9" />
               </svg>
